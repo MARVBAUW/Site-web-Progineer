@@ -1,0 +1,71 @@
+
+User-agent: *
+Allow: /
+Allow: /resources/
+Allow: /resources/guides/
+Allow: /resources/documents/
+
+# Règles spécifiques pour Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Règles spécifiques pour Googlebot-Image
+User-agent: Googlebot-Image
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# Règles spécifiques pour Bingbot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Explicitement autoriser l'indexation des PDF et documents
+Allow: /*.pdf$
+Allow: /*.doc$
+Allow: /*.docx$
+
+# Ne pas indexer les pages administratives, de débogage ou temporaires
+Disallow: /admin/
+Disallow: /debug/
+Disallow: /temp/
+Disallow: /workspace/sign-in
+Disallow: /workspace/sign-up
+Disallow: /admin-panel
+Disallow: /api/
+Disallow: /workspace/client-area/admin
+Disallow: /workspace/client-area/private/
+Disallow: /_next/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /src/
+
+# Bloquer les bots indésirables
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Autoriser les bots de réseaux sociaux
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Sitemap
+Sitemap: https://progineer.fr/sitemap.xml
+
+# Host (optionnel, pour spécifier le domaine préféré)
+Host: https://progineer.fr
+
