@@ -3,8 +3,8 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Clés correctes directement dans le script
-const url = 'https://usakxozksekpuoukvksj.supabase.co';
-const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVzYWt4b3prc2VrcHVvdWt2a3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI5OTg1NzMsImV4cCI6MjA1ODU3NDU3M30._xLyeOIPUQw_R4YaQI2LjYY2IdgzQ7mwXg39Kyi4HBU';
+const url = 'https://your-project.supabase.co';
+const key = 'your-jwt-key-here';
 
 console.log('🧪 Test avec les bonnes clés JWT');
 console.log('================================');
