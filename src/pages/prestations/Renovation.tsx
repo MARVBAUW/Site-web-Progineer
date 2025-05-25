@@ -1,0 +1,56 @@
+import React from 'react';
+import Container from '@/components/common/Container';
+import SEO from '@/components/common/SEO';
+import SEOFooter from '@/components/common/SEOFooter';
+import PrestationsSubNav from '@/components/prestations/PrestationsSubNav';
+import RenovationHero from '@/components/prestations/renovation/RenovationHero';
+import RenovationSidebar from '@/components/prestations/renovation/RenovationSidebar';
+import RenovationContent from '@/components/prestations/renovation/RenovationContent';
+import RenovationSEOContent from '@/components/prestations/renovation/RenovationSEOContent';
+
+const Renovation = () => {
+  return (
+    <>
+      <SEO 
+        title="Rénovation complète de maisons et appartements en PACA | Progineer"
+        description="Experts en rénovation à Marseille et en PACA. Transformez votre habitat avec Progineer, maître d'œuvre spécialisé en rénovation complète de maisons et appartements."
+        keywords="rénovation maison, rénovation appartement, transformation habitat, maître d'œuvre PACA, rénovation complète"
+        canonicalUrl="https://progineer.fr/prestations-maitre-oeuvre/renovation"
+      />
+
+      <RenovationHero />
+      <PrestationsSubNav activeService="renovation" />
+
+      <section className="py-16">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+            <div className="lg:col-span-2">
+              <RenovationSidebar />
+            </div>
+            <div className="lg:col-span-3">
+              <RenovationContent />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <RenovationSEOContent />
+
+      <SEOFooter 
+        text="Travaux de rénovation de maisons et d'appartements en PACA par Progineer, maître d'œuvre spécialisé en travaux de transformation d'habitat. Nos experts vous accompagnent dans tous vos travaux de rénovation à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur pour améliorer votre confort et valoriser votre patrimoine."
+        additionalKeywords={[
+          "travaux de rénovation", 
+          "travaux rénovation maison", 
+          "travaux de rénovation appartement", 
+          "travaux rénovation PACA", 
+          "travaux électricité rénovation", 
+          "travaux plomberie rénovation", 
+          "coût travaux rénovation", 
+          "travaux isolation thermique"
+        ]}
+      />
+    </>
+  );
+};
+
+export default Renovation;

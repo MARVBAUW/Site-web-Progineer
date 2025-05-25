@@ -1,0 +1,32 @@
+name: Génération Automatique Articles Veille
+
+on:
+  schedule:
+    # Lundi, Mercredi, Vendredi à 8h00 UTC (9h00 Paris)
+    - cron: '0 8 * * 1,3,5'
+  workflow_dispatch: # Permet de déclencher manuellement
+
+jobs:
+  generate-article:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Générer article de veille
+      run: |
+        curl -X POST \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
+          -d '{
+            "topic": "Évolutions réglementaires construction",
+            "category": "reglementation",
+            "keywords": ["RE2020", "construction", "PACA", "réglementation"]
+          }' \
+          https://usakxozksekpuoukvksj.supabase.co/functions/v1/generate-veille-article
+      
+    - name: Notification succès
+      if: success()
+      run: echo "✅ Article de veille généré avec succès"
+      
+    - name: Notification échec
+      if: failure()
+      run: echo "❌ Erreur lors de la génération d'article"
