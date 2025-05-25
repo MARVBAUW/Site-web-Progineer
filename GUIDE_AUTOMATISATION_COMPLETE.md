@@ -8,9 +8,9 @@
 4. **Nom de la fonction** : `generate-veille-article`
 5. **Copiez le code** depuis `supabase/functions/generate-veille-article/index.ts`
 6. **Configurez les variables d'environnement** dans Supabase :
-   - `SUPABASE_URL` = https://usakxozksekpuoukvksj.supabase.co
+   - `SUPABASE_URL` = https://your-project.supabase.co
    - `SUPABASE_ANON_KEY` = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-   - `ANTHROPIC_API_KEY` = sk-ant-api03-59E30vBrQafl6CIiqGWQ3Rljz_0eDCNyN7FOfB4Gy8LLek9nqo7...
+   - `ANTHROPIC_API_KEY` = sk-ant-api03-your-key-here
 7. **Déployez la fonction**
 
 ## Étape 2 : Tester l'Edge Function
@@ -25,7 +25,7 @@ npm run test:edge-function
 2. **Allez dans Settings → Secrets and variables → Actions**
 3. **Ajoutez le secret** :
    - Nom : `SUPABASE_SERVICE_ROLE_KEY`
-   - Valeur : `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVzYWt4b3prc2VrcHVvdWt2a3NqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0Mjk5ODU3MywiZXhwIjoyMDU4NTc0NTczfQ.VdjqdvzeZ1xcPm9LQw0anW3JUX8ONlL6qCHe3YL0h1o`
+   - Valeur : `your-jwt-key-here`
 
 ## Étape 4 : Vérifier l'automatisation
 

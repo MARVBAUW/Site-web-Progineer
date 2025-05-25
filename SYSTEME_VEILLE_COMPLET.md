@@ -95,10 +95,10 @@ npm run veille:logs     # Suivi des logs
 
 ### **Variables d'Environnement** :
 ```bash
-SUPABASE_URL=https://usakxozksekpuoukvksj.supabase.co
+SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_ANON_KEY=917ecd9edf4653a85dbca6f800364001e10b8f57a52ff4007
-ANTHROPIC_API_KEY=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
-VITE_SUPABASE_URL=https://usakxozksekpuoukvksj.supabase.co
+ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
+VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_ANON_KEY=917ecd9edf4653a85dbca6f800364001e10b8f57a52ff4007
 ```
 
