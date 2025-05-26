@@ -106,7 +106,8 @@ async function generateArticleWithClaude(
   const anthropicApiKey = Deno.env.get('ANTHROPIC_API_KEY')
   
   if (!anthropicApiKey) {
-    throw new Error('Clé API Anthropic manquante')
+    console.log('⚠️  Clé Anthropic manquante, utilisation du fallback local')
+    return generateArticleLocally(topic, category, keywords, sources)
   }
 
   const prompt = createPromptForCategory(topic, category, keywords, sources)
