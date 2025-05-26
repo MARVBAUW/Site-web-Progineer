@@ -20,14 +20,17 @@ const Footer = () => {
                 de la conception à la réalisation.
               </p>
               <div className="flex space-x-4 justify-center md:justify-start">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="bg-card/10 p-2 rounded-full text-white hover:bg-progineer-gold hover:text-white transition-colors">
+                <a href="https://www.facebook.com/people/Progineer-Ma%C3%AEtrise-Doeuvre/61572478063277/" target="_blank" rel="noopener noreferrer" className="bg-card/10 p-2 rounded-full text-white hover:bg-progineer-gold hover:text-white transition-colors">
                   <Facebook className="h-4 w-4" />
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-card/10 p-2 rounded-full text-white hover:bg-progineer-gold hover:text-white transition-colors">
+                <a href="https://www.instagram.com/progineer_moe/" target="_blank" rel="noopener noreferrer" className="bg-card/10 p-2 rounded-full text-white hover:bg-progineer-gold hover:text-white transition-colors">
                   <Instagram className="h-4 w-4" />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="bg-card/10 p-2 rounded-full text-white hover:bg-progineer-gold hover:text-white transition-colors">
+                <a href="https://www.linkedin.com/company/105527808/admin/dashboard/" target="_blank" rel="noopener noreferrer" className="bg-card/10 p-2 rounded-full text-white hover:bg-progineer-gold hover:text-white transition-colors">
                   <Linkedin className="h-4 w-4" />
+                </a>
+                <a href="https://g.co/kgs/jRoxjts" target="_blank" rel="noopener noreferrer" className="bg-card/10 p-2 rounded-full text-white hover:bg-progineer-gold hover:text-white transition-colors" title="Google My Business">
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21.35 11.1c-.13-.28-.38-.47-.68-.52l-2.19-.32-.98-2.01c-.12-.25-.37-.41-.65-.41s-.53.16-.65.41l-.98 2.01-2.19.32c-.3.05-.55.24-.68.52-.13.28-.09.6.1.83l1.59 1.55-.38 2.18c-.05.3.07.6.3.78.23.18.55.2.8.06l1.96-1.03 1.96 1.03c.11.06.23.09.35.09.16 0 .32-.05.45-.15.23-.18.35-.48.3-.78l-.38-2.18 1.59-1.55c.19-.23.23-.55.1-.83z"/></svg>
                 </a>
               </div>
             </div>

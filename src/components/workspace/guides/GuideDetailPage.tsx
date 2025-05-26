@@ -7,6 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Container from '@/components/common/Container';
 import SEOHeader from '@/components/common/SEOHeader';
 import { mainGuides } from '@/data/guides/guidesData';
+import { InternalLinkText } from '@/utils/internalLinking';
+import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 const GuideDetailPage: React.FC = () => {
   const { guideId } = useParams<{ guideId: string }>();
@@ -274,10 +276,10 @@ Date d'export: ${new Date().toLocaleDateString('fr-FR')}
   return (
     <>
       <SEOHeader
-        title={guide.seoData?.title || guide.title}
-        description={guide.seoData?.metaDescription || guide.description}
-        keywords={guide.seoData?.keywords?.join(', ') || guide.tags.join(', ')}
-        canonicalUrl={guide.seoData?.canonicalUrl || `https://progineer.fr/workspace/guides/${guide.id}`}
+        title={`${guide.title} - Guide pratique Progineer`}
+        description={`Découvrez le guide complet : ${guide.title}. ${guide.description} Accédez à des conseils, des étapes détaillées et des ressources pour réussir vos projets en PACA.`}
+        keywords={`guide, ${guide.tags.join(', ')}, construction, rénovation, PACA, Progineer`}
+        canonicalUrl={`https://progineer.fr/workspace/guides/${guide.id}`}
       />
 
       <Container className="py-8">
@@ -315,7 +317,7 @@ Date d'export: ${new Date().toLocaleDateString('fr-FR')}
               </h1>
 
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                {guide.description}
+                <InternalLinkText text={guide.description} maxOccurrences={2} />
               </p>
 
               {/* Métadonnées */}
@@ -504,6 +506,47 @@ Date d'export: ${new Date().toLocaleDateString('fr-FR')}
           </div>
         </div>
       </Container>
+      {/* Bloc SEO Footer et FAQ */}
+      <section className="py-8 bg-card border-t border-stone-200 mt-12">
+        <Container>
+          <div className="text-sm text-stone-500 space-y-6">
+            <p>
+              <InternalLinkText text={`Retrouvez d'autres guides pratiques, calculateurs et ressources sur Progineer pour optimiser vos projets de construction et rénovation en région PACA. Consultez aussi nos fiches de réglementation et nos outils de veille pour rester informé des dernières évolutions.`} maxOccurrences={4} />
+            </p>
+            <div className="mt-8">
+              <h2 className="text-lg font-semibold mb-4">Questions fréquentes sur ce guide</h2>
+              <div className="space-y-4">
+                <div className="bg-stone-100 p-4 rounded">
+                  <strong>Ce guide est-il à jour ?</strong>
+                  <p>Oui, ce guide est régulièrement mis à jour par nos experts pour refléter les dernières évolutions réglementaires et techniques.</p>
+                </div>
+                <div className="bg-stone-100 p-4 rounded">
+                  <strong>Puis-je télécharger ce guide ?</strong>
+                  <p>Oui, vous pouvez le télécharger au format PDF ou TXT pour une utilisation hors ligne.</p>
+                </div>
+                <div className="bg-stone-100 p-4 rounded">
+                  <strong>À qui s'adresse ce guide ?</strong>
+                  <p>Ce guide s'adresse aux particuliers, professionnels, architectes et artisans souhaitant réussir leur projet en PACA.</p>
+                </div>
+                <div className="bg-stone-100 p-4 rounded">
+                  <strong>Comment contacter un expert Progineer ?</strong>
+                  <p>Utilisez le formulaire de contact du site pour poser vos questions ou demander un accompagnement personnalisé.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Données structurées FAQ pour Google */}
+          <FAQStructuredData
+            faqs={[
+              { question: "Ce guide est-il à jour ?", answer: "Oui, ce guide est régulièrement mis à jour par nos experts pour refléter les dernières évolutions réglementaires et techniques." },
+              { question: "Puis-je télécharger ce guide ?", answer: "Oui, vous pouvez le télécharger au format PDF ou TXT pour une utilisation hors ligne." },
+              { question: "À qui s'adresse ce guide ?", answer: "Ce guide s'adresse aux particuliers, professionnels, architectes et artisans souhaitant réussir leur projet en PACA." },
+              { question: "Comment contacter un expert Progineer ?", answer: "Utilisez le formulaire de contact du site pour poser vos questions ou demander un accompagnement personnalisé." }
+            ]}
+            pageUrl={`https://progineer.fr/workspace/guides/${guide.id}`}
+          />
+        </Container>
+      </section>
     </>
   );
 };

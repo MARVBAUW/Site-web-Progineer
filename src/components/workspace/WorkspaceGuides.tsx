@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { GuideDocument } from './guides/types';
 import { GuideCard } from './guides/GuideCard';
@@ -10,6 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search } from 'lucide-react';
 import { checkFileAccessibility } from '@/utils/fileUtils';
+import { InternalLinkText } from '@/utils/internalLinking';
+import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 // Import guides data
 import { guides, guideCategories } from './guides/guidesData';
@@ -156,6 +157,54 @@ const WorkspaceGuides = () => {
         selectedDocument={selectedDocument}
         handleDownload={handleDownload}
       />
+
+      {/* Bloc SEO Footer et FAQ */}
+      <div className="mt-16 space-y-8">
+        <div className="bg-stone-50 border-t border-stone-200 p-6 rounded-xl">
+          <h2 className="text-lg font-semibold mb-4">À propos de nos guides pratiques</h2>
+          <p className="text-gray-700 mb-4">
+            <InternalLinkText text={
+              `Progineer propose une collection de guides pratiques pour la construction, la rénovation et la gestion de projet en PACA. Nos guides couvrent toutes les étapes d'un projet, de la préparation à la réception des travaux, et sont rédigés par des experts du bâtiment. Découvrez aussi nos calculateurs professionnels et nos fiches de réglementation pour aller plus loin dans vos démarches.`
+            } maxOccurrences={4} />
+          </p>
+        </div>
+        <div className="bg-stone-100 border border-stone-200 p-6 rounded-xl">
+          <h2 className="text-lg font-semibold mb-4">Questions fréquentes sur les guides</h2>
+          <div className="space-y-4">
+            <div className="bg-white p-4 rounded">
+              <strong>Les guides sont-ils gratuits ?</strong>
+              <p>La plupart des guides sont accessibles gratuitement. Certains contenus premium peuvent nécessiter un compte.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Puis-je télécharger les guides ?</strong>
+              <p>Oui, chaque guide est consultable en ligne et téléchargeable au format PDF pour une utilisation hors connexion.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Qui rédige les guides Progineer ?</strong>
+              <p>Nos guides sont rédigés par des ingénieurs, architectes et experts du bâtiment, avec une veille régulière sur la réglementation.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Comment trouver un guide spécifique ?</strong>
+              <p>Utilisez la barre de recherche ou filtrez par catégorie pour trouver rapidement le guide adapté à votre besoin.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Puis-je suggérer un sujet de guide ?</strong>
+              <p>Oui, contactez-nous via le formulaire de contact pour proposer un sujet ou une amélioration de contenu.</p>
+            </div>
+          </div>
+          {/* Données structurées FAQ pour Google */}
+          <FAQStructuredData
+            faqs={[
+              { question: "Les guides sont-ils gratuits ?", answer: "La plupart des guides sont accessibles gratuitement. Certains contenus premium peuvent nécessiter un compte." },
+              { question: "Puis-je télécharger les guides ?", answer: "Oui, chaque guide est consultable en ligne et téléchargeable au format PDF pour une utilisation hors connexion." },
+              { question: "Qui rédige les guides Progineer ?", answer: "Nos guides sont rédigés par des ingénieurs, architectes et experts du bâtiment, avec une veille régulière sur la réglementation." },
+              { question: "Comment trouver un guide spécifique ?", answer: "Utilisez la barre de recherche ou filtrez par catégorie pour trouver rapidement le guide adapté à votre besoin." },
+              { question: "Puis-je suggérer un sujet de guide ?", answer: "Oui, contactez-nous via le formulaire de contact pour proposer un sujet ou une amélioration de contenu." }
+            ]}
+            pageUrl="https://progineer.fr/workspace/guides"
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { generatePageTitle } from '@/utils/titleGenerator';
@@ -161,9 +160,10 @@ const SEO: React.FC<SEOProps> = ({
       }
     ],
     "sameAs": [
-      "https://www.facebook.com/progineer.org",
-      "https://www.instagram.com/progineer.moe",
-      "https://www.linkedin.com/company/progineer-moe"
+      "https://www.facebook.com/people/Progineer-Ma%C3%AEtrise-Doeuvre/61572478063277/",
+      "https://www.instagram.com/progineer_moe/",
+      "https://www.linkedin.com/company/105527808/admin/dashboard/",
+      "https://g.co/kgs/jRoxjts"
     ],
     "foundingDate": "2020",
     "numberOfEmployees": "5-10",

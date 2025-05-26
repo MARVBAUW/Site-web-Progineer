@@ -17,6 +17,8 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { veilleArticles, VeilleArticle, ArticleCategory } from '@/data/veille/veilleData';
+import { InternalLinkText } from '@/utils/internalLinking';
+import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 interface WorkspaceVeilleReglementaireProps {
   className?: string;
@@ -169,6 +171,49 @@ const WorkspaceVeilleReglementaire: React.FC<WorkspaceVeilleReglementaireProps> 
             </CardContent>
           </Card>
         </motion.div>
+
+        {/* Bloc SEO Footer et FAQ */}
+        <div className="mt-16 space-y-8">
+          <div className="bg-stone-50 border-t border-stone-200 p-6 rounded-xl">
+            <h2 className="text-lg font-semibold mb-4">À propos de la veille réglementaire</h2>
+            <p className="text-gray-700 mb-4">
+              <InternalLinkText text={
+                `Progineer propose une veille réglementaire actualisée pour le secteur de la construction, de la rénovation et de l'urbanisme en PACA. Retrouvez les dernières actualités, analyses, textes officiels et évolutions législatives. Découvrez aussi nos guides pratiques, calculateurs et fiches de réglementation pour aller plus loin.`
+              } maxOccurrences={4} />
+            </p>
+          </div>
+          <div className="bg-stone-100 border border-stone-200 p-6 rounded-xl">
+            <h2 className="text-lg font-semibold mb-4">Questions fréquentes sur la veille réglementaire</h2>
+            <div className="space-y-4">
+              <div className="bg-white p-4 rounded">
+                <strong>La veille est-elle à jour ?</strong>
+                <p>Oui, les articles sont mis à jour régulièrement pour refléter les dernières évolutions réglementaires et techniques.</p>
+              </div>
+              <div className="bg-white p-4 rounded">
+                <strong>Puis-je recevoir les nouveautés par email ?</strong>
+                <p>Oui, inscrivez-vous à notre newsletter pour recevoir les dernières actualités et analyses directement dans votre boîte mail.</p>
+              </div>
+              <div className="bg-white p-4 rounded">
+                <strong>Comment suggérer un sujet de veille ?</strong>
+                <p>Contactez-nous via le formulaire pour proposer un sujet ou une thématique à surveiller.</p>
+              </div>
+              <div className="bg-white p-4 rounded">
+                <strong>La veille couvre-t-elle toute la France ?</strong>
+                <p>La veille est principalement axée sur la région PACA, mais inclut aussi les grandes évolutions nationales.</p>
+              </div>
+            </div>
+            {/* Données structurées FAQ pour Google */}
+            <FAQStructuredData
+              faqs={[
+                { question: "La veille est-elle à jour ?", answer: "Oui, les articles sont mis à jour régulièrement pour refléter les dernières évolutions réglementaires et techniques." },
+                { question: "Puis-je recevoir les nouveautés par email ?", answer: "Oui, inscrivez-vous à notre newsletter pour recevoir les dernières actualités et analyses directement dans votre boîte mail." },
+                { question: "Comment suggérer un sujet de veille ?", answer: "Contactez-nous via le formulaire pour proposer un sujet ou une thématique à surveiller." },
+                { question: "La veille couvre-t-elle toute la France ?", answer: "La veille est principalement axée sur la région PACA, mais inclut aussi les grandes évolutions nationales." }
+              ]}
+              pageUrl="https://progineer.fr/workspace/veille-reglementaire"
+            />
+          </div>
+        </div>
       </div>
     );
   }
@@ -353,6 +398,49 @@ const WorkspaceVeilleReglementaire: React.FC<WorkspaceVeilleReglementaireProps> 
           </p>
         </div>
       )}
+
+      {/* Bloc SEO Footer et FAQ */}
+      <div className="mt-16 space-y-8">
+        <div className="bg-stone-50 border-t border-stone-200 p-6 rounded-xl">
+          <h2 className="text-lg font-semibold mb-4">À propos de la veille réglementaire</h2>
+          <p className="text-gray-700 mb-4">
+            <InternalLinkText text={
+              `Progineer propose une veille réglementaire actualisée pour le secteur de la construction, de la rénovation et de l'urbanisme en PACA. Retrouvez les dernières actualités, analyses, textes officiels et évolutions législatives. Découvrez aussi nos guides pratiques, calculateurs et fiches de réglementation pour aller plus loin.`
+            } maxOccurrences={4} />
+          </p>
+        </div>
+        <div className="bg-stone-100 border border-stone-200 p-6 rounded-xl">
+          <h2 className="text-lg font-semibold mb-4">Questions fréquentes sur la veille réglementaire</h2>
+          <div className="space-y-4">
+            <div className="bg-white p-4 rounded">
+              <strong>La veille est-elle à jour ?</strong>
+              <p>Oui, les articles sont mis à jour régulièrement pour refléter les dernières évolutions réglementaires et techniques.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Puis-je recevoir les nouveautés par email ?</strong>
+              <p>Oui, inscrivez-vous à notre newsletter pour recevoir les dernières actualités et analyses directement dans votre boîte mail.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Comment suggérer un sujet de veille ?</strong>
+              <p>Contactez-nous via le formulaire pour proposer un sujet ou une thématique à surveiller.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>La veille couvre-t-elle toute la France ?</strong>
+              <p>La veille est principalement axée sur la région PACA, mais inclut aussi les grandes évolutions nationales.</p>
+            </div>
+          </div>
+          {/* Données structurées FAQ pour Google */}
+          <FAQStructuredData
+            faqs={[
+              { question: "La veille est-elle à jour ?", answer: "Oui, les articles sont mis à jour régulièrement pour refléter les dernières évolutions réglementaires et techniques." },
+              { question: "Puis-je recevoir les nouveautés par email ?", answer: "Oui, inscrivez-vous à notre newsletter pour recevoir les dernières actualités et analyses directement dans votre boîte mail." },
+              { question: "Comment suggérer un sujet de veille ?", answer: "Contactez-nous via le formulaire pour proposer un sujet ou une thématique à surveiller." },
+              { question: "La veille couvre-t-elle toute la France ?", answer: "La veille est principalement axée sur la région PACA, mais inclut aussi les grandes évolutions nationales." }
+            ]}
+            pageUrl="https://progineer.fr/workspace/veille-reglementaire"
+          />
+        </div>
+      </div>
     </div>
   );
 };

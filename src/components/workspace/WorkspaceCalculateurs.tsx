@@ -1,8 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Calculator, HomeIcon, Building2, Scale, PiggyBank, Ruler, Thermometer, Volume } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { InternalLinkText } from '@/utils/internalLinking';
+import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 // Import workspace components
 import FraisNotaireCalculator from '@/components/workspace/calculators/immobilier/FraisNotaireCalculator';
@@ -213,6 +214,54 @@ const WorkspaceCalculateurs = () => {
           <SimulationManager />
         </TabsContent>
       </Tabs>
+
+      {/* Bloc SEO Footer et FAQ */}
+      <div className="mt-16 space-y-8">
+        <div className="bg-stone-50 border-t border-stone-200 p-6 rounded-xl">
+          <h2 className="text-lg font-semibold mb-4">À propos de nos calculateurs</h2>
+          <p className="text-gray-700 mb-4">
+            <InternalLinkText text={
+              `Progineer met à disposition des calculateurs professionnels pour la construction, la rénovation et l'investissement immobilier en PACA. Nos outils couvrent l'estimation de surface, la rentabilité locative, les frais de notaire, la conformité réglementaire et bien plus. Découvrez aussi nos guides pratiques et nos fiches de réglementation pour compléter vos analyses.`
+            } maxOccurrences={4} />
+          </p>
+        </div>
+        <div className="bg-stone-100 border border-stone-200 p-6 rounded-xl">
+          <h2 className="text-lg font-semibold mb-4">Questions fréquentes sur les calculateurs</h2>
+          <div className="space-y-4">
+            <div className="bg-white p-4 rounded">
+              <strong>Les calculateurs sont-ils gratuits ?</strong>
+              <p>La plupart des calculateurs sont accessibles gratuitement. Certains outils avancés peuvent nécessiter un compte ou un accès premium.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Comment utiliser les calculateurs ?</strong>
+              <p>Choisissez le calculateur adapté à votre besoin, saisissez vos données et obtenez instantanément les résultats et conseils associés.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Puis-je sauvegarder mes simulations ?</strong>
+              <p>Oui, en créant un compte, vous pouvez sauvegarder vos simulations et y accéder à tout moment.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Les résultats sont-ils fiables ?</strong>
+              <p>Nos calculateurs sont conçus par des experts et régulièrement mis à jour pour garantir la fiabilité des résultats.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Puis-je suggérer un nouveau calculateur ?</strong>
+              <p>Oui, contactez-nous pour proposer un nouvel outil ou une amélioration.</p>
+            </div>
+          </div>
+          {/* Données structurées FAQ pour Google */}
+          <FAQStructuredData
+            faqs={[
+              { question: "Les calculateurs sont-ils gratuits ?", answer: "La plupart des calculateurs sont accessibles gratuitement. Certains outils avancés peuvent nécessiter un compte ou un accès premium." },
+              { question: "Comment utiliser les calculateurs ?", answer: "Choisissez le calculateur adapté à votre besoin, saisissez vos données et obtenez instantanément les résultats et conseils associés." },
+              { question: "Puis-je sauvegarder mes simulations ?", answer: "Oui, en créant un compte, vous pouvez sauvegarder vos simulations et y accéder à tout moment." },
+              { question: "Les résultats sont-ils fiables ?", answer: "Nos calculateurs sont conçus par des experts et régulièrement mis à jour pour garantir la fiabilité des résultats." },
+              { question: "Puis-je suggérer un nouveau calculateur ?", answer: "Oui, contactez-nous pour proposer un nouvel outil ou une amélioration." }
+            ]}
+            pageUrl="https://progineer.fr/workspace/calculateurs"
+          />
+        </div>
+      </div>
     </div>
   );
 };
