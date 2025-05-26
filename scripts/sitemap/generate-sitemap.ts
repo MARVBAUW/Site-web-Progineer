@@ -2,7 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 // @ts-ignore
-import { generateDefaultSitemap } from './sitemapGenerator';
+import { generateDefaultSitemap } from './sitemapGenerator.js';
 
 const sitemapXml = generateDefaultSitemap();
 const outputPath = path.resolve('public', 'sitemap.xml');
