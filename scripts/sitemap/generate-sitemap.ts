@@ -2,9 +2,9 @@
 import fs from 'fs';
 import path from 'path';
 // @ts-ignore
-import { generateDefaultSitemap } from './sitemapGenerator.js';
+import { sitemapGenerator } from './sitemapGenerator.js';
 
-const sitemapXml = generateDefaultSitemap();
+const sitemapXml = sitemapGenerator.generateSitemapXML();
 const outputPath = path.resolve('public', 'sitemap.xml');
 
 fs.writeFileSync(outputPath, sitemapXml, 'utf8');
