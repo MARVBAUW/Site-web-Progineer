@@ -50,7 +50,7 @@ const Index = () => {
       />
       
       <main className="overflow-hidden">
-        <h1 className="sr-only">Architecte et Maître d'œuvre à Marseille | Constructeur de Maisons PACA</h1>
+        <div className="sr-only" role="heading" aria-level={1}>Architecte et Maître d'œuvre à Marseille | Constructeur de Maisons PACA</div>
         <Hero />
         <ExpertiseSection />
         <Services />
