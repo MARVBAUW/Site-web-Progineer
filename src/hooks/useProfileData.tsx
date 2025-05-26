@@ -3,30 +3,30 @@ import { useState, useEffect } from 'react';
 import { User } from '@supabase/supabase-js';
 
 interface ProfileData {
-  full_name: string;
+  fullName: string;
   email: string;
   phone: string;
   address: string;
-  company_name: string;
+  company: string;
 }
 
 export const useProfileData = (user: User | null) => {
   const [profileData, setProfileData] = useState<ProfileData>({
-    full_name: '',
+    fullName: '',
     email: '',
     phone: '',
     address: '',
-    company_name: '',
+    company: '',
   });
 
   useEffect(() => {
     if (user) {
       setProfileData({
-        full_name: user.user_metadata?.full_name || '',
+        fullName: user.user_metadata?.full_name || '',
         email: user.email || '',
         phone: user.user_metadata?.phone || '',
         address: user.user_metadata?.address || '',
-        company_name: user.user_metadata?.company_name || '',
+        company: user.user_metadata?.company_name || '',
       });
     }
   }, [user]);
