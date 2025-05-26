@@ -17,7 +17,7 @@
     "veille:test-scheduler": "node -e \"import('./scripts/schedule-veille-articles.mjs').then(m => new m.default().testGeneration())\"",
     "veille:stats": "cat logs/veille-stats.json 2>/dev/null || echo '{\"message\": \"Aucune statistique disponible\"}'",
     "veille:logs": "tail -f logs/veille-scheduler.log 2>/dev/null || echo 'Aucun log disponible'",
-    "generate-sitemap": "node ./scripts/generate-sitemap.mjs",
+    "generate-sitemap": "ts-node ./scripts/generate-sitemap.ts",
     "prebuild": "npm run generate-sitemap"
   },
   "dependencies": {
