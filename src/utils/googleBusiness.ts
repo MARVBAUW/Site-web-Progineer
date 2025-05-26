@@ -1,4 +1,3 @@
-
 /**
  * Google Business Profile integration utility
  * 
@@ -103,9 +102,10 @@ export const getBusinessStructuredData = () => {
     },
     "priceRange": "€€€",
     "sameAs": [
-      "https://www.facebook.com/progineer.org",
-      "https://www.instagram.com/progineer.moe",
-      "https://www.linkedin.com/company/progineer-moe"
+      "https://www.facebook.com/people/Progineer-Ma%C3%AEtrise-Doeuvre/61572478063277/",
+      "https://www.instagram.com/progineer_moe/",
+      "https://www.linkedin.com/company/105527808/admin/dashboard/",
+      "https://g.co/kgs/jRoxjts"
     ],
     "image": "https://progineer.fr/images/progineer-social-card.jpg",
     "areaServed": {

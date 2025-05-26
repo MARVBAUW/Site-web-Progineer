@@ -1,10 +1,11 @@
-
 import React, { useState } from 'react';
 import Container from '@/components/common/Container';
 import Button from '@/components/common/Button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FilePlus2, FileSpreadsheet, FileText, FileCode, FileCheck, TrendingUp } from 'lucide-react';
 import SEOHeader from '@/components/common/SEOHeader';
+import { InternalLinkText } from '@/utils/internalLinking';
+import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 // Import workspace components
 import WorkspaceGuides from '@/components/workspace/WorkspaceGuides';
@@ -184,11 +185,49 @@ const Workspace = () => {
       {/* SEO Footer */}
       <section className="py-8 bg-card border-t border-stone-200">
         <Container>
-          <div className="text-sm text-stone-500">
+          <div className="text-sm text-stone-500 space-y-6">
             <p>
-              Ingénieur, maître d'œuvre à Marseille et en PACA – Spécialiste en construction de maisons sur mesure, rénovation et extension. Retrouvez toutes nos ressources et outils pour faciliter vos projets immobiliers en région Provence-Alpes-Côte d'Azur.
+              <InternalLinkText text={
+                `Progineer met à votre disposition un espace complet de ressources pour la construction, la rénovation et la gestion de projet en PACA. Accédez à nos guides pratiques, calculateurs professionnels, fiches de réglementation et outils de veille pour optimiser vos projets. Découvrez aussi notre simulateur de rentabilité et nos conseils d'experts.`
+              } maxOccurrences={4} />
             </p>
+            <div className="mt-8">
+              <h2 className="text-lg font-semibold mb-4">Questions fréquentes sur le Workspace</h2>
+              <div className="space-y-4">
+                <div className="bg-stone-100 p-4 rounded">
+                  <strong>Qu'est-ce que le Workspace Progineer ?</strong>
+                  <p>Le Workspace est un espace en ligne regroupant des ressources, guides, calculateurs et outils pour accompagner vos projets de construction et rénovation en région PACA.</p>
+                </div>
+                <div className="bg-stone-100 p-4 rounded">
+                  <strong>Quels types de ressources puis-je trouver ?</strong>
+                  <p>Vous y trouverez des guides pratiques, des calculateurs techniques, des fiches de réglementation, des modèles Excel, et des articles de veille réglementaire.</p>
+                </div>
+                <div className="bg-stone-100 p-4 rounded">
+                  <strong>Les calculateurs sont-ils gratuits ?</strong>
+                  <p>La plupart des calculateurs sont accessibles gratuitement. Certains outils avancés peuvent nécessiter un compte ou un accès premium.</p>
+                </div>
+                <div className="bg-stone-100 p-4 rounded">
+                  <strong>Comment utiliser les guides techniques ?</strong>
+                  <p>Les guides sont consultables en ligne et téléchargeables au format PDF. Ils couvrent toutes les étapes d'un projet, de la préparation à la réception des travaux.</p>
+                </div>
+                <div className="bg-stone-100 p-4 rounded">
+                  <strong>À qui s'adresse cet espace ?</strong>
+                  <p>Le Workspace s'adresse aux particuliers, professionnels, maîtres d'ouvrage, architectes et artisans souhaitant accéder à des ressources fiables et à jour.</p>
+                </div>
+              </div>
+            </div>
           </div>
+          {/* Données structurées FAQ pour Google */}
+          <FAQStructuredData
+            faqs={[
+              { question: "Qu'est-ce que le Workspace Progineer ?", answer: "Le Workspace est un espace en ligne regroupant des ressources, guides, calculateurs et outils pour accompagner vos projets de construction et rénovation en région PACA." },
+              { question: "Quels types de ressources puis-je trouver ?", answer: "Vous y trouverez des guides pratiques, des calculateurs techniques, des fiches de réglementation, des modèles Excel, et des articles de veille réglementaire." },
+              { question: "Les calculateurs sont-ils gratuits ?", answer: "La plupart des calculateurs sont accessibles gratuitement. Certains outils avancés peuvent nécessiter un compte ou un accès premium." },
+              { question: "Comment utiliser les guides techniques ?", answer: "Les guides sont consultables en ligne et téléchargeables au format PDF. Ils couvrent toutes les étapes d'un projet, de la préparation à la réception des travaux." },
+              { question: "À qui s'adresse cet espace ?", answer: "Le Workspace s'adresse aux particuliers, professionnels, maîtres d'ouvrage, architectes et artisans souhaitant accéder à des ressources fiables et à jour." }
+            ]}
+            pageUrl="https://progineer.fr/workspace"
+          />
         </Container>
       </section>
     </>

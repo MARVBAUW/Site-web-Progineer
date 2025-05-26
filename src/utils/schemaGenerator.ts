@@ -1,4 +1,3 @@
-
 /**
  * Utilitaires pour générer facilement des données structurées Schema.org
  */
@@ -69,9 +68,10 @@ export const generateOrganizationSchema = (org: OrganizationSchema) => {
       "longitude": org.geo.longitude
     } : undefined,
     "sameAs": org.sameAs || [
-      "https://facebook.com/progineer",
-      "https://instagram.com/progineer",
-      "https://linkedin.com/company/progineer"
+      "https://www.facebook.com/people/Progineer-Ma%C3%AEtrise-Doeuvre/61572478063277/",
+      "https://www.instagram.com/progineer_moe/",
+      "https://www.linkedin.com/company/105527808/admin/dashboard/",
+      "https://g.co/kgs/jRoxjts"
     ]
   };
 };

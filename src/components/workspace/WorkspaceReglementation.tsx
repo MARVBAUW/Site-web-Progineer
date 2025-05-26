@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Search, FileText, Download } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import WorkspaceFileViewer from './fileViewer/WorkspaceFileViewer';
+import { InternalLinkText } from '@/utils/internalLinking';
+import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 interface RegulationDocument {
   id: string;
@@ -166,6 +167,49 @@ const WorkspaceReglementation = () => {
         isOpen={viewerOpen}
         onClose={handleFileClose}
       />
+
+      {/* Bloc SEO Footer et FAQ */}
+      <div className="mt-16 space-y-8">
+        <div className="bg-stone-50 border-t border-stone-200 p-6 rounded-xl">
+          <h2 className="text-lg font-semibold mb-4">À propos de la réglementation</h2>
+          <p className="text-gray-700 mb-4">
+            <InternalLinkText text={
+              `Progineer met à disposition une base documentaire complète sur la réglementation du bâtiment, les DTU, les normes techniques et la rénovation énergétique en PACA. Accédez à des guides pratiques, des textes officiels et des outils pour rester conforme aux exigences légales. Découvrez aussi nos calculateurs et nos guides pour aller plus loin.`
+            } maxOccurrences={4} />
+          </p>
+        </div>
+        <div className="bg-stone-100 border border-stone-200 p-6 rounded-xl">
+          <h2 className="text-lg font-semibold mb-4">Questions fréquentes sur la réglementation</h2>
+          <div className="space-y-4">
+            <div className="bg-white p-4 rounded">
+              <strong>Les documents sont-ils à jour ?</strong>
+              <p>Oui, nous mettons à jour régulièrement notre base documentaire pour refléter les dernières évolutions réglementaires.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Puis-je télécharger les textes officiels ?</strong>
+              <p>Oui, tous les documents sont téléchargeables au format PDF.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Comment trouver une norme ou un DTU précis ?</strong>
+              <p>Utilisez la barre de recherche ou filtrez par catégorie pour accéder rapidement au document souhaité.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Puis-je suggérer un ajout ?</strong>
+              <p>Oui, contactez-nous pour proposer l'ajout d'un document ou d'une nouvelle rubrique.</p>
+            </div>
+          </div>
+          {/* Données structurées FAQ pour Google */}
+          <FAQStructuredData
+            faqs={[
+              { question: "Les documents sont-ils à jour ?", answer: "Oui, nous mettons à jour régulièrement notre base documentaire pour refléter les dernières évolutions réglementaires." },
+              { question: "Puis-je télécharger les textes officiels ?", answer: "Oui, tous les documents sont téléchargeables au format PDF." },
+              { question: "Comment trouver une norme ou un DTU précis ?", answer: "Utilisez la barre de recherche ou filtrez par catégorie pour accéder rapidement au document souhaité." },
+              { question: "Puis-je suggérer un ajout ?", answer: "Oui, contactez-nous pour proposer l'ajout d'un document ou d'une nouvelle rubrique." }
+            ]}
+            pageUrl="https://progineer.fr/workspace/reglementation"
+          />
+        </div>
+      </div>
     </div>
   );
 };

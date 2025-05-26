@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,6 +12,8 @@ import { fr } from 'date-fns/locale';
 import { useSimulationStorage } from './useSimulationStorage';
 import { Simulation, SimulationType, simulationContentToJson, normalizeSimulationContent } from './SimulationTypes';
 import { generateStandardPDF } from '@/utils/pdfUtils';
+import { InternalLinkText } from '@/utils/internalLinking';
+import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
 const SimulationManager = () => {
   const { toast } = useToast();
@@ -329,6 +330,49 @@ const SimulationManager = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Bloc SEO Footer et FAQ */}
+      <div className="mt-16 space-y-8">
+        <div className="bg-stone-50 border-t border-stone-200 p-6 rounded-xl">
+          <h2 className="text-lg font-semibold mb-4">À propos des simulations Progineer</h2>
+          <p className="text-gray-700 mb-4">
+            <InternalLinkText text={
+              `Progineer vous permet de sauvegarder, gérer et exporter vos simulations de calcul pour la construction, la rénovation et l'investissement immobilier en PACA. Retrouvez vos calculs de rentabilité, de surface, d'emprunt, d'acoustique et bien plus. Découvrez aussi nos guides pratiques, calculateurs et fiches de réglementation pour aller plus loin.`
+            } maxOccurrences={4} />
+          </p>
+        </div>
+        <div className="bg-stone-100 border border-stone-200 p-6 rounded-xl">
+          <h2 className="text-lg font-semibold mb-4">Questions fréquentes sur les simulations</h2>
+          <div className="space-y-4">
+            <div className="bg-white p-4 rounded">
+              <strong>Comment sauvegarder une simulation ?</strong>
+              <p>Utilisez le bouton "Nouvelle simulation" pour enregistrer vos calculs et y accéder ultérieurement.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Puis-je exporter mes résultats ?</strong>
+              <p>Oui, chaque simulation peut être exportée au format PDF pour un partage ou une impression facile.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Mes données sont-elles sécurisées ?</strong>
+              <p>Vos simulations sont stockées localement et ne sont accessibles que par vous.</p>
+            </div>
+            <div className="bg-white p-4 rounded">
+              <strong>Puis-je supprimer une simulation ?</strong>
+              <p>Oui, vous pouvez supprimer à tout moment une simulation enregistrée.</p>
+            </div>
+          </div>
+          {/* Données structurées FAQ pour Google */}
+          <FAQStructuredData
+            faqs={[
+              { question: "Comment sauvegarder une simulation ?", answer: "Utilisez le bouton 'Nouvelle simulation' pour enregistrer vos calculs et y accéder ultérieurement." },
+              { question: "Puis-je exporter mes résultats ?", answer: "Oui, chaque simulation peut être exportée au format PDF pour un partage ou une impression facile." },
+              { question: "Mes données sont-elles sécurisées ?", answer: "Vos simulations sont stockées localement et ne sont accessibles que par vous." },
+              { question: "Puis-je supprimer une simulation ?", answer: "Oui, vous pouvez supprimer à tout moment une simulation enregistrée." }
+            ]}
+            pageUrl="https://progineer.fr/workspace/simulations"
+          />
+        </div>
+      </div>
     </div>
   );
 };
