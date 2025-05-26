@@ -22,12 +22,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         session,
         user,
         loading,
+        error,
+        isAuthenticated: !!user,
+        isLoading: loading,
         signIn,
         signUp,
         signOut,
         signInWithGoogle,
         signUpWithGoogle,
-        error
       }}
     >
       {children}

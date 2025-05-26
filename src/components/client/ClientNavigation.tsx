@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -66,7 +65,6 @@ const ClientNavigation = ({ isAdminMode = false }: ClientNavigationProps) => {
     },
   ];
 
-  // Admin navigation items
   const adminNavItems = [
     { 
       href: '/workspace/client-area/admin', 
