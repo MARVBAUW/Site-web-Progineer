@@ -17,7 +17,7 @@
     "veille:test-scheduler": "node -e \"import('./scripts/schedule-veille-articles.mjs').then(m => new m.default().testGeneration())\"",
     "veille:stats": "cat logs/veille-stats.json 2>/dev/null || echo '{\"message\": \"Aucune statistique disponible\"}'",
     "veille:logs": "tail -f logs/veille-scheduler.log 2>/dev/null || echo 'Aucun log disponible'",
-    "build:sitemap-utils": "tsc src/utils/sitemapGenerator.ts --outDir build-sitemap-tmp --module ESNext --target ES2020 --esModuleInterop --skipLibCheck --strict",
+    "build:sitemap-utils": "tsc src/utils/sitemapGenerator.ts --outDir build-sitemap-tmp/src/utils --module ESNext --target ES2020 --esModuleInterop --skipLibCheck --strict",
     "build:sitemap-script": "tsc scripts/sitemap/generate-sitemap.ts --outDir build-sitemap-tmp --module ESNext --target ES2020 --esModuleInterop --skipLibCheck --strict",
     "generate-sitemap": "node ./build-sitemap-tmp/generate-sitemap.js",
     "clean:sitemap-tmp": "rm -rf build-sitemap-tmp",
