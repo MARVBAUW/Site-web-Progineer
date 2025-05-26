@@ -17,8 +17,9 @@
     "veille:test-scheduler": "node -e \"import('./scripts/schedule-veille-articles.mjs').then(m => new m.default().testGeneration())\"",
     "veille:stats": "cat logs/veille-stats.json 2>/dev/null || echo '{\"message\": \"Aucune statistique disponible\"}'",
     "veille:logs": "tail -f logs/veille-scheduler.log 2>/dev/null || echo 'Aucun log disponible'",
-    "generate-sitemap": "ts-node ./scripts/generate-sitemap.ts",
-    "prebuild": "npm run generate-sitemap"
+    "build:sitemap-script": "tsc --project tsconfig.sitemap.json",
+    "generate-sitemap": "node ./scripts/sitemap/generate-sitemap.js",
+    "prebuild": "npm run build:sitemap-script && npm run generate-sitemap"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.25.2",
