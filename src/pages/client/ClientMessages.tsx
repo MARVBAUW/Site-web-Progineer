@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Container from '@/components/common/Container';
@@ -6,31 +7,47 @@ import { useAuth } from '@/hooks/useAuth';
 import Navbar from '@/components/layout/Navbar';
 import ConversationsList from '@/components/client/messages/ConversationsList';
 import MessageDisplay from '@/components/client/messages/MessageDisplay';
+import { ConversationType, MessageType } from '@/types/messaging';
 
 const ClientMessages = () => {
   const { user } = useAuth();
-  const [selectedConversation, setSelectedConversation] = useState<string | null>(null);
+  const [selectedConversation, setSelectedConversation] = useState<ConversationType | null>(null);
+  const [newMessage, setNewMessage] = useState('');
 
-  // Placeholder data for conversations and messages
-  const conversationsData = [
-    { id: '1', title: 'Projet de construction - Discussion générale' },
-    { id: '2', title: 'Questions techniques - Fondations' },
-    { id: '3', title: 'Suivi administratif - Permis de construire' },
+  // Mock conversations data
+  const conversationsData: ConversationType[] = [
+    {
+      id: 1,
+      contact: {
+        name: 'Architecte Principal',
+        role: 'Architecte',
+        status: 'online'
+      },
+      messages: [
+        { id: 'm1', sender: 'other', text: 'Bonjour, comment puis-je vous aider ?', date: '10:30' },
+        { id: 'm2', sender: 'me', text: 'J\'aimerais discuter du projet.', date: '10:32' },
+      ]
+    },
+    {
+      id: 2,
+      contact: {
+        name: 'Ingénieur Structure',
+        role: 'Ingénieur',
+        status: 'offline'
+      },
+      messages: [
+        { id: 'm3', sender: 'other', text: 'Les plans structurels sont prêts.', date: '09:15' },
+      ]
+    }
   ];
 
-  const messagesData = {
-    '1': [
-      { id: 'm1', sender: 'client', content: 'Bonjour, où en est le projet ?' },
-      { id: 'm2', sender: 'architecte', content: 'Les plans sont en cours de finalisation.' },
-    ],
-    '2': [
-      { id: 'm3', sender: 'client', content: 'Quelles sont les options pour les fondations ?' },
-      { id: 'm4', sender: 'ingénieur', content: 'Nous recommandons des fondations profondes.' },
-    ],
-    '3': [
-      { id: 'm5', sender: 'client', content: 'Avez-vous des nouvelles du permis de construire ?' },
-      { id: 'm6', sender: 'administratif', content: 'Le dossier est en cours d\'instruction.' },
-    ],
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newMessage.trim() && selectedConversation) {
+      // Add message logic here
+      console.log('Sending message:', newMessage);
+      setNewMessage('');
+    }
   };
 
   return (
@@ -57,17 +74,27 @@ const ClientMessages = () => {
                   {/* Conversations List */}
                   <div className="w-1/3 border-r border-border">
                     <ConversationsList 
-                      selectedId={selectedConversation}
-                      onSelect={setSelectedConversation}
+                      conversations={conversationsData}
+                      activeConversationId={selectedConversation?.id || 0}
+                      onSelectConversation={setSelectedConversation}
                     />
                   </div>
                   
                   {/* Message Display */}
                   <div className="flex-1">
-                    <MessageDisplay 
-                      conversationId={selectedConversation}
-                      currentUser={user}
-                    />
+                    {selectedConversation ? (
+                      <MessageDisplay 
+                        conversation={selectedConversation}
+                        newMessage={newMessage}
+                        setNewMessage={setNewMessage}
+                        onSendMessage={handleSendMessage}
+                        user={user}
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-muted-foreground">
+                        Sélectionnez une conversation pour commencer
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

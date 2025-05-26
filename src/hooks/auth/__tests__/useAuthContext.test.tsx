@@ -39,6 +39,8 @@ const wrapper = ({ children }: { children: ReactNode }) => (
       session: mockSession,
       loading: false,
       error: null,
+      isAuthenticated: true,
+      isLoading: false,
       ...mockAuthFunctions
     }}
   >
@@ -58,6 +60,8 @@ describe('useAuthContext', () => {
     expect(result.current.session).toEqual(mockSession);
     expect(result.current.loading).toBe(false);
     expect(result.current.error).toBeNull();
+    expect(result.current.isAuthenticated).toBe(true);
+    expect(result.current.isLoading).toBe(false);
   });
 
   it('should provide working auth functions', () => {
