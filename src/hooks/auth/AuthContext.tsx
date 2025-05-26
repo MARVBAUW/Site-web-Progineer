@@ -7,8 +7,6 @@ interface AuthContextType {
   session: Session | null;
   loading: boolean;
   error: string | null;
-  isAuthenticated: boolean;
-  isLoading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string, metadata?: Record<string, any>) => Promise<void>;
   signOut: () => Promise<void>;
@@ -21,8 +19,6 @@ export const AuthContext = createContext<AuthContextType>({
   session: null,
   loading: false,
   error: null,
-  isAuthenticated: false,
-  isLoading: false,
   signIn: async () => {},
   signUp: async () => {},
   signOut: async () => {},

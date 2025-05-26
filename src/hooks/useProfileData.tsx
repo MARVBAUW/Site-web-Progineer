@@ -19,20 +19,23 @@ export const useProfileData = (user: User | null) => {
     company: '',
   });
 
+  // Load user data when user object changes
   useEffect(() => {
     if (user) {
       setProfileData({
         fullName: user.user_metadata?.full_name || '',
         email: user.email || '',
-        phone: user.user_metadata?.phone || '',
+        phone: user.phone || '',
         address: user.user_metadata?.address || '',
-        company: user.user_metadata?.company_name || '',
+        company: user.user_metadata?.company || '',
       });
     }
   }, [user]);
 
-  const updateProfile = async (data: Partial<ProfileData>) => {
-    setProfileData(prev => ({ ...prev, ...data }));
+  const updateProfile = (data: ProfileData) => {
+    // Here we would implement the profile update logic using Supabase
+    // For now, just update the local state
+    setProfileData(data);
   };
 
   return { profileData, updateProfile };
