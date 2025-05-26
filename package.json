@@ -16,7 +16,9 @@
     "veille:test-db": "node scripts/test-supabase-connection.mjs",
     "veille:test-scheduler": "node -e \"import('./scripts/schedule-veille-articles.mjs').then(m => new m.default().testGeneration())\"",
     "veille:stats": "cat logs/veille-stats.json 2>/dev/null || echo '{\"message\": \"Aucune statistique disponible\"}'",
-    "veille:logs": "tail -f logs/veille-scheduler.log 2>/dev/null || echo 'Aucun log disponible'"
+    "veille:logs": "tail -f logs/veille-scheduler.log 2>/dev/null || echo 'Aucun log disponible'",
+    "generate-sitemap": "node ./scripts/generate-sitemap.mjs",
+    "prebuild": "npm run generate-sitemap"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.25.2",
