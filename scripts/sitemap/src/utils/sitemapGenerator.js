@@ -2,6 +2,115 @@
  * Générateur automatique de sitemap pour maintenir la cohérence
  * et éviter les erreurs manuelles dans Google Search Console
  */
+import * as fs from 'fs';
+import * as path from 'path';
+// Importer les données dynamiques (corrigé)
+import { guides } from '../../../../src/components/workspace/guides/guidesData';
+import { allRegulations } from '../../../../src/data/regulation/regulationData';
+import veilleArticles from '../../../../src/data/veille/veilleData';
+
+// Correction du chemin des pages statiques
+const staticPagesDir = path.resolve(__dirname, '../../../../src/pages');
+
+// Fonction pour parcourir dynamiquement tous les calculateurs
+function getAllCalculators() {
+    const calculatorsDir = path.resolve(__dirname, '../../../../components/workspace/calculators');
+    let urls = [];
+    function walk(dir, prefix = '/workspace/calculators') {
+        fs.readdirSync(dir).forEach(file => {
+            const filePath = path.join(dir, file);
+            const stat = fs.statSync(filePath);
+            if (stat && stat.isDirectory()) {
+                walk(filePath, prefix + '/' + file);
+            } else if ((file.endsWith('.tsx') || file.endsWith('.js')) && file !== 'index.tsx') {
+                const slug = file.replace(/\.(tsx|js)$/, '');
+                // Exclure les calculateurs "comingSoon" si flag présent dans le fichier
+                const content = fs.readFileSync(filePath, 'utf-8');
+                if (!/comingSoon\s*[:=]\s*true/.test(content)) {
+                    urls.push(prefix + '/' + slug);
+                }
+            }
+        });
+    }
+    walk(calculatorsDir);
+    return urls;
+}
+
+// Fonction pour lister tous les fichiers PDF publics
+function getAllPublicPDFs() {
+    const resourcesDir = path.resolve('public/resources');
+    let pdfs = [];
+    function walk(dir, prefix = '/resources') {
+        if (!fs.existsSync(dir)) return [];
+        fs.readdirSync(dir).forEach(file => {
+            const filePath = path.join(dir, file);
+            const stat = fs.statSync(filePath);
+            if (stat && stat.isDirectory()) {
+                pdfs = pdfs.concat(walk(filePath, prefix + '/' + file));
+            } else if (file.endsWith('.pdf')) {
+                pdfs.push(prefix + '/' + file);
+            }
+        });
+        return pdfs;
+    }
+    return walk(resourcesDir);
+}
+
+// Génération des URLs dynamiques (corrigé)
+const calculators = getAllCalculators();
+const pdfs = getAllPublicPDFs();
+
+// Liens du footer à inclure explicitement
+const footerLinks = [
+    '/',
+    '/estimation',
+    '/prestations-maitre-oeuvre',
+    '/realisations-architecte-maison',
+    '/equipe-maitrise-oeuvre',
+    '/contact',
+    '/prestations-maitre-oeuvre/construction-neuve',
+    '/prestations-maitre-oeuvre/renovation',
+    '/prestations-maitre-oeuvre/extension',
+    '/prestations-maitre-oeuvre/optimisation-espace',
+    '/prestations-maitre-oeuvre/design-interieur',
+    '/sitemap',
+    '/mentions-legales',
+    '/cgv',
+    '/cgu',
+    '/privacy-policy',
+    '/faq',
+    '/devenir-partenaire',
+    '/parrainage',
+    '/sitemap.xml'
+];
+
+// Génération des URLs dynamiques
+const regulationUrls = allRegulations.filter(r => r.isPublic).map(r => `/workspace/regulation/${r.id}`);
+const guideUrls = guides.map(g => `/workspace/guides/${g.id}`);
+const veilleUrls = veilleArticles.map(v => `/workspace/veille/${v.id}`);
+
+// Regroupement et déduplication (corrigé)
+let allUrls = [
+    ...footerLinks,
+    ...regulationUrls,
+    ...guideUrls,
+    ...veilleUrls,
+    ...calculators,
+    ...pdfs
+];
+// Exclusion des routes /client et /admin
+allUrls = allUrls.filter(url => !url.startsWith('/client') && !url.startsWith('/admin'));
+// Déduplication stricte
+allUrls = Array.from(new Set(allUrls));
+
+console.log('Sitemap - Réglementations:', regulationUrls.length);
+console.log('Sitemap - Guides:', guideUrls.length);
+console.log('Sitemap - Veille:', veilleUrls.length);
+console.log('Sitemap - Calculateurs:', calculators.length);
+console.log('Sitemap - Liens footer:', footerLinks.length);
+console.log('Sitemap - PDF publics:', pdfs.length);
+console.log('Sitemap - Total unique:', allUrls.length);
+
 export class SitemapGenerator {
     constructor() {
         this.baseUrl = 'https://progineer.fr';
@@ -11,80 +120,63 @@ export class SitemapGenerator {
      * Génère toutes les entrées du sitemap de manière structurée
      */
     generateSitemapData() {
+        // 1. Pages statiques (hors /client et /admin)
+        const staticPages = this.getStaticPages();
+        // 2. Guides dynamiques
+        const guideUrls = guides.map(g => ({
+            url: `/workspace/guides/${g.id}`,
+            lastmod: this.currentDate,
+            changefreq: 'monthly',
+            priority: 0.7
+        }));
+        // 3. Réglementations dynamiques
+        const regulationUrls = allRegulations.filter(r => r.isPublic).map(r => ({
+            url: `/workspace/regulation/${r.id}`,
+            lastmod: this.currentDate,
+            changefreq: 'monthly',
+            priority: 0.7
+        }));
+        // 4. (Optionnel) Calculateurs dynamiques
+        // À adapter si vous avez une liste de calculateurs dynamiques
+        // const calculatorUrls = calculators.map(c => ({
+        //   url: `/workspace/calculators/${c.id}`,
+        //   lastmod: this.currentDate,
+        //   changefreq: 'monthly',
+        //   priority: 0.7
+        // }));
         return [
-            {
-                title: 'Pages principales',
-                entries: [
-                    { url: '/', lastmod: this.currentDate, changefreq: 'monthly', priority: 1.0 },
-                    { url: '/prestations-maitre-oeuvre', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.9 },
-                    { url: '/realisations-architecte-maison', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
-                    { url: '/realisations-architecturales', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
-                    { url: '/equipe-maitrise-oeuvre', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/estimation', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.9 },
-                    { url: '/contact', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
-                    { url: '/a-propos', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/sitemap', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.5 },
-                ]
-            },
-            {
-                title: 'Pages de prestations principales',
-                entries: [
-                    { url: '/prestations-maitre-oeuvre/construction-neuve', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
-                    { url: '/prestations-maitre-oeuvre/renovation', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
-                    { url: '/prestations-maitre-oeuvre/extension', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
-                    { url: '/prestations-maitre-oeuvre/optimisation-espace', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/design-interieur', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/montage-administratif', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/petit-collectif', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/rehabilitation', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/construction-ecologique', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                ]
-            },
-            {
-                title: 'Pages spécifiques villes',
-                entries: [
-                    { url: '/prestations-maitre-oeuvre/construction-neuve/marseille', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/construction-neuve/aix-en-provence', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/renovation/marseille', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/renovation/aix-en-provence', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                ]
-            },
-            {
-                title: 'Pages partenariat et parrainage',
-                entries: [
-                    { url: '/parrainage', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                    { url: '/devenir-partenaire', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                ]
-            },
-            {
-                title: 'Pages légales',
-                entries: [
-                    { url: '/mentions-legales', lastmod: this.currentDate, changefreq: 'yearly', priority: 0.4 },
-                    { url: '/privacy-policy', lastmod: this.currentDate, changefreq: 'yearly', priority: 0.4 },
-                    { url: '/cgu', lastmod: this.currentDate, changefreq: 'yearly', priority: 0.4 },
-                    { url: '/cgv', lastmod: this.currentDate, changefreq: 'yearly', priority: 0.4 },
-                    { url: '/faq', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                ]
-            },
-            {
-                title: 'Workspace et ressources',
-                entries: [
-                    { url: '/workspace', lastmod: this.currentDate, changefreq: 'weekly', priority: 0.8 },
-                    { url: '/workspace/resources/guides/reglementation-complete-batiment', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/workspace/resources/documents/texte-integral-reglementation', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                ]
-            },
-            {
-                title: 'Ressources PDF',
-                entries: [
-                    { url: '/resources/guides/reglementation-complete-batiment.pdf', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                    { url: '/resources/documents/texte-integral-reglementation.pdf', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                    { url: '/resources/guides/guide-renovation-energetique.pdf', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                    { url: '/resources/guides/normes-parasismiques.pdf', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                    { url: '/resources/documents/liste-dtu-batiment.pdf', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.5 },
-                ]
-            }
+            { title: 'Pages statiques', entries: staticPages },
+            { title: 'Guides', entries: guideUrls },
+            { title: 'Réglementations', entries: regulationUrls },
+            // { title: 'Calculateurs', entries: calculatorUrls },
         ];
+    }
+    /**
+     * Récupère toutes les pages statiques du site (hors /client et /admin)
+     */
+    getStaticPages() {
+        const walk = (dir, prefix = '') => {
+            let results = [];
+            fs.readdirSync(dir).forEach(file => {
+                const filePath = path.join(dir, file);
+                const stat = fs.statSync(filePath);
+                if (stat && stat.isDirectory()) {
+                    results = results.concat(walk(filePath, prefix + '/' + file));
+                } else if (file.endsWith('.tsx') || file.endsWith('.js')) {
+                    const route = prefix + '/' + file.replace(/\.(tsx|js)$/, '');
+                    if (!route.startsWith('/client') && !route.startsWith('/admin') && route !== '/_app' && route !== '/_document' && route !== '/404') {
+                        results.push({
+                            url: route === '/Index' ? '/' : route,
+                            lastmod: this.currentDate,
+                            changefreq: 'monthly',
+                            priority: 0.6
+                        });
+                    }
+                }
+            });
+            return results;
+        };
+        return walk(staticPagesDir);
     }
     /**
      * Génère le XML du sitemap complet

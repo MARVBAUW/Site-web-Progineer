@@ -63,6 +63,7 @@
     "@types/react-helmet": "^6.1.11",
     "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.21",
     "canvas-confetti": "^1.9.3",
     "chart.js": "^4.4.8",
     "class-variance-authority": "^0.7.1",
@@ -75,9 +76,11 @@
     "jspdf": "^3.0.1",
     "jspdf-autotable": "^5.0.2",
     "leaflet": "^1.9.4",
+    "lovable-tagger": "^1.1.7",
     "lucide-react": "^0.462.0",
     "mapbox-gl": "^3.10.0",
     "next-themes": "^0.3.0",
+    "postcss": "^8.5.3",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.3.0",
     "react-day-picker": "^8.10.1",
@@ -92,19 +95,18 @@
     "recharts": "^2.12.7",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
+    "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
+    "terser": "^5.39.2",
+    "typescript": "^5.5.3",
     "uuid": "^11.1.0",
     "vaul": "^0.9.3",
     "vite": "^5.4.19",
-    "zod": "^3.23.8",
-    "tailwindcss": "^3.4.17",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "lovable-tagger": "^1.1.7",
-    "terser": "^5.39.2",
-    "typescript": "^5.5.3"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@babel/parser": "^7.27.2",
+    "@babel/types": "^7.27.1",
     "@eslint/js": "^9.9.0",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.5.5",
@@ -117,6 +119,7 @@
     "globals": "^15.9.0",
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
-    "typescript-eslint": "^8.0.1"
+    "typescript-eslint": "^8.0.1",
+    "undici-types": "^7.10.0"
   }
 }
