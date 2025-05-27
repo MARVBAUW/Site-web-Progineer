@@ -23,7 +23,7 @@ const GuideDetailPage: React.FC = () => {
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Guide non trouvé</h1>
           <p className="text-gray-600 dark:text-gray-300 mb-6">Le guide demandé n'existe pas ou a été supprimé.</p>
-          <Button onClick={() => navigate('/workspace/guides')}>
+          <Button onClick={() => navigate('/workspace?tab=guides')}>
             <ArrowLeft className="h-4 w-4 mr-2" />
             Retour aux guides
           </Button>
@@ -287,7 +287,7 @@ Date d'export: ${new Date().toLocaleDateString('fr-FR')}
         <div className="mb-6">
           <Button 
             variant="ghost" 
-            onClick={() => navigate('/workspace/guides')}
+            onClick={() => navigate('/workspace?tab=guides')}
             className="text-khaki-600 hover:text-khaki-700"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />

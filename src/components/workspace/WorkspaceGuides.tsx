@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GuideDocument } from './guides/types';
 import { GuideCard } from './guides/GuideCard';
 import { DocumentDialog } from './guides/DocumentDialog';
@@ -39,7 +39,31 @@ const WorkspaceGuides = () => {
     return matchesSearch && matchesCategory;
   });
 
+  // Restaure l'état et le scroll au montage
+  useEffect(() => {
+    const savedState = sessionStorage.getItem('workspace_guides_state');
+    if (savedState) {
+      const { search, filter } = JSON.parse(savedState);
+      setSearchQuery(search || '');
+      setSelectedCategory(filter || 'all');
+    }
+    const savedScroll = sessionStorage.getItem('workspace_guides_scroll');
+    if (savedScroll) {
+      setTimeout(() => window.scrollTo(0, Number(savedScroll)), 50);
+      sessionStorage.removeItem('workspace_guides_scroll');
+    }
+  }, []);
+
+  // Sauvegarde l'état à chaque changement
+  useEffect(() => {
+    sessionStorage.setItem('workspace_guides_state', JSON.stringify({
+      search: searchQuery,
+      filter: selectedCategory,
+    }));
+  }, [searchQuery, selectedCategory]);
+
   const handleDocumentClick = (document: GuideDocument) => {
+    sessionStorage.setItem('workspace_guides_scroll', window.scrollY.toString());
     setSelectedDocument(document);
     setDocumentDialogOpen(true);
   };

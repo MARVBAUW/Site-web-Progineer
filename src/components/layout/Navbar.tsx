@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -44,8 +43,8 @@ const Navbar = () => {
         className={cn(
           "fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-sm",
           isScrolled || isOpen
-            ? "bg-card/95 dark:bg-slate-900/95 py-2 border-b border-border/50" 
-            : "bg-transparent py-3"
+            ? "bg-card/95 dark:bg-slate-900/95 py-2 border-b border-border/50 h-20" 
+            : "bg-transparent py-3 h-20"
         )}
       >
         <Container size="lg">
@@ -81,6 +80,7 @@ const Navbar = () => {
           </nav>
         </Container>
       </header>
+      <div style={{ paddingTop: '5rem' }} />
 
       {/* Mobile Navigation - Now positioned outside the header */}
       <MobileNav 

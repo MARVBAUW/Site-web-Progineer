@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const ExtensionContent = () => {
@@ -12,7 +11,7 @@ const ExtensionContent = () => {
 
         <div className="mb-12">
           <img 
-            src="/lovable-uploads/PROGINEER (12).png" 
+            src="/images/prestations/PROGINEER (12).png" 
             alt="Exemple d'extension de maison réalisée par Progineer en PACA"
             className="w-full h-auto rounded-xl mb-4"
           />

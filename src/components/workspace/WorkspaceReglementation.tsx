@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, FileText, Download } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -81,7 +81,29 @@ const WorkspaceReglementation = () => {
     doc.category.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Restaure l'état et le scroll au montage
+  useEffect(() => {
+    const savedState = sessionStorage.getItem('workspace_reglementation_state');
+    if (savedState) {
+      const { search } = JSON.parse(savedState);
+      setSearchQuery(search || '');
+    }
+    const savedScroll = sessionStorage.getItem('workspace_reglementation_scroll');
+    if (savedScroll) {
+      setTimeout(() => window.scrollTo(0, Number(savedScroll)), 50);
+      sessionStorage.removeItem('workspace_reglementation_scroll');
+    }
+  }, []);
+
+  // Sauvegarde l'état à chaque changement
+  useEffect(() => {
+    sessionStorage.setItem('workspace_reglementation_state', JSON.stringify({
+      search: searchQuery,
+    }));
+  }, [searchQuery]);
+
   const handleDocumentClick = (document: RegulationDocument) => {
+    sessionStorage.setItem('workspace_reglementation_scroll', window.scrollY.toString());
     setSelectedFile(document);
     setViewerOpen(true);
   };

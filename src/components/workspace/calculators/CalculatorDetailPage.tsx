@@ -28,7 +28,7 @@ const CalculatorDetailPage: React.FC = () => {
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Calculateur non trouvé</h1>
           <p className="text-gray-600 dark:text-gray-300 mb-6">Le calculateur demandé n'existe pas ou a été supprimé.</p>
-          <Button onClick={() => navigate('/workspace/calculators')}>
+          <Button onClick={() => navigate('/workspace?tab=calculateurs')}>
             <ArrowLeft className="h-4 w-4 mr-2" />
             Retour aux calculateurs
           </Button>
@@ -211,7 +211,7 @@ Généré par Progineer - ${window.location.href}
         <div className="mb-6">
           <Button 
             variant="ghost" 
-            onClick={() => navigate('/workspace/calculators')}
+            onClick={() => navigate('/workspace?tab=calculateurs')}
             className="text-blue-600 hover:text-blue-700"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />

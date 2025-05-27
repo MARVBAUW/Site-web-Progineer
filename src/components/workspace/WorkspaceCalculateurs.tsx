@@ -30,6 +30,27 @@ const WorkspaceCalculateurs = () => {
     }
   }, []);
 
+  // Restaure l'état et le scroll au montage
+  useEffect(() => {
+    const savedState = sessionStorage.getItem('workspace_calculateurs_state');
+    if (savedState) {
+      const { activeTab } = JSON.parse(savedState);
+      if (activeTab) setActiveTab(activeTab);
+    }
+    const savedScroll = sessionStorage.getItem('workspace_calculateurs_scroll');
+    if (savedScroll) {
+      setTimeout(() => window.scrollTo(0, Number(savedScroll)), 50);
+      sessionStorage.removeItem('workspace_calculateurs_scroll');
+    }
+  }, []);
+
+  // Sauvegarde l'état à chaque changement
+  useEffect(() => {
+    sessionStorage.setItem('workspace_calculateurs_state', JSON.stringify({
+      activeTab,
+    }));
+  }, [activeTab]);
+
   return (
     <div className="space-y-6">
       <div className="bg-zinc-50 p-4 rounded-lg border border-zinc-200 mb-6">
