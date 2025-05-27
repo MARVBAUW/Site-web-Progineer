@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,15 +23,31 @@ import HygrometryCalculator from './hygrometry/HygrometryCalculator';
 
 // Import thermal calculators
 import ThermalResistanceCalculator from './thermal/ThermalResistanceCalculator';
+import ThermalBridgeCalculator from './thermal/ThermalBridgeCalculator';
+import ThermalUCalculator from './thermal/ThermalUCalculator';
 
 // Import acoustics calculators
 import AcousticInsulationCalculator from './acoustic/AcousticInsulationCalculator';
+import AcousticRwCalculator from './acoustic/AcousticRwCalculator';
+import AcousticReverbCalculator from './acoustic/AcousticReverbCalculator';
+import AcousticLevelCalculator from './acoustic/AcousticLevelCalculator';
 
 // Import fire safety calculators
 import FireEscapeCalculator from './fire/FireEscapeCalculator';
+import FireEvacuationDistanceCalculator from './fire/FireEvacuationDistanceCalculator';
+import FireReactionCalculator from './fire/FireReactionCalculator';
+import FireCalorificCalculator from './fire/FireCalorificCalculator';
+import FireSmokeExtractionCalculator from './fire/FireSmokeExtractionCalculator';
+import FireExtinguisherCalculator from './fire/FireExtinguisherCalculator';
+import FireWaterFlowCalculator from './fire/FireWaterFlowCalculator';
 
 // Import accessibility calculators
 import AccessibilityRampCalculator from './accessibility/AccessibilityRampCalculator';
+import ParkingPMRCalculator from './accessibility/ParkingPMRCalculator';
+
+// Import ERP calculators
+import ERPEffectifCalculator from './erp/ERPEffectifCalculator';
+import ERPCategoryCalculator from './erp/ERPCategoryCalculator';
 
 const RegulatoryCalculators = () => {
   const [activeCalculator, setActiveCalculator] = useState('hygrometry');
@@ -369,9 +384,7 @@ const RegulatoryCalculators = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Calculateur en cours de chargement...</p>
-                </div>
+                <ThermalResistanceCalculator />
               </CardContent>
               <CardFooter className="flex justify-end">
                 <Button 
@@ -392,9 +405,7 @@ const RegulatoryCalculators = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Calculateur en cours de chargement...</p>
-                </div>
+                <ThermalBridgeCalculator />
               </CardContent>
               <CardFooter className="flex justify-end">
                 <Button 
@@ -415,9 +426,7 @@ const RegulatoryCalculators = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Calculateur en cours de chargement...</p>
-                </div>
+                <ThermalUCalculator />
               </CardContent>
               <CardFooter className="flex justify-end">
                 <Button 
@@ -443,9 +452,7 @@ const RegulatoryCalculators = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Calculateur en cours de chargement...</p>
-                </div>
+                <AcousticRwCalculator />
               </CardContent>
               <CardFooter className="flex justify-end">
                 <Button 
@@ -466,9 +473,7 @@ const RegulatoryCalculators = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Calculateur en cours de chargement...</p>
-                </div>
+                <AcousticReverbCalculator />
               </CardContent>
               <CardFooter className="flex justify-end">
                 <Button 
@@ -489,9 +494,7 @@ const RegulatoryCalculators = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Calculateur en cours de chargement...</p>
-                </div>
+                <AcousticLevelCalculator />
               </CardContent>
               <CardFooter className="flex justify-end">
                 <Button 
@@ -517,9 +520,7 @@ const RegulatoryCalculators = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Calculateur en cours de chargement...</p>
-                </div>
+                <FireEvacuationDistanceCalculator />
               </CardContent>
               <CardFooter className="flex justify-end">
                 <Button 
@@ -540,9 +541,7 @@ const RegulatoryCalculators = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Base de données en cours de chargement...</p>
-                </div>
+                <FireReactionCalculator />
               </CardContent>
               <CardFooter className="flex justify-end">
                 <Button 
@@ -563,9 +562,70 @@ const RegulatoryCalculators = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Calculateur en cours de chargement...</p>
-                </div>
+                <FireCalorificCalculator />
+              </CardContent>
+              <CardFooter className="flex justify-end">
+                <Button 
+                  onClick={() => {
+                    window.open('/workspace?tab=reglementation&section=incendie', '_blank');
+                  }}
+                >
+                  Ouvrir le calculateur complet
+                </Button>
+              </CardFooter>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Débit d'extraction désenfumage</CardTitle>
+                <CardDescription>
+                  Calculez le débit minimal d'extraction pour le désenfumage réglementaire
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <FireSmokeExtractionCalculator />
+              </CardContent>
+              <CardFooter className="flex justify-end">
+                <Button 
+                  onClick={() => {
+                    window.open('/workspace?tab=reglementation&section=incendie', '_blank');
+                  }}
+                >
+                  Ouvrir le calculateur complet
+                </Button>
+              </CardFooter>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Dimensionnement extincteurs</CardTitle>
+                <CardDescription>
+                  Calculez le nombre et le type d'extincteurs à installer selon la réglementation
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <FireExtinguisherCalculator />
+              </CardContent>
+              <CardFooter className="flex justify-end">
+                <Button 
+                  onClick={() => {
+                    window.open('/workspace?tab=reglementation&section=incendie', '_blank');
+                  }}
+                >
+                  Ouvrir le calculateur complet
+                </Button>
+              </CardFooter>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Débit d'eau incendie</CardTitle>
+                <CardDescription>
+                  Calculez le débit minimal d'eau à prévoir pour la défense incendie
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <FireWaterFlowCalculator />
               </CardContent>
               <CardFooter className="flex justify-end">
                 <Button 
@@ -582,74 +642,58 @@ const RegulatoryCalculators = () => {
         
         {/* Accessibility Calculators */}
         <TabsContent value="accessibility">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Calculateur de pente de rampe PMR */}
             <Card>
               <CardHeader>
-                <CardTitle>Rampes d'accès</CardTitle>
+                <CardTitle>Calcul de pente de rampe PMR</CardTitle>
                 <CardDescription>
-                  Calculez les dimensions d'une rampe d'accès PMR
+                  Calculez la pente d'une rampe d'accès et vérifiez la conformité PMR
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Calculateur en cours de chargement...</p>
-                </div>
+                <AccessibilityRampCalculator />
               </CardContent>
-              <CardFooter className="flex justify-end">
-                <Button 
-                  onClick={() => {
-                    window.open('/workspace?tab=reglementation&section=accessibilite', '_blank');
-                  }}
-                >
-                  Ouvrir le calculateur complet
-                </Button>
-              </CardFooter>
             </Card>
-            
+            {/* Calculateur de places de parking PMR */}
             <Card>
               <CardHeader>
-                <CardTitle>Aires de rotation</CardTitle>
+                <CardTitle>Places de parking PMR</CardTitle>
                 <CardDescription>
-                  Vérifiez les aires de rotation pour les fauteuils
+                  Calculez le nombre de places PMR requises selon la réglementation
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Calculateur en cours de chargement...</p>
-                </div>
+                <ParkingPMRCalculator />
               </CardContent>
-              <CardFooter className="flex justify-end">
-                <Button 
-                  onClick={() => {
-                    window.open('/workspace?tab=reglementation&section=accessibilite', '_blank');
-                  }}
-                >
-                  Ouvrir le calculateur complet
-                </Button>
-              </CardFooter>
             </Card>
-            
+          </div>
+        </TabsContent>
+        <TabsContent value="erp">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Calculateur d'effectif ERP */}
             <Card>
               <CardHeader>
-                <CardTitle>Ascenseurs PMR</CardTitle>
+                <CardTitle>Effectif ERP</CardTitle>
                 <CardDescription>
-                  Vérifiez la conformité d'un ascenseur PMR
+                  Calculez l'effectif théorique d'un ERP selon la surface et le type
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-center h-40">
-                  <p className="text-low-contrast">Calculateur en cours de chargement...</p>
-                </div>
+                <ERPEffectifCalculator />
               </CardContent>
-              <CardFooter className="flex justify-end">
-                <Button 
-                  onClick={() => {
-                    window.open('/workspace?tab=reglementation&section=accessibilite', '_blank');
-                  }}
-                >
-                  Ouvrir le calculateur complet
-                </Button>
-              </CardFooter>
+            </Card>
+            {/* Calculateur de catégorie ERP */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Catégorie ERP</CardTitle>
+                <CardDescription>
+                  Déterminez la catégorie d'un ERP selon l'effectif
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ERPCategoryCalculator />
+              </CardContent>
             </Card>
           </div>
         </TabsContent>

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,42 +6,24 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 
-const WindPressureCalculator = () => {
-  const [buildingHeight, setBuildingHeight] = useState<number>(10);
-  const [windRegion, setWindRegion] = useState("2");
-  const [roughness, setRoughness] = useState("II");
-  const [windPressure, setWindPressure] = useState<number | null>(null);
+const WindPressureCalculator: React.FC = () => {
+  const [zone, setZone] = useState('1');
+  const [altitude, setAltitude] = useState(100); // m
+  const [surface, setSurface] = useState(50); // m²
+  const [exposure, setExposure] = useState(1);
 
-  const calculateWindPressure = () => {
-    const vbMap: {[key: string]: number} = {
-      "1": 22,
-      "2": 24,
-      "3": 26,
-      "4": 28
-    };
-    const vb = vbMap[windRegion];
-    
-    const rho = 1.225;
-    const qb = 0.5 * rho * Math.pow(vb, 2) / 1000;
-    const co = 1.0;
-    
-    const z0Map: {[key: string]: number} = {
-      "0": 0.003,
-      "I": 0.01,
-      "II": 0.05,
-      "III": 0.3,
-      "IV": 1.0
-    };
-    const z0 = z0Map[roughness];
-    const kr = 0.19 * Math.pow(z0/0.05, 0.07);
-    const cr = kr * Math.log(Math.max(buildingHeight, 1) / z0);
-    
-    const vm = cr * co * vb;
-    const Iv = 1 / (co * Math.log(Math.max(buildingHeight, 1) / z0));
-    const qp = (1 + 7 * Iv) * 0.5 * rho * Math.pow(vm, 2) / 1000;
-    
-    setWindPressure(qp);
-  };
+  // Valeurs qb (kN/m²) par zone (exemple simplifié)
+  const qbZones: Record<string, number> = { '1': 0.5, '2': 0.7, '3': 0.9, '4': 1.1 };
+  let qb = qbZones[zone] || 0.5;
+  if (altitude > 100) qb += 0.05 * Math.floor((altitude - 100) / 100);
+  // Coefficients d'exposition et de pression (simplifiés)
+  const Ce = exposure; // 1 = normal, 1.2 = exposé, 0.8 = abrité
+  const Cpe = 0.8; // pression extérieure moyenne
+  // q = qb × Ce × Cpe × surface
+  const q = qb * Ce * Cpe * surface;
+  let advice = '';
+  if (q > 50) advice = "Pression élevée : vérifier la structure et les fixations.";
+  else advice = "Pression modérée ou faible.";
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -50,35 +31,49 @@ const WindPressureCalculator = () => {
         <CardContent className="pt-6">
           <div className="space-y-4">
             <div>
-              <Label htmlFor="wind-region">Région de vent</Label>
-              <Select value={windRegion} onValueChange={setWindRegion}>
+              <Label htmlFor="zone">Zone vent</Label>
+              <Select value={zone} onValueChange={setZone}>
                 <SelectTrigger className="mt-1">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="1">Région 1</SelectItem>
-                  <SelectItem value="2">Région 2</SelectItem>
-                  <SelectItem value="3">Région 3</SelectItem>
-                  <SelectItem value="4">Région 4</SelectItem>
+                  <SelectItem value="1">1</SelectItem>
+                  <SelectItem value="2">2</SelectItem>
+                  <SelectItem value="3">3</SelectItem>
+                  <SelectItem value="4">4</SelectItem>
                 </SelectContent>
               </Select>
-              <p className="text-xs text-low-contrast mt-1">Selon la carte de l'Annexe Nationale française</p>
             </div>
             
             <div>
-              <Label htmlFor="roughness">Catégorie de terrain</Label>
-              <Select value={roughness} onValueChange={setRoughness}>
-                <SelectTrigger className="mt-1">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="0">0 - Mer ou zone côtière exposée</SelectItem>
-                  <SelectItem value="I">I - Lacs ou terrain plat sans obstacle</SelectItem>
-                  <SelectItem value="II">II - Zone à végétation basse, obstacles isolés</SelectItem>
-                  <SelectItem value="III">III - Zone rurale avec obstacles</SelectItem>
-                  <SelectItem value="IV">IV - Zone urbaine</SelectItem>
-                </SelectContent>
-              </Select>
+              <Label htmlFor="altitude">Altitude (m)</Label>
+              <Input 
+                id="altitude"
+                type="number"
+                value={altitude}
+                onChange={(e) => setAltitude(Number(e.target.value))}
+                className="mt-1"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="surface">Surface (m²)</Label>
+              <Input 
+                id="surface"
+                type="number"
+                value={surface}
+                onChange={(e) => setSurface(Number(e.target.value))}
+                className="mt-1"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="exposure">Coefficient d'exposition</Label>
+              <select value={exposure} onChange={e => setExposure(Number(e.target.value))} className="border rounded px-2 py-1 w-full mb-2">
+                <option value={1}>Normal (Ce=1)</option>
+                <option value={1.2}>Exposé (Ce=1.2)</option>
+                <option value={0.8}>Abrité (Ce=0.8)</option>
+              </select>
             </div>
             
             <div>
