@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 
-const LoadCombinationsCalculator = () => {
+const LoadCombinationsCalculator: React.FC = () => {
   const [permanentLoad, setPermanentLoad] = useState<number>(25);
   const [variableLoad, setVariableLoad] = useState<number>(15);
   const [snowLoad, setSnowLoad] = useState<number>(0);
@@ -80,6 +79,12 @@ const LoadCombinationsCalculator = () => {
       designCombination
     });
   };
+
+  // ELU : 1.35G + 1.5Q + 1.5S + 1.5W
+  const elu = 1.35 * permanentLoad + 1.5 * variableLoad + 1.5 * snowLoad + 1.5 * windLoad;
+  let advice = '';
+  if (elu > 500) advice = "Combinaison élevée : vérifier le dimensionnement des éléments porteurs.";
+  else advice = "Combinaison courante.";
 
   return (
     <div className="space-y-6">
@@ -256,6 +261,9 @@ const LoadCombinationsCalculator = () => {
           </CardContent>
         </Card>
       </div>
+
+      <div className="mt-4 font-semibold">Combinaison ELU : {elu.toFixed(2)} kN</div>
+      <div className="mt-2 text-sm text-gray-700">{advice}</div>
     </div>
   );
 };

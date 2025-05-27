@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -9,16 +8,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Download, Info } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-const TimberCalculator = () => {
+const TimberCalculator: React.FC = () => {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('beam');
   const [baseWidth, setBaseWidth] = useState('200');
   const [height, setHeight] = useState('300');
-  const [length, setLength] = useState('5000');
+  const [length, setLength] = useState(4); // m
+  const [area, setArea] = useState(0.01); // m²
+  const [load, setLoad] = useState(30); // kN
   const [woodClass, setWoodClass] = useState('c24');
   const [serviceClass, setServiceClass] = useState('1');
   const [loadDuration, setLoadDuration] = useState('medium');
   const [uniformLoad, setUniformLoad] = useState('5');
+  const [grade, setGrade] = useState('C24');
   
   // Calcul de la résistance en flexion du bois selon l'Eurocode 5
   const calculateBendingStrength = () => {
@@ -143,14 +145,26 @@ const TimberCalculator = () => {
     return ratio.toFixed(1);
   };
   
+  // Calculs simplifiés
+  const stress = load / (area * 1000); // MPa
+  let limit = 24;
+  if (grade === 'C18') limit = 18;
+  if (grade === 'C30') limit = 30;
+  let advice = '';
+  if (stress > limit * 0.6) advice = "Contrainte élevée : augmenter la section ou choisir une classe supérieure.";
+  else advice = "Dimensionnement correct (vérification simplifiée).";
+  
   const handleReset = () => {
     setBaseWidth('200');
     setHeight('300');
-    setLength('5000');
+    setLength(4);
+    setArea(0.01);
+    setLoad(30);
     setWoodClass('c24');
     setServiceClass('1');
     setLoadDuration('medium');
     setUniformLoad('5');
+    setGrade('C24');
   };
   
   const handleDownload = () => {
@@ -201,12 +215,12 @@ const TimberCalculator = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="length">Portée (mm)</Label>
+                  <Label htmlFor="length">Portée (m)</Label>
                   <Input 
                     id="length"
                     type="number" 
                     value={length} 
-                    onChange={(e) => setLength(e.target.value)}
+                    onChange={(e) => setLength(Number(e.target.value))}
                   />
                 </div>
                 

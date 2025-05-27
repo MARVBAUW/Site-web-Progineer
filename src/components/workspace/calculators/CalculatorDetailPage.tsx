@@ -94,27 +94,23 @@ const CalculatorDetailPage: React.FC = () => {
 
   const performCalculation = () => {
     setIsCalculating(true);
-    
-    // Simulation de calcul basé sur le type de calculateur
     setTimeout(() => {
       const newResults: { [key: string]: number | string } = {};
-      
-      // Logique de calcul basée sur l'ID du calculateur
       switch (calculator.id) {
-        case 'resistance-thermique':
+        case 'resistance-thermique': {
           const epaisseur = Number(inputValues['epaisseur']) || 0;
           const conductivite = Number(inputValues['conductivite']) || 1;
-          newResults['resistance'] = (epaisseur / 1000 / conductivite).toFixed(3);
+          newResults['resistance'] = conductivite > 0 ? (epaisseur / 1000 / conductivite).toFixed(3) : 'Erreur';
           newResults['unite'] = 'm².K/W';
           break;
-          
-        case 'coefficient-u':
+        }
+        case 'coefficient-u': {
           const resistanceTotal = Number(inputValues['resistance']) || 1;
-          newResults['coefficientU'] = (1 / resistanceTotal).toFixed(3);
+          newResults['coefficientU'] = resistanceTotal > 0 ? (1 / resistanceTotal).toFixed(3) : 'Erreur';
           newResults['unite'] = 'W/m².K';
           break;
-          
-        case 'surface-habitable':
+        }
+        case 'surface-habitable': {
           const longueur = Number(inputValues['longueur']) || 0;
           const largeur = Number(inputValues['largeur']) || 0;
           const hauteur = Number(inputValues['hauteur']) || 0;
@@ -123,8 +119,8 @@ const CalculatorDetailPage: React.FC = () => {
           newResults['unitesSurface'] = 'm²';
           newResults['unitesVolume'] = 'm³';
           break;
-          
-        case 'places-parking-pmr':
+        }
+        case 'places-parking-pmr': {
           const totalPlaces = Number(inputValues['totalPlaces']) || 0;
           let placesPMR = 0;
           if (totalPlaces <= 500) {
@@ -133,47 +129,42 @@ const CalculatorDetailPage: React.FC = () => {
             placesPMR = 10 + Math.ceil((totalPlaces - 500) * 0.005);
           }
           newResults['placesPMR'] = placesPMR;
-          newResults['pourcentage'] = ((placesPMR / totalPlaces) * 100).toFixed(1);
+          newResults['pourcentage'] = totalPlaces > 0 ? ((placesPMR / totalPlaces) * 100).toFixed(1) : '0.0';
           break;
-          
-        case 'effectif-erp':
+        }
+        case 'effectif-erp': {
           const surface = Number(inputValues['surface']) || 0;
           const typeERP = inputValues['typeERP'] || 'M';
-          let densiteOccupation = 3; // défaut pour magasins
-          
+          let densiteOccupation = 3;
           switch (typeERP) {
-            case 'L': densiteOccupation = 1; break; // Spectacles
-            case 'N': densiteOccupation = 1.5; break; // Restaurants
-            case 'O': densiteOccupation = 8; break; // Hôtels
-            case 'R': densiteOccupation = 2; break; // Enseignement
-            default: densiteOccupation = 3; break; // Magasins
+            case 'L': densiteOccupation = 1; break;
+            case 'N': densiteOccupation = 1.5; break;
+            case 'O': densiteOccupation = 8; break;
+            case 'R': densiteOccupation = 2; break;
+            default: densiteOccupation = 3; break;
           }
-          
-          newResults['effectif'] = Math.ceil(surface / densiteOccupation);
+          newResults['effectif'] = densiteOccupation > 0 ? Math.ceil(surface / densiteOccupation) : 'Erreur';
           newResults['densite'] = densiteOccupation;
           break;
-          
-        case 'rentabilite-investissement':
+        }
+        case 'rentabilite-investissement': {
           const investissement = Number(inputValues['investissement']) || 0;
           const loyer = Number(inputValues['loyer']) || 0;
           const charges = Number(inputValues['charges']) || 0;
-          
           const loyerNet = loyer - charges;
-          const rendementBrut = (loyer * 12 / investissement * 100);
-          const rendementNet = (loyerNet * 12 / investissement * 100);
-          
+          const rendementBrut = investissement > 0 ? (loyer * 12 / investissement * 100) : 0;
+          const rendementNet = investissement > 0 ? (loyerNet * 12 / investissement * 100) : 0;
           newResults['rendementBrut'] = rendementBrut.toFixed(2);
           newResults['rendementNet'] = rendementNet.toFixed(2);
           newResults['loyerNet'] = loyerNet.toFixed(2);
           break;
-          
-        default:
-          // Calcul générique pour les autres calculateurs
+        }
+        default: {
           const firstInput = Object.values(inputValues)[0] || 0;
           newResults['resultat'] = (Number(firstInput) * 1.2).toFixed(2);
           newResults['unite'] = 'unité';
+        }
       }
-      
       setResults(newResults);
       setIsCalculating(false);
     }, 1000);

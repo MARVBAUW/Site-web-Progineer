@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -9,19 +8,26 @@ import { Slider } from "@/components/ui/slider";
 import { AlertCircle, Download, Info } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-const AccessibilityRampCalculator = () => {
+const AccessibilityRampCalculator: React.FC = () => {
   const { toast } = useToast();
-  const [heightDifference, setHeightDifference] = useState('18');
-  const [availableLength, setAvailableLength] = useState('300');
+  const [height, setHeight] = useState(0.5); // m
+  const [length, setLength] = useState(6); // m
   const [rampType, setRampType] = useState('permanent');
   const [isConstruction, setIsConstruction] = useState(false);
   const [hasPalier, setHasPalier] = useState(false);
   const [palierLength, setPalierLength] = useState('140');
   
+  const slope = length > 0 ? (height / length) * 100 : 0;
+  let advice = '';
+  if (slope <= 5) advice = "Conforme : pente ≤ 5% (rampe permanente sans palier).";
+  else if (slope <= 8) advice = "Toléré : pente ≤ 8% sur 2 m max (palier obligatoire).";
+  else if (slope <= 10) advice = "Toléré : pente ≤ 10% sur 0,5 m max (palier obligatoire).";
+  else advice = "Non conforme : pente trop forte pour l'accessibilité PMR.";
+  
   // Calcul du pourcentage de pente
   const calculateSlope = () => {
-    const height = parseFloat(heightDifference);
-    const availLen = parseFloat(availableLength);
+    const height = parseFloat(height.toFixed(2));
+    const availLen = parseFloat(length.toFixed(2));
     
     if (hasPalier) {
       const palierLen = parseFloat(palierLength);
@@ -44,10 +50,10 @@ const AccessibilityRampCalculator = () => {
         return slope <= 5;
       } else {
         // Constructions existantes: max 6% (ou 10% si longueur < 2m)
-        const rampLength = parseFloat(availableLength);
-        if (rampLength < 200) {
+        const rampLength = parseFloat(length.toFixed(2));
+        if (rampLength < 2) {
           return slope <= 10;
-        } else if (rampLength < 400) {
+        } else if (rampLength < 4) {
           return slope <= 8;
         } else {
           return slope <= 6;
@@ -63,7 +69,7 @@ const AccessibilityRampCalculator = () => {
   
   // Calcul de la longueur nécessaire pour une pente à 5%
   const calculateRequiredLength = () => {
-    const height = parseFloat(heightDifference);
+    const height = parseFloat(height.toFixed(2));
     const targetSlope = isConstruction ? 5 : 6; // 5% pour nouvelle construction, 6% pour existant
     
     // Calcul de base: longueur = hauteur / (pente/100)
@@ -79,26 +85,26 @@ const AccessibilityRampCalculator = () => {
   
   // Vérifier si un palier de repos est nécessaire
   const isPalierRequired = () => {
-    const rampLength = parseFloat(availableLength);
+    const rampLength = parseFloat(length.toFixed(2));
     
     // Selon les normes, un palier est requis tous les 10m
-    return rampLength > 1000;
+    return rampLength > 10;
   };
   
   // Recommendations pour la rampe
   const getRampRecommendations = () => {
     const slope = calculateSlope();
-    const rampLength = parseFloat(availableLength);
+    const rampLength = parseFloat(length.toFixed(2));
     const recommendations = [];
     
     // Vérifier la pente
     if (slope > 5 && isConstruction) {
       recommendations.push("La pente doit être réduite à 5% maximum pour les nouvelles constructions.");
-    } else if (slope > 6 && !isConstruction && rampLength >= 400) {
+    } else if (slope > 6 && !isConstruction && rampLength >= 4) {
       recommendations.push("La pente doit être réduite à 6% maximum pour cette longueur.");
-    } else if (slope > 8 && !isConstruction && rampLength >= 200 && rampLength < 400) {
+    } else if (slope > 8 && !isConstruction && rampLength >= 2 && rampLength < 4) {
       recommendations.push("La pente doit être réduite à 8% maximum pour cette longueur.");
-    } else if (slope > 10 && !isConstruction && rampLength < 200) {
+    } else if (slope > 10 && !isConstruction && rampLength < 2) {
       recommendations.push("La pente doit être réduite à 10% maximum pour cette longueur.");
     }
     
@@ -113,7 +119,7 @@ const AccessibilityRampCalculator = () => {
     }
     
     // Recommandations sur les garde-corps et mains courantes
-    if (parseFloat(heightDifference) > 40) {
+    if (height > 0.4) {
       recommendations.push("Un garde-corps est obligatoire lorsque la hauteur de chute dépasse 0,40 mètre.");
     }
     
@@ -158,26 +164,28 @@ const AccessibilityRampCalculator = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div>
-              <Label htmlFor="heightDifference">Hauteur à franchir (cm)</Label>
+              <Label htmlFor="height">Hauteur à franchir (m)</Label>
               <Input 
-                id="heightDifference"
+                id="height"
                 type="number" 
-                min="1"
-                max="300"
-                value={heightDifference} 
-                onChange={(e) => setHeightDifference(e.target.value)}
+                min="0"
+                max="3"
+                step="0.01"
+                value={height} 
+                onChange={(e) => setHeight(Number(e.target.value))}
               />
             </div>
             
             <div>
-              <Label htmlFor="availableLength">Longueur disponible (cm)</Label>
+              <Label htmlFor="length">Longueur de rampe (m)</Label>
               <Input 
-                id="availableLength"
+                id="length"
                 type="number" 
-                min="50"
-                max="2000"
-                value={availableLength} 
-                onChange={(e) => setAvailableLength(e.target.value)}
+                min="0.1"
+                max="20"
+                step="0.1"
+                value={length} 
+                onChange={(e) => setLength(Number(e.target.value))}
               />
             </div>
             
@@ -243,7 +251,7 @@ const AccessibilityRampCalculator = () => {
             <div className="space-y-1">
               <p className="text-sm text-low-contrast">Pente calculée</p>
               <p className={`text-2xl font-semibold ${getComplianceClass()}`}>
-                {calculateSlope().toFixed(1)}%
+                {slope.toFixed(2)}%
               </p>
               <p className={`text-sm font-medium ${getComplianceClass()}`}>
                 {isSlopeCompliant() ? "Conforme" : "Non conforme"}
@@ -253,7 +261,7 @@ const AccessibilityRampCalculator = () => {
             <div className="space-y-1">
               <p className="text-sm text-low-contrast">Longueur minimale requise</p>
               <p className="text-2xl font-semibold">
-                {calculateRequiredLength().toFixed(0)} cm
+                {calculateRequiredLength().toFixed(2)} m
               </p>
               <p className="text-sm text-low-contrast">
                 Pour une pente conforme de {isConstruction ? "5%" : "6%"}
@@ -268,7 +276,7 @@ const AccessibilityRampCalculator = () => {
             <div>
               <p className="font-medium">Non conforme à la réglementation</p>
               <p className="mt-1">
-                La pente calculée ({calculateSlope().toFixed(1)}%) est supérieure à la pente maximale autorisée. Vous devez augmenter la longueur disponible ou installer un élévateur PMR.
+                La pente calculée ({slope.toFixed(2)}%) est supérieure à la pente maximale autorisée. Vous devez augmenter la longueur disponible ou installer un élévateur PMR.
               </p>
             </div>
           </div>
