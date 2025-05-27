@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { RenovationProcess } from '@/components/prestations/renovation/RenovationProcess';
 
 const ConstructionNeuveContent = () => {
   return (
     <>
-      <div id="overview">
+      <div id="overview" className="mb-12 md:mb-16 p-4 md:p-8 bg-white dark:bg-slate-900 rounded-xl shadow-sm">
         <h2 className="text-3xl font-semibold mb-6">Construction sur mesure de votre maison</h2>
         <p className="mb-8 text-gray-600 dark:text-gray-300">
           Notre bureau d'études en <strong>maîtrise d'œuvre</strong> vous accompagne dans votre projet de construction de maison sur mesure en région PACA. De la conception des plans à la livraison des clés, nous prenons en charge toutes les étapes de votre projet pour vous offrir une maison qui vous ressemble, adaptée à vos besoins et à votre style de vie.
@@ -13,7 +12,7 @@ const ConstructionNeuveContent = () => {
 
         <div className="mb-12">
           <img 
-            src="/lovable-uploads/PROGINEER (1).png" 
+            src="/images/prestations/PROGINEER (1).png" 
             alt="Maison individuelle contemporaine construite par Progineer constructeur de maison en PACA"
             className="w-full h-auto rounded-xl mb-4"
           />

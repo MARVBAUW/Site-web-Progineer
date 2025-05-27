@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -174,16 +174,42 @@ const RegulationTabsSection: React.FC<RegulationTabsSectionProps> = ({
   );
 };
 
-interface WorkspaceLayoutProps {
-  defaultTab?: string;
-}
+const WorkspaceLayout: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
-const WorkspaceLayout: React.FC<WorkspaceLayoutProps> = ({ defaultTab = 'guides' }) => {
-  const [activeTab, setActiveTab] = useState(defaultTab);
+  // Mapping pour harmoniser les valeurs de tab
+  const tabMap: Record<string, string> = {
+    guides: 'guides',
+    calculateurs: 'calculators',
+    calculators: 'calculators',
+    reglementation: 'regulation',
+    regulation: 'regulation',
+    'veille-reglementaire': 'veille-reglementaire',
+    'client-space': 'client-space',
+  };
+  const urlTab = searchParams.get('tab');
+  const initialTab = tabMap[urlTab || ''] || 'guides';
+
+  const [activeTab, setActiveTab] = useState(initialTab);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchFilters, setSearchFilters] = useState<SearchFilters>({});
-  const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
+
+  // Synchroniser le tab avec l'URL à chaque changement d'URL
+  useEffect(() => {
+    const urlTab = searchParams.get('tab');
+    const mappedTab = tabMap[urlTab || ''] || 'guides';
+    if (mappedTab !== activeTab) setActiveTab(mappedTab);
+  }, [searchParams]);
+
+  // Mettre à jour l'URL lors d'un changement de tab
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    setSearchParams({ tab: value === 'calculators' ? 'calculateurs' : value });
+    setSearchQuery('');
+    setSearchFilters({});
+  };
 
   // Combinaison de toutes les ressources
   const allResources: WorkspaceResource[] = useMemo(() => [
@@ -299,13 +325,6 @@ const WorkspaceLayout: React.FC<WorkspaceLayoutProps> = ({ defaultTab = 'guides'
       default:
         console.log('Type de ressource non reconnu:', resource.type);
     }
-  };
-
-  const handleTabChange = (value: string) => {
-    setActiveTab(value);
-    // Reset des filtres lors du changement d'onglet
-    setSearchQuery('');
-    setSearchFilters({});
   };
 
   // Statistiques globales

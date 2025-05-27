@@ -21,7 +21,7 @@ const RegulationDetailPage: React.FC = () => {
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Document non trouvé</h1>
           <p className="text-gray-600 dark:text-gray-300 mb-6">Le document de réglementation demandé n'existe pas ou a été supprimé.</p>
-          <Button onClick={() => navigate('/workspace/regulation')}>
+          <Button onClick={() => navigate('/workspace?tab=reglementation')}>
             <ArrowLeft className="h-4 w-4 mr-2" />
             Retour à la réglementation
           </Button>
@@ -348,7 +348,7 @@ IMPORTANT: Vérifiez toujours les textes officiels pour une valeur juridique com
         <div className="mb-6">
           <Button 
             variant="ghost" 
-            onClick={() => navigate('/workspace/regulation')}
+            onClick={() => navigate('/workspace?tab=reglementation')}
             className="text-green-600 hover:text-green-700"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />

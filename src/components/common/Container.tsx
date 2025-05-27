@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 
@@ -16,7 +15,7 @@ const Container = ({ children, size = 'md', className, ...props }: ContainerProp
       : 'container-md';
   
   return (
-    <div className={cn(containerClass, className)} {...props}>
+    <div className={cn(containerClass, 'px-4 md:px-8', className)} {...props}>
       {children}
     </div>
   );

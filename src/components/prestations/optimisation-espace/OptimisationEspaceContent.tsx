@@ -1,10 +1,9 @@
-
 import React from 'react';
 
 const OptimisationEspaceContent = () => {
   return (
     <>
-      <div id="overview">
+      <div id="overview" className="mb-12 md:mb-16 p-4 md:p-8 bg-white dark:bg-slate-900 rounded-xl shadow-sm">
         <h2 className="text-3xl font-semibold mb-6">Optimisez chaque mètre carré de votre espace</h2>
         <p className="mb-8 text-gray-600 dark:text-gray-300">
           Vous souhaitez tirer le meilleur parti de votre surface habitable ? Notre bureau d'études en <strong>maîtrise d'œuvre</strong> vous propose des solutions ingénieuses pour optimiser l'espace de votre logement en région PACA. De la conception à la réalisation, nous mettons notre expertise au service de votre confort quotidien.
@@ -12,7 +11,7 @@ const OptimisationEspaceContent = () => {
 
         <div className="mb-12">
           <img 
-            src="/lovable-uploads/PROGINEER (9).png" 
+            src="/images/prestations/PROGINEER (9).png" 
             alt="Exemple d'optimisation d'espace réalisée par Progineer en PACA"
             className="w-full h-auto rounded-xl mb-4"
           />

@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { RenovationProcess } from '@/components/prestations/renovation/RenovationProcess';
 
 const RenovationContent = () => {
   return (
     <>
-      <div id="overview">
+      <div id="overview" className="mb-12 md:mb-16 p-4 md:p-8 bg-white dark:bg-slate-900 rounded-xl shadow-sm">
         <h2 className="text-3xl font-semibold mb-6">Rénovation complète de maisons et appartements</h2>
         <p className="mb-8 text-gray-600 dark:text-gray-300">
           Notre bureau d'études en <strong>maîtrise d'œuvre</strong> vous accompagne dans tous vos projets de rénovation en région PACA. Que vous souhaitiez moderniser votre logement, optimiser votre espace de vie ou améliorer les performances énergétiques de votre habitation, notre équipe d'experts vous propose des solutions personnalisées et adaptées à vos besoins.
@@ -13,7 +12,7 @@ const RenovationContent = () => {
 
         <div className="mb-12">
           <img 
-            src="/lovable-uploads/PROGINEER (4).png" 
+            src="/images/prestations/PROGINEER (4).png" 
             alt="Projet de rénovation réalisé par Progineer en PACA"
             className="w-full h-auto rounded-xl mb-4"
           />
