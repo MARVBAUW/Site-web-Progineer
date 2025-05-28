@@ -7,6 +7,7 @@ import RenovationHero from '@/components/prestations/renovation/RenovationHero';
 import RenovationSidebar from '@/components/prestations/renovation/RenovationSidebar';
 import RenovationContent from '@/components/prestations/renovation/RenovationContent';
 import RenovationSEOContent from '@/components/prestations/renovation/RenovationSEOContent';
+import SEOContentSection from '@/components/prestations/renovation/SEOContentSection';
 
 const Renovation = () => {
   return (
@@ -35,6 +36,18 @@ const Renovation = () => {
       </section>
 
       <RenovationSEOContent />
+
+      <SEOContentSection
+        title="Rénovation de maison et d'appartement en PACA"
+        intro="La rénovation d'une maison ou d'un appartement est un projet complexe qui nécessite l'expertise d'un professionnel. En tant que maître d'œuvre spécialisé en rénovation à Marseille et en région PACA, nous vous accompagnons dans la transformation de votre habitat, qu'il s'agisse d'une rénovation énergétique, d'une rénovation partielle ou d'une réhabilitation complète."
+        bullets={[
+          "Approche globale de la rénovation (audit, conception, livraison)",
+          "Rénovation énergétique pour optimiser le confort et les économies",
+          "Travaux sur mesure adaptés à vos besoins et à votre budget",
+          "Respect de l'architecture locale et des normes en vigueur"
+        ]}
+        conclusion="Faites confiance à notre équipe pour transformer durablement votre bien à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur."
+      />
 
       <SEOFooter 
         text="Travaux de rénovation de maisons et d'appartements en PACA par Progineer, maître d'œuvre spécialisé en travaux de transformation d'habitat. Nos experts vous accompagnent dans tous vos travaux de rénovation à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur pour améliorer votre confort et valoriser votre patrimoine."
