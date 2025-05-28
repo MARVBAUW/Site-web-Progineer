@@ -4,31 +4,31 @@ const prestations = [
   {
     slug: 'design-interieur',
     title: "Design d'intérieur",
-    image: '/images/prestations/design-interieur.jpg',
+    image: '/images/prestations/design-interieur.webp',
     alt: "Design d'intérieur"
   },
   {
     slug: 'montage-administratif',
     title: 'Montage administratif',
-    image: '/images/prestations/montage-administratif.jpg',
+    image: '/images/prestations/montage-administratif.webp',
     alt: 'Montage administratif'
   },
   {
     slug: 'petit-collectif',
     title: 'Petit collectif',
-    image: '/images/prestations/petit-collectif.jpg',
+    image: '/images/prestations/petit-collectif.webp',
     alt: 'Petit collectif'
   },
   {
     slug: 'rehabilitation',
     title: 'Réhabilitation',
-    image: '/images/prestations/rehabilitation.jpg',
+    image: '/images/prestations/rehabilitation.webp',
     alt: 'Réhabilitation'
   },
   {
     slug: 'construction-ecologique',
     title: 'Construction écologique',
-    image: '/images/prestations/construction-ecologique.jpg',
+    image: '/images/prestations/construction-ecologique.webp',
     alt: 'Construction écologique'
   },
   // ... autres prestations principales

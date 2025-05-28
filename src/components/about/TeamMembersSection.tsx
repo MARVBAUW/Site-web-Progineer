@@ -1,4 +1,3 @@
-
 import React from "react";
 import Container from "@/components/common/Container";
 import TeamMemberCard from "./TeamMemberCard";
@@ -18,7 +17,7 @@ interface TeamMembersSectionProps {
 
 const TeamMembersSection: React.FC<TeamMembersSectionProps> = ({ members }) => (
   <section className="relative py-24 bg-gradient-to-b from-gray-900 to-gray-950 overflow-hidden">
-    <div className="absolute inset-0 bg-[url('/lovable-uploads/aa0d9792-6c78-477d-9203-0c92cc4c6035.png')] opacity-5" />
+    <div className="absolute inset-0 bg-[url('/lovable-uploads/aa0d9792-6c78-477d-9203-0c92cc4c6035.webp')] opacity-5" />
     
     <Container>
       <div className="relative">

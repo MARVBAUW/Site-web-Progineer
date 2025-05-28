@@ -21,7 +21,7 @@ const SEO: React.FC<SEOProps> = ({
   keywords,
   canonicalUrl = 'https://progineer.fr',
   ogType = 'website',
-  ogImage = 'https://progineer.fr/images/progineer-social-card.jpg',
+  ogImage = 'https://progineer.fr/images/progineer-social-card.webp',
   structuredData,
   children,
   pageType,
@@ -44,13 +44,13 @@ const SEO: React.FC<SEOProps> = ({
     "url": "https://progineer.fr",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://progineer.fr/images/progineer-logo.png",
+      "url": "https://progineer.fr/images/progineer-logo.webp",
       "width": 400,
       "height": 200
     },
     "image": {
       "@type": "ImageObject",
-      "url": "https://progineer.fr/images/progineer-social-card.jpg",
+      "url": "https://progineer.fr/images/progineer-social-card.webp",
       "width": 1200,
       "height": 630
     },
@@ -221,9 +221,9 @@ const SEO: React.FC<SEOProps> = ({
 
       {/* Favicon */}
       <link rel="icon" href="/progineer-favicon.ico" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/progineer-apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/progineer-icon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/progineer-icon-16x16.png" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/progineer-apple-touch-icon.webp" />
+      <link rel="icon" type="image/webp" sizes="32x32" href="/progineer-icon-32x32.webp" />
+      <link rel="icon" type="image/webp" sizes="16x16" href="/progineer-icon-16x16.webp" />
       <link rel="manifest" href="/site.webmanifest" />
       <meta name="theme-color" content="#787346" />
 

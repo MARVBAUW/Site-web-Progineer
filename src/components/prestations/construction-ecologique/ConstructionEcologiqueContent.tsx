@@ -11,7 +11,7 @@ const ConstructionEcologiqueContent = () => (
       <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Optez pour une construction respectueuse de l'environnement, performante et durable. Nous vous accompagnons à chaque étape, de la conception bioclimatique au choix des matériaux biosourcés, jusqu'à la livraison de votre projet écologique.</p>
       <div className="mb-12">
         <img
-          src="/images/prestations/PROGINEER-4-.png"
+          src="/images/prestations/PROGINEER-19-_resultat.webp"
           alt="Construction écologique réalisée par Progineer en région PACA"
           className="w-full h-auto rounded-xl mb-4"
         />

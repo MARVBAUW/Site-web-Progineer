@@ -11,7 +11,7 @@ const RehabilitationContent = () => (
       <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Redonnez vie à votre patrimoine bâti grâce à une réhabilitation sur mesure, respectueuse de l'histoire et des normes actuelles. Notre équipe vous accompagne de l'étude patrimoniale à la livraison, pour des projets valorisés et durables.</p>
       <div className="mb-12">
         <img
-          src="/images/prestations/PROGINEER-3-.png"
+          src="/images/prestations/PROGINEER-6-_resultat.webp"
           alt="Réhabilitation de bâtiment par Progineer en région PACA"
           className="w-full h-auto rounded-xl mb-4"
         />
