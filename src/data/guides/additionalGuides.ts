@@ -1,4 +1,4 @@
-import { Guide } from '@/types/workspace';
+import { Guide } from '../../types/workspace.js';
 
 // 10 guides pratiques supplémentaires pour compléter les 15 guides
 export const additionalGuides: Guide[] = [
