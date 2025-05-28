@@ -1,5 +1,5 @@
-import { RegulationDocument, WorkspaceCategory, RegulationType } from '@/types/workspace';
-import { additionalDTUs } from './additionalDTUs';
+import { RegulationDocument, WorkspaceCategory, RegulationType } from '../../types/workspace.js';
+import { additionalDTUs } from './additionalDTUs.js';
 
 // Catégories de réglementation enrichies
 export const regulationCategories: WorkspaceCategory[] = [

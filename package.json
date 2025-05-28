@@ -17,11 +17,12 @@
     "veille:test-scheduler": "node -e \"import('./scripts/schedule-veille-articles.mjs').then(m => new m.default().testGeneration())\"",
     "veille:stats": "cat logs/veille-stats.json 2>/dev/null || echo '{\"message\": \"Aucune statistique disponible\"}'",
     "veille:logs": "tail -f logs/veille-scheduler.log 2>/dev/null || echo 'Aucun log disponible'",
-    "build:sitemap-utils": "tsc src/utils/sitemapGenerator.ts --outDir build-sitemap-tmp/src/utils --module ESNext --target ES2020 --esModuleInterop --skipLibCheck --strict",
-    "build:sitemap-script": "tsc scripts/sitemap/generate-sitemap.ts --outDir build-sitemap-tmp --module ESNext --target ES2020 --esModuleInterop --skipLibCheck --strict",
-    "generate-sitemap": "node ./build-sitemap-tmp/generate-sitemap.js",
+    "build:sitemap-utils": "tsc src/utils/sitemapGenerator.ts src/data/calculators/calculatorsData.ts src/data/guides/guidesData.ts src/data/guides/additionalGuides.ts src/data/regulation/regulationData.ts src/data/regulation/additionalDTUs.ts --outDir build-sitemap-tmp/src --module NodeNext --target ES2020 --esModuleInterop --skipLibCheck --strict",
+    "build:sitemap-script": "tsc scripts/scripts/generate-sitemap.ts --outDir build-sitemap-tmp --module NodeNext --target ES2020 --esModuleInterop --skipLibCheck --strict",
+    "generate-sitemap": "node scripts/scripts/generate-sitemap.mjs",
     "clean:sitemap-tmp": "rm -rf build-sitemap-tmp",
-    "prebuild": "npm run build:sitemap-utils && npm run build:sitemap-script && npm run generate-sitemap"
+    "prebuild": "npm run build:sitemap-utils && npm run build:sitemap-script && npm run generate-sitemap",
+    "postbuild": "node scripts/scripts/generate-sitemap.mjs"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.25.2",
@@ -119,6 +120,7 @@
     "globals": "^15.9.0",
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
+    "ts-node": "^10.9.2",
     "typescript-eslint": "^8.0.1",
     "undici-types": "^7.10.0"
   }

@@ -1,1060 +1,1077 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://progineer.fr/</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>1</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/Contact</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/Prestations</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/Estimation</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/FAQ</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/Parrainage</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/estimation</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/prestations-maitre-oeuvre</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/realisations-architecte-maison</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/equipe-maitrise-oeuvre</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/contact</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/prestations-maitre-oeuvre/construction-neuve</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/prestations-maitre-oeuvre/renovation</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/prestations-maitre-oeuvre/extension</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/prestations-maitre-oeuvre/optimisation-espace</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/prestations-maitre-oeuvre/design-interieur</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/faq</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/devenir-partenaire</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/parrainage</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/Workspace</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/Equipe</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/Sitemap</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/RealisationsArchitecturales</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/Realisations</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/Parrainage</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/NotFound</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/DevenirPartenaire</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/WorkspaceNew</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/guides/technique</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/SitemapXML</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/guides/reglementation</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/Partenaires</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/guides/gestion</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/PrivacyPolicy</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/guides/eco</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/Legal</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/guides/renovation</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/FAQ</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/guides/guide-renovation-energetique</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/Estimation</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/guides/normes-parasismiques</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/CGV</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/guides/liste-dtu-batiment</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/Contact</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/guides/gestion-chantier</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/CGU</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/guides/construction-ecologique</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/About</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/prestations/MontageAdministratif</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/prestations/PetitCollectif</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/prestations/OptimisationEspace</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/prestations/DesignInterieur</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/prestations/ConstructionNeuve</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/prestations/Extension</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/prestations/Renovation</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/prestations/Rehabilitation</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/prestations/ConstructionEcologique</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/resources/guides/guide-renovation-energetique</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/resources/guides/normes-parasismiques</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/resources/documents/liste-dtu-batiment</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/resources/documents/texte-integral-reglementation</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-13-1</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-13-2</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-13-3</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-20-1</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-21</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-20-12</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-20-13</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-22-1</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-23-1</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-23-2</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-23-3</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-23-4</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-23-5</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-31-1</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-31-2</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-31-3</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-31-4</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-32-1</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-32-3</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-m</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-l</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-j</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-n</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-o</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-p</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-r</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-s</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-t</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-u</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-v</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-w</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-x</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/erp-type-y</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/habitation-r-plus-3</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/accessibilite-erp-neuf</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/accessibilite-logement</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/re2020-indicateurs</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/rt-existant</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/nra-logements</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/acoustique-erp</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/eurocode-8</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://progineer.fr/workspace/regulation/condensation-parois</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-36-1</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-37-1</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-58-1</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-45-10</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-60-1</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://progineer.fr/workspace/regulation/dtu-65-14</loc>
-    <lastmod>2025-05-26</lastmod>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/veille/veille-001</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-14-1</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/veille/veille-002</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-24-1</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/veille/veille-003</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-24-2</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/veille/veille-004</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-25-1</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/veille/veille-005</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-25-41</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/veille/veille-006</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-26-1</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/veille/veille-007</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-26-2</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/veille/veille-008</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-11</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/veille/veille-009</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-2</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/veille/veille-010</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-1</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/accessibility/AccessibilityRampCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-44</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/acoustic/AcousticCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-45</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/acoustic/AcousticInsulationCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-46</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/AcousticCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-13</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/AcoustiqueCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-21</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/BorrowingCapacityCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-211</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/CalculatorDetailPage</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-22</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/CapaciteEmpruntCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-23</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/DpeCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-24</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/eurocode/BeamCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-241</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/eurocode/climate/SnowLoadCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-25</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/eurocode/climate/WindPressureCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-14</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/eurocode/ClimateCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-35</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/eurocode/ColumnCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-36</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/eurocode/EurocodeCalculators</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-40-5</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/eurocode/FoundationCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-41-2</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/eurocode/LoadCombinationsCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-51-1</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/eurocode/SlabCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/dtu-51-2</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/eurocode/SteelCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-m</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/eurocode/TimberCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-l</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/EurocodesCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-j</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/financier/CapaciteEmpruntCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-n</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/financier/CapaciteEmpruntCalculatorPlaceholder</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-o</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/fire/FireCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-p</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/fire/FireClassificationCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-r</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/fire/FireDesenfumageCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-s</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/fire/FireEscapeCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-t</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/fire/FireEvacuationCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-u</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/fire/FireSystemsCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-v</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/FraisNotaireCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-w</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/hygrometry/HygrometryCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-x</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/immobilier/FraisNotaireCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/erp-type-y</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/immobilier/SurfaceHabitableCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/habitation-r-plus-3</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/LoanCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/accessibilite-erp-neuf</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/LoanComparatorCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/accessibilite-logement</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/LoanComparisonCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/re2020-indicateurs</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/RegulatoryCalculators</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/rt-existant</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/RendementCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/nra-logements</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/RentabiliteLocativeCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/acoustique-erp</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/rentability/RentabilityCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/eurocode-8</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/rentability/RentabilityHeader</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/regulation/condensation-parois</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/rentability/tabs/FinancingTab</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/resistance-thermique</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/rentability/tabs/PurchaseTab</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/coefficient-u</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/rentability/tabs/RentalTab</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/deperditions-thermiques</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/rentability/tabs/ResultsTab</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/pont-thermique</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/RentabilityCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/bilan-energetique-re2020</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/surface/SurfaceCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/ges-construction</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/SurfaceCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/infiltrometrie</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/SurfaceHabitableCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/ventilation-vmc</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/TaxCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/combinaisons-actions</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/TechnicalAuditCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/charges-exploitation-ec1</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/thermal/DpeCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/flexion-ba-ec2</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/thermal/ThermalResistanceCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/action-vent-ec1</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/workspace/calculators/YieldCalculator</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/compression-ba</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/resources/documents/liste-dtu-batiment.pdf</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/charges-neige-ec1</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/charpente-bois-ec5</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/isolement-acoustique</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/bruit-impact</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/absorption-acoustique</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/reverberation-tr</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/niveaux-sonores</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/acoustique-urbanisme</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/effectif-erp</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/degagement-erp</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/resistance-feu-erp</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/desenfumage-erp</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/rampe-pmr</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/largeur-passage-pmr</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/places-parking-pmr</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/ascenseur-pmr</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/resources/documents/texte-integral-reglementation.pdf</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/sanitaires-pmr</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/debit-eau-sanitaire</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/pression-eau</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/dimensionnement-tuyauterie</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/puissance-electrique</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/section-cables</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/debit-ventilation</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://progineer.fr/workspace/calculators/rentabilite-investissement</loc>
+    <lastmod>2025-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/resources/guides/guide-renovation-energetique.pdf</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/financement-pret</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/resources/guides/normes-parasismiques.pdf</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/cout-construction</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/resources/guides/reglementation-complete-batiment.pdf</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/plus-value-immobiliere</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/About</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/charges-copropriete</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/DevenirPartenaire</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/amortissement-bien</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/Equipe</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/surface-habitable</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/Legal</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/emprise-au-sol</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/NotFound</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/volume-beton</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/Partenaires</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/calculators/quantite-materiaux</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/prestations/ConstructionEcologique</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/qui-faire-appel</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/prestations/ConstructionNeuve</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/permis-construire</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/prestations/DesignInterieur</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/budget-construction</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/prestations/Extension</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/terrain-constructible</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/prestations/MontageAdministratif</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/re2020-guide</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/prestations/OptimisationEspace</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/assurances-construction</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/prestations/PetitCollectif</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/isolation-thermique</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/prestations/Rehabilitation</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/construction-bois</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/prestations/Renovation</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/renovation-energetique</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/Prestations</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/domotique-maison-connectee</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/PrivacyPolicy</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/assurances-construction</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/Realisations</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/isolation-thermique</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/RealisationsArchitecturales</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/pompes-chaleur</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/CGU</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/etude-sol</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/CGV</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/financement-travaux</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/Sitemap</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/gestion-chantier</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/SitemapXML</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/ventilation-performante</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/sitemap</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/construction-bois</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/mentions-legales</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/renovation-energetique</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/cgv</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/domotique-maison-connectee</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/cgu</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/normes-parasismiques</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/privacy-policy</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/gestion-chantier</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://progineer.fr/sitemap.xml</loc>
-    <lastmod>2025-05-26</lastmod>
+    <loc>https://progineer.fr/workspace/guides/construction-ecologique</loc>
+    <lastmod>2025-05-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>

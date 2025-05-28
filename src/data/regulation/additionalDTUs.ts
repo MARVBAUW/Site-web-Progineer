@@ -1,4 +1,4 @@
-import { RegulationDocument } from '@/types/workspace';
+import { RegulationDocument } from '../../types/workspace.js';
 
 // ====== DTU CUVELAGE ======
 export const dtuCuvelage: RegulationDocument[] = [

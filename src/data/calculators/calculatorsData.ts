@@ -1,4 +1,4 @@
-import { Calculator, WorkspaceCategory, CalculatorType } from '@/types/workspace';
+import { Calculator, WorkspaceCategory, CalculatorType } from '../../types/workspace.js';
 
 // Catégories de calculateurs étendues
 export const calculatorCategories: WorkspaceCategory[] = [

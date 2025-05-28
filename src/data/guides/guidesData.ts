@@ -1,5 +1,5 @@
-import { Guide, WorkspaceCategory } from '@/types/workspace';
-import { additionalGuides } from './additionalGuides';
+import { Guide, WorkspaceCategory } from '../../types/workspace.js';
+import { additionalGuides } from './additionalGuides.js';
 
 // Catégories de guides
 export const guideCategories: WorkspaceCategory[] = [
