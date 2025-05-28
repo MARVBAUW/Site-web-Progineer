@@ -14,7 +14,7 @@ const PetitCollectifContent = () => {
         </p>
         <div className="mb-12">
           <img 
-            src="/images/prestations/PROGINEER-2-.png" 
+            src="/images/prestations/PROGINEER-14-_resultat.webp" 
             alt="Petit collectif résidentiel réalisé par Progineer en région PACA"
             className="w-full h-auto rounded-xl mb-4"
           />

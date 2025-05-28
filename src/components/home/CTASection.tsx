@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Container from '@/components/common/Container';
 import Button from '@/components/common/Button';
@@ -125,7 +124,7 @@ const CTASection = () => {
                 <img 
                   alt="Maison contemporaine avec grande baie vitrée" 
                   className="w-full h-auto object-fill" 
-                  src="/lovable-uploads/2ab0f303-213f-43c9-94dc-75e0e8e55718.png" 
+                  src="/lovable-uploads/2ab0f303-213f-43c9-94dc-75e0e8e55718.webp" 
                 />
                 
                 {/* Overlay subtil pour améliorer la lisibilité */}

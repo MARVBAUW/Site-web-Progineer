@@ -1,4 +1,3 @@
-
 import { DTU } from '../../dtu/types';
 
 export const etancheiteDTUs: DTU[] = [
@@ -66,25 +65,25 @@ export const etancheiteDTUs: DTU[] = [
       {
         id: "schema-terrasse-1",
         title: "Coupe type toiture-terrasse",
-        imageUrl: "/images/schemas/toiture-terrasse.png",
+        imageUrl: "/images/schemas/toiture-terrasse.webp",
         description: "Cette coupe présente les différentes couches d'une toiture-terrasse : élément porteur, pare-vapeur, isolant, étanchéité et protection."
       },
       {
         id: "schema-terrasse-2",
         title: "Détail de relevé d'étanchéité",
-        imageUrl: "/images/schemas/releve-etancheite.png",
+        imageUrl: "/images/schemas/releve-etancheite.webp",
         description: "Ce schéma montre la réalisation d'un relevé d'étanchéité avec sa hauteur réglementaire et sa fixation en tête."
       },
       {
         id: "schema-terrasse-3",
         title: "Traitement joint de dilatation",
-        imageUrl: "/images/schemas/joint-dilatation.png",
+        imageUrl: "/images/schemas/joint-dilatation.webp",
         description: "Détail technique d'un joint de dilatation en toiture-terrasse avec relevés et dispositif d'étanchéité spécifique."
       },
       {
         id: "schema-terrasse-4",
         title: "Entrée d'eau pluviale",
-        imageUrl: "/images/schemas/eep-terrasse.png",
+        imageUrl: "/images/schemas/eep-terrasse.webp",
         description: "Coupe détaillée d'une entrée d'eau pluviale avec platine, crapaudine et raccordement à l'étanchéité."
       }
     ]
@@ -153,19 +152,19 @@ export const etancheiteDTUs: DTU[] = [
       {
         id: "schema-toiture-metal-1",
         title: "Toiture métal avec isolation",
-        imageUrl: "/images/schemas/toiture-metal.png",
+        imageUrl: "/images/schemas/toiture-metal.webp",
         description: "Ce schéma présente la composition d'une toiture métallique avec TAN, pare-vapeur, isolant et étanchéité fixée mécaniquement."
       },
       {
         id: "schema-toiture-metal-2",
         title: "Fixation mécanique en périphérie",
-        imageUrl: "/images/schemas/fixation-peripherique.png",
+        imageUrl: "/images/schemas/fixation-peripherique.webp",
         description: "Détail de la densification des fixations mécaniques en périphérie de toiture (zone de vent renforcée)."
       },
       {
         id: "schema-toiture-metal-3",
         title: "Joint de dilatation sur TAN",
-        imageUrl: "/images/schemas/joint-tan.png",
+        imageUrl: "/images/schemas/joint-tan.webp",
         description: "Traitement d'un joint de dilatation sur support en tôles d'acier nervurées avec double costière et soufflet."
       }
     ]
@@ -234,19 +233,19 @@ export const etancheiteDTUs: DTU[] = [
       {
         id: "schema-toiture-bois-1",
         title: "Structure toiture bois",
-        imageUrl: "/images/schemas/toiture-bois.png",
+        imageUrl: "/images/schemas/toiture-bois.webp",
         description: "Ce schéma détaille les composants d'une toiture avec support bois : ventilation, support, pare-vapeur, isolant et complexe d'étanchéité."
       },
       {
         id: "schema-toiture-bois-2",
         title: "Ventilation sous support",
-        imageUrl: "/images/schemas/ventilation-support-bois.png",
+        imageUrl: "/images/schemas/ventilation-support-bois.webp",
         description: "Vue détaillée de la lame d'air ventilée sous le platelage bois avec dispositifs d'entrée et sortie d'air."
       },
       {
         id: "schema-toiture-bois-3",
         title: "Relevé d'étanchéité sur bois",
-        imageUrl: "/images/schemas/releve-bois.png",
+        imageUrl: "/images/schemas/releve-bois.webp",
         description: "Détail d'un relevé d'étanchéité sur acrotère en bois avec bande de solin et protection en tête."
       }
     ]
@@ -315,19 +314,19 @@ export const etancheiteDTUs: DTU[] = [
       {
         id: "schema-joint-facade-1",
         title: "Coupe d'un joint de façade",
-        imageUrl: "/images/schemas/joint-facade.png",
+        imageUrl: "/images/schemas/joint-facade.webp",
         description: "Cette coupe montre les différents composants d'un joint de façade : support, fond de joint, primaire et mastic d'étanchéité."
       },
       {
         id: "schema-joint-facade-2",
         title: "Facteurs de forme selon largeur",
-        imageUrl: "/images/schemas/facteur-forme-joint.png",
+        imageUrl: "/images/schemas/facteur-forme-joint.webp",
         description: "Représentation graphique des facteurs de forme recommandés selon la largeur du joint et le type de mastic."
       },
       {
         id: "schema-joint-facade-3",
         title: "Joint de dilatation traversant",
-        imageUrl: "/images/schemas/joint-dilatation-facade.png",
+        imageUrl: "/images/schemas/joint-dilatation-facade.webp",
         description: "Détail d'un joint de dilatation traversant avec traitement de l'étanchéité à l'air et à l'eau et isolation thermique."
       }
     ]

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ProcessSection from './sections/ProcessSection';
 import SkillsGrid from './sections/SkillsGrid';
@@ -16,7 +15,7 @@ const DesignInterieurContent = () => {
 
         <div className="mb-12">
           <img 
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" 
+            src="/images/prestations/PROGINEER-21-_resultat.webp" 
             alt="Exemple de design d'intérieur réalisé par Progineer en PACA"
             className="w-full h-auto rounded-xl mb-4"
           />

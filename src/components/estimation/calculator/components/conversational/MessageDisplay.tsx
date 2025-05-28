@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -32,7 +31,7 @@ const MessageDisplay: React.FC<MessageDisplayProps> = ({
               {message.type !== 'user' && (
                 <Avatar className="h-6 w-6 mr-2">
                   <AvatarFallback>AI</AvatarFallback>
-                  <AvatarImage src="/images/bot-avatar.png" alt="AI Assistant" />
+                  <AvatarImage src="/images/bot-avatar.webp" alt="AI Assistant" />
                 </Avatar>
               )}
               <div>
@@ -64,7 +63,7 @@ const MessageDisplay: React.FC<MessageDisplayProps> = ({
             <div className="flex items-center space-x-2">
               <Avatar className="h-6 w-6">
                 <AvatarFallback>AI</AvatarFallback>
-                <AvatarImage src="/images/bot-avatar.png" alt="AI Assistant" />
+                <AvatarImage src="/images/bot-avatar.webp" alt="AI Assistant" />
               </Avatar>
               <Loader2 className="h-4 w-4 animate-spin text-low-contrast" />
             </div>

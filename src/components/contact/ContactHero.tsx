@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Container from '@/components/common/Container';
 
@@ -11,7 +10,7 @@ const ContactHero = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: `url('/lovable-uploads/PROGINEER (14).png')`,
+            backgroundImage: `url('/lovable-uploads/PROGINEER (14).webp')`,
             backgroundPosition: 'center',
           }}
         ></div>

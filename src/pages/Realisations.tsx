@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SEO from '@/components/common/SEO';
 import Container from '@/components/common/Container';
@@ -62,7 +61,7 @@ const projects = [
     location: 'Toulon',
     category: 'Construction écologique',
     description: 'Maison à énergie positive utilisant des matériaux biosourcés et des technologies innovantes pour un impact environnemental minimal.',
-    image: '/lovable-uploads/732fa99d-df25-4869-9ca9-b49ccf6f51a4.png',
+    image: '/lovable-uploads/732fa99d-df25-4869-9ca9-b49ccf6f51a4.webp',
     slug: 'maison-passive-toulon'
   },
 ];
