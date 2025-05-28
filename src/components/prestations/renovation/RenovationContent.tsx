@@ -12,7 +12,7 @@ const RenovationContent = () => {
 
         <div className="mb-12">
           <img 
-            src="/images/prestations/PROGINEER (4).png" 
+            src="/images/prestations/PROGINEER-4-.png" 
             alt="Projet de rénovation réalisé par Progineer en PACA"
             className="w-full h-auto rounded-xl mb-4"
           />
