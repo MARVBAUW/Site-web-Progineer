@@ -174,6 +174,51 @@ const services = [
       Notre expertise des réglementations et notre connaissance des procédures administratives nous permettent d'optimiser les délais et de sécuriser l'obtention de vos autorisations.
       Nous nous chargeons également des déclarations d'ouverture et d'achèvement de chantier, ainsi que de l'obtention du certificat de conformité.`
   },
+  {
+    id: 'petit-collectif',
+    slug: 'petit-collectif',
+    icon: <span className="text-3xl">🏢</span>,
+    title: 'Petit collectif',
+    description: "Conception et construction d'immeubles résidentiels à taille humaine.",
+    features: [
+      'Optimisation foncière',
+      'Conception sur mesure',
+      'Gestion administrative',
+      'Suivi de chantier',
+      'Respect des normes environnementales'
+    ],
+    detailedContent: `Progineer accompagne les promoteurs et investisseurs dans la réalisation de petits collectifs résidentiels en région PACA. Nous intervenons de l'avant-projet à la livraison, incluant le montage administratif, la construction neuve ou la réhabilitation. Notre expertise garantit des projets respectant les contraintes économiques, réglementaires et une intégration harmonieuse dans le tissu urbain.`
+  },
+  {
+    id: 'rehabilitation',
+    slug: 'rehabilitation',
+    icon: <span className="text-3xl">🏚️</span>,
+    title: 'Réhabilitation',
+    description: 'Transformation et valorisation de bâtiments anciens ou patrimoniaux.',
+    features: [
+      'Diagnostic technique',
+      'Valorisation patrimoniale',
+      'Mise aux normes',
+      'Rénovation énergétique',
+      'Coordination des travaux'
+    ],
+    detailedContent: `Notre équipe assure la réhabilitation complète de bâtiments anciens, en préservant leur caractère tout en les adaptant aux usages modernes. Diagnostic complet, valorisation patrimoniale, mise aux normes, rénovation énergétique et coordination des travaux spécialisés.`
+  },
+  {
+    id: 'construction-ecologique',
+    slug: 'construction-ecologique',
+    icon: <span className="text-3xl">🌱</span>,
+    title: 'Construction écologique',
+    description: 'Habitat durable, matériaux biosourcés, conception bioclimatique.',
+    features: [
+      'Construction bois',
+      'Matériaux biosourcés',
+      'Conception bioclimatique',
+      'Énergies renouvelables',
+      'Isolation performante'
+    ],
+    detailedContent: `Progineer conçoit et réalise des projets de construction écologique, avec une démarche responsable et innovante. Construction bois, matériaux biosourcés, conception bioclimatique, intégration des énergies renouvelables et solutions d'isolation performantes.`
+  },
 ];
 
 const Prestations = () => {

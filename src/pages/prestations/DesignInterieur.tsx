@@ -7,6 +7,7 @@ import DesignInterieurHero from '@/components/prestations/design-interieur/Desig
 import DesignInterieurSidebar from '@/components/prestations/design-interieur/DesignInterieurSidebar';
 import DesignInterieurContent from '@/components/prestations/design-interieur/DesignInterieurContent';
 import DesignInterieurSEOContent from '@/components/prestations/design-interieur/DesignInterieurSEOContent';
+import SEOContentSection from '@/components/prestations/design-interieur/SEOContentSection';
 
 const DesignInterieur = () => {
   return (
@@ -35,6 +36,18 @@ const DesignInterieur = () => {
       </section>
 
       <DesignInterieurSEOContent />
+
+      <SEOContentSection
+        title="Design d'intérieur : créez des espaces qui vous ressemblent en PACA"
+        intro="Le design d'intérieur va bien au-delà de la simple décoration : c'est l'art de créer des espaces qui allient esthétique et fonctionnalité. Notre expertise en tant qu'architecte d'intérieur nous permet de transformer vos espaces en lieux de vie uniques, parfaitement adaptés à votre style de vie et à vos aspirations."
+        bullets={[
+          "Approche créative et personnalisée pour chaque projet",
+          "Harmonie des matériaux, des couleurs et des styles",
+          "Gestion complète du projet, du concept à la réalisation",
+          "Valorisation de votre intérieur et optimisation de l'espace"
+        ]}
+        conclusion="Faites confiance à notre équipe pour sublimer votre intérieur à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur."
+      />
 
       <SEOFooter 
         text="Architecte d'intérieur à Marseille et en PACA par Progineer, cabinet spécialisé en conception d'espaces. Nos architectes d'intérieur vous accompagnent dans tous vos projets de design intérieur à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur pour créer des espaces qui vous ressemblent."

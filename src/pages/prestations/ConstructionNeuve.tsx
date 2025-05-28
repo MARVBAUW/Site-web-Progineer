@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Container from '@/components/common/Container';
 import SEO from '@/components/common/SEO';
@@ -8,6 +7,7 @@ import ConstructionNeuveHero from '@/components/prestations/construction-neuve/C
 import ConstructionNeuveSidebar from '@/components/prestations/construction-neuve/ConstructionNeuveSidebar';
 import ConstructionNeuveContent from '@/components/prestations/construction-neuve/ConstructionNeuveContent';
 import ConstructionNeuveSEOContent from '@/components/prestations/construction-neuve/ConstructionNeuveSEOContent';
+import SEOContentSection from '@/components/prestations/construction-neuve/SEOContentSection';
 
 const ConstructionNeuve = () => {
   return (
@@ -58,6 +58,18 @@ const ConstructionNeuve = () => {
       </section>
 
       <ConstructionNeuveSEOContent />
+
+      <SEOContentSection
+        title="Construction de maison neuve en PACA : l'expertise d'un maître d'œuvre"
+        intro="La construction d'une maison individuelle est un projet de vie qui nécessite l'accompagnement d'un professionnel expérimenté. En tant que maître d'œuvre spécialisé dans la construction neuve à Marseille et en région PACA, nous vous guidons à chaque étape pour réaliser la maison de vos rêves, alliant qualité de construction, respect des normes et optimisation du budget."
+        bullets={[
+          "Accompagnement de la conception à la livraison",
+          "Construction sur mesure adaptée à vos besoins et à votre budget",
+          "Suivi de chantier rigoureux et garanties constructeur",
+          "Sélection des meilleurs artisans et entreprises locales"
+        ]}
+        conclusion="Faites confiance à notre équipe pour concrétiser votre projet de maison neuve à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur."
+      />
 
       <SEOFooter 
         text="Construction de maisons individuelles sur mesure en PACA par Progineer, constructeur de maison et maître d'œuvre spécialisé. Notre expertise de constructeur de maison local vous accompagne dans tous vos travaux de construction clé en main à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur pour créer la maison de vos rêves."
