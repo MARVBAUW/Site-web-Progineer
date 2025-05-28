@@ -11,7 +11,7 @@ const OptimisationEspaceContent = () => {
 
         <div className="mb-12">
           <img 
-            src="/images/prestations/PROGINEER (9).png" 
+            src="/images/prestations/PROGINEER-9-.png" 
             alt="Exemple d'optimisation d'espace réalisée par Progineer en PACA"
             className="w-full h-auto rounded-xl mb-4"
           />

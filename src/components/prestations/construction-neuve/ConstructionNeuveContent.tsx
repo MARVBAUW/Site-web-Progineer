@@ -12,7 +12,7 @@ const ConstructionNeuveContent = () => {
 
         <div className="mb-12">
           <img 
-            src="/images/prestations/PROGINEER (1).png" 
+            src="/images/prestations/PROGINEER-1-.png" 
             alt="Maison individuelle contemporaine construite par Progineer constructeur de maison en PACA"
             className="w-full h-auto rounded-xl mb-4"
           />
