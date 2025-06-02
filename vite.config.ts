@@ -47,8 +47,7 @@ export default defineConfig(({ mode }) => ({
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-ui': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select'],
           'vendor-utils': ['lodash-es', 'date-fns', 'zod'],
-          'vendor-charts': ['recharts', 'leaflet'],
-          'vendor-other': [/node_modules/]
+          'vendor-charts': ['recharts', 'leaflet']
         },
         assetFileNames: (assetInfo) => {
           if (!assetInfo.name) return `assets/[name]-[hash][extname]`;
