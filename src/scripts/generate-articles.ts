@@ -1,0 +1,1 @@
+const ANTHROPIC_API_KEY = process.env.VITE_ANTHROPIC_API_KEY; 
