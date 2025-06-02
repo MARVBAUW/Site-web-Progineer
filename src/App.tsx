@@ -8,7 +8,7 @@ import { AuthProvider } from './hooks/useAuth';
 import { UserRegistrationNotificationsContainer } from './components/admin/notifications/UserRegistrationNotification';
 import { SEOValidator } from './components/seo/SEOValidator';
 import { routes } from './routes';
-import { useSessionTimeout } from './hooks/useSessionTimeout';
+import { useSessionTimeout } from './hooks/useSessionTimeout.tsx';
 
 const queryClient = new QueryClient();
 
