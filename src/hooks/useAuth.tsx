@@ -1,20 +1,22 @@
-
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '@/integrations/supabase/client';
 
-// Interface pour le contexte d'authentification
+// Type pour l'utilisateur
+export interface User {
+  id: string;
+  email: string;
+  firstName?: string;
+  lastName?: string;
+  role?: 'client' | 'admin';
+}
+
+// Type pour le contexte d'authentification
 interface AuthContextType {
   user: User | null;
-  session: Session | null;
   isAuthenticated: boolean;
-  loading: boolean;
-  error: string | null;
+  isLoading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, metadata?: { full_name?: string }) => Promise<void>;
+  signUp: (email: string, password: string, firstName?: string, lastName?: string) => Promise<void>;
   signOut: () => Promise<void>;
-  signInWithGoogle: () => Promise<void>;
-  signUpWithGoogle: () => Promise<void>;
 }
 
 // Contexte d'authentification
@@ -23,154 +25,98 @@ const AuthContext = createContext<AuthContextType | null>(null);
 // Provider d'authentification
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
+  // Simulation de vérification de l'authentification au chargement
   useEffect(() => {
-    // Configurer l'écoute des changements d'état d'authentification
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        console.log('Auth state change event:', event);
-        setSession(session);
-        setUser(session?.user ?? null);
-        setLoading(false);
-        setError(null);
+    const checkAuth = () => {
+      try {
+        const storedUser = localStorage.getItem('auth_user');
+        if (storedUser) {
+          const userData = JSON.parse(storedUser);
+          setUser(userData);
+        }
+      } catch (error) {
+        console.error('Erreur lors de la vérification de l\'authentification:', error);
+        localStorage.removeItem('auth_user');
+      } finally {
+        setIsLoading(false);
       }
-    );
-
-    // Vérifier la session existante
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      console.log('Initial session check:', session ? 'User logged in' : 'No session');
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    return () => {
-      subscription.unsubscribe();
     };
+
+    checkAuth();
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    setLoading(true);
-    setError(null);
+    setIsLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        throw error;
+      // Simulation d'une API call - à remplacer par votre logique d'authentification
+      // Ici on simule une authentification réussie
+      if (email && password) {
+        const userData: User = {
+          id: 'user_' + Math.random().toString(36).substr(2, 9),
+          email,
+          firstName: 'Client',
+          lastName: 'Test',
+          role: 'client'
+        };
+        
+        setUser(userData);
+        localStorage.setItem('auth_user', JSON.stringify(userData));
+      } else {
+        throw new Error('Email et mot de passe requis');
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Erreur de connexion:', error);
-      setError(error.message || 'Erreur de connexion');
       throw error;
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  const signUp = async (email: string, password: string, metadata?: { full_name?: string }) => {
-    setLoading(true);
-    setError(null);
+  const signUp = async (email: string, password: string, firstName?: string, lastName?: string) => {
+    setIsLoading(true);
     try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: metadata || {},
-        },
-      });
-
-      if (error) {
-        throw error;
+      // Simulation d'une API call - à remplacer par votre logique d'inscription
+      if (email && password) {
+        const userData: User = {
+          id: 'user_' + Math.random().toString(36).substr(2, 9),
+          email,
+          firstName: firstName || 'Nouveau',
+          lastName: lastName || 'Client',
+          role: 'client'
+        };
+        
+        setUser(userData);
+        localStorage.setItem('auth_user', JSON.stringify(userData));
+      } else {
+        throw new Error('Email et mot de passe requis');
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Erreur d\'inscription:', error);
-      setError(error.message || 'Erreur d\'inscription');
       throw error;
     } finally {
-      setLoading(false);
-    }
-  };
-
-  const signInWithGoogle = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/workspace/client-area`
-        }
-      });
-
-      if (error) {
-        throw error;
-      }
-    } catch (error: any) {
-      console.error('Erreur de connexion Google:', error);
-      setError(error.message || 'Erreur de connexion Google');
-      throw error;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const signUpWithGoogle = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/workspace/client-area`
-        }
-      });
-
-      if (error) {
-        throw error;
-      }
-    } catch (error: any) {
-      console.error('Erreur d\'inscription Google:', error);
-      setError(error.message || 'Erreur d\'inscription Google');
-      throw error;
-    } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
   const signOut = async () => {
-    setLoading(true);
-    setError(null);
     try {
-      const { error } = await supabase.auth.signOut();
-      if (error) {
-        throw error;
-      }
-    } catch (error: any) {
+      setUser(null);
+      localStorage.removeItem('auth_user');
+    } catch (error) {
       console.error('Erreur de déconnexion:', error);
-      setError(error.message || 'Erreur de déconnexion');
       throw error;
-    } finally {
-      setLoading(false);
     }
   };
 
   const value: AuthContextType = {
     user,
-    session,
     isAuthenticated: !!user,
-    loading,
-    error,
+    isLoading,
     signIn,
     signUp,
-    signOut,
-    signInWithGoogle,
-    signUpWithGoogle,
+    signOut
   };
 
   return (

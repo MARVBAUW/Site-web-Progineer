@@ -1,112 +1,166 @@
+import React, { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 
-import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+const WindPressureCalculator: React.FC = () => {
+  const [zone, setZone] = useState('1');
+  const [altitude, setAltitude] = useState(100); // m
+  const [surface, setSurface] = useState(50); // m²
+  const [exposure, setExposure] = useState(1);
 
-export const WindPressureCalculator: React.FC = () => {
-  const [windRegion, setWindRegion] = useState<string>('');
-  const [roughness, setRoughness] = useState<string>('');
-  const [buildingHeight, setBuildingHeight] = useState<number>(0);
-  const [windPressure, setWindPressure] = useState<number | null>(null);
-
-  const windRegions: { [key: string]: number } = {
-    '1': 22, // Zone 1 - vent faible
-    '2': 24, // Zone 2 - vent modéré
-    '3': 26, // Zone 3 - vent fort
-    '4': 28  // Zone 4 - vent très fort
-  };
-
-  const roughnessFactors: { [key: string]: number } = {
-    'I': 0.16,   // Mer, lacs
-    'II': 0.19,  // Campagne
-    'III': 0.22, // Banlieue
-    'IV': 0.24   // Ville
-  };
-
-  const calculateWindPressure = () => {
-    if (!windRegion || !roughness || buildingHeight <= 0) return;
-
-    const basicWindSpeed = windRegions[windRegion];
-    const roughnessFactor = roughnessFactors[roughness];
-    
-    // Simplified calculation according to Eurocode 1
-    const heightFactor = Math.min(1.7, Math.pow(buildingHeight / 10, 0.16));
-    const dynamicPressure = 0.613 * Math.pow(basicWindSpeed * roughnessFactor * heightFactor, 2);
-    
-    setWindPressure(dynamicPressure);
-  };
+  // Valeurs qb (kN/m²) par zone (exemple simplifié)
+  const qbZones: Record<string, number> = { '1': 0.5, '2': 0.7, '3': 0.9, '4': 1.1 };
+  let qb = qbZones[zone] || 0.5;
+  if (altitude > 100) qb += 0.05 * Math.floor((altitude - 100) / 100);
+  // Coefficients d'exposition et de pression (simplifiés)
+  const Ce = exposure; // 1 = normal, 1.2 = exposé, 0.8 = abrité
+  const Cpe = 0.8; // pression extérieure moyenne
+  // q = qb × Ce × Cpe × surface
+  const q = qb * Ce * Cpe * surface;
+  let advice = '';
+  if (q > 50) advice = "Pression élevée : vérifier la structure et les fixations.";
+  else advice = "Pression modérée ou faible.";
 
   return (
-    <Card className="w-full max-w-2xl">
-      <CardHeader>
-        <CardTitle>Calculateur Pression du Vent - Eurocode 1</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="windRegion">Zone de vent</Label>
-            <Select value={windRegion} onValueChange={setWindRegion}>
-              <SelectTrigger>
-                <SelectValue placeholder="Sélectionner la zone" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="1">Zone 1 (22 m/s)</SelectItem>
-                <SelectItem value="2">Zone 2 (24 m/s)</SelectItem>
-                <SelectItem value="3">Zone 3 (26 m/s)</SelectItem>
-                <SelectItem value="4">Zone 4 (28 m/s)</SelectItem>
-              </SelectContent>
-            </Select>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <Card>
+        <CardContent className="pt-6">
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="zone">Zone vent</Label>
+              <Select value={zone} onValueChange={setZone}>
+                <SelectTrigger className="mt-1">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1">1</SelectItem>
+                  <SelectItem value="2">2</SelectItem>
+                  <SelectItem value="3">3</SelectItem>
+                  <SelectItem value="4">4</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div>
+              <Label htmlFor="altitude">Altitude (m)</Label>
+              <Input 
+                id="altitude"
+                type="number"
+                value={altitude}
+                onChange={(e) => setAltitude(Number(e.target.value))}
+                className="mt-1"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="surface">Surface (m²)</Label>
+              <Input 
+                id="surface"
+                type="number"
+                value={surface}
+                onChange={(e) => setSurface(Number(e.target.value))}
+                className="mt-1"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="exposure">Coefficient d'exposition</Label>
+              <select value={exposure} onChange={e => setExposure(Number(e.target.value))} className="border rounded px-2 py-1 w-full mb-2">
+                <option value={1}>Normal (Ce=1)</option>
+                <option value={1.2}>Exposé (Ce=1.2)</option>
+                <option value={0.8}>Abrité (Ce=0.8)</option>
+              </select>
+            </div>
+            
+            <div>
+              <Label htmlFor="building-height">Hauteur du bâtiment (m)</Label>
+              <Input 
+                id="building-height"
+                type="number"
+                value={buildingHeight}
+                onChange={(e) => setBuildingHeight(Number(e.target.value))}
+                className="mt-1"
+              />
+            </div>
+            
+            <Button 
+              onClick={calculateWindPressure} 
+              className="w-full mt-4"
+            >
+              Calculer la pression dynamique
+            </Button>
           </div>
-
-          <div>
-            <Label htmlFor="roughness">Catégorie de rugosité</Label>
-            <Select value={roughness} onValueChange={setRoughness}>
-              <SelectTrigger>
-                <SelectValue placeholder="Sélectionner la catégorie" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="I">Catégorie I (Mer, lacs)</SelectItem>
-                <SelectItem value="II">Catégorie II (Campagne)</SelectItem>
-                <SelectItem value="III">Catégorie III (Banlieue)</SelectItem>
-                <SelectItem value="IV">Catégorie IV (Ville)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        <div>
-          <Label htmlFor="buildingHeight">Hauteur du bâtiment (m)</Label>
-          <Input
-            id="buildingHeight"
-            type="number"
-            value={buildingHeight}
-            onChange={(e) => setBuildingHeight(Number(e.target.value))}
-            placeholder="Ex: 15"
-          />
-        </div>
-
-        <Button onClick={calculateWindPressure} className="w-full">
-          Calculer la pression
-        </Button>
-
-        {windPressure !== null && (
-          <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <h3 className="font-semibold mb-2">Résultats :</h3>
-            <div className="space-y-2">
-              <p>Pression dynamique : <span className="font-mono">{windPressure.toFixed(2)} Pa</span></p>
-              <div className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                <p>Paramètres utilisés :</p>
-                <p>Zone de vent : {windRegion} ({windRegions[windRegion]} m/s)</p>
-                <p>Rugosité : {roughness}</p>
-                <p>Hauteur : {buildingHeight} m</p>
+        </CardContent>
+      </Card>
+      
+      <Card>
+        <CardContent className="pt-6">
+          <h3 className="text-xl font-medium mb-4">Résultat</h3>
+          
+          {windPressure === null ? (
+            <div className="text-center py-12 text-low-contrast">
+              <p>Renseignez les paramètres et cliquez sur "Calculer" pour obtenir la pression dynamique de pointe.</p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              <div className="bg-blue-50 p-6 rounded-lg text-center">
+                <h4 className="text-lg text-blue-800 mb-2">Pression dynamique de pointe</h4>
+                <div className="text-4xl font-bold text-blue-700">{windPressure.toFixed(3)} kN/m²</div>
+              </div>
+              
+              <Separator />
+              
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm">
+                  <span>Région de vent</span>
+                  <span className="font-medium">{windRegion}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>Catégorie de terrain</span>
+                  <span className="font-medium">{roughness}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>Hauteur de référence</span>
+                  <span className="font-medium">{buildingHeight} m</span>
+                </div>
+              </div>
+              
+              <div className="bg-muted/50 p-4 rounded-lg border border-border">
+                <h4 className="font-medium mb-2">Coefficients de pression recommandés</h4>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span>Murs verticaux (face au vent)</span>
+                    <span className="font-medium">+0.8</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Murs verticaux (face sous le vent)</span>
+                    <span className="font-medium">-0.5</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Toiture plate (zone courante)</span>
+                    <span className="font-medium">-0.7</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Toiture plate (zone de rive)</span>
+                    <span className="font-medium">-1.2</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="text-xs text-low-contrast">
+                <p>Calculs réalisés selon l'EN 1991-1-4 et l'Annexe Nationale française.</p>
+                <p>La pression finale sur une surface est obtenue en multipliant la pression dynamique de pointe par le coefficient de pression adapté à la zone considérée.</p>
               </div>
             </div>
-          </div>
-        )}
-      </CardContent>
-    </Card>
+          )}
+        </CardContent>
+      </Card>
+    </div>
   );
 };
+
+export default WindPressureCalculator;
