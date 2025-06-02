@@ -1,5 +1,8 @@
-import { serve } from "std/http/server.ts"
-import { createClient } from "@supabase/supabase-js"
+// Follow this setup guide to integrate the Deno runtime into your application:
+// https://deno.land/manual/examples/hello_world
+
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -9,7 +12,7 @@ const corsHeaders = {
 }
 
 // Types pour les articles
-interface Article {
+type Article = {
   title: string;
   content: string;
   summary: string;
@@ -19,7 +22,13 @@ interface Article {
   status: 'draft' | 'published';
 }
 
-serve(async (req) => {
+type ClaudeResponse = {
+  content: Array<{
+    text: string;
+  }>;
+}
+
+serve(async (req: Request) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
@@ -27,8 +36,23 @@ serve(async (req) => {
   try {
     const { url, supabaseUrl, supabaseKey } = await req.json()
     
+    // Vérifier que les URLs sont valides
+    if (!supabaseUrl || !supabaseKey) {
+      throw new Error('Missing Supabase URL or key');
+    }
+
+    try {
+      new URL(supabaseUrl);
+    } catch (e) {
+      throw new Error('Invalid Supabase URL');
+    }
+    
     // Create Supabase client
-    const supabase = createClient(supabaseUrl, supabaseKey)
+    const supabase = createClient(supabaseUrl, supabaseKey, {
+      auth: {
+        persistSession: false
+      }
+    });
 
     // Générer l'article avec Claude
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -60,28 +84,37 @@ serve(async (req) => {
       throw new Error(`API request failed: ${response.statusText}`)
     }
 
-    const data = await response.json()
-    const content = data.content[0].text
+    const data = await response.json() as ClaudeResponse;
+    if (!data.content?.[0]?.text) {
+      throw new Error('Invalid response format from Claude API');
+    }
+    const content = data.content[0].text;
 
     // Parser la réponse de Claude
-    const article: Article = {
-      title: extractTitle(content),
-      content: extractContent(content),
-      summary: extractSummary(content),
-      keywords: extractKeywords(content),
-      created_at: new Date().toISOString(),
-      source: 'Claude',
-      status: 'draft'
-    }
+    const title = extractTitle(content)
+    const summary = extractSummary(content)
+    const articleContent = extractContent(content)
+    const keywords = extractKeywords(content)
 
     // Sauvegarder l'article dans Supabase
     const { data: savedArticle, error: saveError } = await supabase
       .from('veille_articles')
-      .insert([article])
+      .insert({
+        title,
+        content: articleContent,
+        summary,
+        keywords,
+        created_at: new Date().toISOString(),
+        source: 'Claude',
+        status: 'draft'
+      })
       .select()
       .single()
 
-    if (saveError) throw saveError
+    if (saveError) {
+      console.error('Erreur lors de la sauvegarde:', saveError)
+      throw saveError
+    }
 
     return new Response(
       JSON.stringify({ 
@@ -96,6 +129,7 @@ serve(async (req) => {
       }
     )
   } catch (error) {
+    console.error('Erreur dans generate-veille-article:', error)
     return new Response(
       JSON.stringify({ 
         success: false,
@@ -115,22 +149,20 @@ serve(async (req) => {
 // Fonctions utilitaires pour parser la réponse
 function extractTitle(content: string): string {
   const titleMatch = content.match(/Titre:?\s*(.+)/i)
-  return titleMatch ? titleMatch[1].trim() : 'Sans titre'
+  return titleMatch?.[1]?.trim() ?? 'Sans titre'
 }
 
 function extractSummary(content: string): string {
   const summaryMatch = content.match(/Résumé:?\s*(.+?)(?=\n\n|\n[A-Z]|$)/is)
-  return summaryMatch ? summaryMatch[1].trim() : ''
+  return summaryMatch?.[1]?.trim() ?? ''
 }
 
 function extractContent(content: string): string {
   const contentMatch = content.match(/Article:?\s*(.+?)(?=\n\nMots-clés:|$)/is)
-  return contentMatch ? contentMatch[1].trim() : content
+  return contentMatch?.[1]?.trim() ?? content
 }
 
 function extractKeywords(content: string): string[] {
   const keywordsMatch = content.match(/Mots-clés:?\s*(.+)/i)
-  return keywordsMatch 
-    ? keywordsMatch[1].split(',').map(k => k.trim())
-    : []
+  return keywordsMatch?.[1]?.split(',').map(k => k.trim()) ?? []
 } 

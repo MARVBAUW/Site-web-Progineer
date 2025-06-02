@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "bradlc.vscode-tailwindcss",
-    "csstools.postcss"
+    "denoland.vscode-deno"
   ]
-} 
+}

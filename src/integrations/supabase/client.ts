@@ -13,6 +13,14 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error('Missing Supabase environment variables');
 }
 
+// Vérifier que l'URL est valide
+try {
+  new URL(supabaseUrl);
+} catch (e) {
+  console.error('Invalid Supabase URL:', supabaseUrl);
+  throw new Error('Invalid Supabase URL');
+}
+
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 

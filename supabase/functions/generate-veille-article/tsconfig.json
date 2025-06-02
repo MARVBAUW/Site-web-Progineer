@@ -18,8 +18,17 @@
     "noPropertyAccessFromIndexSignature": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["deno.window"],
-    "types": ["deno"]
+    "target": "es2018",
+    "lib": ["es2018", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+    "paths": {
+      "https://deno.land/std@0.168.0/*": ["./node_modules/@types/deno/*"],
+      "https://esm.sh/@supabase/supabase-js@2": ["./node_modules/@supabase/supabase-js"]
+    }
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"]
