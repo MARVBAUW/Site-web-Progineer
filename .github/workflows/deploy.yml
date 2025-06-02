@@ -16,10 +16,7 @@ jobs:
           node-version: '18'
           
       - name: Install dependencies
-        run: |
-          npm install -g typescript
-          npm ci --legacy-peer-deps
-          export PATH="$PATH:$(npm config get prefix)/bin"
+        run: npm ci --legacy-peer-deps
         
       - name: Build
         env:
@@ -30,7 +27,7 @@ jobs:
           VITE_TWILIO_AUTH_TOKEN: ${{ secrets.VITE_TWILIO_AUTH_TOKEN }}
           VITE_TWILIO_PHONE_NUMBER: ${{ secrets.VITE_TWILIO_PHONE_NUMBER }}
         run: |
-          export PATH="$PATH:$(npm config get prefix)/bin"
+          npx tsc --version
           npm run build
         
       - name: Deploy to Vercel
