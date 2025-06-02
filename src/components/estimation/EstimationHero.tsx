@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Container from '@/components/common/Container';
 import Logo from '@/components/common/Logo';
@@ -16,8 +15,8 @@ const EstimationHero = () => {
           </div>
           
           <h1 className="text-4xl md:text-5xl font-rare tracking-wide mb-6 text-gray-900 dark:text-white">
-            Estimez gratuitement votre projet de construction en PACA
-            <span className="text-progineer-gold block mt-2">Obtenez le coût exact de vos travaux</span>
+            Estimation Construction & Rénovation
+            <span className="text-progineer-gold block mt-2">à Marseille, Cannes, Saint-Tropez, Fréjus</span>
           </h1>
           
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8 speakable">

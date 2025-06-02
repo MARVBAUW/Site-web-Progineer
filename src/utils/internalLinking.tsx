@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -6,26 +5,26 @@ import { Link } from 'react-router-dom';
 export const keywordMap: Record<string, string> = {
   // Pages principales 
   "maître d'œuvre": "/",
-  "maîtrise d'œuvre": "/prestations-maitre-oeuvre",
+  "maîtrise d'œuvre": "/prestations",
   
   // Services principaux - limités aux termes les plus pertinents
-  "construction sur mesure": "/prestations-maitre-oeuvre/construction-neuve",
-  "rénovation": "/prestations-maitre-oeuvre/renovation",
-  "extension maison": "/prestations-maitre-oeuvre/extension",
-  "optimisation d'espace": "/prestations-maitre-oeuvre/optimisation-espace",
-  "design d'intérieur": "/prestations-maitre-oeuvre/design-interieur",
+  "construction sur mesure": "/prestations/construction-neuve",
+  "rénovation": "/prestations/renovation",
+  "extension maison": "/prestations/extension",
+  "optimisation d'espace": "/prestations/optimisation-espace",
+  "design d'intérieur": "/prestations/design-interieur",
   
   // Pages portfolio et contact avec ancres spécifiques
-  "réalisations": "/realisations-architecte-maison",
+  "réalisations": "/realisations",
   "contact": "/contact#form",
   "estimation": "/estimation#calculator",
   
   // Prestations spécifiques sans duplication
-  "montage administratif": "/prestations-maitre-oeuvre/montage-administratif",
-  "petit collectif": "/prestations-maitre-oeuvre/petit-collectif",
-  "réhabilitation": "/prestations-maitre-oeuvre/rehabilitation",
-  "construction écologique": "/prestations-maitre-oeuvre/construction-ecologique",
-  "permis de construire": "/prestations-maitre-oeuvre/montage-administratif#permits",
+  "montage administratif": "/prestations/montage-administratif",
+  "petit collectif": "/prestations/petit-collectif",
+  "réhabilitation": "/prestations/rehabilitation",
+  "construction écologique": "/prestations/construction-ecologique",
+  "permis de construire": "/prestations/montage-administratif#permits",
   
   // Principales villes PACA - réduites aux plus importantes
   "marseille": "/#marseille",
@@ -35,9 +34,9 @@ export const keywordMap: Record<string, string> = {
   "cannes": "/#cannes",
   
   // Combinaisons métier + ville limitées aux plus pertinentes
-  "construction maison marseille": "/prestations-maitre-oeuvre/construction-neuve#marseille",
-  "rénovation marseille": "/prestations-maitre-oeuvre/renovation#marseille",
-  "extension maison marseille": "/prestations-maitre-oeuvre/extension#marseille",
+  "construction maison marseille": "/prestations/construction-neuve#marseille",
+  "rénovation marseille": "/prestations/renovation#marseille",
+  "extension maison marseille": "/prestations/extension#marseille",
 };
 
 // Amélioré pour être plus sélectif et éviter la suroptimisation

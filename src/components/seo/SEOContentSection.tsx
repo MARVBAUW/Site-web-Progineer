@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { InternalLinkText } from '@/utils/internalLinking';
@@ -71,6 +70,7 @@ const SEOContentSection = ({
             <InternalLinkText text={content.introduction} maxOccurrences={3} />
           </p>
 
+          <div className="space-y-8">
           {content.sections.map((section, index) => (
             <div key={index} className="mb-8">
               <h3 className="text-2xl font-medium mb-4 text-gray-900 dark:text-white">
@@ -81,6 +81,7 @@ const SEOContentSection = ({
               </div>
             </div>
           ))}
+          </div>
         </div>
 
         {/* FAQ Section */}

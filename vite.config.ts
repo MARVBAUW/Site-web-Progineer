@@ -112,4 +112,5 @@ export default defineConfig(({ mode }) => ({
       ],
     },
   },
+  base: 'https://progineer.fr/',
 }));

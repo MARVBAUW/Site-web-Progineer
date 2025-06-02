@@ -18,8 +18,15 @@ if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
 
 export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: {
-    storage: localStorage,
-    persistSession: true,
     autoRefreshToken: true,
+    persistSession: true,
+    storage: localStorage,
+    storageKey: 'supabase.auth.token',
+    detectSessionInUrl: true
+  },
+  realtime: {
+    params: {
+      eventsPerSecond: 10
+    }
   }
 });
