@@ -1,31 +1,36 @@
-
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import Container from '@/components/common/Container';
-import HeroParticles from './hero/HeroParticles';
 import HeroBackground from './hero/HeroBackground';
 import HeroContent from './hero/HeroContent';
+import HeroParticles from './hero/HeroParticles';
 import ScrollIndicator from './hero/ScrollIndicator';
 
-const Hero = () => {
-  const scrollToNextSection = () => {
+const Hero = memo(() => {
+  const scrollToNextSection = useCallback(() => {
     const servicesSection = document.getElementById('services-section');
     if (servicesSection) {
       servicesSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
 
   return (
-    <section id="paca" className="relative min-h-[100vh] flex items-center py-24 overflow-hidden">
-      <HeroParticles />
+    <section
+      id="paca"
+      className="relative flex items-center overflow-hidden"
+      style={{ height: '100vh' }}
+    >
       <HeroBackground />
+      <HeroParticles />
       
-      <Container className="relative z-20 mt-16">
+      <Container className="relative z-20">
         <HeroContent />
       </Container>
 
       <ScrollIndicator onClick={scrollToNextSection} />
     </section>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;

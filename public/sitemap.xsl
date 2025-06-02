@@ -11,82 +11,84 @@
   <xsl:template match="/">
     <html xmlns="http://www.w3.org/1999/xhtml">
       <head>
-        <title>XML Sitemap - Progineer</title>
+        <title>Sitemap - Progineer</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style type="text/css">
           body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
             color: #333;
-            margin: 0;
-            padding: 20px;
+            max-width: 75em;
+            margin: 0 auto;
+            padding: 2em;
           }
           h1 {
-            color: #787346;
-            font-size: 1.5em;
+            color: #1a365d;
+            font-size: 2em;
+            margin-bottom: 1em;
           }
           table {
-            border-collapse: collapse;
             width: 100%;
-            margin: 20px 0;
+            border-collapse: collapse;
+            margin: 1em 0;
           }
           th, td {
-            padding: 8px;
+            padding: 0.75em;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #e2e8f0;
           }
           th {
-            background-color: #f2f2f2;
-            color: #333;
+            background-color: #f7fafc;
+            font-weight: 600;
           }
           tr:hover {
-            background-color: #f5f5f5;
+            background-color: #f8fafc;
           }
           a {
-            color: #787346;
+            color: #2b6cb0;
+            text-decoration: none;
           }
-          .url {
-            max-width: 400px;
-            word-break: break-all;
+          a:hover {
+            text-decoration: underline;
           }
-          .header {
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 20px;
+          .priority {
+            color: #718096;
           }
-          .footer {
-            font-size: 0.8em;
-            color: #666;
-            margin-top: 30px;
+          .changefreq {
+            color: #4a5568;
+          }
+          .lastmod {
+            color: #718096;
           }
         </style>
       </head>
       <body>
-        <div class="header">
-          <h1>Plan du site XML de Progineer</h1>
-          <p>Ce fichier XML est utilisé par les moteurs de recherche pour découvrir toutes les pages du site.</p>
-        </div>
-        <div>
-          <table>
+        <h1>Sitemap Progineer</h1>
+        <table>
+          <tr>
+            <th>URL</th>
+            <th>Priorité</th>
+            <th>Fréquence de changement</th>
+            <th>Dernière modification</th>
+          </tr>
+          <xsl:for-each select="sitemap:urlset/sitemap:url">
             <tr>
-              <th>URL</th>
-              <th>Dernière modification</th>
-              <th>Fréquence</th>
-              <th>Priorité</th>
+              <td>
+                <a href="{sitemap:loc}">
+                  <xsl:value-of select="sitemap:loc"/>
+                </a>
+              </td>
+              <td class="priority">
+                <xsl:value-of select="sitemap:priority"/>
+              </td>
+              <td class="changefreq">
+                <xsl:value-of select="sitemap:changefreq"/>
+              </td>
+              <td class="lastmod">
+                <xsl:value-of select="sitemap:lastmod"/>
+              </td>
             </tr>
-            <xsl:for-each select="sitemap:urlset/sitemap:url">
-              <tr>
-                <td class="url"><a href="{sitemap:loc}"><xsl:value-of select="sitemap:loc"/></a></td>
-                <td><xsl:value-of select="sitemap:lastmod"/></td>
-                <td><xsl:value-of select="sitemap:changefreq"/></td>
-                <td><xsl:value-of select="sitemap:priority"/></td>
-              </tr>
-            </xsl:for-each>
-          </table>
-        </div>
-        <div class="footer">
-          <p>Généré par Progineer - <a href="https://progineer.fr">progineer.fr</a></p>
-        </div>
+          </xsl:for-each>
+        </table>
       </body>
     </html>
   </xsl:template>

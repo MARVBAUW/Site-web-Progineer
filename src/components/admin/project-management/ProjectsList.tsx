@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -238,90 +237,92 @@ const ProjectsGrid = ({ projects, formatDate, toast, onEdit, onDelete }) => {
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {projects.map((project) => (
-        <Card key={project.id} className="overflow-hidden">
-          <CardHeader className="p-4 pb-2">
-            <div className="flex justify-between items-start">
-              <Badge variant={
-                project.status === 'En cours' || project.status === 'active' ? 'default' :
-                project.status === 'En attente' ? 'secondary' :
-                project.status === 'Planifié' ? 'outline' : 'success'
-              }>
-                {project.status === 'active' ? 'En cours' : project.status}
-              </Badge>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-8 w-8 p-0">
-                    <MoreVertical className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <Link to={`/workspace/client-area/admin/projects/${project.id}`} className="w-full">
-                      Voir les détails
-                    </Link>
-                  </DropdownMenuItem>
-                  {!project.clientId && (
+      {projects.map((project) => {
+        return (
+          <Card key={project.id} className="overflow-hidden">
+            <CardHeader className="p-4 pb-2">
+              <div className="flex justify-between items-start">
+                <Badge variant={
+                  project.status === 'En cours' || project.status === 'active' ? 'default' :
+                  project.status === 'En attente' ? 'secondary' :
+                  project.status === 'Planifié' ? 'outline' : 'success'
+                }>
+                  {project.status === 'active' ? 'En cours' : project.status}
+                </Badge>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="h-8 w-8 p-0">
+                      <MoreVertical className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
                     <DropdownMenuItem>
-                      <Link to={`/workspace/client-area/admin/projects/${project.id}/assign-client`} className="w-full">
-                        Assigner un client
+                      <Link to={`/workspace/client-area/admin/projects/${project.id}`} className="w-full">
+                        Voir les détails
                       </Link>
                     </DropdownMenuItem>
-                  )}
-                  <DropdownMenuItem onClick={() => onEdit(project.id)}>
-                    <div className="flex items-center w-full">
-                      <Edit className="h-4 w-4 mr-2" />
-                      Modifier
-                    </div>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem 
-                    className="text-red-600"
-                    onClick={() => onDelete(project.id)}
-                  >
-                    <div className="flex items-center w-full">
-                      <Trash2 className="h-4 w-4 mr-2" />
-                      Supprimer
-                    </div>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-            <CardTitle className="text-lg mt-2">{project.projectName}</CardTitle>
-          </CardHeader>
-          <CardContent className="p-4 pt-0">
-            <div className="text-sm text-low-contrast space-y-2">
-              <div className="flex items-center">
-                <Building2 className="h-4 w-4 mr-2" />
-                <span>{project.projectType} - {project.location || 'Non défini'}</span>
+                    {!project.clientId && (
+                      <DropdownMenuItem>
+                        <Link to={`/workspace/client-area/admin/projects/${project.id}/assign-client`} className="w-full">
+                          Assigner un client
+                        </Link>
+                      </DropdownMenuItem>
+                    )}
+                    <DropdownMenuItem onClick={() => onEdit(project.id)}>
+                      <div className="flex items-center w-full">
+                        <Edit className="h-4 w-4 mr-2" />
+                        Modifier
+                      </div>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem 
+                      className="text-red-600"
+                      onClick={() => onDelete(project.id)}
+                    >
+                      <div className="flex items-center w-full">
+                        <Trash2 className="h-4 w-4 mr-2" />
+                        Supprimer
+                      </div>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
-              {project.clientId ? (
+              <CardTitle className="text-lg mt-2">{project.projectName}</CardTitle>
+            </CardHeader>
+            <CardContent className="p-4 pt-0">
+              <div className="text-sm text-low-contrast space-y-2">
                 <div className="flex items-center">
-                  <User2 className="h-4 w-4 mr-2" />
-                  <span>{project.clientName || 'Client assigné'}</span>
+                  <Building2 className="h-4 w-4 mr-2" />
+                  <span>{project.projectType} - {project.location || 'Non défini'}</span>
                 </div>
-              ) : (
-                <div className="flex items-center text-amber-600">
-                  <User2 className="h-4 w-4 mr-2" />
-                  <span>Aucun client assigné</span>
+                {project.clientId ? (
+                  <div className="flex items-center">
+                    <User2 className="h-4 w-4 mr-2" />
+                    <span>{project.clientName || 'Client assigné'}</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center text-amber-600">
+                    <User2 className="h-4 w-4 mr-2" />
+                    <span>Aucun client assigné</span>
+                  </div>
+                )}
+                <div className="bg-muted h-2 rounded-full mt-3">
+                  <div 
+                    className="bg-khaki-600 h-2 rounded-full" 
+                    style={{ width: `${project.progress || 0}%` }}
+                  ></div>
                 </div>
-              )}
-              <div className="bg-muted h-2 rounded-full mt-3">
-                <div 
-                  className="bg-khaki-600 h-2 rounded-full" 
-                  style={{ width: `${project.progress || 0}%` }}
-                ></div>
               </div>
-            </div>
-          </CardContent>
-          <CardFooter className="p-4 pt-0 text-xs text-low-contrast">
-            Mis à jour le {project.updatedAt ? formatDate(project.updatedAt) : 
-              project.createdAt ? formatDate(project.createdAt) : 'N/A'}
-          </CardFooter>
-        </Card>
-      ))}
+            </CardContent>
+            <CardFooter className="p-4 pt-0 text-xs text-low-contrast">
+              Mis à jour le {project.updatedAt ? formatDate(project.updatedAt) : 
+                project.createdAt ? formatDate(project.createdAt) : 'N/A'}
+            </CardFooter>
+          </Card>
+        );
+      })}
     </div>
   );
 };

@@ -27,6 +27,8 @@
 
   body {
     @apply bg-background text-foreground antialiased font-sans overflow-x-hidden;
+    margin: 0;
+    padding: 0;
   }
 
   h1, h2, h3, h4, h5, h6 {

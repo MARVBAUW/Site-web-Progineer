@@ -22,7 +22,7 @@ const ContactHero = () => {
             Contact
           </div>
           <h1 className="text-4xl md:text-5xl font-rare tracking-wide mb-6 text-gray-900 dark:text-white">
-            Parlons de votre projet
+            Contactez-nous
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8 speakable" id="form">
             Notre équipe est à votre disposition pour répondre à toutes vos questions

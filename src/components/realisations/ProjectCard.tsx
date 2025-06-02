@@ -1,8 +1,8 @@
-
 import React from "react";
 import Button from "@/components/common/Button";
 import { Link } from "react-router-dom";
 import { InternalLinkText } from "@/utils/internalLinking";
+import ImageLoader from "@/components/common/ImageLoader";
 
 interface ProjectCardProps {
   project: {
@@ -17,15 +17,19 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<{ project: ProjectCardProps["project"] }> = ({ project }) => {
+  const projectLink = `/realisations/${project.slug}`;
+
   return (
     <div 
       className="bg-card rounded-xl overflow-hidden shadow-sm border border-border transition-transform duration-300 hover:shadow-md hover:-translate-y-1"
     >
       <div className="h-64 overflow-hidden">
-        <img 
+        <ImageLoader 
           src={project.image}
           alt={`Projet ${project.title} à ${project.location}`}
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          className="w-full h-full object-cover object-[center_30%] transition-transform duration-500 hover:scale-105 [filter:sepia(30%)_saturate(150%)_hue-rotate(5deg)_brightness(90%)]"
+          fallbackSrc="/placeholder.svg"
+          onError={() => console.warn(`Failed to load image: ${project.image}`)}
         />
       </div>
       <div className="p-6">
@@ -39,7 +43,7 @@ const ProjectCard: React.FC<{ project: ProjectCardProps["project"] }> = ({ proje
         <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
           <InternalLinkText text={project.description} maxOccurrences={1} />
         </p>
-        <Link to={`/realisations-architecte-maison/${project.slug}`}>
+        <Link to={`/realisations/${project.slug}`}>
           <Button variant="outline" className="w-full justify-center">
             Voir le projet
           </Button>

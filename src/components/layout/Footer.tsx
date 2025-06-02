@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Container from '@/components/common/Container';
-import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, Clock, ChevronRight } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, Clock, ChevronRight, Store } from 'lucide-react';
 import Logo from '@/components/common/Logo';
 
 const Footer = () => {
@@ -29,8 +29,16 @@ const Footer = () => {
                 <a href="https://www.linkedin.com/company/105527808/admin/dashboard/" target="_blank" rel="noopener noreferrer" className="bg-card/10 p-2 rounded-full text-white hover:bg-progineer-gold hover:text-white transition-colors">
                   <Linkedin className="h-4 w-4" />
                 </a>
-                <a href="https://g.co/kgs/jRoxjts" target="_blank" rel="noopener noreferrer" className="bg-card/10 p-2 rounded-full text-white hover:bg-progineer-gold hover:text-white transition-colors" title="Google My Business">
-                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21.35 11.1c-.13-.28-.38-.47-.68-.52l-2.19-.32-.98-2.01c-.12-.25-.37-.41-.65-.41s-.53.16-.65.41l-.98 2.01-2.19.32c-.3.05-.55.24-.68.52-.13.28-.09.6.1.83l1.59 1.55-.38 2.18c-.05.3.07.6.3.78.23.18.55.2.8.06l1.96-1.03 1.96 1.03c.11.06.23.09.35.09.16 0 .32-.05.45-.15.23-.18.35-.48.3-.78l-.38-2.18 1.59-1.55c.19-.23.23-.55.1-.83z"/></svg>
+                <a 
+                  href="https://g.co/kgs/jRoxjts" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bg-card/10 p-2 rounded-full text-white hover:bg-progineer-gold hover:text-white transition-colors" 
+                  title="Google My Business"
+                >
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
+                  </svg>
                 </a>
               </div>
             </div>
@@ -114,7 +122,7 @@ const Footer = () => {
               <h3 className="text-white text-lg font-medium mb-5 pb-2 border-b border-white/10 text-center md:text-left">Contact</h3>
               <ul className="space-y-4 text-center md:text-left">
                 <li className="flex items-start justify-center md:justify-start">
-                  <Phone className="h-4 w-4 mr-3 text-progineer-gold flex-shrink-0 mt-0.5" />
+                  <Phone className="h-4 w-4 mr-3 text-white flex-shrink-0 mt-0.5" />
                   <div className="flex flex-col">
                     <a href="tel:+33783762156" className="text-white/70 dark:text-white/80 hover:text-progineer-gold transition-colors text-sm">
                       +33 7 83 76 21 56 (Marvin)
@@ -125,19 +133,19 @@ const Footer = () => {
                   </div>
                 </li>
                 <li className="flex items-start justify-center md:justify-start">
-                  <Mail className="h-4 w-4 mr-3 text-progineer-gold flex-shrink-0 mt-0.5" />
+                  <Mail className="h-4 w-4 mr-3 text-white flex-shrink-0 mt-0.5" />
                   <a href="mailto:progineer.moe@gmail.com" className="text-white/70 dark:text-white/80 hover:text-progineer-gold transition-colors text-sm">
                     progineer.moe@gmail.com
                   </a>
                 </li>
                 <li className="flex items-start justify-center md:justify-start">
-                  <Clock className="h-4 w-4 mr-3 text-progineer-gold flex-shrink-0 mt-0.5" />
+                  <Clock className="h-4 w-4 mr-3 text-white flex-shrink-0 mt-0.5" />
                   <span className="text-white/70 dark:text-white/80 text-sm">
                     Lun - Ven: 9h - 18h
                   </span>
                 </li>
                 <li className="flex items-start justify-center md:justify-start">
-                  <MapPin className="h-4 w-4 mr-3 text-progineer-gold flex-shrink-0 mt-0.5" />
+                  <MapPin className="h-4 w-4 mr-3 text-white flex-shrink-0 mt-0.5" />
                   <span className="text-white/70 dark:text-white/80 text-sm">
                     Marseille, Saint-Tropez, Toulon,<br /> 
                     Nice, Cannes, Fréjus, région PACA
@@ -184,7 +192,7 @@ const Footer = () => {
           {/* Section SEO Footer */}
           <div className="mt-6 pt-6 border-t border-white/10 text-xs text-white/30 dark:text-white/40 text-center md:text-left">
             <p className="max-w-4xl">
-              Ingénieur, maître d'œuvre à Marseille et en PACA – Spécialiste en construction de maisons sur mesure, rénovation et extension. Nos architectes et ingénieurs vous accompagnent de A à Z. Coordination des corps de métier, respect des délais et expertise technique pour tous vos projets.
+              <Link to="/" className="text-progineer-gold hover:underline">Progineer</Link> - Ingénieur, maître d'œuvre à Marseille et en PACA – Spécialiste en construction de maisons sur mesure, rénovation et extension. Nos architectes et ingénieurs vous accompagnent de A à Z. Coordination des corps de métier, respect des délais et expertise technique pour tous vos projets.
             </p>
           </div>
         </Container>

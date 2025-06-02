@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -145,127 +144,125 @@ const ClientsList = () => {
       {/* Clients List */}
       <div className="space-y-4">
         {filteredClients.length > 0 ? (
-          filteredClients.map((client) => (
-            <Card key={client.id} className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="flex flex-col md:flex-row md:items-center">
-                  <div className="p-4 md:p-6 flex-1">
-                    <div className="flex items-start gap-4">
-                      <Avatar className="h-10 w-10 border border-border hidden md:flex">
-                        <AvatarFallback className="bg-khaki-100 text-khaki-700">
-                          {client.name.split(' ').map(n => n[0]).join('').toUpperCase()}
-                        </AvatarFallback>
-                      </Avatar>
-                      
-                      <div className="space-y-1 flex-1">
-                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
-                          <h3 className="font-medium">{client.name}</h3>
-                          <div className="flex items-center">
-                            {client.hasProjects ? (
-                              <Badge variant="default" className="bg-green-100 text-green-800 border-green-200">
-                                Projets associés
-                              </Badge>
-                            ) : (
-                              <Badge variant="outline" className="bg-amber-50 text-amber-800 border-amber-200">
-                                Aucun projet
-                              </Badge>
-                            )}
-                          </div>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-low-contrast">
-                          <div className="flex items-center">
-                            <Mail className="h-3.5 w-3.5 mr-1.5" />
-                            {client.email}
-                          </div>
-                          <div className="flex items-center">
-                            <Calendar className="h-3.5 w-3.5 mr-1.5" />
-                            Inscrit le {formatDate(client.registrationDate)}
-                          </div>
-                          {client.company && (
+          filteredClients.map((client) => {
+            const clientLink = `/workspace/client-area/admin/clients/${client.id}`;
+            return (
+              <Card key={client.id} className="overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="flex flex-col md:flex-row md:items-center">
+                    <div className="p-4 md:p-6 flex-1">
+                      <div className="flex items-start gap-4">
+                        <Avatar className="h-10 w-10 border border-border hidden md:flex">
+                          <AvatarFallback className="bg-khaki-100 text-khaki-700">
+                            {client.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="space-y-1 flex-1">
+                          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <h3 className="font-medium">{client.name}</h3>
                             <div className="flex items-center">
-                              <Building2 className="h-3.5 w-3.5 mr-1.5" />
-                              {client.company}
+                              {client.hasProjects ? (
+                                <Badge variant="default" className="bg-green-100 text-green-800 border-green-200">
+                                  Projets associés
+                                </Badge>
+                              ) : (
+                                <Badge variant="outline" className="bg-amber-50 text-amber-800 border-amber-200">
+                                  Aucun projet
+                                </Badge>
+                              )}
                             </div>
-                          )}
-                          <div className="flex items-center">
-                            <MapPin className="h-3.5 w-3.5 mr-1.5" />
-                            {client.location}
                           </div>
-                          <div className="flex items-center md:col-span-2">
-                            <FileText className="h-3.5 w-3.5 mr-1.5" />
-                            {client.projectType === 'residential' ? 'Projet résidentiel' : 
-                             client.projectType === 'commercial' ? 'Projet commercial' : 
-                             client.projectType === 'industrial' ? 'Projet industriel' : 'Autre projet'}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-low-contrast">
+                            <div className="flex items-center">
+                              <Mail className="h-3.5 w-3.5 mr-1.5" />
+                              {client.email}
+                            </div>
+                            <div className="flex items-center">
+                              <Calendar className="h-3.5 w-3.5 mr-1.5" />
+                              Inscrit le {formatDate(client.registrationDate)}
+                            </div>
+                            {client.company && (
+                              <div className="flex items-center">
+                                <Building2 className="h-3.5 w-3.5 mr-1.5" />
+                                {client.company}
+                              </div>
+                            )}
+                            <div className="flex items-center">
+                              <MapPin className="h-3.5 w-3.5 mr-1.5" />
+                              {client.location}
+                            </div>
+                            <div className="flex items-center md:col-span-2">
+                              <FileText className="h-3.5 w-3.5 mr-1.5" />
+                              {client.projectType === 'residential' ? 'Projet résidentiel' : 
+                               client.projectType === 'commercial' ? 'Projet commercial' : 
+                               client.projectType === 'industrial' ? 'Projet industriel' : 'Autre projet'}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" className="h-8 w-8 p-0">
-                            <MoreVertical className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem asChild>
-                            <Link to={`/workspace/client-area/admin/clients/${client.id}`} className="w-full cursor-pointer">
-                              Voir les détails
-                            </Link>
-                          </DropdownMenuItem>
-                          {!client.hasProjects && (
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" className="h-8 w-8 p-0">
+                              <MoreVertical className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                            <DropdownMenuSeparator />
                             <DropdownMenuItem asChild>
-                              <Link to={`/workspace/client-area/admin/clients/${client.id}?tab=projects`} className="w-full cursor-pointer">
-                                Assigner un projet
+                              <Link to={`/workspace/client-area/admin/clients/${client.id}`} className="w-full cursor-pointer">
+                                Voir les détails
                               </Link>
                             </DropdownMenuItem>
-                          )}
-                          <DropdownMenuItem onClick={() => {
-                            toast({
-                              title: "Action en cours de développement",
-                              description: "Cette fonctionnalité sera bientôt disponible.",
-                            });
-                          }}>
-                            Modifier
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
+                            {!client.hasProjects && (
+                              <DropdownMenuItem asChild>
+                                <Link to={`/workspace/client-area/admin/clients/${client.id}?tab=projects`} className="w-full cursor-pointer">
+                                  Assigner un projet
+                                </Link>
+                              </DropdownMenuItem>
+                            )}
+                            <DropdownMenuItem onClick={() => {
+                              toast({
+                                title: "Action en cours de développement",
+                                description: "Cette fonctionnalité sera bientôt disponible.",
+                              });
+                            }}>
+                              Modifier
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="border-t md:border-t-0 md:border-l border-gray-100 p-3 md:pl-6 md:pr-6 flex justify-center md:justify-end">
-                    <div className="flex gap-2">
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        asChild
-                      >
-                        <Link to={`/workspace/client-area/admin/clients/${client.id}`}>
-                          <User2 className="h-3.5 w-3.5 mr-1.5" />
-                          Détails
-                        </Link>
-                      </Button>
-                      
-                      {!client.hasProjects && (
+                    <div className="border-t md:border-t-0 md:border-l border-gray-100 p-3 md:pl-6 md:pr-6 flex justify-center md:justify-end">
+                      <div className="flex gap-2">
                         <Button 
+                          variant="outline" 
                           size="sm"
-                          className="bg-khaki-600 hover:bg-khaki-700 text-white"
                           asChild
                         >
-                          <Link to={`/workspace/client-area/admin/clients/${client.id}?tab=projects`}>
-                            <UserPlus className="h-3.5 w-3.5 mr-1.5" />
-                            Assigner projet
+                          <Link to={`/workspace/client-area/admin/clients/${client.id}`}>
+                            <User2 className="h-3.5 w-3.5 mr-1.5" />
+                            Détails
                           </Link>
                         </Button>
-                      )}
+                        {!client.hasProjects && (
+                          <Button 
+                            size="sm"
+                            className="bg-khaki-600 hover:bg-khaki-700 text-white"
+                            asChild
+                          >
+                            <Link to={`/workspace/client-area/admin/clients/${client.id}?tab=projects`}>
+                              <UserPlus className="h-3.5 w-3.5 mr-1.5" />
+                              Assigner projet
+                            </Link>
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))
+                </CardContent>
+              </Card>
+            );
+          })
         ) : (
           <div className="text-center py-10">
             <p className="text-low-contrast">Aucun client ne correspond aux critères de recherche.</p>

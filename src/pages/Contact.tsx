@@ -1,6 +1,5 @@
-
 import React from 'react';
-import SEO from '@/components/common/SEO';
+import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
 import { getContactStructuredData } from '@/components/contact/ContactPageData';
 import ContactHero from '@/components/contact/ContactHero';
 import ContactInfo from '@/components/contact/ContactInfo';
@@ -14,18 +13,43 @@ const Contact = () => {
 
   return (
     <>
-      <SEO 
+      <EnhancedSEO 
         title="Contact | Maître d'œuvre Progineer à Marseille et en PACA"
         description="Contactez Progineer pour vos projets de construction et rénovation en PACA. Notre équipe de maîtres d'œuvre vous accompagne dans la réalisation de vos projets immobiliers sur mesure."
-        keywords="contact maître d'œuvre PACA, devis construction Marseille, rendez-vous travaux, coordonnées Progineer"
-        canonicalUrl="https://progineer.fr/contact"
-        structuredData={structuredData}
+        keywords={[
+          "contact maître d'œuvre PACA",
+          "devis construction Marseille",
+          "rendez-vous travaux",
+          "coordonnées Progineer"
+        ]}
+        url="https://progineer.fr/contact"
+        schemaData={{
+          type: "ContactPage",
+          name: "Contact Progineer - Maître d'œuvre en PACA",
+          description: "Page de contact pour les projets de construction et rénovation en PACA",
+          url: "https://progineer.fr/contact",
+          address: {
+            addressLocality: "Marseille",
+            addressRegion: "PACA",
+            postalCode: "13000",
+            addressCountry: "FR"
+          },
+          geo: {
+            latitude: "43.296482",
+            longitude: "5.369780"
+          },
+          areaServed: {
+            type: "AdministrativeArea",
+            name: "PACA"
+          },
+          potentialAction: {
+            type: "ContactAction",
+            target: "https://progineer.fr/contact#contact-form"
+          }
+        }}
       />
       
       <main>
-        <div className="text-3xl md:text-4xl font-semibold mb-8 text-center pt-32">
-          <h1>Contact - Progineer Maître d'œuvre à Marseille et en PACA</h1>
-        </div>
         <ContactHero />
 
         {/* Contact content */}

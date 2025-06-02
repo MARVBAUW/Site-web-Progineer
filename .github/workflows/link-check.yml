@@ -1,0 +1,33 @@
+name: Link Checker
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * *' # Exécution quotidienne à minuit
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run link checker
+        run: npm run check-links
+        
+      - name: Upload report
+        uses: actions/upload-artifact@v2
+        with:
+          name: link-check-report
+          path: |
+            link-check-report.json
+            link-check-report.html 

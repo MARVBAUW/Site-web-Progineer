@@ -16,10 +16,9 @@ export class SitemapGenerator {
                 title: 'Pages principales',
                 entries: [
                     { url: '/', lastmod: this.currentDate, changefreq: 'monthly', priority: 1.0 },
-                    { url: '/prestations-maitre-oeuvre', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.9 },
-                    { url: '/realisations-architecte-maison', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
-                    { url: '/realisations-architecturales', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
-                    { url: '/equipe-maitrise-oeuvre', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
+                    { url: '/prestations', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.9 },
+                    { url: '/realisations', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
+                    { url: '/equipe', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
                     { url: '/estimation', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.9 },
                     { url: '/contact', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
                     { url: '/a-propos', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
@@ -27,61 +26,27 @@ export class SitemapGenerator {
                 ]
             },
             {
-                title: 'Pages de prestations principales',
+                title: 'Pages de prestations',
                 entries: [
-                    { url: '/prestations-maitre-oeuvre/construction-neuve', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
-                    { url: '/prestations-maitre-oeuvre/renovation', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
-                    { url: '/prestations-maitre-oeuvre/extension', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
-                    { url: '/prestations-maitre-oeuvre/optimisation-espace', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/design-interieur', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/montage-administratif', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/petit-collectif', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/rehabilitation', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/construction-ecologique', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                ]
-            },
-            {
-                title: 'Pages spécifiques villes',
-                entries: [
-                    { url: '/prestations-maitre-oeuvre/construction-neuve/marseille', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/construction-neuve/aix-en-provence', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/renovation/marseille', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/prestations-maitre-oeuvre/renovation/aix-en-provence', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                ]
-            },
-            {
-                title: 'Pages partenariat et parrainage',
-                entries: [
-                    { url: '/parrainage', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                    { url: '/devenir-partenaire', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
+                    { url: '/prestations/construction-neuve', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
+                    { url: '/prestations/renovation', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
+                    { url: '/prestations/extension', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.8 },
+                    { url: '/prestations/optimisation-espace', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
+                    { url: '/prestations/design-interieur', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
+                    { url: '/prestations/montage-administratif', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
+                    { url: '/prestations/petit-collectif', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
+                    { url: '/prestations/rehabilitation', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
+                    { url: '/prestations/construction-ecologique', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
                 ]
             },
             {
                 title: 'Pages légales',
                 entries: [
                     { url: '/mentions-legales', lastmod: this.currentDate, changefreq: 'yearly', priority: 0.4 },
-                    { url: '/privacy-policy', lastmod: this.currentDate, changefreq: 'yearly', priority: 0.4 },
+                    { url: '/politique-confidentialite', lastmod: this.currentDate, changefreq: 'yearly', priority: 0.4 },
                     { url: '/cgu', lastmod: this.currentDate, changefreq: 'yearly', priority: 0.4 },
                     { url: '/cgv', lastmod: this.currentDate, changefreq: 'yearly', priority: 0.4 },
                     { url: '/faq', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                ]
-            },
-            {
-                title: 'Workspace et ressources',
-                entries: [
-                    { url: '/workspace', lastmod: this.currentDate, changefreq: 'weekly', priority: 0.8 },
-                    { url: '/workspace/resources/guides/reglementation-complete-batiment', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                    { url: '/workspace/resources/documents/texte-integral-reglementation', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.7 },
-                ]
-            },
-            {
-                title: 'Ressources PDF',
-                entries: [
-                    { url: '/resources/guides/reglementation-complete-batiment.pdf', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                    { url: '/resources/documents/texte-integral-reglementation.pdf', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                    { url: '/resources/guides/guide-renovation-energetique.pdf', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                    { url: '/resources/guides/normes-parasismiques.pdf', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.6 },
-                    { url: '/resources/documents/liste-dtu-batiment.pdf', lastmod: this.currentDate, changefreq: 'monthly', priority: 0.5 },
                 ]
             }
         ];
@@ -201,13 +166,13 @@ export function getDefaultSitemapConfig() {
                 priority: 1.0
             },
             {
-                loc: '/prestations-maitre-oeuvre',
+                loc: '/prestations',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.9
             },
             {
-                loc: '/realisations-architecte-maison',
+                loc: '/realisations',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.8
@@ -226,31 +191,31 @@ export function getDefaultSitemapConfig() {
             },
             // Pages de prestations
             {
-                loc: '/prestations-maitre-oeuvre/construction-neuve',
+                loc: '/prestations/construction-neuve',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.8
             },
             {
-                loc: '/prestations-maitre-oeuvre/renovation',
+                loc: '/prestations/renovation',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.8
             },
             {
-                loc: '/prestations-maitre-oeuvre/extension',
+                loc: '/prestations/extension',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.8
             },
             {
-                loc: '/prestations-maitre-oeuvre/design-interieur',
+                loc: '/prestations/design-interieur',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.7
             },
             {
-                loc: '/prestations-maitre-oeuvre/optimisation-espace',
+                loc: '/prestations/optimisation-espace',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.7
@@ -263,7 +228,7 @@ export function getDefaultSitemapConfig() {
                 priority: 0.4
             },
             {
-                loc: '/privacy-policy',
+                loc: '/politique-confidentialite',
                 lastmod: today,
                 changefreq: 'yearly',
                 priority: 0.4
@@ -285,25 +250,6 @@ export function getDefaultSitemapConfig() {
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.6
-            },
-            // Autres pages importantes
-            {
-                loc: '/equipe-maitrise-oeuvre',
-                lastmod: today,
-                changefreq: 'monthly',
-                priority: 0.7
-            },
-            {
-                loc: '/parrainage',
-                lastmod: today,
-                changefreq: 'monthly',
-                priority: 0.6
-            },
-            {
-                loc: '/devenir-partenaire',
-                lastmod: today,
-                changefreq: 'monthly',
-                priority: 0.6
             }
         ]
     };
@@ -312,18 +258,10 @@ export function getDefaultSitemapConfig() {
  * Valide une URL de sitemap
  */
 export function validateSitemapUrl(url) {
-    // Vérifier que l'URL est valide
-    if (!url.loc || url.loc.trim() === '') {
+    if (!url.loc)
         return false;
-    }
-    // Vérifier la priorité
-    if (url.priority !== undefined && (url.priority < 0 || url.priority > 1)) {
+    if (url.priority !== undefined && (url.priority < 0 || url.priority > 1))
         return false;
-    }
-    // Vérifier la date de modification
-    if (url.lastmod && !/^\d{4}-\d{2}-\d{2}$/.test(url.lastmod)) {
-        return false;
-    }
     return true;
 }
 /**

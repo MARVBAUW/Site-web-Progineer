@@ -4,7 +4,7 @@ const prestations = [
   {
     slug: 'design-interieur',
     title: "Design d'intérieur",
-    image: '/images/prestations/design-interieur.webp',
+    image: '/images/prestations/PGR CLAIR _9__resultat.webp',
     alt: "Design d'intérieur"
   },
   {

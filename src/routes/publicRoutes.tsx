@@ -40,7 +40,7 @@ export const publicRoutes: RouteObject[] = [
   {
     path: "/old-feature",
     element: <Redirect 
-      to="/prestations-maitre-oeuvre" 
+      to="/prestations" 
       message="Cette page a été déplacée vers nos prestations."
     />
   },
@@ -74,48 +74,48 @@ export const publicRoutes: RouteObject[] = [
     element: <Estimation />
   },
   {
-    path: "/prestations-maitre-oeuvre",
+    path: "/prestations",
     element: <Prestations />
   },
   // Routes pour les pages spécifiques de prestations
   {
-    path: "/prestations-maitre-oeuvre/construction-neuve",
+    path: "/prestations/construction-neuve",
     element: <ConstructionNeuve />
   },
   {
-    path: "/prestations-maitre-oeuvre/renovation",
+    path: "/prestations/renovation",
     element: <Renovation />
   },
   {
-    path: "/prestations-maitre-oeuvre/extension",
+    path: "/prestations/extension",
     element: <Extension />
   },
   {
-    path: "/prestations-maitre-oeuvre/optimisation-espace",
+    path: "/prestations/optimisation-espace",
     element: <OptimisationEspace />
   },
   {
-    path: "/prestations-maitre-oeuvre/design-interieur",
+    path: "/prestations/design-interieur",
     element: <DesignInterieur />
   },
   {
-    path: "/prestations-maitre-oeuvre/montage-administratif",
+    path: "/prestations/montage-administratif",
     element: <MontageAdministratif />
   },
   {
-    path: "/prestations-maitre-oeuvre/petit-collectif",
+    path: "/prestations/petit-collectif",
     element: <PetitCollectif />
   },
   {
-    path: "/prestations-maitre-oeuvre/rehabilitation",
+    path: "/prestations/rehabilitation",
     element: <Rehabilitation />
   },
   {
-    path: "/prestations-maitre-oeuvre/construction-ecologique",
+    path: "/prestations/construction-ecologique",
     element: <ConstructionEcologique />
   },
   {
-    path: "/realisations-architecte-maison",
+    path: "/realisations",
     element: <Realisations />
   },
   {
@@ -164,44 +164,44 @@ export const publicRoutes: RouteObject[] = [
   },
   // Redirections pour les projets de réalisation qui n'existent plus
   {
-    path: "/realisations-architecte-maison/extension-contemporaine-aix",
+    path: "/realisations/extension-contemporaine-aix",
     element: <Redirect 
-      to="/realisations-architecte-maison" 
+      to="/realisations" 
       message="Ce projet a été archivé. Découvrez nos autres réalisations."
     />
   },
   {
-    path: "/realisations-architecte-maison/maison-passive-toulon",
+    path: "/realisations/maison-passive-toulon",
     element: <Redirect 
-      to="/realisations-architecte-maison" 
+      to="/realisations" 
       message="Ce projet a été archivé. Découvrez nos autres réalisations."
     />
   },
   {
-    path: "/realisations-architecte-maison/renovation-haussmannien-marseille",
+    path: "/realisations/renovation-haussmannien-marseille",
     element: <Redirect 
-      to="/realisations-architecte-maison" 
+      to="/realisations" 
       message="Ce projet a été archivé. Découvrez nos autres réalisations."
     />
   },
   {
-    path: "/realisations-architecte-maison/maison-contemporaine-vue-panoramique",
+    path: "/realisations/maison-contemporaine-vue-panoramique",
     element: <Redirect 
-      to="/realisations-architecte-maison" 
+      to="/realisations" 
       message="Ce projet a été archivé. Découvrez nos autres réalisations."
     />
   },
   {
-    path: "/realisations-architecte-maison/restructuration-friche-lomme",
+    path: "/realisations/restructuration-friche-lomme",
     element: <Redirect 
-      to="/realisations-architecte-maison" 
+      to="/realisations" 
       message="Ce projet a été archivé. Découvrez nos autres réalisations."
     />
   },
   {
-    path: "/realisations-architecte-maison/logements-collectifs-clermont",
+    path: "/realisations/logements-collectifs-clermont",
     element: <Redirect 
-      to="/realisations-architecte-maison" 
+      to="/realisations" 
       message="Ce projet a été archivé. Découvrez nos autres réalisations."
     />
   },

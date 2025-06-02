@@ -35,21 +35,15 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
           <div className="relative mb-6">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-khaki-600 to-khaki-400 blur-xl opacity-20 animate-pulse" />
             <Avatar className="w-48 h-48 border-4 border-white/10 shadow-xl">
-              {member.image && (
-                <AvatarImage 
-                  src={member.image} 
-                  alt={member.name}
-                  className="object-cover w-full h-full"
-                  // Ajout d'un attribut onError pour le débogage
-                  onError={(e) => {
-                    console.error('Image load error:', e);
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
-              )}
-              <AvatarFallback className="text-4xl bg-khaki-700 text-white">
-                {getInitials(member.name)}
-              </AvatarFallback>
+              <AvatarImage 
+                src={member.image} 
+                alt={member.name}
+                className="object-cover w-full h-full"
+                onError={(e) => {
+                  console.error('Image load error:', e);
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
             </Avatar>
           </div>
 

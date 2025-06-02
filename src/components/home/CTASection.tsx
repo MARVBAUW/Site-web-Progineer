@@ -124,7 +124,7 @@ const CTASection = () => {
                 <img 
                   alt="Maison contemporaine avec grande baie vitrée" 
                   className="w-full h-auto object-fill" 
-                  src="/lovable-uploads/2ab0f303-213f-43c9-94dc-75e0e8e55718.webp" 
+                  src="/images/prestations/2ab0f303-213f-43c9-94dc-75e0e8e55718_resultat.webp" 
                 />
                 
                 {/* Overlay subtil pour améliorer la lisibilité */}
@@ -135,14 +135,14 @@ const CTASection = () => {
                   initial={{ y: 40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.6, type: "spring" }}
-                  className="absolute right-6 bottom-6 p-6 bg-card/95 backdrop-blur-sm rounded-xl shadow-xl border border-border/80 max-w-xs transform rotate-3"
+                  className="absolute right-6 bottom-6 p-2 bg-card/95 backdrop-blur-sm rounded-xl shadow-xl border border-border/80 max-w-[150px] transform rotate-3 text-[11px] leading-tight text-center break-words"
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="text-sm font-medium text-gray-600 dark:text-gray-300">Projet livré</div>
-                    <div className="px-2 py-1 text-xs bg-progineer-gold/10 text-progineer-gold rounded-full">Marseille</div>
+                  <div className="flex items-center justify-between mb-1 gap-1">
+                    <div className="font-medium text-gray-600 dark:text-gray-300 whitespace-nowrap">Projet livré</div>
+                    <div className="px-1 py-0.5 text-[10px] bg-progineer-gold/10 text-progineer-gold rounded-full whitespace-nowrap">Marseille</div>
                   </div>
-                  <h3 className="text-lg font-semibold mb-1 text-gray-900 dark:text-white">Villa contemporaine</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">Construction neuve avec piscine et vue panoramique</p>
+                  <h3 className="font-semibold mb-0.5 text-gray-900 dark:text-white text-[12px] leading-snug break-words">Villa contemporaine</h3>
+                  <p className="text-[10px] text-gray-600 dark:text-gray-300 leading-tight break-words">Construction neuve avec piscine et vue panoramique</p>
                 </motion.div>
               </motion.div>
             </div>

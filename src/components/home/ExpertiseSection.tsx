@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Container from '@/components/common/Container';
 import { Shield, Clock, Wrench, Users, CheckCircle, Building } from 'lucide-react';
@@ -54,7 +53,7 @@ const ExpertiseSection = () => {
           <motion.h2 
             variants={itemVariants}
             className="text-3xl md:text-4xl font-rare tracking-wide mb-4 text-gray-900 dark:text-white">
-            Pourquoi faire appel à un maître d'œuvre à Marseille ?
+            Construction, Rénovation & Architecture en PACA : Votre projet, notre expertise
           </motion.h2>
           
           <motion.p 

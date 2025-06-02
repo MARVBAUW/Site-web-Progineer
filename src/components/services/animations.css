@@ -1,0 +1,31 @@
+.perspective-700 {
+  perspective: 700px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.group:hover .group-hover\:translate-z-10 {
+  transform: translateZ(10px);
+}
+
+.group:hover .group-hover\:translate-z-5 {
+  transform: translateZ(5px);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+} 

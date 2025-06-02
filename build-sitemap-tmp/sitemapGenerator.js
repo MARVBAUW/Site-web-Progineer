@@ -201,13 +201,13 @@ export function getDefaultSitemapConfig() {
                 priority: 1.0
             },
             {
-                loc: '/prestations-maitre-oeuvre',
+                loc: '/prestations',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.9
             },
             {
-                loc: '/realisations-architecte-maison',
+                loc: '/realisations',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.8
@@ -226,25 +226,25 @@ export function getDefaultSitemapConfig() {
             },
             // Pages de prestations
             {
-                loc: '/prestations-maitre-oeuvre/construction-neuve',
+                loc: '/prestations/construction-neuve',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.8
             },
             {
-                loc: '/prestations-maitre-oeuvre/renovation',
+                loc: '/prestations/renovation',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.8
             },
             {
-                loc: '/prestations-maitre-oeuvre/extension',
+                loc: '/prestations/extension',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.8
             },
             {
-                loc: '/prestations-maitre-oeuvre/design-interieur',
+                loc: '/prestations/design-interieur',
                 lastmod: today,
                 changefreq: 'monthly',
                 priority: 0.7

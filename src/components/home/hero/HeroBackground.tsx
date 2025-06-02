@@ -1,19 +1,20 @@
+import React, { memo } from 'react';
 
-import React from 'react';
-
-const HeroBackground = () => {
+const HeroBackground = memo(() => {
   return (
     <div className="absolute inset-0 z-0">
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50 z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80 z-10" />
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop')`,
+          backgroundImage: `url('/images/prestations/hero-bg-original_resultat.webp')`,
           backgroundPosition: 'center',
         }}
-      ></div>
+      />
     </div>
   );
-};
+});
+
+HeroBackground.displayName = 'HeroBackground';
 
 export default HeroBackground;

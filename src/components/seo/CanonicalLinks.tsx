@@ -1,62 +1,38 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
-
-interface AlternateLanguage {
-  lang: string;
-  url: string;
-}
 
 interface CanonicalLinksProps {
-  canonicalUrl?: string;
-  alternateLanguages?: AlternateLanguage[];
-  noIndex?: boolean;
-  noFollow?: boolean;
+  url: string;
+  alternateUrls?: {
+    lang: string;
+    url: string;
+  }[];
 }
 
-/**
- * Composant pour gérer les liens canoniques et les hreflang
- */
-const CanonicalLinks: React.FC<CanonicalLinksProps> = ({
-  canonicalUrl,
-  alternateLanguages = [],
-  noIndex = false,
-  noFollow = false
+export const CanonicalLinks: React.FC<CanonicalLinksProps> = ({
+  url,
+  alternateUrls = []
 }) => {
-  const location = useLocation();
-  
-  // Utiliser l'URL actuelle si aucune URL canonique n'est fournie
-  const url = canonicalUrl || `https://progineer.fr${location.pathname}`;
-  
-  // Créer la directive robots
-  const robotsContent = [
-    noIndex ? 'noindex' : 'index',
-    noFollow ? 'nofollow' : 'follow',
-    'max-snippet:-1', 
-    'max-image-preview:large', 
-    'max-video-preview:-1'
-  ].join(', ');
+  const baseUrl = 'https://progineer.fr';
+  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
 
   return (
     <Helmet>
-      {/* Lien canonique */}
-      <link rel="canonical" href={url} />
+      {/* URL canonique principale */}
+      <link rel="canonical" href={fullUrl} />
       
-      {/* Directives robots */}
-      <meta name="robots" content={robotsContent} />
-      
-      {/* Liens hreflang pour les versions linguistiques alternatives */}
-      {alternateLanguages.map(({ lang, url }) => (
-        <link key={lang} rel="alternate" hrefLang={lang} href={url} />
+      {/* URLs alternatives pour les versions linguistiques */}
+      {alternateUrls.map(({ lang, url }) => (
+        <link
+          key={lang}
+          rel="alternate"
+          hrefLang={lang}
+          href={url.startsWith('http') ? url : `${baseUrl}${url}`}
+        />
       ))}
       
-      {/* Toujours ajouter x-default pour les utilisateurs sans préférence de langue */}
-      {alternateLanguages.length > 0 && (
-        <link rel="alternate" hrefLang="x-default" href={url} />
-      )}
+      {/* URL par défaut pour les langues non spécifiées */}
+      <link rel="alternate" hrefLang="x-default" href={fullUrl} />
     </Helmet>
   );
 };
-
-export default CanonicalLinks;

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import Container from '@/components/common/Container';
 import { motion, useInView } from 'framer-motion';
@@ -123,25 +122,25 @@ const StatsSection = () => {
               className="flex flex-col items-center p-8 rounded-xl text-center relative"
             >
               <div className="mb-6 relative">
-                <svg className="w-32 h-32" viewBox="0 0 100 100">
+                <svg className="w-36 h-36" viewBox="0 0 100 100">
                   {/* Cercle de fond */}
                   <circle 
                     cx="50" 
                     cy="50" 
-                    r="40" 
+                    r="45" 
                     stroke="currentColor" 
-                    strokeWidth="8" 
+                    strokeWidth="6" 
                     fill="none"
-                    className="text-border"
+                    className="text-border opacity-20"
                   />
                   
                   {/* Cercle de progression animé */}
                   <motion.circle 
                     cx="50" 
                     cy="50" 
-                    r="40"
+                    r="45"
                     stroke={`url(#gradient-${index})`}
-                    strokeWidth="8"
+                    strokeWidth="6"
                     fill="none"
                     strokeLinecap="round"
                     initial={{ pathLength: 0 }}
@@ -162,7 +161,7 @@ const StatsSection = () => {
                 {/* Valeur au centre */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <span className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br via-gray-800 to-gray-600 from-gray-900">
+                    <span className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 dark:from-white dark:via-gray-100 dark:to-gray-200">
                       {stat.prefix}{counts[index]}{stat.suffix}
                     </span>
                   </div>

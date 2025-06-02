@@ -1,4 +1,3 @@
-
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 import { PDFExportOptions } from '@/components/common/PDFExporter';
@@ -189,7 +188,7 @@ export const generateStandardPDF = (
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
     doc.text('Progineer - Maître d\'oeuvre en PACA', 105, 280, { align: 'center' });
-    doc.text('www.progineer.fr - contact@progineer.fr', 105, 285, { align: 'center' });
+    doc.text('progineer.fr - contact@progineer.fr', 105, 285, { align: 'center' });
   }
   
   // Add footer with page numbers

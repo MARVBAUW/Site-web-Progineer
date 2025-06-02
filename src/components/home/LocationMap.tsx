@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import Container from '@/components/common/Container';
 import { MapPin, Info } from 'lucide-react';
@@ -304,9 +303,12 @@ const LocationMap = () => {
               center={[43.4, 6.0]} 
               zoom={8} 
               style={{ height: '100%', width: '100%' }}
-              scrollWheelZoom={true}
-              className="z-10"
+              scrollWheelZoom={false}
+              dragging={false}
+              touchZoom={false}
+              doubleClickZoom={false}
               zoomControl={false}
+              className="z-10"
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

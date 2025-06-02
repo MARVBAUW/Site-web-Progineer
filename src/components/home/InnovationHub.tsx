@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import Container from '@/components/common/Container';
 import { Link } from 'react-router-dom';
@@ -16,7 +15,17 @@ import {
   Ruler,
   Lightbulb,
   FileCode,
-  RefreshCw
+  RefreshCw,
+  HomeIcon, 
+  Gauge, 
+  Maximize, 
+  Paintbrush,
+  Leaf,
+  Users,
+  Handshake,
+  Calculator,
+  HelpCircle,
+  Map
 } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import './animations.css';
@@ -28,44 +37,37 @@ const InnovationHub = () => {
   const sections = [
     {
       title: "Nos prestations",
-      icon: Construction,
-      color: "bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 shadow-indigo-100/50 dark:shadow-indigo-900/20",
-      iconColor: "text-indigo-500",
-      borderColor: "border-indigo-100",
       links: [
-        { name: "Construction neuve", path: "/prestations-maitre-oeuvre/construction-neuve", icon: Home },
-        { name: "Rénovation", path: "/prestations-maitre-oeuvre/renovation", icon: Building },
-        { name: "Extension", path: "/prestations-maitre-oeuvre/extension", icon: Building2 },
-        { name: "Design d'intérieur", path: "/prestations-maitre-oeuvre/design-interieur", icon: Brush },
-        { name: "Optimisation d'espace", path: "/prestations-maitre-oeuvre/optimisation-espace", icon: Ruler }
+        { name: "Construction sur mesure", href: "/prestations/construction-neuve", icon: HomeIcon },
+        { name: "Rénovation énergétique", href: "/prestations/renovation", icon: Gauge },
+        { name: "Extension & agrandissement", href: "/prestations/extension", icon: Maximize },
+        { name: "Optimisation d'espace", href: "/prestations/optimisation-espace", icon: Ruler },
+        { name: "Design d'espace", href: "/prestations/design-interieur", icon: Paintbrush },
+        { name: "Montage administratif", href: "/prestations/montage-administratif", icon: FileText },
+        { name: "Petit collectif", href: "/prestations/petit-collectif", icon: Building2 },
+        { name: "Réhabilitation", href: "/prestations/rehabilitation", icon: Building },
+        { name: "Construction écologique", href: "/prestations/construction-ecologique", icon: Leaf }
       ]
     },
     {
       title: "Notre entreprise",
-      icon: Users2,
-      color: "bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 shadow-emerald-100/50 dark:shadow-emerald-900/20",
-      iconColor: "text-emerald-500",
-      borderColor: "border-emerald-100",
       links: [
-        { name: "À propos", path: "/a-propos", icon: FileText },
-        { name: "Nos réalisations", path: "/realisations-architecte-maison", icon: LayoutDashboard },
-        { name: "Notre équipe", path: "/equipe-maitrise-oeuvre", icon: Users2 },
-        { name: "Programme de parrainage", path: "/parrainage", icon: RefreshCw },
-        { name: "Devenir partenaire", path: "/devenir-partenaire", icon: Building }
+        { name: "À propos", href: "/about", icon: Users },
+        { name: "Nos réalisations", href: "/realisations", icon: Building2 },
+        { name: "Notre équipe", href: "/equipe", icon: Users },
+        { name: "Programme de parrainage", href: "/parrainage", icon: Handshake },
+        { name: "Devenir partenaire", href: "/partenaires", icon: Handshake }
       ]
     },
     {
       title: "Informations",
-      icon: CircleHelp,
-      color: "bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 shadow-amber-100/50 dark:shadow-amber-900/20",
-      iconColor: "text-amber-500",
-      borderColor: "border-amber-100",
       links: [
-        { name: "Estimer mon projet", path: "/estimation", icon: Lightbulb },
-        { name: "Nous contacter", path: "/contact", icon: FileCode },
-        { name: "FAQ", path: "/faq", icon: CircleHelp },
-        { name: "Mentions légales", path: "/mentions-legales", icon: FileText },
-        { name: "Plan du site", path: "/sitemap", icon: LayoutDashboard }
+        { name: "Estimer mon projet", href: "/estimation", icon: Calculator },
+        { name: "Nous contacter", href: "/contact", icon: FileText },
+        { name: "FAQ", href: "/faq", icon: HelpCircle },
+        { name: "Mentions légales", href: "/legal", icon: FileText },
+        { name: "Plan du site", href: "/sitemap", icon: Map },
+        { name: "Conditions générales", href: "/cgv", icon: FileText }
       ]
     }
   ];
@@ -108,11 +110,11 @@ const InnovationHub = () => {
   };
 
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-b from-stone-100 to-white dark:from-slate-900 dark:to-slate-800 relative overflow-hidden">
+    <section ref={ref} className="py-28 bg-gradient-to-b from-stone-50 to-white dark:from-slate-900 dark:to-slate-800 relative overflow-hidden">
       {/* Éléments décoratifs */}
-              <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white dark:from-slate-900 to-transparent"></div>
-      <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-progineer-gold/5 blur-3xl"></div>
-      <div className="absolute bottom-20 -left-20 w-80 h-80 rounded-full bg-progineer-gold/10 blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-slate-900 to-transparent opacity-5"></div>
+      <div className="absolute -top-20 -right-20 w-64 h-64 bg-progineer-gold/5 rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-progineer-gold/5 rounded-full blur-3xl"></div>
       
       {/* Lignes de connexion */}
       <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
@@ -137,7 +139,8 @@ const InnovationHub = () => {
               Centre d'innovation
             </motion.div>
             
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-semibold mb-4 text-gray-900 dark:text-white">Explorez nos ressources
+            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-semibold mb-4 text-gray-900 dark:text-white">
+              Explorez nos ressources
             </motion.h2>
             
             <motion.p variants={itemVariants} className="text-gray-600 dark:text-gray-300 text-lg">
@@ -146,40 +149,37 @@ const InnovationHub = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {sections.map((section, sectionIndex) => (
+            {sections.map((section, index) => (
               <motion.div
                 key={section.title}
-                variants={itemVariants}
-                className={`rounded-2xl p-8 ${section.color} border border-border shadow-lg transform transition-transform duration-300 hover:scale-[1.02]`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6"
               >
-                <div className="flex items-center mb-6">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${section.iconColor} bg-card mr-4 shadow-sm`}>
-                    <section.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{section.title}</h3>
-                </div>
-                
-                <ul className="space-y-3 pb-2">
-                  {section.links.map((link, linkIndex) => (
-                    <motion.li 
-                      key={link.name}
-                      custom={linkIndex}
-                      variants={linkVariants}
-                      whileHover={{ x: 5 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                    >
-                      <Link 
-                        to={link.path} 
-                        className="flex items-center p-3 rounded-lg bg-card/70 hover:bg-card transition-colors duration-300 group"
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  {section.title}
+                </h3>
+                <ul className="space-y-3">
+                  {section.links.map((link) => {
+                    const Icon = link.icon;
+                    return (
+                      <motion.li
+                        key={link.name}
+                        whileHover={{ x: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
                       >
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${section.iconColor} bg-card/50 group-hover:bg-card transition-colors duration-300`}>
-                          <link.icon className="h-4 w-4" />
-                        </div>
-                        <span className="text-gray-600 dark:text-gray-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors duration-300">{link.name}</span>
-                        <ArrowRight className="ml-auto h-4 w-4 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300" />
-                      </Link>
-                    </motion.li>
-                  ))}
+                        <Link
+                          to={link.href}
+                          className="flex items-center text-gray-600 dark:text-gray-300 hover:text-khaki-500 dark:hover:text-khaki-400 transition-colors duration-200"
+                        >
+                          <Icon className="h-5 w-5 mr-3" />
+                          <span>{link.name}</span>
+                        </Link>
+                      </motion.li>
+                    );
+                  })}
                 </ul>
               </motion.div>
             ))}

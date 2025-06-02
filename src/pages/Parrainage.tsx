@@ -1,9 +1,7 @@
-
 import React from 'react';
 import SEO from '@/components/common/SEO';
 import Container from '@/components/common/Container';
 import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 import ParrainageContent from '@/components/parrainage/ParrainageContent';
 import ParrainageForm from '@/components/parrainage/ParrainageForm';
 import { motion } from 'framer-motion';
@@ -67,8 +65,6 @@ const Parrainage = () => {
       <SEOFooter text="Programme de parrainage Progineer - Maître d'œuvre en région PACA. Recommandez nos services de construction et rénovation à votre entourage et recevez une prime allant jusqu'à 800€ par projet concrétisé. Offre valable à Marseille, Nice, Toulon et dans toute la région PACA." 
       additionalKeywords={["prime parrainage construction", "bonus recommandation travaux", "offre parrainage PACA", "récompense recommandation ami", "programme fidélité bâtiment"]}
       />
-      
-      <Footer />
     </>
   );
 };

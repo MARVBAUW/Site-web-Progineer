@@ -1,6 +1,5 @@
-
 import { useEffect, useState } from 'react';
-import { validatePageSEO, SEOValidationResult } from '@/utils/seoValidator';
+import { validatePageSEO, SEOValidationResult, SEOIssue } from '@/utils/seoValidator';
 
 /**
  * Hook personnalisé pour valider le SEO d'une page

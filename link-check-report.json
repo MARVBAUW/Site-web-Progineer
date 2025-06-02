@@ -1,0 +1,1157 @@
+{
+  "timestamp": "2025-06-01T15:52:58.773Z",
+  "totalLinks": 104,
+  "brokenLinks": 36,
+  "results": [
+    {
+      "url": "sitemap.xsl",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:40.419Z",
+      "source": {
+        "file": "src\\utils\\sitemapGenerator.ts",
+        "line": 0
+      }
+    },
+    {
+      "url": "targetUrl",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:40.425Z",
+      "source": {
+        "file": "src\\utils\\internalLinking.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:40.596Z",
+      "source": {
+        "file": "src\\routes\\publicRoutes.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:41.695Z",
+      "source": {
+        "file": "src\\routes\\publicRoutes.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:41.792Z",
+      "source": {
+        "file": "src\\routes\\publicRoutes.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/realisations",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:41.890Z",
+      "source": {
+        "file": "src\\routes\\publicRoutes.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/sitemap.xml",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:42.006Z",
+      "source": {
+        "file": "src\\pages\\Sitemap.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/contact",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:43.124Z",
+      "source": {
+        "file": "src\\pages\\Sitemap.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "link.href",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:43.124Z",
+      "source": {
+        "file": "src\\pages\\Sitemap.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/estimation",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:43.215Z",
+      "source": {
+        "file": "src\\pages\\Prestations.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/faq",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:43.317Z",
+      "source": {
+        "file": "src\\pages\\Prestations.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations/",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:43.400Z",
+      "source": {
+        "file": "src\\pages\\Prestations.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations/${service.slug",
+      "status": 404,
+      "isInternal": true,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:43.686Z",
+      "source": {
+        "file": "src\\pages\\Prestations.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://www.maitredoeuvre.com/",
+      "status": 200,
+      "isInternal": false,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:43.777Z",
+      "source": {
+        "file": "src\\pages\\Index.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "[]([^]+)[]",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:43.793Z",
+      "source": {
+        "file": "src\\utils\\linkChecker\\LinkChecker.ts",
+        "line": 0
+      }
+    },
+    {
+      "url": "([^]+)",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:43.793Z",
+      "source": {
+        "file": "src\\utils\\linkChecker\\LinkChecker.ts",
+        "line": 0
+      }
+    },
+    {
+      "url": "([^",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:43.793Z",
+      "source": {
+        "file": "src\\utils\\linkChecker\\LinkChecker.ts",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/projects/",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:43.875Z",
+      "source": {
+        "file": "src\\pages\\client\\ClientProjects.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/projects/${project.id",
+      "status": 404,
+      "isInternal": true,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:44.145Z",
+      "source": {
+        "file": "src\\pages\\client\\ClientProjects.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:44.548Z",
+      "source": {
+        "file": "src\\pages\\client\\ClientDocuments.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/documents",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:44.628Z",
+      "source": {
+        "file": "src\\pages\\client\\ClientDocuments.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/projects",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:44.732Z",
+      "source": {
+        "file": "src\\pages\\client\\ClientDocuments.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/messages",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:44.820Z",
+      "source": {
+        "file": "src\\pages\\client\\ClientDocuments.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://www.architectes-paca.org/",
+      "status": 200,
+      "isInternal": false,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:45.454Z",
+      "source": {
+        "file": "src\\pages\\client\\AdminSettings.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/projects/${i + 1",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:45.560Z",
+      "source": {
+        "file": "src\\pages\\client\\AdminProjectsOverview.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "source.url",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:45.577Z",
+      "source": {
+        "file": "src\\components\\workspace\\WorkspaceVeilleReglementaire.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/sign-in",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:45.678Z",
+      "source": {
+        "file": "src\\components\\workspace\\WorkspaceEspaceClient.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/sign-up",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:45.788Z",
+      "source": {
+        "file": "src\\components\\workspace\\WorkspaceEspaceClient.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "$2",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:45.793Z",
+      "source": {
+        "file": "src\\components\\workspace\\WorkspaceArticleDetail.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://fonts.googleapis.com",
+      "status": 404,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:45.881Z",
+      "source": {
+        "file": "src\\components\\seo\\SEOOptimizer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://fonts.gstatic.com",
+      "status": 404,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:45.925Z",
+      "source": {
+        "file": "src\\components\\seo\\SEOOptimizer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:46.006Z",
+      "source": {
+        "file": "src\\components\\seo\\SEOOptimizer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "item.path",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:46.008Z",
+      "source": {
+        "file": "src\\components\\seo\\SEOBreadcrumb.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "fullUrl",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:46.010Z",
+      "source": {
+        "file": "src\\components\\seo\\EnhancedSEO.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "url.startsWith(http) ? url : ${baseUrl",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:46.010Z",
+      "source": {
+        "file": "src\\components\\seo\\EnhancedSEO.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "baseUrl",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:46.011Z",
+      "source": {
+        "file": "src\\components\\seo\\EnhancedSEO.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "service.path",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:46.012Z",
+      "source": {
+        "file": "src\\components\\prestations\\PrestationsSubNav.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations/${prestation.slug",
+      "status": 404,
+      "isInternal": true,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:46.153Z",
+      "source": {
+        "file": "src\\components\\prestations\\PrestationsCardsNavigation.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations/construction-neuve",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:46.267Z",
+      "source": {
+        "file": "src\\components\\partenaires\\SEOFooter.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations/renovation",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:46.389Z",
+      "source": {
+        "file": "src\\components\\partenaires\\SEOFooter.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations/extension",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:46.492Z",
+      "source": {
+        "file": "src\\components\\partenaires\\SEOFooter.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/realisations/",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:46.579Z",
+      "source": {
+        "file": "src\\components\\realisations\\ProjectCard.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/realisations/${project.slug",
+      "status": 404,
+      "isInternal": true,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:46.858Z",
+      "source": {
+        "file": "src\\components\\realisations\\ProjectCard.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://www.facebook.com/people/Progineer-Ma%C3%AEtrise-Doeuvre/61572478063277/",
+      "status": 200,
+      "isInternal": false,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:47.100Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://www.instagram.com/progineer_moe/",
+      "status": 200,
+      "isInternal": false,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:47.266Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://www.linkedin.com/company/105527808/admin/dashboard/",
+      "status": 200,
+      "isInternal": false,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:47.653Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://g.co/kgs/jRoxjts",
+      "status": 200,
+      "isInternal": false,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:47.925Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations-maitre-oeuvre",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:48.027Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/realisations-architecte-maison",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:48.110Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/equipe-maitrise-oeuvre",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:48.192Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations-maitre-oeuvre/construction-neuve",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:48.271Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations-maitre-oeuvre/renovation",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:48.359Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations-maitre-oeuvre/extension",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:48.464Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations-maitre-oeuvre/optimisation-espace",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:48.576Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/prestations-maitre-oeuvre/design-interieur",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:48.656Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/sitemap",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:48.729Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/mentions-legales",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:48.826Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/cgv",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:48.926Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/cgu",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:50.021Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/privacy-policy",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:50.107Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/devenir-partenaire",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:50.229Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/parrainage",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:50.321Z",
+      "source": {
+        "file": "src\\components\\layout\\Footer.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://www.openstreetmap.org/copyright",
+      "status": 200,
+      "isInternal": false,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:50.538Z",
+      "source": {
+        "file": "src\\components\\home\\LocationMap.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:50.545Z",
+      "source": {
+        "file": "src\\components\\home\\LocationMap.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/progineer-favicon.ico",
+      "status": 404,
+      "isInternal": true,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:50.894Z",
+      "source": {
+        "file": "src\\components\\common\\SEO.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/progineer-apple-touch-icon.webp",
+      "status": 404,
+      "isInternal": true,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:51.212Z",
+      "source": {
+        "file": "src\\components\\common\\SEO.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/progineer-icon-32x32.webp",
+      "status": 404,
+      "isInternal": true,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:51.627Z",
+      "source": {
+        "file": "src\\components\\common\\SEO.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/progineer-icon-16x16.webp",
+      "status": 404,
+      "isInternal": true,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:51.956Z",
+      "source": {
+        "file": "src\\components\\common\\SEO.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/site.webmanifest",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:53.213Z",
+      "source": {
+        "file": "src\\components\\common\\SEO.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/sitemap.xml",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:53.445Z",
+      "source": {
+        "file": "src\\components\\common\\SEO.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "finalCanonicalUrl",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:53.445Z",
+      "source": {
+        "file": "src\\components\\common\\SEO.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "to",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:53.447Z",
+      "source": {
+        "file": "src\\components\\common\\Redirect.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "href",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:53.451Z",
+      "source": {
+        "file": "src\\components\\common\\Button.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "item.href",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:53.452Z",
+      "source": {
+        "file": "src\\components\\common\\Breadcrumb.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:53.454Z",
+      "source": {
+        "file": "src\\components\\contact\\ContactLocationMap.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-documentation",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:53.546Z",
+      "source": {
+        "file": "src\\components\\client\\ClientAreaWelcome.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:54.739Z",
+      "source": {
+        "file": "src\\components\\auth\\AuthHeader.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/create-project",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:54.840Z",
+      "source": {
+        "file": "src\\components\\admin\\AdminDashboard.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/clients/new",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:54.922Z",
+      "source": {
+        "file": "src\\components\\admin\\AdminDashboard.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:55.023Z",
+      "source": {
+        "file": "src\\components\\admin\\AdminDashboard.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/tasks",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:55.107Z",
+      "source": {
+        "file": "src\\components\\admin\\AdminDashboard.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/calculateurs?tab=incendie",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:55.209Z",
+      "source": {
+        "file": "src\\components\\workspace\\reglementation\\IncendieRecapSection.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "selectedDocument.url",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:55.217Z",
+      "source": {
+        "file": "src\\components\\workspace\\guides\\PreviewDialog.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "related.url",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:55.221Z",
+      "source": {
+        "file": "src\\components\\workspace\\resources\\ResourceLandingPage.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "calculator.path",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:55.234Z",
+      "source": {
+        "file": "src\\components\\workspace\\calculators\\index.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "subLink.path",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:55.254Z",
+      "source": {
+        "file": "src\\components\\layout\\navbar\\NavItem.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "photo",
+      "status": 0,
+      "isInternal": false,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:55.297Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\SiteReports.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects//estimate",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:55.371Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectTools.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects//fees",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:55.482Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectTools.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects//budget",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:56.585Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectTools.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects//cctp",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:56.672Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectTools.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects//dpgf",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:56.758Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectTools.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects//planning",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:56.853Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectTools.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects//meetings",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:56.942Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectTools.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects/${projectId",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:57.017Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectTools.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects/create",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:57.113Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectsList.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects/",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:57.200Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectsList.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects//assign-client",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:57.285Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectsList.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects/${project.id",
+      "status": 404,
+      "isInternal": true,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:57.613Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectsList.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/projects/${id",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:57.694Z",
+      "source": {
+        "file": "src\\components\\admin\\project-management\\ProjectCard.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/clients/",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:57.788Z",
+      "source": {
+        "file": "src\\components\\admin\\client-management\\ClientsList.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/clients/?tab=projects",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:57.968Z",
+      "source": {
+        "file": "src\\components\\admin\\client-management\\ClientsList.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/clients/${client.id",
+      "status": 404,
+      "isInternal": true,
+      "is404": true,
+      "lastChecked": "2025-06-01T15:52:58.556Z",
+      "source": {
+        "file": "src\\components\\admin\\client-management\\ClientsList.tsx",
+        "line": 0
+      }
+    },
+    {
+      "url": "https://progineer.fr/workspace/client-area/admin/clients",
+      "status": 200,
+      "isInternal": true,
+      "is404": false,
+      "lastChecked": "2025-06-01T15:52:58.737Z",
+      "source": {
+        "file": "src\\components\\admin\\client-management\\client-detail\\ClientDetailView.tsx",
+        "line": 0
+      }
+    }
+  ],
+  "summary": {
+    "internalLinks": 71,
+    "externalLinks": 33,
+    "brokenInternalLinks": 10,
+    "brokenExternalLinks": 26
+  }
+}

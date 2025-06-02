@@ -1,6 +1,5 @@
-
 import React from 'react';
-import EnhancedSEO from '@/components/seo/EnhancedSEO';
+import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
 import Container from '@/components/common/Container';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -53,10 +52,38 @@ const DevenirPartenaire = () => {
       <EnhancedSEO 
         title="Devenir Partenaire | Réseau d'artisans et professionnels du BTP | Progineer PACA"
         description="Rejoignez le réseau de partenaires Progineer. Opportunités de collaboration pour artisans, professionnels du BTP et experts de la construction en région PACA."
-        keywords="partenariat maître d'œuvre, réseau artisans PACA, collaboration construction, artisans bâtiment Marseille, opportunités BTP"
-        canonicalUrl="https://progineer.fr/devenir-partenaire"
-        structuredData={partnershipSchema}
-        breadcrumbs={breadcrumbs}
+        keywords={[
+          "partenariat maître d'œuvre",
+          "réseau artisans PACA",
+          "collaboration construction",
+          "artisans bâtiment Marseille",
+          "opportunités BTP"
+        ]}
+        url="https://progineer.fr/devenir-partenaire"
+        schemaData={{
+          type: "ProfessionalService",
+          name: "Programme Partenaires Progineer",
+          description: "Programme de partenariat pour artisans et professionnels du BTP en région PACA",
+          url: "https://progineer.fr/devenir-partenaire",
+          address: {
+            addressLocality: "Marseille",
+            addressRegion: "PACA",
+            postalCode: "13000",
+            addressCountry: "FR"
+          },
+          geo: {
+            latitude: "43.296482",
+            longitude: "5.369780"
+          },
+          areaServed: {
+            type: "AdministrativeArea",
+            name: "Région PACA"
+          },
+          potentialAction: {
+            type: "JoinAction",
+            target: "https://progineer.fr/devenir-partenaire#partner-form"
+          }
+        }}
       />
 
       <Navbar />
@@ -112,8 +139,6 @@ const DevenirPartenaire = () => {
       <SEOFooter text="Programme de partenariat Progineer - Maître d'œuvre en région PACA. Rejoignez notre réseau de professionnels du bâtiment et bénéficiez d'opportunités business, d'une visibilité accrue et d'une collaboration privilégiée pour vos projets en Provence-Alpes-Côte d'Azur." 
       additionalKeywords={["réseau artisans PACA", "partenaires construction Marseille", "collaboration maître d'œuvre", "opportunités sous-traitants bâtiment", "artisans qualifiés Méditerranée"]}
       />
-      
-      <Footer />
     </>
   );
 };

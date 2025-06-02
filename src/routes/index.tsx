@@ -1,4 +1,3 @@
-
 import React, { Suspense } from 'react';
 import { publicRoutes } from './publicRoutes';
 import { adminRoutes } from './adminRoutes';
@@ -25,7 +24,7 @@ const LoadingFallback = () => (
 const MainLayout = () => (
   <>
     <Navbar />
-    <main className="min-h-screen pt-16">
+    <main className="min-h-screen">
       <Outlet />
     </main>
     <Footer />

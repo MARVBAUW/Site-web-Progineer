@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { Link, useLocation } from 'react-router-dom';
 import Container from '@/components/common/Container';
 import Button from '@/components/common/Button';
@@ -9,6 +8,7 @@ import PrestationsSubNav from '@/components/prestations/PrestationsSubNav';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { InternalLinkText } from '@/utils/internalLinking';
 import SEOFooter from '@/components/common/SEOFooter';
+import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
 
 // Define service categories
 const services = [
@@ -246,374 +246,404 @@ const Prestations = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Architecte & Constructeur PACA | Prestations Maîtrise d'œuvre Marseille | Progineer</title>
-        <meta name="description" content="Découvrez nos prestations d'architecte-constructeur à Marseille et en PACA : construction maison individuelle, rénovation énergétique, extension et design d'espace. Cabinet d'architecture et maîtrise d'œuvre expert." />
-        <meta name="keywords" content="architecte constructeur PACA, prestations maîtrise œuvre, services architecture construction marseille, architecte marseille, constructeur maison individuelle, cabinet architecture PACA" />
-      </Helmet>
-
-      {/* Hero section */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-khaki-50 to-white" id="overview">
-        <Container size="md">
-          <div className="text-center">
-            <div className="inline-block px-3 py-1 mb-6 rounded-full bg-khaki-100 text-khaki-800 text-sm font-medium">
-              Nos prestations
-            </div>
-            <h1 className="text-4xl md:text-5xl font-semibold mb-6">
-              Services de maîtrise d'œuvre en PACA
-            </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
-              <InternalLinkText 
-                text="De la conception à la réalisation, Progineer vous accompagne dans tous vos projets de construction, rénovation et aménagement en région PACA."
-                maxOccurrences={2}
-              />
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Sub-navigation */}
-      <PrestationsSubNav />
-
-      {/* Services Overview */}
-      <section className="py-16">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {services.map((service) => (
-              <Card key={service.id} id={service.id} className="border-border hover:shadow-md transition-shadow duration-300 scroll-mt-32">
-                <CardHeader>
-                  <div className="mb-4">{service.icon}</div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  <CardDescription className="text-gray-600 dark:text-gray-300">
-                    <InternalLinkText text={service.description} maxOccurrences={1} />
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, index) => (
-                      <li key={index} className="flex items-start">
-                        <span className="mr-2 mt-1 text-khaki-600">•</span>
-                        <span><InternalLinkText text={feature} /></span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <div className="flex flex-col w-full gap-2">
-                    {/* Correction ici pour coupler slug et bouton */}
-                    {service.slug ? (
-                      <Button
-                        href={`/prestations-maitre-oeuvre/${service.slug}`}
-                        className="w-full justify-center flex items-center"
-                        variant="outline"
-                      >
-                        En savoir plus
-                      </Button>
-                    ) : (
-                      <Button
-                        href="/contact"
-                        className="w-full justify-center flex items-center"
-                        variant="outline"
-                      >
-                        En savoir plus
-                      </Button>
-                    )}
-
-                    <Collapsible 
-                      className="w-full" 
-                      open={openServiceId === service.id}
-                      onOpenChange={() => toggleService(service.id)}
-                    >
-                      <CollapsibleTrigger className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
-                        {openServiceId === service.id ? (
-                          <>Voir moins <ChevronUp className="ml-2 h-4 w-4" /></>
-                        ) : (
-                          <>Détails <ChevronDown className="ml-2 h-4 w-4" /></>
-                        )}
-                      </CollapsibleTrigger>
-                      <CollapsibleContent className="mt-4">
-                        <div className="p-4 bg-khaki-50 rounded-lg">
-                          <p className="text-gray-600 dark:text-gray-300 whitespace-pre-line">
-                            <InternalLinkText text={service.detailedContent} maxOccurrences={3} />
-                          </p>
-                          <div className="mt-4">
-                            <Button href="/contact" className="w-full sm:w-auto justify-center mt-2">
-                              Demander un devis
-                            </Button>
-                          </div>
-                        </div>
-                      </CollapsibleContent>
-                    </Collapsible>
-                  </div>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-16 bg-stone-50 border-y border-stone-100">
-        <Container>
-          <div className="text-center mb-16 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-semibold mb-6">Notre processus d'accompagnement</h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              <InternalLinkText 
-                text="Une méthodologie éprouvée pour mener à bien votre projet, de la première idée à la livraison finale."
-                maxOccurrences={1}
-              />
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Step 1 */}
-            <div className="relative p-6 bg-card rounded-xl shadow-sm border border-border">
-              <div className="absolute -top-5 -left-5 w-10 h-10 rounded-full bg-khaki-600 text-white flex items-center justify-center font-semibold text-lg">1</div>
-              <h3 className="text-xl font-semibold mb-3 mt-2">Consultation initiale</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                <InternalLinkText 
-                  text="Nous écoutons vos besoins, analysons votre projet et définissons ensemble les grandes lignes de votre projet."
-                  maxOccurrences={1}
-                />
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="relative p-6 bg-card rounded-xl shadow-sm border border-border">
-              <div className="absolute -top-5 -left-5 w-10 h-10 rounded-full bg-khaki-600 text-white flex items-center justify-center font-semibold text-lg">2</div>
-              <h3 className="text-xl font-semibold mb-3 mt-2">Étude et conception</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                <InternalLinkText 
-                  text="Nous élaborons les plans, estimons les coûts et proposons des solutions techniques adaptées à votre budget."
-                  maxOccurrences={1}
-                />
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="relative p-6 bg-card rounded-xl shadow-sm border border-border">
-              <div className="absolute -top-5 -left-5 w-10 h-10 rounded-full bg-khaki-600 text-white flex items-center justify-center font-semibold text-lg">3</div>
-              <h3 className="text-xl font-semibold mb-3 mt-2">Réalisation</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                <InternalLinkText 
-                  text="Nous coordonnons les différents corps de métier et veillons au respect du calendrier et de la qualité d'exécution."
-                  maxOccurrences={1}
-                />
-              </p>
-            </div>
-
-            {/* Step 4 */}
-            <div className="relative p-6 bg-card rounded-xl shadow-sm border border-border">
-              <div className="absolute -top-5 -left-5 w-10 h-10 rounded-full bg-khaki-600 text-white flex items-center justify-center font-semibold text-lg">4</div>
-              <h3 className="text-xl font-semibold mb-3 mt-2">Livraison et suivi</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                <InternalLinkText 
-                  text="Nous effectuons la réception des travaux et assurons un suivi post-livraison pour garantir votre entière satisfaction."
-                  maxOccurrences={1}
-                />
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-16">
-        <Container>
-          <div className="flex flex-col md:flex-row gap-12">
-            <div className="md:w-1/2">
-              <h2 className="text-3xl font-semibold mb-6">Pourquoi choisir Progineer ?</h2>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-full bg-khaki-100 flex items-center justify-center mr-4 shrink-0">
-                    <span className="text-khaki-800 font-semibold">01</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-medium mb-2">Expertise technique</h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      <InternalLinkText 
-                        text="Notre équipe combine des compétences en architecture, ingénierie et gestion de projet pour une approche complète et efficace."
-                        maxOccurrences={1}
-                      />
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-full bg-khaki-100 flex items-center justify-center mr-4 shrink-0">
-                    <span className="text-khaki-800 font-semibold">02</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-medium mb-2">Communication transparente</h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      <InternalLinkText 
-                        text="Nous vous tenons informés à chaque étape de l'avancement de votre projet et restons disponibles pour répondre à vos questions."
-                        maxOccurrences={1}
-                      />
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-full bg-khaki-100 flex items-center justify-center mr-4 shrink-0">
-                    <span className="text-khaki-800 font-semibold">03</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-medium mb-2">Maîtrise des coûts</h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      <InternalLinkText 
-                        text="Nos méthodes de travail optimisées nous permettent de respecter scrupuleusement les budgets établis, sans mauvaises surprises."
-                        maxOccurrences={1}
-                      />
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="md:w-1/2">
-              <div className="h-full rounded-2xl overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1460574283810-2aab119d8511?q=80&w=3512&auto=format&fit=crop" 
-                  alt="Architecture moderne" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* CTA section */}
-      <section className="py-16 bg-khaki-600 text-white">
-        <Container>
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-semibold mb-6">
-              Prêt à concrétiser votre projet ?
-            </h2>
-            <p className="text-xl opacity-90 mb-8">
-              <InternalLinkText 
-                text="Contactez notre équipe pour discuter de vos besoins et obtenir un devis personnalisé."
-                maxOccurrences={1}
-                className="text-white"
-              />
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                href="/estimation" 
-                className="bg-card text-khaki-800 hover:bg-card/90"
-              >
-                Estimer mon projet
-              </Button>
-              <Button 
-                href="/contact" 
-                variant="outline" 
-                className="border-white/30 bg-transparent hover:bg-card/10"
-              >
-                Nous contacter
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-16">
-        <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold mb-4 text-gray-900 dark:text-white">Questions fréquentes</h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              <InternalLinkText 
-                text="Vous avez des questions sur nos services ? Consultez nos réponses ci-dessous ou contactez-nous directement."
-                maxOccurrences={1}
-              />
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
-              <h3 className="text-xl font-semibold mb-3">Quelle est la différence entre un maître d'œuvre et un architecte ?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                <InternalLinkText 
-                  text="Le maître d'œuvre, comme Progineer, coordonne et supervise l'ensemble du projet de construction, tandis que l'architecte se concentre davantage sur la conception. Nous travaillons en collaboration avec des architectes lorsque nécessaire pour certains projets."
-                  maxOccurrences={2}
-                />
-              </p>
-            </div>
-
-            <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
-              <h3 className="text-xl font-semibold mb-3">Quel est le délai moyen pour un projet de construction ?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                <InternalLinkText 
-                  text="Les délais varient selon la nature et l'ampleur du projet. Pour une maison individuelle, comptez environ 8 à 12 mois entre la conception et la livraison. Une extension prend généralement 4 à 6 mois, et une rénovation 2 à 6 mois selon sa complexité."
-                  maxOccurrences={2}
-                />
-              </p>
-            </div>
-
-            <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
-              <h3 className="text-xl font-semibold mb-3">Quelles garanties offrez-vous sur vos prestations ?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                <InternalLinkText 
-                  text="Nous sommes couverts par une assurance décennale et une responsabilité civile professionnelle. De plus, nous garantissons la conformité des travaux avec les plans et le respect des normes en vigueur, notamment la RE2020."
-                  maxOccurrences={2}
-                />
-              </p>
-            </div>
-
-            <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
-              <h3 className="text-xl font-semibold mb-3">Intervenez-vous sur toute la région PACA ?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                <InternalLinkText 
-                  text="Oui, nous intervenons dans toute la région Provence-Alpes-Côte d'Azur, notamment à Marseille, Toulon, Nice, Cannes, Saint-Tropez, Fréjus et leurs environs. N'hésitez pas à nous contacter pour vérifier notre disponibilité dans votre zone."
-                  maxOccurrences={2}
-                />
-              </p>
-            </div>
-
-            <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
-              <h3 className="text-xl font-semibold mb-3">Quels types de travaux réalisez-vous ?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                <InternalLinkText 
-                  text="Nous réalisons tous types de travaux : travaux de construction neuve, travaux de rénovation complète, travaux d'extension et travaux d'aménagement. En tant que constructeur de maison et maître d'œuvre, nous coordonnons l'ensemble des corps de métier pour vos travaux, depuis les travaux de gros œuvre jusqu'aux travaux de finition."
-                  maxOccurrences={2}
-                />
-              </p>
-            </div>
-
-            <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
-              <h3 className="text-xl font-semibold mb-3">Comment estimez-vous le coût des travaux ?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                <InternalLinkText 
-                  text="L'estimation des travaux prend en compte plusieurs facteurs : la nature des travaux, la surface concernée, la qualité des matériaux et la complexité technique. Nos devis détaillent chaque poste de travaux pour une transparence totale sur le coût de vos travaux."
-                  maxOccurrences={2}
-                />
-              </p>
-            </div>
-          </div>
-
-          <div className="text-center mt-10">
-            <Link to="/faq" className="text-khaki-600 hover:text-khaki-800 font-medium">
-              Voir toutes les questions fréquentes →
-            </Link>
-          </div>
-        </Container>
-      </section>
-
-      {/* SEO Footer renforcé */}
-      <SEOFooter 
-        text="Architecte-constructeur et maître d'œuvre à Marseille et en PACA – Cabinet d'architecture spécialisé en construction de maisons individuelles sur mesure, travaux de rénovation énergétique et extension. Nos architectes et constructeurs de maison assurent la maîtrise d'œuvre complète de vos travaux. Optimisation des espaces, design architectural et montage administratif pour particuliers et professionnels dans toute la région Provence-Alpes-Côte d'Azur."
-        additionalKeywords={[
-          "travaux construction", 
-          "travaux de rénovation", 
-          "constructeur de maison", 
-          "architecte constructeur PACA", 
-          "constructeur maison individuelle", 
-          "travaux maison individuelle", 
-          "architecte marseille", 
-          "cabinet architecture marseille"
+      <EnhancedSEO 
+        title="Architecte & Constructeur PACA | Prestations Maîtrise d'œuvre Marseille | Progineer"
+        description="Découvrez nos prestations complètes de maîtrise d'œuvre : construction neuve, rénovation, extension, optimisation d'espace et design d'intérieur. Expertise architecturale et coordination de projets en PACA."
+        keywords={[
+          "maîtrise d'œuvre PACA",
+          "architecte Marseille",
+          "construction neuve",
+          "rénovation énergétique",
+          "extension maison",
+          "optimisation espace",
+          "design intérieur",
+          "permis de construire"
         ]}
+        url="https://progineer.fr/prestations"
+        schemaData={{
+          type: "ItemList",
+          name: "Prestations de Maîtrise d'œuvre Progineer",
+          description: "Liste des services de maîtrise d'œuvre proposés par Progineer en région PACA",
+          url: "https://progineer.fr/prestations",
+          itemListElement: services.map((service, index) => ({
+            "@type": "Service",
+            "position": index + 1,
+            "name": service.title,
+            "description": service.description,
+            "url": service.slug ? `https://progineer.fr/prestations/${service.slug}` : undefined
+          }))
+        }}
       />
+
+      <main>
+        <div className="sr-only" role="heading" aria-level={1}>
+          Prestations de Maîtrise d'œuvre Progineer - Architecte et Constructeur en PACA
+        </div>
+
+        {/* Hero section */}
+        <section className="pt-32 pb-16 bg-gradient-to-b from-khaki-50 to-white" id="overview">
+          <Container size="md">
+            <div className="text-center">
+              <div className="inline-block px-3 py-1 mb-6 rounded-full bg-khaki-100 text-khaki-800 text-sm font-medium">
+                Nos prestations
+              </div>
+              <h1 className="text-4xl md:text-5xl font-semibold mb-6">
+                Services de maîtrise d'œuvre en PACA
+              </h1>
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+                <InternalLinkText 
+                  text="De la conception à la réalisation, Progineer vous accompagne dans tous vos projets de construction, rénovation et aménagement en région PACA."
+                  maxOccurrences={2}
+                />
+              </p>
+            </div>
+          </Container>
+        </section>
+
+        {/* Sub-navigation */}
+        <PrestationsSubNav />
+
+        {/* Services Overview */}
+        <section className="py-16">
+          <Container>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              {services.map((service) => {
+                return (
+                  <Card key={service.id} id={service.id} className="border-border hover:shadow-md transition-shadow duration-300 scroll-mt-32">
+                    <CardHeader>
+                      <div className="mb-4">{service.icon}</div>
+                      <CardTitle className="text-xl">{service.title}</CardTitle>
+                      <CardDescription className="text-gray-600 dark:text-gray-300">
+                        <InternalLinkText text={service.description} maxOccurrences={1} />
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2">
+                        {service.features.map((feature, index) => (
+                          <li key={index} className="flex items-start">
+                            <span className="mr-2 mt-1 text-khaki-600">•</span>
+                            <span><InternalLinkText text={feature} /></span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                    <CardFooter>
+                      <div className="flex flex-col w-full gap-2">
+                        {service.slug ? (
+                          <Button
+                            href={`/prestations/${service.slug}`}
+                            className="w-full justify-center flex items-center"
+                            variant="outline"
+                          >
+                            En savoir plus
+                          </Button>
+                        ) : (
+                          <Button
+                            href="/contact"
+                            className="w-full justify-center flex items-center"
+                            variant="outline"
+                          >
+                            En savoir plus
+                          </Button>
+                        )}
+
+                        <Collapsible 
+                          className="w-full" 
+                          open={openServiceId === service.id}
+                          onOpenChange={() => toggleService(service.id)}
+                        >
+                          <CollapsibleTrigger className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
+                            {openServiceId === service.id ? (
+                              <>Voir moins <ChevronUp className="ml-2 h-4 w-4" /></>
+                            ) : (
+                              <>Détails <ChevronDown className="ml-2 h-4 w-4" /></>
+                            )}
+                          </CollapsibleTrigger>
+                          <CollapsibleContent className="mt-4">
+                            <div className="p-4 bg-khaki-50 rounded-lg">
+                              <p className="text-gray-600 dark:text-gray-300 whitespace-pre-line">
+                                <InternalLinkText text={service.detailedContent} maxOccurrences={3} />
+                              </p>
+                              <div className="mt-4">
+                                <Button href="/contact" className="w-full sm:w-auto justify-center mt-2">
+                                  Demander un devis
+                                </Button>
+                              </div>
+                            </div>
+                          </CollapsibleContent>
+                        </Collapsible>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                );
+              })}
+            </div>
+          </Container>
+        </section>
+
+        {/* Process Section */}
+        <section className="py-16 bg-stone-50 border-y border-stone-100">
+          <Container>
+            <div className="text-center mb-16 max-w-3xl mx-auto">
+              <h2 className="text-3xl font-semibold mb-6">Notre processus d'accompagnement</h2>
+              <p className="text-gray-600 dark:text-gray-300">
+                <InternalLinkText 
+                  text="Une méthodologie éprouvée pour mener à bien votre projet, de la première idée à la livraison finale."
+                  maxOccurrences={1}
+                />
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* Step 1 */}
+              <div className="relative p-6 bg-card rounded-xl shadow-sm border border-border">
+                <div className="absolute -top-5 -left-5 w-10 h-10 rounded-full bg-khaki-600 text-white flex items-center justify-center font-semibold text-lg">1</div>
+                <h3 className="text-xl font-semibold mb-3 mt-2">Consultation initiale</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  <InternalLinkText 
+                    text="Nous écoutons vos besoins, analysons votre projet et définissons ensemble les grandes lignes de votre projet."
+                    maxOccurrences={1}
+                  />
+                </p>
+              </div>
+
+              {/* Step 2 */}
+              <div className="relative p-6 bg-card rounded-xl shadow-sm border border-border">
+                <div className="absolute -top-5 -left-5 w-10 h-10 rounded-full bg-khaki-600 text-white flex items-center justify-center font-semibold text-lg">2</div>
+                <h3 className="text-xl font-semibold mb-3 mt-2">Étude et conception</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  <InternalLinkText 
+                    text="Nous élaborons les plans, estimons les coûts et proposons des solutions techniques adaptées à votre budget."
+                    maxOccurrences={1}
+                  />
+                </p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="relative p-6 bg-card rounded-xl shadow-sm border border-border">
+                <div className="absolute -top-5 -left-5 w-10 h-10 rounded-full bg-khaki-600 text-white flex items-center justify-center font-semibold text-lg">3</div>
+                <h3 className="text-xl font-semibold mb-3 mt-2">Réalisation</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  <InternalLinkText 
+                    text="Nous coordonnons les différents corps de métier et veillons au respect du calendrier et de la qualité d'exécution."
+                    maxOccurrences={1}
+                  />
+                </p>
+              </div>
+
+              {/* Step 4 */}
+              <div className="relative p-6 bg-card rounded-xl shadow-sm border border-border">
+                <div className="absolute -top-5 -left-5 w-10 h-10 rounded-full bg-khaki-600 text-white flex items-center justify-center font-semibold text-lg">4</div>
+                <h3 className="text-xl font-semibold mb-3 mt-2">Livraison et suivi</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  <InternalLinkText 
+                    text="Nous effectuons la réception des travaux et assurons un suivi post-livraison pour garantir votre entière satisfaction."
+                    maxOccurrences={1}
+                  />
+                </p>
+              </div>
+            </div>
+          </Container>
+        </section>
+
+        {/* Why Choose Us */}
+        <section className="py-16">
+          <Container>
+            <div className="flex flex-col md:flex-row gap-12">
+              <div className="md:w-1/2">
+                <h2 className="text-3xl font-semibold mb-6">Pourquoi choisir Progineer ?</h2>
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <div className="w-12 h-12 rounded-full bg-khaki-100 flex items-center justify-center mr-4 shrink-0">
+                      <span className="text-khaki-800 font-semibold">01</span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Expertise technique</h3>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        <InternalLinkText 
+                          text="Notre équipe combine des compétences en architecture, ingénierie et gestion de projet pour une approche complète et efficace."
+                          maxOccurrences={1}
+                        />
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="w-12 h-12 rounded-full bg-khaki-100 flex items-center justify-center mr-4 shrink-0">
+                      <span className="text-khaki-800 font-semibold">02</span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Communication transparente</h3>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        <InternalLinkText 
+                          text="Nous vous tenons informés à chaque étape de l'avancement de votre projet et restons disponibles pour répondre à vos questions."
+                          maxOccurrences={1}
+                        />
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="w-12 h-12 rounded-full bg-khaki-100 flex items-center justify-center mr-4 shrink-0">
+                      <span className="text-khaki-800 font-semibold">03</span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Maîtrise des coûts</h3>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        <InternalLinkText 
+                          text="Nos méthodes de travail optimisées nous permettent de respecter scrupuleusement les budgets établis, sans mauvaises surprises."
+                          maxOccurrences={1}
+                        />
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="md:w-1/2">
+                <div className="h-full rounded-2xl overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1460574283810-2aab119d8511?q=80&w=3512&auto=format&fit=crop" 
+                    alt="Architecture moderne" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </Container>
+        </section>
+
+        {/* CTA section */}
+        <section className="py-16 bg-khaki-600 text-white">
+          <Container>
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl font-semibold mb-6">
+                Prêt à concrétiser votre projet ?
+              </h2>
+              <p className="text-xl opacity-90 mb-8">
+                <InternalLinkText 
+                  text="Contactez notre équipe pour discuter de vos besoins et obtenir un devis personnalisé."
+                  maxOccurrences={1}
+                  className="text-white"
+                />
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  href="/estimation" 
+                  className="bg-card text-khaki-800 hover:bg-card/90"
+                >
+                  Estimer mon projet
+                </Button>
+                <Button 
+                  href="/contact" 
+                  variant="outline" 
+                  className="border-white/30 bg-transparent hover:bg-card/10"
+                >
+                  Nous contacter
+                </Button>
+              </div>
+            </div>
+          </Container>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16">
+          <Container>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-semibold mb-4 text-gray-900 dark:text-white">Questions fréquentes</h2>
+              <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                <InternalLinkText 
+                  text="Vous avez des questions sur nos services ? Consultez nos réponses ci-dessous ou contactez-nous directement."
+                  maxOccurrences={1}
+                />
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+                <h3 className="text-xl font-semibold mb-3">Quelle est la différence entre un maître d'œuvre et un architecte ?</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  <InternalLinkText 
+                    text="Le maître d'œuvre, comme Progineer, coordonne et supervise l'ensemble du projet de construction, tandis que l'architecte se concentre davantage sur la conception. Nous travaillons en collaboration avec des architectes lorsque nécessaire pour certains projets."
+                    maxOccurrences={2}
+                  />
+                </p>
+              </div>
+
+              <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+                <h3 className="text-xl font-semibold mb-3">Quel est le délai moyen pour un projet de construction ?</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  <InternalLinkText 
+                    text="Les délais varient selon la nature et l'ampleur du projet. Pour une maison individuelle, comptez environ 8 à 12 mois entre la conception et la livraison. Une extension prend généralement 4 à 6 mois, et une rénovation 2 à 6 mois selon sa complexité."
+                    maxOccurrences={2}
+                  />
+                </p>
+              </div>
+
+              <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+                <h3 className="text-xl font-semibold mb-3">Quelles garanties offrez-vous sur vos prestations ?</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  <InternalLinkText 
+                    text="Nous sommes couverts par une assurance décennale et une responsabilité civile professionnelle. De plus, nous garantissons la conformité des travaux avec les plans et le respect des normes en vigueur, notamment la RE2020."
+                    maxOccurrences={2}
+                  />
+                </p>
+              </div>
+
+              <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+                <h3 className="text-xl font-semibold mb-3">Intervenez-vous sur toute la région PACA ?</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  <InternalLinkText 
+                    text="Oui, nous intervenons dans toute la région Provence-Alpes-Côte d'Azur, notamment à Marseille, Toulon, Nice, Cannes, Saint-Tropez, Fréjus et leurs environs. N'hésitez pas à nous contacter pour vérifier notre disponibilité dans votre zone."
+                    maxOccurrences={2}
+                  />
+                </p>
+              </div>
+
+              <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+                <h3 className="text-xl font-semibold mb-3">Quels types de travaux réalisez-vous ?</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  <InternalLinkText 
+                    text="Nous réalisons tous types de travaux : travaux de construction neuve, travaux de rénovation complète, travaux d'extension et travaux d'aménagement. En tant que constructeur de maison et maître d'œuvre, nous coordonnons l'ensemble des corps de métier pour vos travaux, depuis les travaux de gros œuvre jusqu'aux travaux de finition."
+                    maxOccurrences={2}
+                  />
+                </p>
+              </div>
+
+              <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+                <h3 className="text-xl font-semibold mb-3">Comment estimez-vous le coût des travaux ?</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  <InternalLinkText 
+                    text="L'estimation des travaux prend en compte plusieurs facteurs : la nature des travaux, la surface concernée, la qualité des matériaux et la complexité technique. Nos devis détaillent chaque poste de travaux pour une transparence totale sur le coût de vos travaux."
+                    maxOccurrences={2}
+                  />
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center mt-10">
+              <Link to="/faq" className="text-khaki-600 hover:text-khaki-800 font-medium">
+                Voir toutes les questions fréquentes →
+              </Link>
+            </div>
+          </Container>
+        </section>
+
+        {/* SEO Footer renforcé */}
+        <SEOFooter 
+          text="Architecte-constructeur et maître d'œuvre à Marseille et en PACA – Cabinet d'architecture spécialisé en construction de maisons individuelles sur mesure, travaux de rénovation énergétique et extension. Nos architectes et constructeurs de maison assurent la maîtrise d'œuvre complète de vos travaux. Optimisation des espaces, design architectural et montage administratif pour particuliers et professionnels dans toute la région Provence-Alpes-Côte d'Azur."
+          additionalKeywords={[
+            "travaux construction", 
+            "travaux de rénovation", 
+            "constructeur de maison", 
+            "architecte constructeur PACA", 
+            "constructeur maison individuelle", 
+            "travaux maison individuelle", 
+            "architecte marseille", 
+            "cabinet architecture marseille"
+          ]}
+        />
+      </main>
     </>
   );
 };

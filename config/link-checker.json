@@ -1,0 +1,25 @@
+{
+  "baseUrl": "https://progineer.fr",
+  "excludePatterns": [
+    "node_modules",
+    "dist",
+    "build",
+    ".git",
+    "coverage",
+    "*.test.*",
+    "*.spec.*"
+  ],
+  "alertThreshold": 5,
+  "checkInterval": 86400000,
+  "timeout": 5000,
+  "maxConcurrentChecks": 10,
+  "retryAttempts": 3,
+  "retryDelay": 1000,
+  "ignorePatterns": [
+    "mailto:",
+    "tel:",
+    "javascript:",
+    "#",
+    "data:"
+  ]
+} 

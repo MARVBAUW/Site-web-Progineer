@@ -19,7 +19,7 @@ const SEO: React.FC<SEOProps> = ({
   title,
   description,
   keywords,
-  canonicalUrl = 'https://progineer.fr',
+  canonicalUrl,
   ogType = 'website',
   ogImage = 'https://progineer.fr/images/progineer-social-card.webp',
   structuredData,
@@ -32,6 +32,9 @@ const SEO: React.FC<SEOProps> = ({
   
   // Make sure description is not too long (Google typically displays ~155-160 characters)
   const formattedDescription = description.length > 160 ? description.substring(0, 160) + '...' : description;
+
+  // Generate canonical URL if not provided
+  const finalCanonicalUrl = canonicalUrl || `https://progineer.fr${window.location.pathname}`;
 
   // Default structured data if none is provided
   const defaultStructuredData = {
@@ -186,10 +189,27 @@ const SEO: React.FC<SEOProps> = ({
         "@type": "ListItem",
         "position": 2,
         "name": title,
-        "item": canonicalUrl
+        "item": finalCanonicalUrl
       }
     ]
   });
+
+  // Ajouter un lien vers la page d'accueil dans le contenu structuré
+  const mainEntityData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": finalCanonicalUrl,
+    "mainEntity": {
+      "@type": "Article",
+      "name": title,
+      "description": formattedDescription,
+      "url": finalCanonicalUrl,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://progineer.fr"
+      }
+    }
+  };
 
   return (
     <Helmet>
@@ -197,7 +217,7 @@ const SEO: React.FC<SEOProps> = ({
       <title>{formattedTitle}</title>
       <meta name="description" content={formattedDescription} />
       {keywords && <meta name="keywords" content={keywords} />}
-      <link rel="canonical" href={canonicalUrl} />
+      <link rel="canonical" href={finalCanonicalUrl} />
       
       {/* Language */}
       <html lang="fr" />
@@ -206,7 +226,7 @@ const SEO: React.FC<SEOProps> = ({
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />
-      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:url" content={finalCanonicalUrl} />
       <meta property="og:title" content={formattedTitle} />
       <meta property="og:description" content={formattedDescription} />
       <meta property="og:image" content={ogImage} />
@@ -214,7 +234,7 @@ const SEO: React.FC<SEOProps> = ({
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content={canonicalUrl} />
+      <meta name="twitter:url" content={finalCanonicalUrl} />
       <meta name="twitter:title" content={formattedTitle} />
       <meta name="twitter:description" content={formattedDescription} />
       <meta name="twitter:image" content={ogImage} />
@@ -241,6 +261,7 @@ const SEO: React.FC<SEOProps> = ({
       
       {/* Additional structured data for breadcrumbs */}
       <script type="application/ld+json">{breadcrumbDataString}</script>
+      <script type="application/ld+json">{JSON.stringify(mainEntityData)}</script>
 
       {/* Add link to sitemap */}
       <link rel="sitemap" type="application/xml" href="https://progineer.fr/sitemap.xml" />

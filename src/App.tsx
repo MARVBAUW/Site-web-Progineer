@@ -1,4 +1,3 @@
-
 import React, { Suspense } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
@@ -7,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from './hooks/useAuth';
 import { UserRegistrationNotificationsContainer } from './components/admin/notifications/UserRegistrationNotification';
+import { SEOValidator } from './components/seo/SEOValidator';
 import { routes } from './routes';
 
 const queryClient = new QueryClient();
@@ -32,6 +32,7 @@ const App = () => {
               {routeElements}
             </Suspense>
             <Toaster />
+            {import.meta.env.DEV && <SEOValidator />}
           </AuthProvider>
         </HelmetProvider>
       </QueryClientProvider>

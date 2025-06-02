@@ -188,12 +188,21 @@ class SEOValidator {
     const imagesPath = path.join(projectRoot, 'public', 'images');
     
     const requiredImages = [
-      'progineer-logo.png',
-      'progineer-social-card.jpg'
+      { name: 'progineer-logo', formats: ['.png', '.jpg', '.webp'] },
+      { name: 'progineer-social-card', formats: ['.jpg'] }
     ];
 
     requiredImages.forEach(image => {
-      this.checkFileExists(`public/images/${image}`, `Image ${image}`);
+      const found = image.formats.some(format => {
+        const fullPath = path.join(imagesPath, `${image.name}${format}`);
+        return fs.existsSync(fullPath);
+      });
+
+      if (found) {
+        this.log('success', `Image ${image.name} existe dans un des formats acceptés (${image.formats.join(', ')})`);
+      } else {
+        this.log('error', `Image ${image.name} manquante dans les formats acceptés (${image.formats.join(', ')})`);
+      }
     });
   }
 
@@ -217,6 +226,30 @@ class SEOValidator {
         this.log('warning', `Package SEO ${pkg} manquant`);
       }
     });
+  }
+
+  checkSchemaOrgData() {
+    const pagesPath = path.join(projectRoot, 'src', 'pages');
+    if (!fs.existsSync(pagesPath)) {
+      this.log('error', 'Dossier des pages manquant');
+      return;
+    }
+
+    const pages = fs.readdirSync(pagesPath)
+      .filter(file => file.endsWith('.tsx') || file.endsWith('.jsx'));
+
+    let hasSchemaData = false;
+    pages.forEach(page => {
+      const content = fs.readFileSync(path.join(pagesPath, page), 'utf8');
+      if (content.includes('schemaData') || content.includes('@type') || content.includes('https://schema.org')) {
+        hasSchemaData = true;
+        this.log('success', `Données structurées Schema.org trouvées dans ${page}`);
+      }
+    });
+
+    if (!hasSchemaData) {
+      this.log('error', 'Aucune donnée structurée Schema.org (JSON-LD) trouvée');
+    }
   }
 
   generateReport() {
@@ -256,8 +289,8 @@ class SEOValidator {
     console.log('\n' + '='.repeat(60));
   }
 
-  run() {
-    console.log('🔍 Validation SEO en cours...\n');
+  async validate() {
+    console.log('🔍 Démarrage de la validation SEO...\n');
     
     this.checkIndexHtml();
     this.checkRobotsTxt();
@@ -265,11 +298,22 @@ class SEOValidator {
     this.checkSEOComponents();
     this.checkImages();
     this.checkPackageJson();
+    this.checkSchemaOrgData();
     
     this.generateReport();
+    
+    const score = Math.round((this.successes.length / (this.successes.length + this.errors.length + this.warnings.length)) * 100);
+    console.log(`\n📈 Score SEO: ${score}%`);
+    
+    return {
+      score,
+      errors: this.errors,
+      warnings: this.warnings,
+      successes: this.successes
+    };
   }
 }
 
 // Exécuter la validation
 const validator = new SEOValidator();
-validator.run(); 
+validator.validate(); 

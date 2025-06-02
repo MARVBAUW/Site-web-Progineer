@@ -1,16 +1,22 @@
-
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import Hero from '../components/home/Hero';
-import ExpertiseSection from '../components/home/ExpertiseSection';
-import Services from '../components/home/Services';
-import Testimonials from '../components/home/Testimonials';
-import CTASection from '../components/home/CTASection';
-import StatsSection from '../components/home/StatsSection';
-import LocationMap from '../components/home/LocationMap';
-import InnovationHub from '../components/home/InnovationHub';
+import Container from '@/components/common/Container';
 import { getBusinessStructuredData } from '../utils/googleBusiness';
-import SEO from '../components/common/SEO';
+import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
 import SEOFooter from '@/components/common/SEOFooter';
+
+// Lazy loading des composants non critiques
+const ExpertiseSection = lazy(() => import('../components/home/ExpertiseSection'));
+const Services = lazy(() => import('../components/home/Services'));
+const Testimonials = lazy(() => import('../components/home/Testimonials'));
+const CTASection = lazy(() => import('../components/home/CTASection'));
+const StatsSection = lazy(() => import('../components/home/StatsSection'));
+const LocationMap = lazy(() => import('../components/home/LocationMap'));
+const InnovationHub = lazy(() => import('../components/home/InnovationHub'));
+const ProjectCard = lazy(() => import('../components/realisations/ProjectCard'));
+
+// Importation des données
+import { projects } from '@/data/projects';
 
 // Importation des feuilles de style pour les animations
 import '../components/home/animations.css';
@@ -39,26 +45,89 @@ const Index = () => {
     };
   }, []);
 
+  // Données structurées Schema.org
+  const schemaData = {
+    type: "ProfessionalService",
+    name: "Progineer",
+    description: "Cabinet d'architecture et maître d'œuvre spécialisé en construction, rénovation et extension de maisons sur mesure en région PACA. Expertise technique et coordination complète de projets.",
+    url: "https://progineer.fr",
+    image: "https://progineer.fr/images/progineer-social-card.webp",
+    address: {
+      streetAddress: "Marseille",
+      addressLocality: "Marseille",
+      addressRegion: "Provence-Alpes-Côte d'Azur",
+      postalCode: "13000",
+      addressCountry: "FR"
+    },
+    geo: {
+      latitude: "43.296482",
+      longitude: "5.369780"
+    },
+    areaServed: {
+      type: "AdministrativeArea",
+      name: "PACA"
+    },
+    additionalData: {
+      "@type": "ProfessionalService",
+      telephone: "+33783762156",
+      email: "progineer.moe@gmail.com",
+      priceRange: "€€€",
+      foundingDate: "2020",
+      numberOfEmployees: "5-10",
+      slogan: "Votre architecte et maître d'œuvre en PACA",
+      openingHours: "Mo-Fr 09:00-18:00",
+      sameAs: [
+        "https://www.facebook.com/people/Progineer-Ma%C3%AEtrise-Doeuvre/61572478063277/",
+        "https://www.instagram.com/progineer_moe/",
+        "https://www.linkedin.com/company/105527808/admin/dashboard/"
+      ]
+    }
+  };
+
   return (
     <>
-      <SEO 
+      <EnhancedSEO 
         title="Architecte & Maître d'œuvre Marseille | Constructeur Maison PACA | Progineer"
         description="Cabinet d'architecture et constructeur-maître d'œuvre à Marseille spécialisé en conception et construction de maisons individuelles. Expertise architecturale et coordination complète pour vos projets en PACA."
-        keywords="architecte marseille, maître d'œuvre PACA, constructeur maison individuelle, cabinet architecture, construction sur mesure marseille, architecte PACA, constructeur marseille"
-        canonicalUrl="https://progineer.fr/"
-        structuredData={getBusinessStructuredData()}
+        keywords={[
+          "architecte marseille",
+          "maître d'œuvre PACA",
+          "constructeur maison individuelle",
+          "cabinet architecture",
+          "construction sur mesure marseille",
+          "architecte PACA",
+          "constructeur marseille"
+        ]}
+        url="https://progineer.fr/"
+        schemaData={schemaData}
       />
       
-      <main className="overflow-hidden">
-        <div className="sr-only" role="heading" aria-level={1}>Architecte et Maître d'œuvre à Marseille | Constructeur de Maisons PACA</div>
+      <main className="w-full">
+        <h1 className="sr-only">Architecte et Maître d'œuvre à Marseille | Constructeur de Maisons PACA</h1>
         <Hero />
-        <ExpertiseSection />
-        <Services />
-        <StatsSection />
-        <Testimonials />
-        <LocationMap />
-        <CTASection />
-        <InnovationHub />
+        
+        <Suspense fallback={<div className="h-96 flex items-center justify-center">Chargement...</div>}>
+          <ExpertiseSection />
+          <Services />
+          
+          {/* Section des projets récents */}
+          <section className="py-16 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+            <Container>
+              <h2 className="text-3xl font-bold mb-8 text-center">Nos Dernières Réalisations</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {projects.slice(0, 3).map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+              </div>
+            </Container>
+          </section>
+
+          <StatsSection />
+          <Testimonials />
+          <LocationMap />
+          <CTASection />
+          <InnovationHub />
+        </Suspense>
       </main>
       
       <SEOFooter 

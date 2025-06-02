@@ -1,87 +1,153 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
-import { generateCanonicalUrl, generateBreadcrumbSchema } from './CanonicalUtils';
+import { SchemaOrgData } from './SchemaOrgData';
 
-interface SEOProps {
+interface EnhancedSEOProps {
   title: string;
   description: string;
-  keywords?: string;
-  canonicalUrl?: string;
-  ogType?: string;
-  ogImage?: string;
-  structuredData?: object;
-  children?: React.ReactNode;
-  breadcrumbs?: Array<{name: string, url: string}>;
+  keywords?: string[];
+  image?: string;
+  type?: string;
+  url: string;
   noIndex?: boolean;
+  noFollow?: boolean;
+  alternateUrls?: {
+    lang: string;
+    url: string;
+  }[];
+  schemaData?: {
+    type: string;
+    name: string;
+    description: string;
+    url: string;
+    image?: string;
+    address?: {
+      streetAddress?: string;
+      addressLocality: string;
+      addressRegion: string;
+      postalCode: string;
+      addressCountry: string;
+    };
+    geo?: {
+      latitude: string;
+      longitude: string;
+    };
+    areaServed?: {
+      type: string;
+      name: string;
+    };
+    potentialAction?: {
+      type: string;
+      target: string;
+    };
+    itemListElement?: Array<{
+      "@type": string;
+      position: number;
+      name: string;
+      description: string;
+      url?: string;
+      image?: string;
+    }>;
+    additionalData?: Record<string, any>;
+  };
 }
 
-const EnhancedSEO: React.FC<SEOProps> = ({
+export const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
   title,
   description,
-  keywords,
-  canonicalUrl,
-  ogType = 'website',
-  ogImage = 'https://progineer.fr/images/progineer-social-card.jpg',
-  structuredData,
-  children,
-  breadcrumbs,
-  noIndex = false
+  keywords = [],
+  image = 'https://progineer.fr/images/og-image.jpg',
+  type = 'website',
+  url,
+  noIndex = false,
+  noFollow = false,
+  alternateUrls = [],
+  schemaData
 }) => {
-  const location = useLocation();
+  const baseUrl = 'https://progineer.fr';
+  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
   
-  // Generate proper canonical URL
-  const finalCanonicalUrl = generateCanonicalUrl(location.pathname, canonicalUrl);
+  // Créer la directive robots
+  const robotsContent = [
+    noIndex ? 'noindex' : 'index',
+    noFollow ? 'nofollow' : 'follow',
+    'max-snippet:-1',
+    'max-image-preview:large',
+    'max-video-preview:-1'
+  ].join(', ');
 
-  // Generate breadcrumb schema if breadcrumbs are provided
-  const breadcrumbSchema = breadcrumbs ? generateBreadcrumbSchema(breadcrumbs) : null;
-  
   return (
-    <Helmet>
-      {/* Basic Meta Tags */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      {keywords && <meta name="keywords" content={keywords} />}
-      
-      {/* Canonical tag - essential for SEO with similar content */}
-      <link rel="canonical" href={finalCanonicalUrl} />
-      
-      {/* Indexing directives */}
-      {noIndex ? 
-        <meta name="robots" content="noindex, follow" /> :
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      }
-      
-      {/* Language */}
-      <html lang="fr" />
-      <meta property="og:locale" content="fr_FR" />
-      
-      {/* Open Graph / Social Media */}
-      <meta property="og:type" content={ogType} />
-      <meta property="og:url" content={finalCanonicalUrl} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
-      
-      {/* Structured Data (JSON-LD) */}
-      {structuredData && (
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
+    <>
+      <Helmet>
+        {/* Balises meta de base */}
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        {keywords.length > 0 && (
+          <meta name="keywords" content={keywords.join(', ')} />
+        )}
+        
+        {/* Directives robots */}
+        <meta name="robots" content={robotsContent} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content={type} />
+        <meta property="og:url" content={fullUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={fullUrl} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
+        
+        {/* URL canonique */}
+        <link rel="canonical" href={fullUrl} />
+        
+        {/* URLs alternatives pour les versions linguistiques */}
+        {alternateUrls.map(({ lang, url }) => (
+          <link
+            key={lang}
+            rel="alternate"
+            hrefLang={lang}
+            href={url.startsWith('http') ? url : `${baseUrl}${url}`}
+          />
+        ))}
+        
+        {/* URL par défaut pour les langues non spécifiées */}
+        {alternateUrls.length > 0 && (
+          <link rel="alternate" hrefLang="x-default" href={fullUrl} />
+        )}
+        
+        {/* Optimisations Core Web Vitals */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href={baseUrl} />
+        
+        {/* Balises supplémentaires */}
+        <meta name="language" content="fr" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="author" content="Progineer" />
+      </Helmet>
+
+      {/* Données structurées Schema.org */}
+      {schemaData && (
+        <SchemaOrgData
+          type={schemaData.type}
+          name={schemaData.name}
+          description={schemaData.description}
+          url={schemaData.url}
+          image={schemaData.image}
+          address={schemaData.address}
+          geo={schemaData.geo}
+          areaServed={schemaData.areaServed}
+          potentialAction={schemaData.potentialAction}
+          itemListElement={schemaData.itemListElement}
+          additionalData={schemaData.additionalData}
+        />
       )}
-      
-      {/* Breadcrumb schema */}
-      {breadcrumbSchema && (
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-      )}
-      
-      {/* Additional meta tags can be passed as children */}
-      {children}
-    </Helmet>
+    </>
   );
 };
-
-export default EnhancedSEO;
