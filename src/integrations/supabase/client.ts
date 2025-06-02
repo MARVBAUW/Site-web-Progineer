@@ -2,13 +2,13 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
-if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+if (!supabaseUrl || !supabaseKey) {
   console.error('Missing Supabase environment variables:', {
-    url: SUPABASE_URL ? 'defined' : 'missing',
-    key: SUPABASE_ANON_KEY ? 'defined' : 'missing'
+    url: supabaseUrl ? 'defined' : 'missing',
+    key: supabaseKey ? 'defined' : 'missing'
   });
   throw new Error('Missing Supabase environment variables');
 }
@@ -16,11 +16,11 @@ if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_ANON_KEY, {
+export const supabase = createClient<Database>(supabaseUrl, supabaseKey, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
-    storage: localStorage,
+    storage: typeof window !== 'undefined' ? localStorage : undefined,
     storageKey: 'supabase.auth.token',
     detectSessionInUrl: true
   },

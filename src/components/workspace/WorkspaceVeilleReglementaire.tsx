@@ -232,15 +232,6 @@ const WorkspaceVeilleReglementaire: React.FC<WorkspaceVeilleReglementaireProps> 
           Restez informé des dernières actualités réglementaires, techniques et environnementales 
           du secteur de la construction et de la rénovation.
         </p>
-        
-        {/* Message de configuration */}
-        <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg max-w-2xl mx-auto">
-          <p className="text-sm text-blue-800">
-            <strong>🚀 Système en cours de configuration</strong><br/>
-            Les articles sont actuellement affichés en mode démo. 
-            Configurez vos clés API dans le fichier <code>.env.local</code> pour activer la génération automatique.
-          </p>
-        </div>
       </div>
 
       {/* Barre de recherche et filtres */}

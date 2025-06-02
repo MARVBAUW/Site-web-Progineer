@@ -10,6 +10,8 @@ if (import.meta.env.DEV) {
   console.log('Supabase authentification est configurée et prête à être utilisée');
 }
 
+// Vérifie que le tsconfig.json a bien "module": "es2020" ou supérieur.
+
 // Ajouter une balise d'application pour les robots
 const metaRobots = document.createElement('meta');
 metaRobots.name = 'robots';
