@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,10 @@ const WindPressureCalculator: React.FC = () => {
   const [altitude, setAltitude] = useState(100); // m
   const [surface, setSurface] = useState(50); // m²
   const [exposure, setExposure] = useState(1);
+  const [buildingHeight, setBuildingHeight] = useState(10); // m
+  const [windRegion, setWindRegion] = useState('Zone 1');
+  const [roughness, setRoughness] = useState('II');
+  const [windPressure, setWindPressure] = useState<number | null>(null);
 
   // Valeurs qb (kN/m²) par zone (exemple simplifié)
   const qbZones: Record<string, number> = { '1': 0.5, '2': 0.7, '3': 0.9, '4': 1.1 };
@@ -22,8 +27,13 @@ const WindPressureCalculator: React.FC = () => {
   // q = qb × Ce × Cpe × surface
   const q = qb * Ce * Cpe * surface;
   let advice = '';
-  if (q > 50) advice = "Pression élevée : vérifier la structure et les fixations.";
+  if (q > 50) advice = "Pression élevée : vérifier la structure et les fixations.";
   else advice = "Pression modérée ou faible.";
+
+  const calculateWindPressure = () => {
+    const calculatedPressure = qb * Ce;
+    setWindPressure(calculatedPressure);
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
