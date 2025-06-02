@@ -1,17 +1,12 @@
+
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
+import { User, Session } from '@supabase/supabase-js';
+import { supabase } from '@/integrations/supabase/client';
 
-// Type pour l'utilisateur
-export interface User {
-  id: string;
-  email: string;
-  firstName?: string;
-  lastName?: string;
-  role?: 'client' | 'admin';
-}
-
-// Type pour le contexte d'authentification
+// Interface pour le contexte d'authentification
 interface AuthContextType {
   user: User | null;
+  session: Session | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
@@ -25,46 +20,43 @@ const AuthContext = createContext<AuthContextType | null>(null);
 // Provider d'authentification
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simulation de vérification de l'authentification au chargement
   useEffect(() => {
-    const checkAuth = () => {
-      try {
-        const storedUser = localStorage.getItem('auth_user');
-        if (storedUser) {
-          const userData = JSON.parse(storedUser);
-          setUser(userData);
-        }
-      } catch (error) {
-        console.error('Erreur lors de la vérification de l\'authentification:', error);
-        localStorage.removeItem('auth_user');
-      } finally {
+    // Configurer l'écoute des changements d'état d'authentification
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        console.log('Auth state change event:', event);
+        setSession(session);
+        setUser(session?.user ?? null);
         setIsLoading(false);
       }
-    };
+    );
 
-    checkAuth();
+    // Vérifier la session existante
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log('Initial session check:', session ? 'User logged in' : 'No session');
+      setSession(session);
+      setUser(session?.user ?? null);
+      setIsLoading(false);
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   const signIn = async (email: string, password: string) => {
     setIsLoading(true);
     try {
-      // Simulation d'une API call - à remplacer par votre logique d'authentification
-      // Ici on simule une authentification réussie
-      if (email && password) {
-        const userData: User = {
-          id: 'user_' + Math.random().toString(36).substr(2, 9),
-          email,
-          firstName: 'Client',
-          lastName: 'Test',
-          role: 'client'
-        };
-        
-        setUser(userData);
-        localStorage.setItem('auth_user', JSON.stringify(userData));
-      } else {
-        throw new Error('Email et mot de passe requis');
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        throw error;
       }
     } catch (error) {
       console.error('Erreur de connexion:', error);
@@ -77,20 +69,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signUp = async (email: string, password: string, firstName?: string, lastName?: string) => {
     setIsLoading(true);
     try {
-      // Simulation d'une API call - à remplacer par votre logique d'inscription
-      if (email && password) {
-        const userData: User = {
-          id: 'user_' + Math.random().toString(36).substr(2, 9),
-          email,
-          firstName: firstName || 'Nouveau',
-          lastName: lastName || 'Client',
-          role: 'client'
-        };
-        
-        setUser(userData);
-        localStorage.setItem('auth_user', JSON.stringify(userData));
-      } else {
-        throw new Error('Email et mot de passe requis');
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            first_name: firstName,
+            last_name: lastName,
+          },
+        },
+      });
+
+      if (error) {
+        throw error;
       }
     } catch (error) {
       console.error('Erreur d\'inscription:', error);
@@ -102,8 +93,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signOut = async () => {
     try {
-      setUser(null);
-      localStorage.removeItem('auth_user');
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        throw error;
+      }
     } catch (error) {
       console.error('Erreur de déconnexion:', error);
       throw error;
@@ -112,11 +105,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const value: AuthContextType = {
     user,
+    session,
     isAuthenticated: !!user,
     isLoading,
     signIn,
     signUp,
-    signOut
+    signOut,
   };
 
   return (
