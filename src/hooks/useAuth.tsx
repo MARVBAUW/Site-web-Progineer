@@ -1,12 +1,23 @@
-import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 
-// Type pour l'utilisateur
+import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
+import { User as SupabaseUser } from '@supabase/supabase-js';
+
+// Type pour l'utilisateur avec les propriétés nécessaires
 export interface User {
   id: string;
   email: string;
   firstName?: string;
   lastName?: string;
   role?: 'client' | 'admin';
+  user_metadata?: {
+    full_name?: string;
+    [key: string]: any;
+  };
+  app_metadata?: {
+    [key: string]: any;
+  };
+  aud?: string;
+  created_at?: string;
 }
 
 // Type pour le contexte d'authentification
@@ -14,9 +25,13 @@ interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  loading: boolean;
+  error: string | null;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, firstName?: string, lastName?: string) => Promise<void>;
+  signUp: (email: string, password: string, metadata?: { full_name?: string; [key: string]: any }) => Promise<void>;
   signOut: () => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
+  signUpWithGoogle: () => Promise<void>;
 }
 
 // Contexte d'authentification
@@ -26,6 +41,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   // Simulation de vérification de l'authentification au chargement
   useEffect(() => {
@@ -49,16 +65,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signIn = async (email: string, password: string) => {
     setIsLoading(true);
+    setError(null);
     try {
       // Simulation d'une API call - à remplacer par votre logique d'authentification
-      // Ici on simule une authentification réussie
       if (email && password) {
         const userData: User = {
           id: 'user_' + Math.random().toString(36).substr(2, 9),
           email,
           firstName: 'Client',
           lastName: 'Test',
-          role: 'client'
+          role: 'client',
+          user_metadata: {
+            full_name: 'Client Test'
+          },
+          app_metadata: {},
+          aud: 'authenticated',
+          created_at: new Date().toISOString()
         };
         
         setUser(userData);
@@ -68,23 +90,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     } catch (error) {
       console.error('Erreur de connexion:', error);
+      setError(error instanceof Error ? error.message : 'Erreur de connexion');
       throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const signUp = async (email: string, password: string, firstName?: string, lastName?: string) => {
+  const signUp = async (email: string, password: string, metadata?: { full_name?: string; [key: string]: any }) => {
     setIsLoading(true);
+    setError(null);
     try {
-      // Simulation d'une API call - à remplacer par votre logique d'inscription
       if (email && password) {
         const userData: User = {
           id: 'user_' + Math.random().toString(36).substr(2, 9),
           email,
-          firstName: firstName || 'Nouveau',
-          lastName: lastName || 'Client',
-          role: 'client'
+          firstName: metadata?.full_name?.split(' ')[0] || 'Nouveau',
+          lastName: metadata?.full_name?.split(' ').slice(1).join(' ') || 'Client',
+          role: 'client',
+          user_metadata: {
+            full_name: metadata?.full_name || 'Nouveau Client',
+            ...metadata
+          },
+          app_metadata: {},
+          aud: 'authenticated',
+          created_at: new Date().toISOString()
         };
         
         setUser(userData);
@@ -94,6 +124,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     } catch (error) {
       console.error('Erreur d\'inscription:', error);
+      setError(error instanceof Error ? error.message : 'Erreur d\'inscription');
       throw error;
     } finally {
       setIsLoading(false);
@@ -104,19 +135,33 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setUser(null);
       localStorage.removeItem('auth_user');
+      setError(null);
     } catch (error) {
       console.error('Erreur de déconnexion:', error);
+      setError(error instanceof Error ? error.message : 'Erreur de déconnexion');
       throw error;
     }
+  };
+
+  const signInWithGoogle = async () => {
+    setError('Connexion Google non implémentée dans cette version de démonstration');
+  };
+
+  const signUpWithGoogle = async () => {
+    setError('Inscription Google non implémentée dans cette version de démonstration');
   };
 
   const value: AuthContextType = {
     user,
     isAuthenticated: !!user,
     isLoading,
+    loading: isLoading,
+    error,
     signIn,
     signUp,
-    signOut
+    signOut,
+    signInWithGoogle,
+    signUpWithGoogle
   };
 
   return (
