@@ -1,5 +1,5 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { serve } from "std/http/server.ts"
+import { createClient } from "@supabase/supabase-js"
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -25,13 +25,10 @@ serve(async (req) => {
   }
 
   try {
-    const { type, query, source = 'manual' } = await req.json()
+    const { url, supabaseUrl, supabaseKey } = await req.json()
     
-    // Initialiser le client Supabase
-    const supabaseClient = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
-    )
+    // Create Supabase client
+    const supabase = createClient(supabaseUrl, supabaseKey)
 
     // Générer l'article avec Claude
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -47,7 +44,7 @@ serve(async (req) => {
         messages: [
           { 
             role: 'user', 
-            content: `Génère un article de veille réglementaire sur le sujet suivant: ${query}
+            content: `Génère un article de veille réglementaire sur le sujet suivant: ${url}
             Format attendu:
             - Titre accrocheur
             - Résumé en 2-3 phrases
@@ -73,12 +70,12 @@ serve(async (req) => {
       summary: extractSummary(content),
       keywords: extractKeywords(content),
       created_at: new Date().toISOString(),
-      source: source,
+      source: 'Claude',
       status: 'draft'
     }
 
     // Sauvegarder l'article dans Supabase
-    const { data: savedArticle, error: saveError } = await supabaseClient
+    const { data: savedArticle, error: saveError } = await supabase
       .from('veille_articles')
       .insert([article])
       .select()
