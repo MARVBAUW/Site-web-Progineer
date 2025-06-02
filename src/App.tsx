@@ -8,6 +8,7 @@ import { AuthProvider } from './hooks/useAuth';
 import { UserRegistrationNotificationsContainer } from './components/admin/notifications/UserRegistrationNotification';
 import { SEOValidator } from './components/seo/SEOValidator';
 import { routes } from './routes';
+import { useSessionTimeout } from './hooks/useSessionTimeout';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,9 @@ const LoadingFallback = () => (
 
 const App = () => {
   const routeElements = useRoutes(routes);
+  
+  // Activer la gestion de la durée de session
+  useSessionTimeout();
 
   return (
     <ThemeProvider defaultTheme="light" storageKey="progineer-theme">

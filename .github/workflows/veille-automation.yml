@@ -11,22 +11,38 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install
+
     - name: Générer article de veille
+      env:
+        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        NODE_ENV: production
+        VEILLE_LOG_LEVEL: info
+        VEILLE_RETRY_ATTEMPTS: 3
+        VEILLE_RETRY_DELAY: 1000
       run: |
-        curl -X POST \
-          -H "Content-Type: application/json" \
-          -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
-          -d '{
-            "topic": "Évolutions réglementaires construction",
-            "category": "reglementation",
-            "keywords": ["RE2020", "construction", "PACA", "réglementation"]
-          }' \
-          https://usakxozksekpuoukvksj.supabase.co/functions/v1/generate-veille-article
+        node scripts/generate-veille-article.mjs
       
     - name: Notification succès
       if: success()
-      run: echo "✅ Article de veille généré avec succès"
+      run: |
+        echo "✅ Article de veille généré avec succès"
+        # TODO: Ajouter notification Slack/Discord ici
       
     - name: Notification échec
       if: failure()
-      run: echo "❌ Erreur lors de la génération d'article"
+      run: |
+        echo "❌ Erreur lors de la génération d'article"
+        # TODO: Ajouter notification Slack/Discord ici
