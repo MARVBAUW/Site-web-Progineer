@@ -8,10 +8,13 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   isAuthenticated: boolean;
-  isLoading: boolean;
+  loading: boolean;
+  error: string | null;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, firstName?: string, lastName?: string) => Promise<void>;
+  signUp: (email: string, password: string, metadata?: { full_name?: string }) => Promise<void>;
   signOut: () => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
+  signUpWithGoogle: () => Promise<void>;
 }
 
 // Contexte d'authentification
@@ -21,7 +24,8 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Configurer l'écoute des changements d'état d'authentification
@@ -30,7 +34,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         console.log('Auth state change event:', event);
         setSession(session);
         setUser(session?.user ?? null);
-        setIsLoading(false);
+        setLoading(false);
+        setError(null);
       }
     );
 
@@ -39,7 +44,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       console.log('Initial session check:', session ? 'User logged in' : 'No session');
       setSession(session);
       setUser(session?.user ?? null);
-      setIsLoading(false);
+      setLoading(false);
     });
 
     return () => {
@@ -48,7 +53,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    setIsLoading(true);
+    setLoading(true);
+    setError(null);
     try {
       const { error } = await supabase.auth.signInWithPassword({
         email,
@@ -58,48 +64,99 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (error) {
         throw error;
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Erreur de connexion:', error);
+      setError(error.message || 'Erreur de connexion');
       throw error;
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
-  const signUp = async (email: string, password: string, firstName?: string, lastName?: string) => {
-    setIsLoading(true);
+  const signUp = async (email: string, password: string, metadata?: { full_name?: string }) => {
+    setLoading(true);
+    setError(null);
     try {
       const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          data: {
-            first_name: firstName,
-            last_name: lastName,
-          },
+          data: metadata || {},
         },
       });
 
       if (error) {
         throw error;
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Erreur d\'inscription:', error);
+      setError(error.message || 'Erreur d\'inscription');
       throw error;
     } finally {
-      setIsLoading(false);
+      setLoading(false);
+    }
+  };
+
+  const signInWithGoogle = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/workspace/client-area`
+        }
+      });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error: any) {
+      console.error('Erreur de connexion Google:', error);
+      setError(error.message || 'Erreur de connexion Google');
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signUpWithGoogle = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/workspace/client-area`
+        }
+      });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error: any) {
+      console.error('Erreur d\'inscription Google:', error);
+      setError(error.message || 'Erreur d\'inscription Google');
+      throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
   const signOut = async () => {
+    setLoading(true);
+    setError(null);
     try {
       const { error } = await supabase.auth.signOut();
       if (error) {
         throw error;
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Erreur de déconnexion:', error);
+      setError(error.message || 'Erreur de déconnexion');
       throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -107,10 +164,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     user,
     session,
     isAuthenticated: !!user,
-    isLoading,
+    loading,
+    error,
     signIn,
     signUp,
     signOut,
+    signInWithGoogle,
+    signUpWithGoogle,
   };
 
   return (

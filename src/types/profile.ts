@@ -9,6 +9,7 @@ export interface ProfileData {
   phone?: string;
   address?: string;
   companyName?: string;
+  company?: string; // Added this property
   username?: string;
   role?: string;
 }

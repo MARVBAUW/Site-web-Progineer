@@ -1,379 +1,138 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Download, Info } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 
-const TimberCalculator: React.FC = () => {
-  const { toast } = useToast();
-  const [activeTab, setActiveTab] = useState('beam');
-  const [baseWidth, setBaseWidth] = useState('200');
-  const [height, setHeight] = useState('300');
-  const [length, setLength] = useState(4); // m
-  const [area, setArea] = useState(0.01); // m²
-  const [load, setLoad] = useState(30); // kN
-  const [woodClass, setWoodClass] = useState('c24');
-  const [serviceClass, setServiceClass] = useState('1');
-  const [loadDuration, setLoadDuration] = useState('medium');
-  const [uniformLoad, setUniformLoad] = useState('5');
-  const [grade, setGrade] = useState('C24');
-  
-  // Calcul de la résistance en flexion du bois selon l'Eurocode 5
-  const calculateBendingStrength = () => {
-    // Classes de résistance du bois (valeurs en MPa)
-    const strengthClasses: {[key: string]: number} = {
-      'c16': 16,
-      'c18': 18,
-      'c24': 24,
-      'c30': 30,
-      'c35': 35,
-      'c40': 40,
-      'd30': 30,
-      'd35': 35,
-      'd40': 40,
-      'd50': 50,
-      'd60': 60,
-      'd70': 70
-    };
-    
-    // Coefficients de durée de charge
-    const kmodValues: {[key: string]: {[key: string]: number}} = {
-      '1': {
-        'permanent': 0.6,
-        'long': 0.7,
-        'medium': 0.8,
-        'short': 0.9,
-        'instantaneous': 1.1
-      },
-      '2': {
-        'permanent': 0.6,
-        'long': 0.7,
-        'medium': 0.8,
-        'short': 0.9,
-        'instantaneous': 1.1
-      },
-      '3': {
-        'permanent': 0.5,
-        'long': 0.55,
-        'medium': 0.65,
-        'short': 0.7,
-        'instantaneous': 0.9
-      }
-    };
-    
-    // Calcul du coefficient de modification
-    const kmod = kmodValues[serviceClass]?.[loadDuration] || 0.8;
-    
-    // Coefficient de sécurité pour le bois massif
-    const gammaM = 1.3;
-    
-    // Résistance caractéristique en flexion
-    const fm_k = strengthClasses[woodClass] || 24;
-    
-    // Résistance de calcul en flexion
-    const fm_d = fm_k * kmod / gammaM;
-    
-    return fm_d.toFixed(2);
+import React, { useState } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
+export const TimberCalculator: React.FC = () => {
+  const [length, setLength] = useState<string>('');
+  const [width, setWidth] = useState<string>('');
+  const [height, setHeight] = useState<string>('');
+  const [woodType, setWoodType] = useState<string>('');
+  const [load, setLoad] = useState<string>('');
+  const [result, setResult] = useState<{
+    volume: number;
+    weight: number;
+    resistance: number;
+  } | null>(null);
+
+  const woodDensities: { [key: string]: number } = {
+    'chene': 700,
+    'hetre': 650,
+    'pin': 500,
+    'sapin': 450,
+    'douglas': 520
   };
-  
-  // Calcul de la flèche
-  const calculateDeflection = () => {
-    // Modules d'élasticité moyens (en MPa) par classe de résistance
-    const elasticityModules: {[key: string]: number} = {
-      'c16': 8000,
-      'c18': 9000,
-      'c24': 11000,
-      'c30': 12000,
-      'c35': 13000,
-      'c40': 14000,
-      'd30': 11000,
-      'd35': 12000,
-      'd40': 13000,
-      'd50': 14000,
-      'd60': 17000,
-      'd70': 20000
-    };
+
+  const calculateTimber = () => {
+    const l = parseFloat(length);
+    const w = parseFloat(width);
+    const h = parseFloat(height);
+    const loadValue = parseFloat(load);
+
+    if (l <= 0 || w <= 0 || h <= 0 || !woodType) return;
+
+    const volume = (l * w * h) / 1000000; // Convert mm³ to m³
+    const density = woodDensities[woodType] || 500;
+    const weight = volume * density;
     
-    const E = elasticityModules[woodClass] || 11000; // Module d'élasticité en MPa
-    const b = parseFloat(baseWidth) / 1000; // Base en m
-    const h = parseFloat(height) / 1000; // Hauteur en m
-    const L = parseFloat(length) / 1000; // Longueur en m
-    const q = parseFloat(uniformLoad); // Charge uniforme en kN/m
-    
-    // Moment d'inertie (en m^4)
-    const I = (b * Math.pow(h, 3)) / 12;
-    
-    // Flèche instantanée pour une poutre simplement appuyée avec charge uniforme
-    // f = 5 * q * L^4 / (384 * E * I)
-    const deflection = (5 * q * Math.pow(L, 4) * 1000) / (384 * E * I); // En mm
-    
-    return deflection.toFixed(2);
-  };
-  
-  // Calcul de la contrainte de flexion
-  const calculateBendingStress = () => {
-    const b = parseFloat(baseWidth) / 1000; // Base en m
-    const h = parseFloat(height) / 1000; // Hauteur en m
-    const L = parseFloat(length) / 1000; // Longueur en m
-    const q = parseFloat(uniformLoad); // Charge uniforme en kN/m
-    
-    // Moment fléchissant maximum pour une poutre simplement appuyée avec charge uniforme
-    // M = q * L^2 / 8
-    const M = (q * Math.pow(L, 2)) / 8; // en kNm
-    
-    // Module de section
-    // W = b * h^2 / 6
-    const W = (b * Math.pow(h, 2)) / 6; // en m^3
-    
-    // Contrainte de flexion
-    // sigma_m = M / W
-    const sigma_m = M / W / 1000; // en MPa
-    
-    return sigma_m.toFixed(2);
-  };
-  
-  // Taux de travail en flexion
-  const calculateUtilizationRatio = () => {
-    const sigma_m = parseFloat(calculateBendingStress());
-    const fm_d = parseFloat(calculateBendingStrength());
-    
-    const ratio = (sigma_m / fm_d) * 100;
-    return ratio.toFixed(1);
-  };
-  
-  // Calculs simplifiés
-  const stress = load / (area * 1000); // MPa
-  let limit = 24;
-  if (grade === 'C18') limit = 18;
-  if (grade === 'C30') limit = 30;
-  let advice = '';
-  if (stress > limit * 0.6) advice = "Contrainte élevée : augmenter la section ou choisir une classe supérieure.";
-  else advice = "Dimensionnement correct (vérification simplifiée).";
-  
-  const handleReset = () => {
-    setBaseWidth('200');
-    setHeight('300');
-    setLength(4);
-    setArea(0.01);
-    setLoad(30);
-    setWoodClass('c24');
-    setServiceClass('1');
-    setLoadDuration('medium');
-    setUniformLoad('5');
-    setGrade('C24');
-  };
-  
-  const handleDownload = () => {
-    toast({
-      title: "Téléchargement démarré",
-      description: "Le rapport de calcul est en cours de téléchargement."
+    // Simplified resistance calculation (for demonstration)
+    const resistance = (w * h * h) / 6 * 30; // Simplified bending resistance
+
+    setResult({
+      volume,
+      weight,
+      resistance
     });
   };
 
   return (
-    <Card>
+    <Card className="w-full max-w-2xl">
       <CardHeader>
-        <CardTitle>Calculateur Bois (Eurocode 5)</CardTitle>
-        <CardDescription>
-          Dimensionnement et vérification des éléments structuraux en bois conformes à l'Eurocode 5
-        </CardDescription>
+        <CardTitle>Calculateur Bois - Eurocode 5</CardTitle>
       </CardHeader>
-      <CardContent>
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid grid-cols-2 md:grid-cols-4">
-            <TabsTrigger value="beam">Poutres</TabsTrigger>
-            <TabsTrigger value="column">Poteaux</TabsTrigger>
-            <TabsTrigger value="connection">Assemblages</TabsTrigger>
-            <TabsTrigger value="reference">Référence</TabsTrigger>
-          </TabsList>
+      <CardContent className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <Label htmlFor="length">Longueur (mm)</Label>
+            <Input
+              id="length"
+              type="number"
+              value={length}
+              onChange={(e) => setLength(e.target.value)}
+              placeholder="Ex: 3000"
+            />
+          </div>
           
-          <TabsContent value="beam" className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="baseWidth">Largeur (mm)</Label>
-                  <Input 
-                    id="baseWidth"
-                    type="number" 
-                    value={baseWidth} 
-                    onChange={(e) => setBaseWidth(e.target.value)}
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="height">Hauteur (mm)</Label>
-                  <Input 
-                    id="height"
-                    type="number" 
-                    value={height} 
-                    onChange={(e) => setHeight(e.target.value)}
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="length">Portée (m)</Label>
-                  <Input 
-                    id="length"
-                    type="number" 
-                    value={length} 
-                    onChange={(e) => setLength(Number(e.target.value))}
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="woodClass">Classe de résistance</Label>
-                  <Select value={woodClass} onValueChange={setWoodClass}>
-                    <SelectTrigger id="woodClass">
-                      <SelectValue placeholder="Sélectionner une classe" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="c16">C16</SelectItem>
-                      <SelectItem value="c18">C18</SelectItem>
-                      <SelectItem value="c24">C24</SelectItem>
-                      <SelectItem value="c30">C30</SelectItem>
-                      <SelectItem value="c35">C35</SelectItem>
-                      <SelectItem value="c40">C40</SelectItem>
-                      <SelectItem value="d30">D30</SelectItem>
-                      <SelectItem value="d35">D35</SelectItem>
-                      <SelectItem value="d40">D40</SelectItem>
-                      <SelectItem value="d50">D50</SelectItem>
-                      <SelectItem value="d60">D60</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="serviceClass">Classe de service</Label>
-                  <Select value={serviceClass} onValueChange={setServiceClass}>
-                    <SelectTrigger id="serviceClass">
-                      <SelectValue placeholder="Sélectionner une classe" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1">Classe 1</SelectItem>
-                      <SelectItem value="2">Classe 2</SelectItem>
-                      <SelectItem value="3">Classe 3</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div>
-                  <Label htmlFor="loadDuration">Durée de charge</Label>
-                  <Select value={loadDuration} onValueChange={setLoadDuration}>
-                    <SelectTrigger id="loadDuration">
-                      <SelectValue placeholder="Sélectionner une durée" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="permanent">Permanente</SelectItem>
-                      <SelectItem value="long">Longue durée</SelectItem>
-                      <SelectItem value="medium">Moyenne durée</SelectItem>
-                      <SelectItem value="short">Courte durée</SelectItem>
-                      <SelectItem value="instantaneous">Instantanée</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div>
-                  <Label htmlFor="uniformLoad">Charge uniforme (kN/m)</Label>
-                  <Input 
-                    id="uniformLoad"
-                    type="number" 
-                    step="0.1"
-                    value={uniformLoad} 
-                    onChange={(e) => setUniformLoad(e.target.value)}
-                  />
-                </div>
-                
-                <div className="flex justify-between pt-4">
-                  <Button variant="outline" onClick={handleReset}>
-                    Réinitialiser
-                  </Button>
-                  <Button onClick={handleDownload}>
-                    <Download className="mr-2 h-4 w-4" />
-                    Exporter
-                  </Button>
-                </div>
-              </div>
+          <div>
+            <Label htmlFor="width">Largeur (mm)</Label>
+            <Input
+              id="width"
+              type="number"
+              value={width}
+              onChange={(e) => setWidth(e.target.value)}
+              placeholder="Ex: 200"
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="height">Hauteur (mm)</Label>
+            <Input
+              id="height"
+              type="number"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+              placeholder="Ex: 400"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <Label htmlFor="woodType">Type de bois</Label>
+            <Select value={woodType} onValueChange={setWoodType}>
+              <SelectTrigger>
+                <SelectValue placeholder="Sélectionner le type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="chene">Chêne</SelectItem>
+                <SelectItem value="hetre">Hêtre</SelectItem>
+                <SelectItem value="pin">Pin</SelectItem>
+                <SelectItem value="sapin">Sapin</SelectItem>
+                <SelectItem value="douglas">Douglas</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div>
+            <Label htmlFor="load">Charge (kN)</Label>
+            <Input
+              id="load"
+              type="number"
+              value={load}
+              onChange={(e) => setLoad(e.target.value)}
+              placeholder="Ex: 10"
+            />
+          </div>
+        </div>
+
+        <Button onClick={calculateTimber} className="w-full">
+          Calculer
+        </Button>
+
+        {result && (
+          <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <h3 className="font-semibold mb-2">Résultats :</h3>
+            <div className="space-y-2">
+              <p>Volume : <span className="font-mono">{result.volume.toFixed(3)} m³</span></p>
+              <p>Poids : <span className="font-mono">{result.weight.toFixed(1)} kg</span></p>
+              <p>Résistance (approx.) : <span className="font-mono">{result.resistance.toFixed(0)} kN.mm</span></p>
             </div>
-            
-            <div className="rounded-md border p-4 mt-4">
-              <h3 className="text-lg font-medium mb-3">Résultats</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <p className="text-sm text-low-contrast">Résistance de calcul en flexion</p>
-                  <p className="text-lg font-medium">{calculateBendingStrength()} MPa</p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-sm text-low-contrast">Contrainte de flexion</p>
-                  <p className="text-lg font-medium">{calculateBendingStress()} MPa</p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-sm text-low-contrast">Flèche</p>
-                  <p className="text-lg font-medium">{calculateDeflection()} mm</p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-sm text-low-contrast">Taux de travail</p>
-                  <p className={`text-lg font-medium ${parseFloat(calculateUtilizationRatio()) > 100 ? 'text-red-500' : 'text-green-500'}`}>
-                    {calculateUtilizationRatio()} %
-                  </p>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="column">
-            <div className="flex items-center justify-center h-48 border rounded-md">
-              <div className="text-center space-y-2">
-                <Info className="mx-auto h-8 w-8 text-blue-500" />
-                <p>Le module de calcul des poteaux sera disponible prochainement.</p>
-              </div>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="connection">
-            <div className="flex items-center justify-center h-48 border rounded-md">
-              <div className="text-center space-y-2">
-                <Info className="mx-auto h-8 w-8 text-blue-500" />
-                <p>Le module de calcul des assemblages sera disponible prochainement.</p>
-              </div>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="reference">
-            <div className="space-y-4">
-              <div className="p-4 border rounded-md">
-                <h3 className="font-medium mb-2">Classes de service</h3>
-                <ul className="list-disc list-inside space-y-1 text-sm">
-                  <li><span className="font-medium">Classe 1:</span> Humidité relative de l'air ≤ 65%, bois à une humidité ≤ 12%</li>
-                  <li><span className="font-medium">Classe 2:</span> Humidité relative de l'air ≤ 85%, bois à une humidité ≤ 20%</li>
-                  <li><span className="font-medium">Classe 3:</span> Humidité relative de l'air &gt; 85%, bois à une humidité &gt; 20%</li>
-                </ul>
-              </div>
-              
-              <div className="p-4 border rounded-md">
-                <h3 className="font-medium mb-2">Durées de charge</h3>
-                <ul className="list-disc list-inside space-y-1 text-sm">
-                  <li><span className="font-medium">Permanente:</span> &gt; 10 ans (poids propre)</li>
-                  <li><span className="font-medium">Longue durée:</span> 6 mois à 10 ans (stockage)</li>
-                  <li><span className="font-medium">Moyenne durée:</span> 1 semaine à 6 mois (charges d'exploitation)</li>
-                  <li><span className="font-medium">Courte durée:</span> &lt; 1 semaine (neige)</li>
-                  <li><span className="font-medium">Instantanée:</span> (vent, accidentelle)</li>
-                </ul>
-              </div>
-            </div>
-          </TabsContent>
-        </Tabs>
+          </div>
+        )}
       </CardContent>
-      <CardFooter className="text-xs text-low-contrast">
-        Les résultats de ce calculateur sont fournis à titre indicatif et ne remplacent pas l'avis d'un ingénieur structure.
-      </CardFooter>
     </Card>
   );
 };
-
-export default TimberCalculator;
