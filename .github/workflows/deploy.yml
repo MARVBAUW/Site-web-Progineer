@@ -19,6 +19,7 @@ jobs:
         run: |
           npm install -g typescript
           npm ci --legacy-peer-deps
+          export PATH="$PATH:$(npm config get prefix)/bin"
         
       - name: Build
         env:
@@ -28,7 +29,9 @@ jobs:
           VITE_TWILIO_ACCOUNT_SID: ${{ secrets.VITE_TWILIO_ACCOUNT_SID }}
           VITE_TWILIO_AUTH_TOKEN: ${{ secrets.VITE_TWILIO_AUTH_TOKEN }}
           VITE_TWILIO_PHONE_NUMBER: ${{ secrets.VITE_TWILIO_PHONE_NUMBER }}
-        run: npm run build
+        run: |
+          export PATH="$PATH:$(npm config get prefix)/bin"
+          npm run build
         
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
