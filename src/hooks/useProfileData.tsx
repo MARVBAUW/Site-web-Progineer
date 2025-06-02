@@ -1,7 +1,14 @@
 
 import { useState, useEffect } from 'react';
-import { User } from '@/hooks/useAuth';
-import { ProfileData } from '@/types/profile';
+import { User } from '@supabase/supabase-js';
+
+interface ProfileData {
+  fullName: string;
+  email: string;
+  phone: string;
+  address: string;
+  company: string;
+}
 
 export const useProfileData = (user: User | null) => {
   const [profileData, setProfileData] = useState<ProfileData>({
@@ -16,9 +23,9 @@ export const useProfileData = (user: User | null) => {
   useEffect(() => {
     if (user) {
       setProfileData({
-        fullName: user.user_metadata?.full_name || `${user.firstName || ''} ${user.lastName || ''}`.trim() || '',
+        fullName: user.user_metadata?.full_name || '',
         email: user.email || '',
-        phone: user.user_metadata?.phone || '',
+        phone: user.phone || '',
         address: user.user_metadata?.address || '',
         company: user.user_metadata?.company || '',
       });
