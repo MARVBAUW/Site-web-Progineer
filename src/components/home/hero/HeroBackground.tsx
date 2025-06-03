@@ -7,7 +7,7 @@ const HeroBackground = memo(() => {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{ 
-          backgroundImage: `url('/images/prestations/hero-bg-original_resultat.webp')`,
+          backgroundImage: `url('/images/prestations/PGR_55_resultat.webp')`,
           backgroundPosition: 'center',
         }}
       />

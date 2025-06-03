@@ -124,7 +124,7 @@ const CTASection = () => {
                 <img 
                   alt="Maison contemporaine avec grande baie vitrée" 
                   className="w-full h-auto object-fill" 
-                  src="/images/prestations/2ab0f303-213f-43c9-94dc-75e0e8e55718_resultat.webp" 
+                  src="/images/prestations/PGR_53_resultat.webp" 
                 />
                 
                 {/* Overlay subtil pour améliorer la lisibilité */}

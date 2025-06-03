@@ -4,31 +4,31 @@ const prestations = [
   {
     slug: 'design-interieur',
     title: "Design d'intérieur",
-    image: '/images/prestations/PGR CLAIR _9__resultat.webp',
+    image: '/images/prestations/PGR_9_resultat.webp',
     alt: "Design d'intérieur"
   },
   {
     slug: 'montage-administratif',
     title: 'Montage administratif',
-    image: '/images/prestations/montage-administratif.webp',
+    image: '/images/prestations/PGR_20_resultat.webp',
     alt: 'Montage administratif'
   },
   {
     slug: 'petit-collectif',
     title: 'Petit collectif',
-    image: '/images/prestations/petit-collectif.webp',
+    image: '/images/prestations/PGR_14_resultat.webp',
     alt: 'Petit collectif'
   },
   {
     slug: 'rehabilitation',
     title: 'Réhabilitation',
-    image: '/images/prestations/rehabilitation.webp',
+    image: '/images/prestations/PGR_6_resultat.webp',
     alt: 'Réhabilitation'
   },
   {
     slug: 'construction-ecologique',
     title: 'Construction écologique',
-    image: '/images/prestations/construction-ecologique.webp',
+    image: '/images/prestations/PGR_19_resultat.webp',
     alt: 'Construction écologique'
   },
   // ... autres prestations principales

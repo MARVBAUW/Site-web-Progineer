@@ -70,7 +70,7 @@ const Testimonials = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{ 
-          background: `linear-gradient(to right, rgba(30,30,35,0.97), rgba(30,30,35,0.9)), url('/images/prestations/PROGINEER-37-_resultat.webp')`,
+          background: `linear-gradient(to right, rgba(30,30,35,0.97), rgba(30,30,35,0.9)), url('/images/prestations/PGR_37_resultat.webp')`,
           backgroundPosition: 'center',
         }}
       />

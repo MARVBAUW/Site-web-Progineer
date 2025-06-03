@@ -15,7 +15,7 @@ const DesignInterieurContent = () => {
 
         <div className="mb-12">
           <img 
-            src="/images/prestations/PROGINEER-21-_resultat.webp" 
+            src="/images/prestations/PGR_21_resultat.webp" 
             alt="Exemple de design d'intérieur réalisé par Progineer en PACA"
             className="w-full h-auto rounded-xl mb-4"
           />

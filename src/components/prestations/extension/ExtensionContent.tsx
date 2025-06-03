@@ -11,7 +11,7 @@ const ExtensionContent = () => {
 
         <div className="mb-12">
           <img 
-            src="/images/prestations/PROGINEER-23-_resultat.webp" 
+            src="/images/prestations/PGR_23_resultat.webp" 
             alt="Exemple d'extension de maison réalisée par Progineer en PACA"
             className="w-full h-auto rounded-xl mb-4"
           />

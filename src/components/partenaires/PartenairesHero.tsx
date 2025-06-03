@@ -10,7 +10,7 @@ const PartenairesHero = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: `url('/images/prestations/PROGINEER-36-_resultat.webp')`,
+            backgroundImage: `url('/images/prestations/PGR_36_resultat.webp')`,
             backgroundPosition: 'center',
           }}
         ></div>

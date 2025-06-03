@@ -14,7 +14,7 @@ const MontageAdministratifContent = () => {
         </p>
         <div className="mb-12">
           <img 
-            src="/images/prestations/PROGINEER-20-_resultat.webp" 
+            src="/images/prestations/PGR_20_resultat.webp" 
             alt="Dossier administratif réalisé par Progineer en région PACA"
             className="w-full h-auto rounded-xl mb-4"
           />
