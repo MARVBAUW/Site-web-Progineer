@@ -4,6 +4,7 @@ import Container from '@/components/common/Container';
 import { getBusinessStructuredData } from '../utils/googleBusiness';
 import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
 import SEOFooter from '@/components/common/SEOFooter';
+import ProjectCardWrapper from '@/components/realisations/ProjectCardWrapper';
 
 // Lazy loading des composants non critiques
 const ExpertiseSection = lazy(() => import('../components/home/ExpertiseSection'));
@@ -13,7 +14,6 @@ const CTASection = lazy(() => import('../components/home/CTASection'));
 const StatsSection = lazy(() => import('../components/home/StatsSection'));
 const LocationMap = lazy(() => import('../components/home/LocationMap'));
 const InnovationHub = lazy(() => import('../components/home/InnovationHub'));
-const ProjectCard = lazy(() => import('../components/realisations/ProjectCard'));
 
 // Importation des données
 import { projects } from '@/data/projects';
@@ -116,7 +116,7 @@ const Index = () => {
               <h2 className="text-3xl font-bold mb-8 text-center">Nos Dernières Réalisations</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {projects.slice(0, 3).map((project) => (
-                  <ProjectCard key={project.id} project={project} />
+                  <ProjectCardWrapper key={project.id} project={project} />
                 ))}
               </div>
             </Container>

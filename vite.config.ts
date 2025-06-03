@@ -49,18 +49,7 @@ export default defineConfig(({ mode }) => ({
           'vendor-utils': ['lodash-es', 'date-fns', 'zod'],
           'vendor-charts': ['recharts', 'leaflet']
         },
-        assetFileNames: (assetInfo) => {
-          if (!assetInfo.name) return `assets/[name]-[hash][extname]`;
-          const info = assetInfo.name.split('.');
-          const ext = info[info.length - 1];
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(ext)) {
-            return `assets/images/[name]-[hash][extname]`;
-          }
-          if (/css/i.test(ext)) {
-            return `assets/css/[name]-[hash][extname]`;
-          }
-          return `assets/[name]-[hash][extname]`;
-        },
+        assetFileNames: 'assets/[name]-[hash][extname]',
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
       },
@@ -112,5 +101,5 @@ export default defineConfig(({ mode }) => ({
       ],
     },
   },
-  base: 'https://progineer.fr/',
+  base: '/',
 }));
