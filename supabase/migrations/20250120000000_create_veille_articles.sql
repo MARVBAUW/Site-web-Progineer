@@ -26,14 +26,8 @@ CREATE INDEX IF NOT EXISTS idx_veille_articles_priority ON veille_articles(prior
 CREATE INDEX IF NOT EXISTS idx_veille_articles_tags ON veille_articles USING GIN(tags);
 CREATE INDEX IF NOT EXISTS idx_veille_articles_seo_keywords ON veille_articles USING GIN(seo_keywords);
 
--- Trigger pour mettre à jour updated_at automatiquement
-CREATE OR REPLACE FUNCTION update_updated_at_column()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.updated_at = NOW();
-    RETURN NEW;
-END;
-$$ language 'plpgsql';
+-- Supprimer le trigger s'il existe déjà pour éviter les erreurs lors de la migration
+DROP TRIGGER IF EXISTS update_veille_articles_updated_at ON veille_articles;
 
 CREATE TRIGGER update_veille_articles_updated_at 
     BEFORE UPDATE ON veille_articles 
@@ -44,10 +38,12 @@ CREATE TRIGGER update_veille_articles_updated_at
 ALTER TABLE veille_articles ENABLE ROW LEVEL SECURITY;
 
 -- Politique pour permettre la lecture publique des articles publiés
+DROP POLICY IF EXISTS "Articles publiés lisibles par tous" ON veille_articles;
 CREATE POLICY "Articles publiés lisibles par tous" ON veille_articles
     FOR SELECT USING (is_published = true);
 
 -- Politique pour permettre l'insertion/modification par les services authentifiés
+DROP POLICY IF EXISTS "Gestion articles par services" ON veille_articles;
 CREATE POLICY "Gestion articles par services" ON veille_articles
     FOR ALL USING (auth.role() = 'service_role');
 

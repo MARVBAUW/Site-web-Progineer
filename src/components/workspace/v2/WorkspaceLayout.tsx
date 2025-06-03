@@ -32,6 +32,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { mainGuides, guideCategories, guidesStats } from '@/data/guides/guidesData';
 import { allCalculators, calculatorCategories, calculatorsStats } from '@/data/calculators/calculatorsData';
 import { allRegulations, regulationCategories, regulationStats } from '@/data/regulation/regulationData';
+import { veilleArticles } from '@/data/veille/veilleData';
 
 // Import du composant Veille Réglementaire
 import WorkspaceVeilleReglementaire from '@/components/workspace/WorkspaceVeilleReglementaire';
@@ -481,7 +482,7 @@ const WorkspaceLayout: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-khaki-50 via-white to-stone-50">
+      <section className="pt-32 pb-8 bg-gradient-to-br from-khaki-50 via-white to-stone-50">
         <Container size="lg">
           <div className="text-center mb-8">
             <div className="flex justify-center items-center gap-2 mb-6">
@@ -507,19 +508,28 @@ const WorkspaceLayout: React.FC = () => {
             </p>
 
             {/* Stats Overview */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto mb-8">
+              {/* Guides Pratiques */}
               <div className="bg-card/80 backdrop-blur rounded-lg p-4 border border-khaki-100">
-                <div className="text-2xl font-bold text-khaki-600">{totalStats.guides}</div>
+                <div className="text-2xl font-bold text-khaki-600">{guidesStats.totalGuides}</div>
                 <div className="text-sm text-gray-600 dark:text-gray-300">Guides Pratiques</div>
               </div>
+              {/* Calculateurs */}
               <div className="bg-card/80 backdrop-blur rounded-lg p-4 border border-blue-100">
-                <div className="text-2xl font-bold text-blue-600">{totalStats.calculators}</div>
+                <div className="text-2xl font-bold text-blue-600">{calculatorsStats.totalCalculators}</div>
                 <div className="text-sm text-gray-600 dark:text-gray-300">Calculateurs</div>
               </div>
+              {/* DTU & Normes */}
               <div className="bg-card/80 backdrop-blur rounded-lg p-4 border border-green-100">
-                <div className="text-2xl font-bold text-green-600">{totalStats.regulations}</div>
+                <div className="text-2xl font-bold text-green-600">{regulationStats.totalDocuments}</div>
                 <div className="text-sm text-gray-600 dark:text-gray-300">DTU & Normes</div>
               </div>
+              {/* Articles Veille */}
+              <div className="bg-card/80 backdrop-blur rounded-lg p-4 border border-orange-100">
+                <div className="text-2xl font-bold text-orange-600">{veilleArticles.length}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">Articles Veille</div>
+              </div>
+              {/* Accès Libre */}
               <div className="bg-card/80 backdrop-blur rounded-lg p-4 border border-purple-100">
                 <div className="text-2xl font-bold text-purple-600">24/7</div>
                 <div className="text-sm text-gray-600 dark:text-gray-300">Accès Libre</div>
@@ -530,7 +540,7 @@ const WorkspaceLayout: React.FC = () => {
       </section>
 
       {/* Main Content */}
-      <section className="py-16">
+      <section className="py-8">
         <Container size="lg">
           {/* Barre de recherche globale */}
           {activeTab !== 'client-space' && (
@@ -589,7 +599,7 @@ const WorkspaceLayout: React.FC = () => {
                   <TrendingUp className="h-5 w-5 mr-2" />
                   <div className="text-left">
                     <div className="font-medium">Veille Réglementaire</div>
-                    <div className="text-xs opacity-70">10 articles</div>
+                    <div className="text-xs opacity-70">{veilleArticles.length} articles</div>
                   </div>
                 </TabsTrigger>
                 

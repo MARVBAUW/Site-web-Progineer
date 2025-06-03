@@ -3,6 +3,7 @@
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
+import { v4 as uuidv4 } from 'https://esm.sh/uuid@9.0.0'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -34,32 +35,88 @@ serve(async (req: Request) => {
   }
 
   try {
-    const { url, supabaseUrl, supabaseKey } = await req.json()
+    console.log('Début de la fonction generate-veille-article')
     
-    // Vérifier que les URLs sont valides
-    if (!supabaseUrl || !supabaseKey) {
-      throw new Error('Missing Supabase URL or key');
+    // Vérifier le Content-Type
+    const contentType = req.headers.get('content-type')
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error('Content-Type must be application/json')
     }
 
+    // Parser le body
+    let body
     try {
-      new URL(supabaseUrl);
+      body = await req.json()
     } catch (e) {
-      throw new Error('Invalid Supabase URL');
+      console.error('Erreur parsing JSON:', e)
+      throw new Error('Invalid JSON body')
+    }
+
+    const { url, supabaseUrl, supabaseKey } = body
+    
+    console.log('Paramètres reçus:', { 
+      url: url || 'manquant', 
+      supabaseUrl: supabaseUrl || 'manquant', 
+      supabaseKey: supabaseKey ? 'présent' : 'manquant' 
+    })
+    
+    // Validation des paramètres
+    if (!url) {
+      throw new Error('URL parameter is required')
+    }
+    if (!supabaseUrl) {
+      throw new Error('supabaseUrl parameter is required')
+    }
+    if (!supabaseKey) {
+      throw new Error('supabaseKey parameter is required')
+    }
+
+    // Vérifier que les URLs sont valides
+    try {
+      new URL(supabaseUrl)
+    } catch (e) {
+      console.error('Invalid Supabase URL:', e)
+      throw new Error('Invalid Supabase URL')
     }
     
     // Create Supabase client
+    console.log('Création du client Supabase')
     const supabase = createClient(supabaseUrl, supabaseKey, {
       auth: {
         persistSession: false
       }
-    });
+    })
+
+    // Vérifier la connexion à Supabase
+    try {
+      const { data: testData, error: testError } = await supabase
+        .from('veille_articles')
+        .select('id')
+        .limit(1)
+      
+      if (testError) {
+        console.error('Erreur test connexion Supabase:', testError)
+        throw new Error('Failed to connect to Supabase: ' + testError.message)
+      }
+    } catch (e) {
+      console.error('Erreur lors du test de connexion:', e)
+      throw new Error('Failed to connect to Supabase')
+    }
+
+    // Vérifier la clé API Claude
+    const anthropicApiKey = Deno.env.get('ANTHROPIC_API_KEY')
+    if (!anthropicApiKey) {
+      console.error('ANTHROPIC_API_KEY manquante')
+      throw new Error('ANTHROPIC_API_KEY environment variable is not set')
+    }
 
     // Générer l'article avec Claude
+    console.log('Appel de l\'API Claude')
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': Deno.env.get('ANTHROPIC_API_KEY') ?? '',
+        'x-api-key': anthropicApiKey,
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
@@ -81,45 +138,75 @@ serve(async (req: Request) => {
     })
 
     if (!response.ok) {
-      throw new Error(`API request failed: ${response.statusText}`)
+      const errorText = await response.text()
+      console.error('Erreur API Claude:', response.status, errorText)
+      throw new Error(`API request failed: ${response.status} ${errorText}`)
     }
 
-    const data = await response.json() as ClaudeResponse;
+    const data = await response.json() as ClaudeResponse
     if (!data.content?.[0]?.text) {
-      throw new Error('Invalid response format from Claude API');
+      console.error('Format de réponse Claude invalide:', data)
+      throw new Error('Invalid response format from Claude API')
     }
-    const content = data.content[0].text;
+    const content = data.content[0].text
 
     // Parser la réponse de Claude
+    console.log('Parsing de la réponse Claude')
     const title = extractTitle(content)
     const summary = extractSummary(content)
     const articleContent = extractContent(content)
     const keywords = extractKeywords(content)
 
+    if (!title || !summary || !articleContent || !keywords) {
+      console.error('Données manquantes après parsing:', { title, summary, content: articleContent?.substring(0, 50), keywords })
+      throw new Error('Failed to extract required fields from Claude response')
+    }
+
+    console.log('Données extraites:', { 
+      title, 
+      summary: summary.substring(0, 50) + '...', 
+      contentLength: articleContent.length,
+      keywords 
+    })
+
     // Sauvegarder l'article dans Supabase
-    const { data: savedArticle, error: saveError } = await supabase
+    console.log('Sauvegarde dans Supabase')
+    const { data: article, error: saveError } = await supabase
       .from('veille_articles')
       .insert({
+        id: uuidv4(),
         title,
         content: articleContent,
         summary,
+        excerpt: summary,
+        category: 'reglementation',
         keywords,
         created_at: new Date().toISOString(),
         source: 'Claude',
-        status: 'draft'
+        status: 'draft',
+        priority: 'moyenne',
+        published_at: new Date().toISOString(),
+        read_time: calculateReadTime(articleContent),
+        author: 'Claude',
+        tags: keywords,
+        seo_keywords: keywords,
+        views: 0,
+        is_published: false
       })
       .select()
       .single()
 
     if (saveError) {
       console.error('Erreur lors de la sauvegarde:', saveError)
-      throw saveError
+      throw new Error('Failed to save article: ' + saveError.message)
     }
+
+    console.log('Article sauvegardé avec succès:', article.id)
 
     return new Response(
       JSON.stringify({ 
         success: true, 
-        article: savedArticle 
+        article: article 
       }),
       { 
         headers: { 
@@ -133,7 +220,8 @@ serve(async (req: Request) => {
     return new Response(
       JSON.stringify({ 
         success: false,
-        error: error instanceof Error ? error.message : 'Unknown error occurred'
+        error: error instanceof Error ? error.message : 'Unknown error occurred',
+        details: error instanceof Error ? error.stack : undefined
       }),
       { 
         status: 400,
@@ -149,20 +237,30 @@ serve(async (req: Request) => {
 // Fonctions utilitaires pour parser la réponse
 function extractTitle(content: string): string {
   const titleMatch = content.match(/Titre:?\s*(.+)/i)
-  return titleMatch?.[1]?.trim() ?? 'Sans titre'
+  return titleMatch ? titleMatch[1].trim() : ''
 }
 
 function extractSummary(content: string): string {
   const summaryMatch = content.match(/Résumé:?\s*(.+?)(?=\n\n|\n[A-Z]|$)/is)
-  return summaryMatch?.[1]?.trim() ?? ''
+  return summaryMatch ? summaryMatch[1].trim() : ''
 }
 
 function extractContent(content: string): string {
   const contentMatch = content.match(/Article:?\s*(.+?)(?=\n\nMots-clés:|$)/is)
-  return contentMatch?.[1]?.trim() ?? content
+  return contentMatch ? contentMatch[1].trim() : ''
 }
 
 function extractKeywords(content: string): string[] {
   const keywordsMatch = content.match(/Mots-clés:?\s*(.+)/i)
-  return keywordsMatch?.[1]?.split(',').map(k => k.trim()) ?? []
+  if (!keywordsMatch) return []
+  return keywordsMatch[1]
+    .split(',')
+    .map(k => k.trim())
+    .filter(k => k.length > 0)
+}
+
+function calculateReadTime(content: string): number {
+  const wordsPerMinute = 200;
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / wordsPerMinute));
 } 

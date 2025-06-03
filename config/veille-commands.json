@@ -1,0 +1,498 @@
+{
+  "articleStructure": {
+    "categories": [
+      "reglementation",
+      "energie",
+      "financement",
+      "urbanisme",
+      "materiaux",
+      "environnement"
+    ],
+    "priorities": [
+      "high",
+      "medium",
+      "low"
+    ],
+    "requiredFields": {
+      "title": {
+        "type": "string",
+        "maxLength": 100,
+        "description": "Titre de l'article avec l'année si applicable"
+      },
+      "category": {
+        "type": "string",
+        "enum": ["reglementation", "energie", "financement", "urbanisme", "materiaux", "environnement"],
+        "description": "Catégorie principale de l'article"
+      },
+      "priority": {
+        "type": "string",
+        "enum": ["high", "medium", "low"],
+        "description": "Priorité de publication"
+      },
+      "keywords": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 5,
+        "maxItems": 10,
+        "description": "Mots-clés SEO pertinents"
+      },
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 3,
+        "maxItems": 6,
+        "description": "Tags pour le maillage interne"
+      },
+      "content": {
+        "sections": [
+          "introduction",
+          "contexte",
+          "points_cles",
+          "impacts",
+          "solutions",
+          "conclusion"
+        ],
+        "requiredElements": [
+          "date_publication",
+          "source_officielle",
+          "liens_internes",
+          "appel_action"
+        ],
+        "minWords": 500
+      }
+    },
+    "seoRequirements": {
+      "metaDescription": {
+        "minLength": 120,
+        "maxLength": 160
+      },
+      "keywords": {
+        "minCount": 5,
+        "maxCount": 10
+      },
+      "internalLinks": {
+        "minCount": 3,
+        "maxCount": 5
+      }
+    },
+    "validationRules": {
+      "sources": {
+        "required": true,
+        "types": [
+          "officiel",
+          "legislatif",
+          "reglementaire",
+          "technique"
+        ]
+      },
+      "dates": {
+        "publication": "required",
+        "application": "if_applicable",
+        "mise_a_jour": "required"
+      },
+      "regionalFocus": {
+        "PACA": "required",
+        "national": "required"
+      }
+    }
+  },
+  "generationProcess": {
+    "steps": [
+      "recherche_actualite",
+      "verification_doublons",
+      "analyse_impact",
+      "redaction_article",
+      "validation_seo",
+      "integration_liens"
+    ],
+    "sources": {
+      "officielles": [
+        "legifrance.gouv.fr",
+        "ademe.fr",
+        "cstb.fr",
+        "service-public.fr",
+        "ecologie.gouv.fr",
+        "anah.fr"
+      ],
+      "specialisees": [
+        "batiactu.com",
+        "lemoniteur.fr",
+        "batiment-energie.fr",
+        "construction21.org"
+      ],
+      "region": [
+        "region-paca.fr",
+        "dreets.paca.gouv.fr"
+      ]
+    }
+  },
+  "verificationDoublons": {
+    "criteria": {
+      "titre": {
+        "similarite": 0.7,
+        "description": "Seuil de similarité pour le titre"
+      },
+      "contenu": {
+        "similarite": 0.6,
+        "description": "Seuil de similarité pour le contenu"
+      },
+      "keywords": {
+        "minCommuns": 3,
+        "description": "Nombre minimum de mots-clés communs"
+      },
+      "periode": {
+        "mois": 6,
+        "description": "Période de vérification des doublons"
+      }
+    },
+    "verification": {
+      "etapes": [
+        "recherche_titre",
+        "analyse_contenu",
+        "verification_keywords",
+        "verification_date"
+      ],
+      "sources": [
+        "articles_publies",
+        "articles_brouillon",
+        "articles_planifies"
+      ]
+    },
+    "actions": {
+      "si_doublon": [
+        "rechercher_angle_different",
+        "verifier_mise_a_jour",
+        "proposer_complement"
+      ],
+      "si_similarite": [
+        "verifier_actualite",
+        "proposer_fusion",
+        "rediriger_vers_existant"
+      ]
+    }
+  },
+  "generationRules": {
+    "nombreArticles": 10,
+    "distributionCategories": {
+      "reglementation": {
+        "min": 2,
+        "max": 3,
+        "priorites": ["high", "medium"]
+      },
+      "energie": {
+        "min": 2,
+        "max": 3,
+        "priorites": ["high", "medium"]
+      },
+      "financement": {
+        "min": 1,
+        "max": 2,
+        "priorites": ["high", "medium"]
+      },
+      "urbanisme": {
+        "min": 1,
+        "max": 2,
+        "priorites": ["medium"]
+      },
+      "materiaux": {
+        "min": 1,
+        "max": 2,
+        "priorites": ["medium"]
+      }
+    },
+    "themesPrioritaires": [
+      "accessibilité",
+      "photovoltaïque",
+      "PTZ+",
+      "PLU",
+      "matériaux recyclés",
+      "réglementation électrique",
+      "pompes à chaleur",
+      "éco-PTZ",
+      "permis de construire",
+      "isolation thermique"
+    ],
+    "structureArticle": {
+      "introduction": {
+        "maxLength": 200,
+        "required": true
+      },
+      "contexte": {
+        "maxLength": 300,
+        "required": true
+      },
+      "points_cles": {
+        "minItems": 4,
+        "maxItems": 6,
+        "required": true
+      },
+      "impacts": {
+        "minItems": 3,
+        "maxItems": 5,
+        "required": true
+      },
+      "solutions": {
+        "minItems": 3,
+        "maxItems": 5,
+        "required": true
+      },
+      "conclusion": {
+        "maxLength": 150,
+        "required": true
+      }
+    },
+    "validation": {
+      "datePublication": {
+        "maxAge": 15,
+        "unite": "jours",
+        "strict": true
+      },
+      "sources": {
+        "minSources": 2,
+        "types": ["officiel", "presse", "technique"]
+      },
+      "regionalFocus": {
+        "PACA": true,
+        "national": true
+      }
+    }
+  },
+  "articlesToGenerate": {
+    "nombreTotal": 10,
+    "articles": [
+      {
+        "id": "art-1",
+        "titre": "Réglementation Accessibilité 2025 : Nouvelles Normes pour les ERP",
+        "categorie": "reglementation",
+        "priorite": "high",
+        "themes": ["accessibilité", "PMR", "ERP"],
+        "focus": ["PACA", "national"],
+        "sources": ["ministere-transition-ecologique", "cstb"]
+      },
+      {
+        "id": "art-2",
+        "titre": "Photovoltaïque 2025 : Nouvelles Obligations et Aides en PACA",
+        "categorie": "energie",
+        "priorite": "high",
+        "themes": ["photovoltaïque", "énergies renouvelables", "aides régionales"],
+        "focus": ["PACA"],
+        "sources": ["region-paca", "ademe"]
+      },
+      {
+        "id": "art-3",
+        "titre": "PTZ+ 2025 : Évolution des Conditions et Nouveaux Bénéficiaires",
+        "categorie": "financement",
+        "priorite": "high",
+        "themes": ["PTZ+", "aides financières", "rénovation"],
+        "focus": ["PACA", "national"],
+        "sources": ["service-public", "anah"]
+      },
+      {
+        "id": "art-4",
+        "titre": "PLU 2025 : Nouvelles Règles d'Urbanisme en PACA",
+        "categorie": "urbanisme",
+        "priorite": "medium",
+        "themes": ["PLU", "urbanisme", "aménagement"],
+        "focus": ["PACA"],
+        "sources": ["dreets-paca", "region-paca"]
+      },
+      {
+        "id": "art-5",
+        "titre": "Matériaux Recyclés : Nouvelles Normes et Applications 2025",
+        "categorie": "materiaux",
+        "priorite": "medium",
+        "themes": ["matériaux recyclés", "économie circulaire", "construction durable"],
+        "focus": ["PACA", "national"],
+        "sources": ["cstb", "ademe"]
+      },
+      {
+        "id": "art-6",
+        "titre": "Réglementation Électrique 2025 : Nouvelles Exigences",
+        "categorie": "reglementation",
+        "priorite": "medium",
+        "themes": ["électricité", "sécurité", "normes"],
+        "focus": ["PACA", "national"],
+        "sources": ["promotelec", "cstb"]
+      },
+      {
+        "id": "art-7",
+        "titre": "Pompes à Chaleur : Nouvelles Réglementations 2025",
+        "categorie": "energie",
+        "priorite": "medium",
+        "themes": ["PAC", "énergies renouvelables", "chauffage"],
+        "focus": ["PACA"],
+        "sources": ["ademe", "region-paca"]
+      },
+      {
+        "id": "art-8",
+        "titre": "Éco-PTZ 2025 : Nouvelles Conditions et Montants",
+        "categorie": "financement",
+        "priorite": "medium",
+        "themes": ["éco-PTZ", "rénovation énergétique", "aides"],
+        "focus": ["PACA", "national"],
+        "sources": ["anah", "service-public"]
+      },
+      {
+        "id": "art-9",
+        "titre": "Permis de Construire 2025 : Simplification et Dématérialisation",
+        "categorie": "urbanisme",
+        "priorite": "medium",
+        "themes": ["permis de construire", "dématérialisation", "urbanisme"],
+        "focus": ["PACA"],
+        "sources": ["dreets-paca", "service-public"]
+      },
+      {
+        "id": "art-10",
+        "titre": "Isolation Thermique : Nouvelles Solutions 2025",
+        "categorie": "materiaux",
+        "priorite": "medium",
+        "themes": ["isolation", "performance énergétique", "matériaux"],
+        "focus": ["PACA", "national"],
+        "sources": ["cstb", "ademe"]
+      }
+    ],
+    "validation": {
+      "datePublication": {
+        "maxAge": 15,
+        "unite": "jours",
+        "strict": true
+      },
+      "sources": {
+        "minSources": 2,
+        "types": ["officiel", "presse", "technique"]
+      },
+      "regionalFocus": {
+        "PACA": true,
+        "national": true
+      }
+    }
+  },
+  "maillageInterne": {
+    "rules": {
+      "minLiens": 3,
+      "maxLiens": 5,
+      "verification404": true,
+      "categories": {
+        "reglementation": ["energie", "financement", "urbanisme"],
+        "energie": ["reglementation", "financement", "materiaux"],
+        "financement": ["reglementation", "energie", "urbanisme"],
+        "urbanisme": ["reglementation", "financement", "environnement"],
+        "materiaux": ["energie", "environnement", "reglementation"],
+        "environnement": ["materiaux", "energie", "urbanisme"]
+      }
+    }
+  },
+  "actualiteRecherche": {
+    "periode": {
+      "type": "relative",
+      "unite": "jours",
+      "valeur": 15,
+      "description": "Période de recherche pour l'actualité récente"
+    },
+    "dateValidation": {
+      "anneeCourante": 2025,
+      "regles": {
+        "datesPublication": {
+          "maxAge": 15,
+          "unite": "jours",
+          "strict": true,
+          "description": "Les articles doivent être basés sur des actualités des 15 derniers jours"
+        },
+        "datesFutures": {
+          "maxAvance": 6,
+          "unite": "mois",
+          "description": "Les articles peuvent mentionner des évolutions jusqu'à 6 mois dans le futur"
+        },
+        "formatDate": {
+          "pattern": "YYYY-MM-DD",
+          "description": "Format standard pour les dates dans les articles"
+        }
+      }
+    },
+    "themes": {
+      "reglementation": [
+        "normes_construction",
+        "securite_batiment",
+        "accessibilite",
+        "reglementation_thermique"
+      ],
+      "energie": [
+        "renouvelables",
+        "performance_energetique",
+        "economies_energie",
+        "transition_energetique"
+      ],
+      "financement": [
+        "aides_renovation",
+        "subventions_construction",
+        "credits_immobiliers",
+        "eco_ptz"
+      ],
+      "urbanisme": [
+        "permis_construire",
+        "plu",
+        "amenagement_territoire",
+        "densification"
+      ],
+      "materiaux": [
+        "construction_durable",
+        "recyclage",
+        "innovation_materiaux",
+        "isolation"
+      ],
+      "environnement": [
+        "biodiversite",
+        "economie_circulaire",
+        "impact_carbone",
+        "dechets_construction"
+      ]
+    }
+  },
+  "validationSEO": {
+    "metaDescription": {
+      "minLength": 120,
+      "maxLength": 160
+    },
+    "title": {
+      "minLength": 30,
+      "maxLength": 60
+    },
+    "content": {
+      "minWords": 500,
+      "maxWords": 2000,
+      "structure": {
+        "h1": 1,
+        "h2": "3-5",
+        "h3": "4-6"
+      }
+    }
+  },
+  "reglesRedaction": {
+    "dates": {
+      "format": "YYYY",
+      "anneeCourante": 2025,
+      "regles": [
+        "Toujours utiliser l'année courante (2025) pour les nouvelles réglementations",
+        "Mettre à jour les références aux années précédentes si nécessaire",
+        "Préciser les dates d'entrée en vigueur des nouvelles mesures",
+        "Mentionner les périodes de transition si applicables"
+      ]
+    },
+    "contenu": {
+      "actualite": {
+        "maxAge": 15,
+        "unite": "jours",
+        "description": "Les articles doivent être basés sur des actualités récentes"
+      },
+      "futur": {
+        "maxAvance": 6,
+        "unite": "mois",
+        "description": "Les articles peuvent mentionner des évolutions jusqu'à 6 mois dans le futur"
+      }
+    }
+  }
+} 

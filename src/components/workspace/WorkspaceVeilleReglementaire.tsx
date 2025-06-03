@@ -16,7 +16,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { veilleArticles, VeilleArticle, ArticleCategory } from '@/data/veille/veilleData';
+import { veilleArticles, VeilleArticle, ArticleCategory, isArticleRecent } from '@/data/veille/veilleData';
 import { InternalLinkText } from '@/utils/internalLinking';
 import FAQStructuredData from '@/components/seo/FAQStructuredData';
 
@@ -102,6 +102,11 @@ const WorkspaceVeilleReglementaire: React.FC<WorkspaceVeilleReglementaireProps> 
                 <Badge className={getCategoryColor(selectedArticle.category)}>
                   {selectedArticle.category}
                 </Badge>
+                {isArticleRecent(selectedArticle.publishedAt) && (
+                  <Badge variant="outline" className="bg-green-600 text-white border-green-700">
+                    Nouveau
+                  </Badge>
+                )}
                 <Badge variant="outline" className="flex items-center gap-1">
                   <AlertCircle className="h-3 w-3" />
                   {selectedArticle.priority}
@@ -318,10 +323,15 @@ const WorkspaceVeilleReglementaire: React.FC<WorkspaceVeilleReglementaireProps> 
           >
             <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
               <CardHeader className="pb-3">
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2 mb-2">
                   <Badge className={getCategoryColor(article.category)}>
                     {article.category}
                   </Badge>
+                  {isArticleRecent(article.publishedAt) && (
+                    <Badge variant="outline" className="bg-green-600 text-white border-green-700">
+                      Nouveau
+                    </Badge>
+                  )}
                   <Badge variant="outline" className="flex items-center gap-1">
                     <AlertCircle className="h-3 w-3" />
                     {article.priority}

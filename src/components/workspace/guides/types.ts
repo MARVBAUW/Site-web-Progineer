@@ -1,4 +1,3 @@
-
 export interface GuideDocument {
   id: string;
   title: string;
@@ -12,6 +11,8 @@ export interface GuideDocument {
   isNew?: boolean;
   isFeatured?: boolean;
   content?: string; // For text content (markdown)
+  tags?: string[]; // Tags for filtering and display
+  readingTime?: string; // Estimated reading time
 }
 
 export interface GuideCategory {

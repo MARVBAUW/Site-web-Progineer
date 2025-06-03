@@ -36,7 +36,10 @@ const WorkspaceGuides = () => {
       selectedCategory === 'all' || 
       guide.categoryId === selectedCategory;
     
-    return matchesSearch && matchesCategory;
+    // Exclude featured guides from the main list
+    const isNotFeatured = !guide.isNew && !guide.isFeatured;
+    
+    return matchesSearch && matchesCategory && isNotFeatured;
   });
 
   // Restaure l'état et le scroll au montage

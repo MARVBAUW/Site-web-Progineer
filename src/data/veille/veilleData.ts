@@ -1,6 +1,20 @@
 export type ArticleCategory = 'reglementation' | 'materiaux' | 'energie' | 'urbanisme' | 'environnement' | 'financement';
 export type ArticlePriority = 'haute' | 'moyenne' | 'faible';
 
+// Fonction utilitaire pour calculer si un article est récent (moins de 15 jours)
+export const isArticleRecent = (publishedAt: string): boolean => {
+  const articleDate = new Date(publishedAt);
+  const today = new Date();
+  // Si la date de publication est dans le futur, l'article est considéré comme nouveau
+  if (articleDate > today) {
+    return true;
+  }
+  // Sinon, on vérifie si l'article a été publié dans les 15 derniers jours
+  const diffTime = Math.abs(today.getTime() - articleDate.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays <= 15;
+};
+
 export interface VeilleArticle {
   id: string;
   title: string;
@@ -18,6 +32,8 @@ export interface VeilleArticle {
     url: string;
   }[];
   seoKeywords: string[];
+  isNew?: boolean;
+  isPremium?: boolean;
 }
 
 export const veilleArticles: VeilleArticle[] = [
@@ -76,7 +92,9 @@ export const veilleArticles: VeilleArticle[] = [
         url: 'https://www.ffbatiment.fr/actualites-batiment/actualite/nouveaux-seuils-1er-janvier-2025-pour-batiments-soumis-re-2020'
       }
     ],
-    seoKeywords: ['RE2020 2025', 'seuils carbone construction', 'réglementation environnementale', 'construction neuve PACA']
+    seoKeywords: ['RE2020 2025', 'seuils carbone construction', 'réglementation environnementale', 'construction neuve PACA'],
+    isNew: isArticleRecent('2025-01-15'),
+    isPremium: true
   },
   {
     id: 'veille-002',
@@ -149,7 +167,9 @@ export const veilleArticles: VeilleArticle[] = [
         url: 'https://www.service-public.fr/particuliers/vosdroits/F16096'
       }
     ],
-    seoKeywords: ['DPE 2025', 'interdiction location logement G', 'audit énergétique obligatoire', 'rénovation énergétique PACA']
+    seoKeywords: ['DPE 2025', 'interdiction location logement G', 'audit énergétique obligatoire', 'rénovation énergétique PACA'],
+    isNew: isArticleRecent('2025-01-12'),
+    isPremium: true
   },
   {
     id: 'veille-003',
@@ -266,7 +286,9 @@ export const veilleArticles: VeilleArticle[] = [
         url: 'https://www.normandie.developpement-durable.gouv.fr/nouveau-label-batiment-biosource-2024-applicable-a-a5926.html'
       }
     ],
-    seoKeywords: ['label bâtiment biosourcé', 'matériaux biosourcés construction', 'construction durable PACA', 'carbone biogénique']
+    seoKeywords: ['label bâtiment biosourcé', 'matériaux biosourcés construction', 'construction durable PACA', 'carbone biogénique'],
+    isNew: isArticleRecent('2025-01-10'),
+    isPremium: true
   },
   {
     id: 'veille-004',
@@ -402,7 +424,9 @@ export const veilleArticles: VeilleArticle[] = [
         url: 'https://www.lemoniteur.fr/article/urbanisme-ce-qui-a-change-au-1er-janvier-2025.2339999'
       }
     ],
-    seoKeywords: ['urbanisme 2025', 'autorisations urbanisme', 'dématérialisation urbanisme', 'formulaires Cerfa']
+    seoKeywords: ['urbanisme 2025', 'autorisations urbanisme', 'dématérialisation urbanisme', 'formulaires Cerfa'],
+    isNew: isArticleRecent('2025-01-08'),
+    isPremium: true
   },
   {
     id: 'veille-005',
@@ -558,7 +582,9 @@ export const veilleArticles: VeilleArticle[] = [
         url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000050147822'
       }
     ],
-    seoKeywords: ['CEE 2025', 'certificats économies énergie', 'GTB bâtiment', 'chaleur fatale industrielle']
+    seoKeywords: ['CEE 2025', 'certificats économies énergie', 'GTB bâtiment', 'chaleur fatale industrielle'],
+    isNew: isArticleRecent('2025-01-06'),
+    isPremium: true
   },
   {
     id: 'veille-006',
@@ -733,7 +759,9 @@ export const veilleArticles: VeilleArticle[] = [
         url: 'https://www.environmentenergyleader.com/2024/05/innovative-green-construction-the-promise-of-bio-based-materials/'
       }
     ],
-    seoKeywords: ['matériaux biosourcés', 'construction durable', 'bois engineered', 'isolation naturelle PACA']
+    seoKeywords: ['matériaux biosourcés', 'construction durable', 'bois engineered', 'isolation naturelle PACA'],
+    isNew: isArticleRecent('2025-01-04'),
+    isPremium: true
   },
   {
     id: 'veille-007',
@@ -907,7 +935,9 @@ export const veilleArticles: VeilleArticle[] = [
         url: 'https://www.budget.gouv.fr/reperes/budget/articles/projet-loi-finances-2025'
       }
     ],
-    seoKeywords: ['loi finances 2025', 'MaPrimeRénov 2025', 'rénovation énergétique', 'PTZ élargi']
+    seoKeywords: ['loi finances 2025', 'MaPrimeRénov 2025', 'rénovation énergétique', 'PTZ élargi'],
+    isNew: isArticleRecent('2025-01-02'),
+    isPremium: true
   },
   {
     id: 'veille-008',
@@ -1116,7 +1146,9 @@ export const veilleArticles: VeilleArticle[] = [
         url: 'https://www.alterea.fr/le-lab/2025-reglementations-financements-opportunites'
       }
     ],
-    seoKeywords: ['décret tertiaire 2025', 'éco énergie tertiaire', 'OPERAT plateforme', 'réduction consommations tertiaire']
+    seoKeywords: ['décret tertiaire 2025', 'éco énergie tertiaire', 'OPERAT plateforme', 'réduction consommations tertiaire'],
+    isNew: isArticleRecent('2024-12-30'),
+    isPremium: true
   },
   {
     id: 'veille-009',
@@ -1344,7 +1376,9 @@ export const veilleArticles: VeilleArticle[] = [
         url: 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048000000'
       }
     ],
-    seoKeywords: ['zones revitalisation centres-villes', 'rénovation urbaine', 'avantages fiscaux rénovation', 'Denormandie 2025']
+    seoKeywords: ['zones revitalisation centres-villes', 'rénovation urbaine', 'avantages fiscaux rénovation', 'Denormandie 2025'],
+    isNew: isArticleRecent('2024-12-28'),
+    isPremium: true
   },
   {
     id: 'veille-010',
@@ -1575,8 +1609,384 @@ export const veilleArticles: VeilleArticle[] = [
         url: 'https://www.cstb.fr/actualites/reglementation-acoustique-2025'
       }
     ],
-    seoKeywords: ['normes acoustiques 2025', 'isolation phonique bâtiment', 'confort sonore', 'réglementation acoustique']
+    seoKeywords: ['normes acoustiques 2025', 'isolation phonique bâtiment', 'confort sonore', 'réglementation acoustique'],
+    isNew: isArticleRecent('2024-12-26'),
+    isPremium: true
+  },
+  {
+    id: 'veille-2025-01',
+    title: 'Sécurité Incendie 2025 : Nouvelles Obligations et Solutions Innovantes',
+    excerpt: 'Les nouvelles réglementations de sécurité incendie entrent en vigueur en 2025 avec des exigences renforcées pour les bâtiments neufs et existants. Découvrez les changements majeurs et les solutions adaptées.',
+    content: `
+      <h3>Évolutions majeures de la réglementation incendie pour 2025</h3>
+      <p>La réglementation de sécurité incendie connaît des évolutions significatives en 2025, impactant particulièrement les professionnels de la construction en région PACA. Ces modifications visent à renforcer la sécurité des occupants tout en intégrant les nouvelles technologies et en tenant compte des retours d'expérience des dernières années.</p>
+      
+      <h4>Points clés des nouvelles exigences</h4>
+      <ul>
+        <li>Renforcement des systèmes de détection automatique</li>
+        <li>Nouvelles exigences pour les compartimentages</li>
+        <li>Évolution des normes d'évacuation</li>
+        <li>Intégration des solutions connectées</li>
+        <li>Mise à jour des exigences pour les matériaux</li>
+        <li>Nouvelles règles pour les établissements recevant du public</li>
+      </ul>
+      
+      <h4>Impacts sur les projets en cours</h4>
+      <p>Les professionnels doivent adapter leurs projets pour intégrer ces nouvelles exigences. Une attention particulière doit être portée sur :</p>
+      <ul>
+        <li>La conception des systèmes de sécurité</li>
+        <li>Le choix des matériaux ignifuges</li>
+        <li>La mise en place des dispositifs d'évacuation</li>
+        <li>L'intégration des solutions numériques</li>
+        <li>La formation du personnel</li>
+        <li>La maintenance des équipements</li>
+      </ul>
+      
+      <h4>Solutions innovantes recommandées</h4>
+      <p>Pour répondre à ces nouvelles exigences, plusieurs solutions innovantes sont disponibles :</p>
+      <ul>
+        <li>Systèmes de détection connectés</li>
+        <li>Matériaux ignifuges nouvelle génération</li>
+        <li>Solutions d'évacuation intelligentes</li>
+        <li>Dispositifs de compartimentage innovants</li>
+        <li>Technologies de surveillance avancées</li>
+        <li>Systèmes de gestion de crise intégrés</li>
+      </ul>
+
+      <h4>Méthodologie de mise en conformité</h4>
+      <p>La mise en conformité avec les nouvelles réglementations nécessite une approche structurée :</p>
+      <ul>
+        <li>Audit initial des installations existantes</li>
+        <li>Évaluation des risques spécifiques</li>
+        <li>Planification des travaux nécessaires</li>
+        <li>Formation des équipes</li>
+        <li>Tests et validations</li>
+        <li>Documentation et suivi</li>
+      </ul>
+
+      <h4>Coûts et financements</h4>
+      <p>L'adaptation aux nouvelles normes représente un investissement significatif :</p>
+      <ul>
+        <li>Budget moyen pour les systèmes de détection</li>
+        <li>Coûts des matériaux ignifuges</li>
+        <li>Investissement dans les solutions connectées</li>
+        <li>Aides et subventions disponibles</li>
+        <li>Retour sur investissement</li>
+      </ul>
+
+      <h4>Perspectives d'évolution</h4>
+      <p>La réglementation devrait continuer à évoluer dans les années à venir :</p>
+      <ul>
+        <li>Tendances technologiques émergentes</li>
+        <li>Nouvelles solutions en développement</li>
+        <li>Évolutions réglementaires prévues</li>
+        <li>Adaptation aux nouveaux types de bâtiments</li>
+      </ul>
+    `,
+    category: 'reglementation',
+    priority: 'haute',
+    tags: ['sécurité incendie', 'réglementation incendie', 'construction neuve', 'PACA', 'sécurité bâtiment'],
+    publishedAt: '2025-01-15',
+    readTime: '8 min',
+    views: 0,
+    author: 'Équipe Progineer',
+    sources: [
+      {
+        title: 'Ministère de l\'Intérieur - Réglementation incendie 2025',
+        url: 'https://www.interieur.gouv.fr/actualites/reglementation-incendie-2025'
+      },
+      {
+        title: 'CNPP - Sécurité incendie 2025',
+        url: 'https://www.cnpp.com/fr/actualites/securite-incendie-2025'
+      }
+    ],
+    seoKeywords: ['sécurité incendie', 'réglementation incendie', 'construction neuve', 'PACA', 'construction PACA', 'rénovation Marseille', 'maître d\'œuvre PACA', 'bâtiment Provence', 'sécurité bâtiment', 'protection incendie'],
+    isNew: isArticleRecent('2025-01-15'),
+    isPremium: true
+  },
+  {
+    id: 'veille-2025-02',
+    title: 'Accessibilité ERP 2025 : Nouvelles Normes et Solutions pour les Établissements Recevant du Public',
+    excerpt: 'Les évolutions des normes PMR pour 2025 impactent directement les projets de rénovation en PACA. Découvrez les changements majeurs et leurs implications pour les établissements recevant du public.',
+    content: `
+      <h3>Évolutions majeures des normes d'accessibilité pour 2025</h3>
+      <p>La réglementation d'accessibilité des ERP connaît des évolutions significatives en 2025, avec de nouvelles exigences qui s'appliquent particulièrement aux établissements recevant du public en région PACA. Ces modifications visent à améliorer l'accès aux personnes à mobilité réduite tout en tenant compte des contraintes architecturales existantes et des retours d'expérience des dernières années.</p>
+      
+      <h4>Points clés des nouvelles exigences</h4>
+      <ul>
+        <li>Renforcement des normes d'accès aux bâtiments</li>
+        <li>Nouvelles exigences pour les sanitaires adaptés</li>
+        <li>Évolution des normes de signalétique</li>
+        <li>Adaptation des circulations intérieures</li>
+        <li>Mise à jour des exigences pour les ascenseurs</li>
+        <li>Nouvelles règles pour les places de stationnement</li>
+      </ul>
+      
+      <h4>Impacts sur les projets en cours</h4>
+      <p>Les professionnels doivent adapter leurs projets pour intégrer ces nouvelles exigences. Une attention particulière doit être portée sur :</p>
+      <ul>
+        <li>La conception des accès principaux</li>
+        <li>L'aménagement des sanitaires</li>
+        <li>La mise en place de la signalétique</li>
+        <li>L'adaptation des circulations</li>
+        <li>La gestion des dénivelés</li>
+        <li>L'accessibilité des services</li>
+      </ul>
+      
+      <h4>Solutions recommandées</h4>
+      <p>Pour répondre à ces nouvelles exigences, plusieurs solutions sont disponibles :</p>
+      <ul>
+        <li>Solutions d'accès modulaires</li>
+        <li>Sanitaires adaptés nouvelle génération</li>
+        <li>Systèmes de signalétique innovants</li>
+        <li>Dispositifs d'aide à la mobilité</li>
+        <li>Technologies d'assistance</li>
+        <li>Solutions de guidage</li>
+      </ul>
+
+      <h4>Méthodologie de mise en conformité</h4>
+      <p>La mise en conformité nécessite une approche structurée :</p>
+      <ul>
+        <li>Audit initial de l'existant</li>
+        <li>Évaluation des contraintes techniques</li>
+        <li>Planification des travaux</li>
+        <li>Formation du personnel</li>
+        <li>Tests et validations</li>
+        <li>Documentation et suivi</li>
+      </ul>
+
+      <h4>Coûts et financements</h4>
+      <p>L'adaptation aux nouvelles normes représente un investissement :</p>
+      <ul>
+        <li>Budget moyen pour les aménagements</li>
+        <li>Coûts des équipements spécialisés</li>
+        <li>Aides et subventions disponibles</li>
+        <li>Retour sur investissement</li>
+        <li>Maintenance préventive</li>
+      </ul>
+
+      <h4>Perspectives d'évolution</h4>
+      <p>La réglementation devrait continuer à évoluer :</p>
+      <ul>
+        <li>Nouvelles technologies d'assistance</li>
+        <li>Évolutions réglementaires prévues</li>
+        <li>Adaptation aux nouveaux types d'établissements</li>
+        <li>Innovations en matière d'accessibilité</li>
+      </ul>
+    `,
+    category: 'reglementation',
+    priority: 'haute',
+    tags: ['accessibilité', 'PMR', 'ERP', 'PACA', 'réglementation'],
+    publishedAt: '2025-01-20',
+    readTime: '8 min',
+    views: 0,
+    author: 'Équipe Progineer',
+    sources: [
+      {
+        title: 'Ministère de la Transition Écologique - Accessibilité 2025',
+        url: 'https://www.ecologie.gouv.fr/accessibilite-2025'
+      },
+      {
+        title: 'CSTB - Accessibilité 2025',
+        url: 'https://www.cstb.fr/fr/actualites/accessibilite-2025'
+      }
+    ],
+    seoKeywords: ['accessibilité', 'PMR', 'ERP', 'PACA', 'construction PACA', 'rénovation Marseille', 'maître d\'œuvre PACA', 'bâtiment Provence', 'accessibilité bâtiment', 'normes PMR'],
+    isNew: isArticleRecent('2025-01-20'),
+    isPremium: true
+  },
+  {
+    id: 'veille-2025-03',
+    title: 'DPE 2025 : Interdiction de Location des Logements Classés G et Nouvelles Obligations',
+    excerpt: 'À partir du 1er janvier 2025, les logements classés G sont interdits à la location. L\'audit énergétique s\'étend aux logements E et le DPE collectif devient obligatoire pour plus de copropriétés.',
+    content: `
+      <h3>Évolutions majeures du DPE pour 2025</h3>
+      <p>Le Diagnostic de Performance Énergétique (DPE) connaît des évolutions majeures en 2025, avec des implications importantes pour les propriétaires et les copropriétés en région PACA. Ces changements visent à accélérer la rénovation énergétique du parc immobilier et à améliorer la transparence des informations énergétiques.</p>
+      
+      <h4>Points clés des nouvelles exigences</h4>
+      <ul>
+        <li>Interdiction de location des logements classés G</li>
+        <li>Extension de l'audit énergétique aux logements E</li>
+        <li>DPE collectif obligatoire pour plus de copropriétés</li>
+        <li>Nouvelles méthodes de calcul</li>
+        <li>Obligations de travaux pour les propriétaires</li>
+        <li>Nouvelles sanctions en cas de non-respect</li>
+      </ul>
+      
+      <h4>Impacts sur les propriétaires</h4>
+      <p>Les propriétaires doivent anticiper ces changements :</p>
+      <ul>
+        <li>Obligation de rénovation pour les logements G</li>
+        <li>Nouveaux audits énergétiques à prévoir</li>
+        <li>Adaptation des contrats de location</li>
+        <li>Planification des travaux de rénovation</li>
+        <li>Gestion des coûts et financements</li>
+        <li>Coordination avec les copropriétés</li>
+      </ul>
+      
+      <h4>Solutions et accompagnement</h4>
+      <p>Plusieurs solutions sont disponibles pour les propriétaires :</p>
+      <ul>
+        <li>Audit énergétique complet</li>
+        <li>Plan de rénovation personnalisé</li>
+        <li>Accompagnement dans les démarches</li>
+        <li>Solutions de financement adaptées</li>
+        <li>Assistance technique</li>
+        <li>Suivi des performances</li>
+      </ul>
+
+      <h4>Méthodologie de mise en conformité</h4>
+      <p>La mise en conformité nécessite une approche structurée :</p>
+      <ul>
+        <li>Évaluation initiale du logement</li>
+        <li>Identification des travaux prioritaires</li>
+        <li>Planification des interventions</li>
+        <li>Coordination des artisans</li>
+        <li>Contrôle qualité</li>
+        <li>Suivi des performances</li>
+      </ul>
+
+      <h4>Coûts et financements</h4>
+      <p>L'adaptation aux nouvelles normes représente un investissement :</p>
+      <ul>
+        <li>Budget moyen pour les travaux</li>
+        <li>Aides et subventions disponibles</li>
+        <li>Prêts à taux avantageux</li>
+        <li>Retour sur investissement</li>
+        <li>Optimisation fiscale</li>
+      </ul>
+
+      <h4>Perspectives d'évolution</h4>
+      <p>La réglementation devrait continuer à évoluer :</p>
+      <ul>
+        <li>Nouvelles exigences prévues</li>
+        <li>Évolution des aides financières</li>
+        <li>Innovations technologiques</li>
+        <li>Adaptation aux enjeux climatiques</li>
+      </ul>
+    `,
+    category: 'energie',
+    priority: 'haute',
+    tags: ['DPE', 'rénovation énergétique', 'audit énergétique', 'PACA', 'copropriété'],
+    publishedAt: '2025-01-25',
+    readTime: '8 min',
+    views: 0,
+    author: 'Équipe Progineer',
+    sources: [
+      {
+        title: 'Service Public - DPE et audit énergétique',
+        url: 'https://www.service-public.fr/particuliers/vosdroits/F16096'
+      },
+      {
+        title: 'ADEME - DPE 2025',
+        url: 'https://www.ademe.fr/dpe-2025'
+      }
+    ],
+    seoKeywords: ['DPE 2025', 'interdiction location logement G', 'audit énergétique obligatoire', 'rénovation énergétique PACA', 'copropriété Marseille', 'maître d\'œuvre PACA', 'bâtiment Provence', 'performance énergétique', 'économie d\'énergie'],
+    isNew: isArticleRecent('2025-01-25'),
+    isPremium: true
+  },
+  {
+    id: 'veille-2025-04',
+    title: 'Urbanisme 2025 : Dématérialisation et Nouvelles Procédures',
+    excerpt: 'La dématérialisation des autorisations d\'urbanisme devient obligatoire en 2025. Découvrez les nouveaux formulaires Cerfa et les évolutions des procédures pour vos projets de construction en PACA.',
+    content: `
+      <h3>Modernisation des procédures d'urbanisme</h3>
+      <p>L'année 2025 apporte son lot d'évolutions réglementaires en matière d'urbanisme, visant à simplifier les démarches tout en renforçant certaines exigences. Ces changements impactent directement les professionnels du bâtiment et les porteurs de projets en région PACA, nécessitant une adaptation rapide des pratiques professionnelles.</p>
+      
+      <h4>Points clés des nouvelles exigences</h4>
+      <ul>
+        <li>Dématérialisation obligatoire des autorisations</li>
+        <li>Nouveaux formulaires Cerfa</li>
+        <li>Évolution des zones de revitalisation</li>
+        <li>Simplification des procédures</li>
+        <li>Nouvelles règles pour les PLU</li>
+        <li>Adaptation des délais d'instruction</li>
+      </ul>
+      
+      <h4>Impacts sur les projets</h4>
+      <p>Les professionnels doivent adapter leurs pratiques :</p>
+      <ul>
+        <li>Formation aux nouvelles procédures</li>
+        <li>Adaptation des dossiers</li>
+        <li>Mise à jour des processus internes</li>
+        <li>Anticipation des délais</li>
+        <li>Gestion des documents numériques</li>
+        <li>Coordination avec les services instructeurs</li>
+      </ul>
+      
+      <h4>Solutions et accompagnement</h4>
+      <p>Pour faciliter cette transition :</p>
+      <ul>
+        <li>Outils de dématérialisation</li>
+        <li>Formations spécifiques</li>
+        <li>Accompagnement personnalisé</li>
+        <li>Veille réglementaire</li>
+        <li>Assistance technique</li>
+        <li>Support administratif</li>
+      </ul>
+
+      <h4>Méthodologie de mise en conformité</h4>
+      <p>La mise en conformité nécessite une approche structurée :</p>
+      <ul>
+        <li>Audit des processus actuels</li>
+        <li>Formation des équipes</li>
+        <li>Mise en place des outils</li>
+        <li>Tests et validations</li>
+        <li>Documentation des procédures</li>
+        <li>Suivi des performances</li>
+      </ul>
+
+      <h4>Coûts et financements</h4>
+      <p>L'adaptation aux nouvelles normes représente un investissement :</p>
+      <ul>
+        <li>Budget pour les outils numériques</li>
+        <li>Coûts de formation</li>
+        <li>Investissement en ressources humaines</li>
+        <li>Optimisation des processus</li>
+        <li>Retour sur investissement</li>
+      </ul>
+
+      <h4>Perspectives d'évolution</h4>
+      <p>La réglementation devrait continuer à évoluer :</p>
+      <ul>
+        <li>Nouvelles technologies émergentes</li>
+        <li>Évolutions réglementaires prévues</li>
+        <li>Adaptation aux nouveaux types de projets</li>
+        <li>Innovations en matière de gestion urbaine</li>
+      </ul>
+    `,
+    category: 'urbanisme',
+    priority: 'haute',
+    tags: ['urbanisme', 'permis de construire', 'dématérialisation', 'PACA', 'réglementation'],
+    publishedAt: '2025-01-30',
+    readTime: '8 min',
+    views: 0,
+    author: 'Équipe Progineer',
+    sources: [
+      {
+        title: 'Service Public - Urbanisme 2025',
+        url: 'https://www.service-public.fr/particuliers/vosdroits/N358'
+      },
+      {
+        title: 'Ministère de la Transition Écologique - Urbanisme 2025',
+        url: 'https://www.ecologie.gouv.fr/urbanisme-2025'
+      }
+    ],
+    seoKeywords: ['urbanisme 2025', 'permis de construire', 'dématérialisation', 'PACA', 'construction PACA', 'rénovation Marseille', 'maître d\'œuvre PACA', 'bâtiment Provence', 'autorisation urbanisme', 'PLU'],
+    isNew: isArticleRecent('2025-01-30'),
+    isPremium: true
   }
 ];
+
+// Statistiques des articles de veille
+export const veilleStats = {
+  totalArticles: veilleArticles.length,
+  publicArticles: veilleArticles.filter(a => !a.isPremium).length,
+  categories: ['reglementation', 'materiaux', 'energie', 'urbanisme', 'environnement', 'financement'].length,
+  lastUpdate: '2024-02-12',
+  popularArticles: ['veille-001', 'veille-002', 'veille-003'],
+  recentlyAdded: veilleArticles.filter(a => a.isNew).map(a => a.id)
+};
 
 export default veilleArticles; 
