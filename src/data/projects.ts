@@ -15,7 +15,7 @@ export const projects: Project[] = [
     location: 'PACA',
     category: 'Construction neuve',
     description: 'Villa moderne à l\'architecture audacieuse, intégrant des matériaux contemporains et des lignes épurées, conçue par notre maître d\'œuvre à Marseille.',
-    image: '/images/prestations/PROGINEER-37_resultat.webp',
+    image: '/images/prestations/PGR_37_resultat.webp',
     slug: 'maison-contemporaine-vue-panoramique'
   },
   {
@@ -24,7 +24,7 @@ export const projects: Project[] = [
     location: 'Lomme / Lille',
     category: 'Réhabilitation',
     description: 'Transformation d\'un site industriel en espace de vie moderne et fonctionnel. Conservation des éléments architecturaux d\'origine.',
-    image: '/images/prestations/PGR_37_resultat.webp',
+    image: '/images/prestations/PGR_99_resultat.webp',
     slug: 'restructuration-friche-lomme'
   },
   {
