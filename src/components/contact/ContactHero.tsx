@@ -10,7 +10,7 @@ const ContactHero = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: `url('/lovable-uploads/PROGINEER (14).webp')`,
+            backgroundImage: `url('/images/prestations/PROGINEER_14.webp')`,
             backgroundPosition: 'center',
           }}
         ></div>

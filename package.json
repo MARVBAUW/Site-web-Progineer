@@ -21,7 +21,8 @@
     "clean:sitemap-tmp": "rm -rf build-sitemap-tmp",
     "build:sitemap-utils": "npx tsc src/utils/sitemapGenerator.ts src/data/calculators/calculatorsData.ts src/data/guides/guidesData.ts src/data/guides/additionalGuides.ts src/data/regulation/regulationData.ts src/data/regulation/additionalDTUs.ts --outDir build-sitemap-tmp/src --module NodeNext --target ES2020 --esModuleInterop --skipLibCheck --strict",
     "generate-sitemap": "tsx scripts/build/sitemap/generate-sitemap.ts",
-    "prebuild": "npm run clean:sitemap-tmp && npm run build:sitemap-utils && npm run generate-sitemap",
+    "clean": "rm -rf node_modules/.vite && rm -rf .vercel",
+    "prebuild": "npm run clean && npm run clean:sitemap-tmp && npm run build:sitemap-utils && npm run generate-sitemap",
     "postbuild": "npm run generate-sitemap",
     "check-links": "node scripts/checkLinks.mjs",
     "generate-report": "ts-node scripts/generateReport.ts",
@@ -75,7 +76,7 @@
     "@types/mapbox-gl": "^3.4.1",
     "@types/react-helmet": "^6.1.11",
     "@types/uuid": "^10.0.0",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.21",
     "axios": "^1.9.0",
     "canvas-confetti": "^1.9.3",
@@ -154,5 +155,8 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.0.1",
     "undici-types": "^7.10.0"
+  },
+  "resolutions": {
+    "vite": "^5.4.19"
   }
 }

@@ -1,9 +1,9 @@
 {
   "version": 2,
+  "framework": "vite",
+  "installCommand": "npm install --legacy-peer-deps --include=dev",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "npm install --legacy-peer-deps",
-  "framework": "vite",
   "routes": [
     {
       "src": "/(.*)",
