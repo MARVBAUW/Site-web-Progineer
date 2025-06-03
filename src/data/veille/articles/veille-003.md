@@ -24,6 +24,7 @@ seoKeywords:
   - carbone biogénique
 isNew: true
 isPremium: true
+slug: label-batiment-biosource-2024
 ---
 <h3>Une révision majeure du label d'État</h3>
 <p>Le label Bâtiment Biosourcé, créé en 2012, a été entièrement revu pour s'adapter à l'essor des matériaux biosourcés et aux enjeux de la RE2020. Cette mise à jour, définie par l'arrêté de juillet 2024, transforme fondamentalement l'approche de la construction biosourcée.</p>

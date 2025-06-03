@@ -25,6 +25,7 @@ seoKeywords:
   - construction neuve PACA
 isNew: true
 isPremium: true
+slug: re2020-nouveaux-seuils-carbone-2025
 ---
 <h3>Renforcement des exigences carbone en 2025</h3>
 <p>Trois ans après son entrée en vigueur, la RE2020 marque une première étape dans le renforcement de ses exigences pour la construction neuve. Les seuils carbone sont désormais plus stricts pour encourager l'adoption de solutions plus durables.</p>

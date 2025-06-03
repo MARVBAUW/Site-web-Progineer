@@ -24,6 +24,7 @@ seoKeywords:
   - rénovation énergétique PACA
 isNew: true
 isPremium: true
+slug: dpe-2025-interdiction-location-logements-g
 ---
 <h3>Durcissement des critères de décence énergétique</h3>
 <p>Le DPE 2025 marque une nouvelle étape dans la lutte contre les passoires thermiques avec des mesures renforcées qui impactent propriétaires bailleurs et copropriétés.</p>
