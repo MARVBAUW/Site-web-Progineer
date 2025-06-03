@@ -29,7 +29,7 @@ const MainLayout = () => (
     </main>
     <Footer />
     {/* Ajout du validateur SEO qui n'apparaîtra qu'en mode développement */}
-    <SEOValidator />
+    {import.meta.env.DEV && <SEOValidator />}
   </>
 );
 
