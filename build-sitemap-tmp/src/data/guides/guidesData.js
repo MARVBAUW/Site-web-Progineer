@@ -1154,8 +1154,8 @@ export const existingGuides = [
 export const allGuides = [...mainGuides, ...additionalGuides, ...existingGuides];
 // Statistiques des guides mis à jour
 export const guidesStats = {
-    totalGuides: mainGuides.length + additionalGuides.length,
-    publicGuides: [...mainGuides, ...additionalGuides].filter(g => g.isPublic).length,
+    totalGuides: mainGuides.length,
+    publicGuides: mainGuides.filter(g => 'isPublic' in g && g.isPublic).length,
     categories: guideCategories.length,
     lastUpdate: '2024-02-12',
     popularGuides: ['qui-faire-appel', 'permis-construire', 'budget-construction', 're2020-guide', 'renovation-energetique'],
