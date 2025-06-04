@@ -77,7 +77,7 @@ Difficulté: ${getDifficultyLabel(guide.difficulty || '')}
 Temps de lecture: ${guide.estimatedTime || guide.readTime}
 Dernière mise à jour: ${formatDate(guide.lastUpdated)}
 
-Tags: ${guide.tags.join(', ')}
+Tags: ${guide.tags?.join(', ') || 'Aucun tag'}
 
 CONTENU:
 --------
@@ -129,7 +129,7 @@ Date d'export: ${new Date().toLocaleDateString('fr-FR')}
     content += `**Temps de lecture:** ${guide.estimatedTime || guide.readTime}\n`;
     content += `**Dernière mise à jour:** ${formatDate(guide.lastUpdated)}\n\n`;
     
-    content += `**Tags:** ${guide.tags.map(tag => `\`${tag}\``).join(', ')}\n\n`;
+    content += `**Tags:** ${guide.tags?.map(tag => `\`${tag}\``).join(', ') || 'Aucun tag'}\n\n`;
     
     content += `---\n\n`;
 
@@ -240,7 +240,7 @@ Date d'export: ${new Date().toLocaleDateString('fr-FR')}
 
           <div class="tags">
             <strong>Tags:</strong> 
-            ${guide.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            ${guide.tags?.map(tag => `<span class="tag">${tag}</span>`).join('') || 'Aucun tag'}
           </div>
 
           <div class="content">
@@ -276,10 +276,10 @@ Date d'export: ${new Date().toLocaleDateString('fr-FR')}
   return (
     <>
       <SEOHeader
-        title={`${guide.title} | Guides Progineer`}
-        description={guide.description}
-        keywords={guide.keywords.join(', ')}
-        canonicalUrl={`https://progineer.fr/workspace/guides/${guide.id}`}
+        title={guide.seoData?.title || guide.title}
+        description={guide.seoData?.metaDescription || guide.description}
+        keywords={(guide.seoData?.keywords || []).join(', ')}
+        canonicalUrl={guide.seoData?.canonicalUrl}
       />
 
       <div className="pt-32">
