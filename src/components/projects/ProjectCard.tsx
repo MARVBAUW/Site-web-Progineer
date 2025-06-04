@@ -1,43 +1,83 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-interface ProjectCardProps {
-  project: {
-    id: string;
-    title: string;
-    description: string;
-    imageUrl: string;
-  };
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
-  const [imageError, setImageError] = useState(false);
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+}
+
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
+  const [imageError, setImageError] = useState<boolean>(false);
   const [triedFallback, setTriedFallback] = useState(false);
 
-  const handleImageError = () => {
-    if (!triedFallback) {
-      setTriedFallback(true);
-      // Essayer le format alternatif
-      const newUrl = project.imageUrl
-        .replace(/PGR_(\d+)_resultat\.webp/, 'PGR _$1__resultat.webp');
-      setImageUrl(newUrl);
-    } else {
-      setImageError(true);
+  const cleanImageUrl = (url: string): string => {
+    if (!url) return '/images/placeholder.svg';
+    
+    // Nettoyer l'URL en retirant les espaces et les doubles underscores
+    let cleanedUrl = url.replace(/\s+/g, '').replace(/_+/g, '_');
+    
+    // Si l'URL ne commence pas par /images/prestations/, l'ajouter
+    if (!cleanedUrl.startsWith('/images/prestations/')) {
+      cleanedUrl = `/images/prestations/${cleanedUrl}`;
     }
+    
+    // Vérifier si l'URL se termine par .webp, sinon l'ajouter
+    if (!cleanedUrl.endsWith('.webp')) {
+      cleanedUrl = `${cleanedUrl}.webp`;
+    }
+    
+    console.log('URL nettoyée:', cleanedUrl);
+    return cleanedUrl;
   };
 
-  const [imageUrl, setImageUrl] = useState(project.imageUrl);
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.error('Erreur de chargement de l\'image:', e.currentTarget.src);
+    setImageError(true);
+    
+    // Essayer de charger l'image avec un format différent
+    const currentSrc = e.currentTarget.src;
+    const newSrc = currentSrc.replace('.webp', '.jpg');
+    console.log('Tentative de chargement avec format alternatif:', newSrc);
+    
+    // Créer une nouvelle image pour tester si le format alternatif existe
+    const img = new window.Image();
+    img.onload = () => {
+      console.log('Format alternatif trouvé:', newSrc);
+      setImageUrl(newSrc);
+      setImageError(false);
+    };
+    img.onerror = () => {
+      console.log('Format alternatif non disponible, utilisation du placeholder');
+      setImageUrl('/images/placeholder.svg');
+    };
+    img.src = newSrc;
+  };
+
+  const [imageUrl, setImageUrl] = useState<string>(cleanImageUrl(project.imageUrl));
 
   return (
-    <div className="relative overflow-hidden rounded-lg shadow-lg">
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="relative h-48 w-full">
         <Image
-          src={imageError ? '/placeholder.svg' : imageUrl}
+          src={imageUrl}
           alt={project.title}
-          fill
-          className="object-cover"
+          width={400}
+          height={300}
+          className={`w-full h-48 object-cover rounded-t-lg transition-all duration-300 ${
+            imageError ? 'opacity-50' : 'hover:scale-105'
+          }`}
           onError={handleImageError}
-          priority
+          priority={index < 3}
+          quality={75}
+          loading={index < 3 ? 'eager' : 'lazy'}
+          onLoad={() => console.log('Image chargée avec succès:', imageUrl)}
         />
       </div>
       <div className="p-4">
@@ -46,4 +86,4 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
     </div>
   );
-} 
+}; 
