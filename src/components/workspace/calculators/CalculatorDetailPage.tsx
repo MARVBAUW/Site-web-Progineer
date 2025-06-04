@@ -202,7 +202,7 @@ Généré par Progineer - ${window.location.href}
       <SEOHeader
         title={`${calculator.title} | Calculateurs Progineer`}
         description={calculator.description}
-        keywords={calculator.keywords.join(', ')}
+        keywords={(calculator.seoData?.keywords || []).join(', ')}
         canonicalUrl={`https://progineer.fr/workspace/calculators/${calculator.id}`}
       />
 
