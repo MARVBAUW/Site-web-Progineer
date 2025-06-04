@@ -15,7 +15,7 @@ export const projects: Project[] = [
     location: 'PACA',
     category: 'Construction neuve',
     description: 'Villa moderne à l\'architecture audacieuse, intégrant des matériaux contemporains et des lignes épurées, conçue par notre maître d\'œuvre à Marseille.',
-    image: '/images/prestations/PGR_37_resultat.webp',
+    image: '/images/prestations/PROGINEER-37-_resultat.webp',
     slug: 'maison-contemporaine-vue-panoramique'
   },
   {
