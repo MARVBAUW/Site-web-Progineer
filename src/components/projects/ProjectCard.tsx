@@ -19,8 +19,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   // Fonction pour nettoyer le nom du fichier
   const cleanImageUrl = (url: string) => {
-    // Remplacer les espaces par des underscores
-    return url.replace(/\s+/g, '_');
+    // Supprimer les espaces et les doubles underscores
+    return url.replace(/\s+/g, '').replace(/_{2,}/g, '_');
   };
 
   return (
