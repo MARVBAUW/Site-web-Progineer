@@ -226,6 +226,77 @@ const CalculatorDetailPage: React.FC = () => {
           newResults['conformite'] = surconfort < 350 ? 'Conforme RE2020' : 'Non conforme RE2020';
           break;
         }
+        case 'verification-section': {
+          const typeSection = inputValues['type_section'];
+          const dimension = Number(inputValues['dimension']) || 0;
+          const effortNormal = Number(inputValues['effort_normal']) || 0;
+          const momentFlechissant = Number(inputValues['moment_flechissant']) || 0;
+          
+          // Coefficients de résistance selon le type de section
+          const resistanceMap: { [key: string]: { normal: number, moment: number } } = {
+            'IPE': { normal: 0.8, moment: 0.9 },
+            'HEA': { normal: 0.85, moment: 0.95 },
+            'HEB': { normal: 0.9, moment: 1.0 },
+            'HEM': { normal: 0.95, moment: 1.05 },
+            'Rond': { normal: 0.75, moment: 0.85 }
+          };
+          
+          const resistance = resistanceMap[typeSection] || { normal: 0.8, moment: 0.9 };
+          const ratioNormal = effortNormal / (resistance.normal * dimension * dimension);
+          const ratioMoment = momentFlechissant / (resistance.moment * dimension * dimension * dimension);
+          const ratioUtilisation = Math.max(ratioNormal, ratioMoment) * 100;
+          
+          newResults['ratio_utilisation'] = ratioUtilisation.toFixed(1);
+          newResults['verification'] = ratioUtilisation < 100 ? 'Section OK' : 'Section insuffisante';
+          break;
+        }
+        case 'calcul-poutre': {
+          const portee = Number(inputValues['portee']) || 0;
+          const chargeUniforme = Number(inputValues['charge_uniforme']) || 0;
+          const typeAppui = inputValues['type_appui'];
+          
+          // Coefficients selon le type d'appui
+          const coefficientsMap: { [key: string]: { moment: number, fleche: number } } = {
+            'Simple': { moment: 0.125, fleche: 5 },
+            'Encastre': { moment: 0.083, fleche: 1 },
+            'Continue': { moment: 0.1, fleche: 2.5 }
+          };
+          
+          const coeff = coefficientsMap[typeAppui] || { moment: 0.125, fleche: 5 };
+          const momentMax = coeff.moment * chargeUniforme * portee * portee;
+          const flecheMax = (coeff.fleche * chargeUniforme * Math.pow(portee, 4)) / (210000 * 1000);
+          
+          // Estimation de la section requise
+          const sectionRequise = Math.ceil(Math.sqrt(momentMax * 1000 / 235));
+          
+          newResults['moment_max'] = momentMax.toFixed(1);
+          newResults['fleche_max'] = flecheMax.toFixed(1);
+          newResults['section_requise'] = `HEA ${sectionRequise}`;
+          break;
+        }
+        case 'calcul-poteau': {
+          const hauteur = Number(inputValues['hauteur']) || 0;
+          const effortNormal = Number(inputValues['effort_normal']) || 0;
+          const typeAppui = inputValues['type_appui'];
+          
+          // Coefficients de longueur de flambement selon le type d'appui
+          const longueurFlambementMap: { [key: string]: number } = {
+            'Articule': 1.0,
+            'Encastre': 0.7,
+            'Elastique': 0.85
+          };
+          
+          const longueurFlambement = longueurFlambementMap[typeAppui] || 1.0;
+          const chargeCritique = (Math.PI * Math.PI * 210000 * 1000) / (longueurFlambement * hauteur * longueurFlambement * hauteur);
+          
+          // Estimation de la section requise
+          const sectionRequise = Math.ceil(Math.sqrt(effortNormal * 1000 / 235));
+          
+          newResults['charge_critique'] = chargeCritique.toFixed(0);
+          newResults['section_requise'] = `HEA ${sectionRequise}`;
+          newResults['verification'] = chargeCritique > effortNormal ? 'Poteau OK' : 'Poteau insuffisant';
+          break;
+        }
         default: {
           const firstInput = Object.values(inputValues)[0] || 0;
           newResults['resultat'] = (Number(firstInput) * 1.2).toFixed(2);
