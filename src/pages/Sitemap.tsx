@@ -13,7 +13,7 @@ const Sitemap = () => {
         { href: '/', name: 'Accueil' },
         { href: '/prestations-maitre-oeuvre', name: 'Prestations' },
         { href: '/realisations-architecte-maison', name: 'Réalisations' },
-        { href: '/equipe-maitrise-oeuvre', name: 'Équipe' },
+        { href: '/equipe', name: 'Équipe' },
         { href: '/estimation', name: 'Estimation' },
         { href: '/contact', name: 'Contact' },
         { href: '/a-propos', name: 'À propos' },

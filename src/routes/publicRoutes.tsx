@@ -120,7 +120,7 @@ export const publicRoutes: RouteObject[] = [
     element: <Realisations />
   },
   {
-    path: "/equipe-maitrise-oeuvre",
+    path: "/equipe",
     element: <Equipe />
   },
   {

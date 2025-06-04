@@ -58,7 +58,7 @@ const Equipe = () => {
         title="Notre équipe | Maître d'œuvre Progineer à Marseille"
         description="Découvrez l'équipe de Progineer, maîtres d'œuvre expérimentés et ingénieurs spécialisés dans la construction et rénovation en PACA. Des professionnels à votre service."
         keywords="équipe maître d'œuvre PACA, ingénieurs construction, professionnels bâtiment Marseille, experts rénovation, techniciens chantier"
-        canonicalUrl="https://progineer.fr/equipe-maitrise-oeuvre"
+        canonicalUrl="https://progineer.fr/equipe"
       />
 
       <main>
