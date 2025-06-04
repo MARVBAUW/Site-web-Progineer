@@ -297,6 +297,67 @@ const CalculatorDetailPage: React.FC = () => {
           newResults['verification'] = chargeCritique > effortNormal ? 'Poteau OK' : 'Poteau insuffisant';
           break;
         }
+        case 'isolation-acoustique': {
+          const typeParoi = inputValues['type_paroi'];
+          const epaisseur = Number(inputValues['epaisseur']) || 0;
+          const surface = Number(inputValues['surface']) || 0;
+          
+          // Coefficients d'affaiblissement selon le type de paroi (dB/cm)
+          const affaiblissementMap: { [key: string]: number } = {
+            'Beton': 0.5,
+            'Brique': 0.4,
+            'Placo': 0.3,
+            'Mixte': 0.45
+          };
+          
+          const indiceAffaiblissement = (affaiblissementMap[typeParoi] || 0.4) * epaisseur;
+          const isolationPonderee = indiceAffaiblissement - 10 * Math.log10(surface);
+          
+          newResults['indice_affaiblissement'] = indiceAffaiblissement.toFixed(1);
+          newResults['isolation_ponderee'] = isolationPonderee.toFixed(1);
+          newResults['conformite'] = isolationPonderee > 30 ? 'Conforme' : 'Non conforme';
+          break;
+        }
+        case 'temps-reverberation': {
+          const volume = Number(inputValues['volume']) || 0;
+          const typeLocal = inputValues['type_local'];
+          const absorptionTotale = Number(inputValues['absorption_totale']) || 0;
+          
+          // Temps de réverbération cible selon le type de local (s)
+          const tempsCibleMap: { [key: string]: number } = {
+            'Bureau': 0.6,
+            'Salle_reunion': 0.8,
+            'Open_space': 0.5,
+            'Auditorium': 1.2
+          };
+          
+          const tempsReverberation = 0.161 * volume / absorptionTotale;
+          const tempsCible = tempsCibleMap[typeLocal] || 0.6;
+          
+          newResults['temps_reverberation'] = tempsReverberation.toFixed(2);
+          newResults['conformite'] = Math.abs(tempsReverberation - tempsCible) < 0.2 ? 'Conforme' : 'Non conforme';
+          break;
+        }
+        case 'absorption-acoustique': {
+          const typeMateriau = inputValues['type_materiau'];
+          const epaisseur = Number(inputValues['epaisseur']) || 0;
+          const surface = Number(inputValues['surface']) || 0;
+          
+          // Coefficients d'absorption selon le type de matériau
+          const absorptionMap: { [key: string]: number } = {
+            'Mousse': 0.8,
+            'Laine': 0.9,
+            'Tissu': 0.7,
+            'Bois': 0.6
+          };
+          
+          const coefficientAbsorption = (absorptionMap[typeMateriau] || 0.7) * (1 - Math.exp(-epaisseur / 5));
+          const absorptionTotale = coefficientAbsorption * surface;
+          
+          newResults['coefficient_absorption'] = coefficientAbsorption.toFixed(2);
+          newResults['absorption_totale'] = absorptionTotale.toFixed(1);
+          break;
+        }
         default: {
           const firstInput = Object.values(inputValues)[0] || 0;
           newResults['resultat'] = (Number(firstInput) * 1.2).toFixed(2);
