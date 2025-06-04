@@ -159,6 +159,73 @@ const CalculatorDetailPage: React.FC = () => {
           newResults['loyerNet'] = loyerNet.toFixed(2);
           break;
         }
+        case 'pont-thermique': {
+          const longueur = Number(inputValues['longueur']) || 0;
+          const psi = Number(inputValues['psi']) || 0;
+          const deperdition = longueur * psi;
+          newResults['deperdition'] = deperdition.toFixed(2);
+          newResults['conformite'] = deperdition < 0.5 ? 'Conforme RE2020' : 'Non conforme RE2020';
+          break;
+        }
+        case 'bilan-carbone': {
+          const surface = Number(inputValues['surface']) || 0;
+          const typeConstruction = inputValues['type_construction'];
+          const energieChauffage = inputValues['energie_chauffage'];
+          
+          // Coefficients de carbone selon le type de construction (kgCO2/m²)
+          const carboneConstructionMap: { [key: string]: number } = {
+            'Béton': 200,
+            'Bois': 150,
+            'Mixte': 175,
+            'Acier': 250
+          };
+          
+          // Coefficients de carbone selon l'énergie (kgCO2/m².an)
+          const carboneExploitationMap: { [key: string]: number } = {
+            'Électricité': 3.5,
+            'Gaz': 2.8,
+            'Bois': 1.2,
+            'Pompe à chaleur': 1.5
+          };
+          
+          newResults['carbone_construction'] = Math.round(carboneConstructionMap[typeConstruction] || 0);
+          newResults['carbone_exploitation'] = carboneExploitationMap[energieChauffage] || 0;
+          newResults['conformite'] = newResults['carbone_construction'] < 180 ? 'Conforme RE2020' : 'Non conforme RE2020';
+          break;
+        }
+        case 'confort-ete': {
+          const surface = Number(inputValues['surface']) || 0;
+          const orientation = inputValues['orientation'];
+          const typeParoi = inputValues['type_paroi'];
+          const surfaceVitree = Number(inputValues['surface_vitree']) || 0;
+          
+          // Coefficients de surconfort selon l'orientation
+          const orientationCoeff: { [key: string]: number } = {
+            'Nord': 0.5,
+            'Sud': 2.0,
+            'Est': 1.5,
+            'Ouest': 1.8
+          };
+          
+          // Coefficients de surconfort selon le type de paroi
+          const paroiCoeff: { [key: string]: number } = {
+            'Légère': 1.5,
+            'Moyenne': 1.0,
+            'Lourde': 0.7
+          };
+          
+          const ratioVitrage = surfaceVitree / surface;
+          const surconfort = Math.round(
+            (orientationCoeff[orientation] || 1) *
+            (paroiCoeff[typeParoi] || 1) *
+            (1 + ratioVitrage) *
+            100
+          );
+          
+          newResults['surconfort'] = surconfort;
+          newResults['conformite'] = surconfort < 350 ? 'Conforme RE2020' : 'Non conforme RE2020';
+          break;
+        }
         default: {
           const firstInput = Object.values(inputValues)[0] || 0;
           newResults['resultat'] = (Number(firstInput) * 1.2).toFixed(2);
