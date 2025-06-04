@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '@/components/common/Container';
 import Button from '@/components/common/Button';
 import { Check, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import './animations.css';
 
 const features = [
@@ -15,6 +16,13 @@ const features = [
 ];
 
 const CTASection = () => {
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    console.error('Erreur de chargement de l\'image:', '/images/prestations/PGR_53_resultat.webp');
+    setImageError(true);
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -121,11 +129,17 @@ const CTASection = () => {
                 transition={{ type: "spring", stiffness: 200 }}
                 className="relative rounded-2xl overflow-hidden shadow-2xl border border-border"
               >
-                <img 
-                  alt="Maison contemporaine avec grande baie vitrée" 
-                  className="w-full h-auto object-fill" 
-                  src="/images/prestations/PGR_53_resultat.webp" 
-                />
+                <div className="relative w-full h-[400px]">
+                  <Image 
+                    alt="Maison contemporaine avec grande baie vitrée" 
+                    src={imageError ? '/images/placeholder.svg' : '/images/prestations/PGR_53_resultat.webp'}
+                    fill
+                    className="object-cover"
+                    onError={handleImageError}
+                    priority
+                    quality={90}
+                  />
+                </div>
                 
                 {/* Overlay subtil pour améliorer la lisibilité */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
