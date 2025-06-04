@@ -19,7 +19,7 @@ const CTASection = () => {
   const [imageError, setImageError] = useState(false);
 
   const handleImageError = () => {
-    console.error('Erreur de chargement de l\'image:', '/images/prestations/PGR_53_resultat.webp');
+    console.error('Erreur de chargement de l\'image:', '/images/prestations/PGR53_resultat.webp');
     setImageError(true);
   };
 
@@ -137,7 +137,7 @@ const CTASection = () => {
                   ) : (
                     <Image 
                       alt="Maison contemporaine avec grande baie vitrée" 
-                      src="/images/prestations/PGR_53_resultat.webp"
+                      src="/images/prestations/PGR53_resultat.webp"
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
