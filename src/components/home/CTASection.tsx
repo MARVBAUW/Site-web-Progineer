@@ -130,15 +130,23 @@ const CTASection = () => {
                 className="relative rounded-2xl overflow-hidden shadow-2xl border border-border"
               >
                 <div className="relative w-full h-[400px]">
-                  <Image 
-                    alt="Maison contemporaine avec grande baie vitrée" 
-                    src={imageError ? '/images/placeholder.svg' : '/images/prestations/PGR_53_resultat.webp'}
-                    fill
-                    className="object-cover"
-                    onError={handleImageError}
-                    priority
-                    quality={90}
-                  />
+                  {imageError ? (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                      <span className="text-gray-400">Image non disponible</span>
+                    </div>
+                  ) : (
+                    <Image 
+                      alt="Maison contemporaine avec grande baie vitrée" 
+                      src="/images/prestations/PGR_53_resultat.webp"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                      onError={handleImageError}
+                      priority
+                      quality={90}
+                      unoptimized
+                    />
+                  )}
                 </div>
                 
                 {/* Overlay subtil pour améliorer la lisibilité */}

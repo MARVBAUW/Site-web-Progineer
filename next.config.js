@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost', 'site-web-progineer-q7p56x9up-marvbauws-projects.vercel.app'],
+    domains: ['localhost', 'progineer.fr'],
     remotePatterns: [
       {
         protocol: 'https',
