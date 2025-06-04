@@ -17,11 +17,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     setImageError(true);
   };
 
+  // Fonction pour nettoyer le nom du fichier
+  const cleanImageUrl = (url: string) => {
+    // Remplacer les espaces par des underscores
+    return url.replace(/\s+/g, '_');
+  };
+
   return (
     <div className="relative overflow-hidden rounded-lg shadow-lg">
       <div className="relative h-48 w-full">
         <Image
-          src={imageError ? '/placeholder.svg' : project.imageUrl}
+          src={imageError ? '/placeholder.svg' : cleanImageUrl(project.imageUrl)}
           alt={project.title}
           fill
           className="object-cover"

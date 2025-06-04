@@ -6,7 +6,6 @@ const PRESTATIONS_DIR = path.join(process.cwd(), 'public', 'images', 'prestation
 function validateImages() {
   const requiredImages = [
     'PGR _37__resultat.webp',
-    'PGR_99_resultat.webp',
     'PGR_36_resultat.webp',
     'PGR_34_resultat.webp',
     'PGR_44_resultat.webp',
