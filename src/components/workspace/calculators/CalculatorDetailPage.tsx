@@ -250,6 +250,16 @@ Généré par Progineer - ${window.location.href}
                   {calculator.description}
                 </p>
 
+                {calculator.tags && calculator.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {calculator.tags.map((tag, index) => (
+                      <Badge key={index} variant="secondary">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+
                 {/* Métadonnées */}
                 <div className="flex flex-wrap items-center gap-6 text-sm text-low-contrast mb-6">
                   <div className="flex items-center gap-1">
