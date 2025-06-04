@@ -17,6 +17,7 @@ import Sitemap from '../pages/Sitemap';
 import SitemapXML from '../pages/SitemapXML';
 import PrivacyPolicy from '../pages/PrivacyPolicy';
 import CGU from '../pages/CGU';
+import VeilleReglementaire from '../pages/VeilleReglementaire';
 
 // Pages dédiées aux prestations
 import ConstructionNeuve from '../pages/prestations/ConstructionNeuve';
@@ -204,6 +205,14 @@ export const publicRoutes: RouteObject[] = [
       to="/realisations" 
       message="Ce projet a été archivé. Découvrez nos autres réalisations."
     />
+  },
+  {
+    path: "/veille-reglementaire",
+    element: <VeilleReglementaire />
+  },
+  {
+    path: "/veille-reglementaire/:slug",
+    element: <VeilleReglementaire />
   },
   {
     path: "*",

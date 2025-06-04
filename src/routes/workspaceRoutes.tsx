@@ -8,6 +8,7 @@ import ResourceLandingPage from "@/components/workspace/resources/ResourceLandin
 import GuideDetailPage from "@/components/workspace/guides/GuideDetailPage";
 import CalculatorDetailPage from "@/components/workspace/calculators/CalculatorDetailPage";
 import RegulationDetailPage from "@/components/workspace/regulation/RegulationDetailPage";
+import WorkspaceVeilleReglementaire from "@/components/workspace/WorkspaceVeilleReglementaire";
 
 // Sample resource data (in a real app, this would come from a database)
 const guideRenovationEnergetique = {
@@ -117,6 +118,11 @@ export const workspaceRoutes: RouteObject[] = [
   {
     path: "/workspace/regulation/:regulationId",
     element: <RegulationDetailPage />,
+  },
+  // Route pour la veille réglementaire
+  {
+    path: "/workspace/veille/:articleSlug",
+    element: <WorkspaceVeilleReglementaire />,
   },
   // Landing pages for guides (legacy)
   {

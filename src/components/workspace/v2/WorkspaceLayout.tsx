@@ -200,14 +200,33 @@ const WorkspaceLayout: React.FC = () => {
   // Synchroniser le tab avec l'URL à chaque changement d'URL
   useEffect(() => {
     const urlTab = searchParams.get('tab');
+    const articleSlug = searchParams.get('article');
     const mappedTab = tabMap[urlTab || ''] || 'guides';
-    if (mappedTab !== activeTab) setActiveTab(mappedTab);
+    
+    if (mappedTab !== activeTab) {
+      setActiveTab(mappedTab);
+    }
+
+    // Si on a un article dans l'URL et qu'on est sur la veille réglementaire
+    if (articleSlug && mappedTab === 'veille-reglementaire') {
+      // Le composant WorkspaceVeilleReglementaire gérera l'affichage de l'article
+      setActiveTab('veille-reglementaire');
+    }
   }, [searchParams]);
 
   // Mettre à jour l'URL lors d'un changement de tab
   const handleTabChange = (value: string) => {
     setActiveTab(value);
-    setSearchParams({ tab: value === 'calculators' ? 'calculateurs' : value });
+    // Conserver le paramètre article si on est sur la veille réglementaire
+    const articleSlug = searchParams.get('article');
+    if (value === 'veille-reglementaire' && articleSlug) {
+      setSearchParams({ 
+        tab: value,
+        article: articleSlug 
+      });
+    } else {
+      setSearchParams({ tab: value === 'calculators' ? 'calculateurs' : value });
+    }
     setSearchQuery('');
     setSearchFilters({});
   };

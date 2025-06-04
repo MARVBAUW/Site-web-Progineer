@@ -17,7 +17,7 @@ const RegulationDetailPage: React.FC = () => {
 
   if (!regulation) {
     return (
-      <Container className="py-16">
+      <Container className="py-16 pt-32">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Document non trouvé</h1>
           <p className="text-gray-600 dark:text-gray-300 mb-6">Le document de réglementation demandé n'existe pas ou a été supprimé.</p>
@@ -337,364 +337,366 @@ IMPORTANT: Vérifiez toujours les textes officiels pour une valeur juridique com
   return (
     <>
       <SEOHeader
-        title={regulation.seoData?.title || regulation.title}
-        description={regulation.seoData?.metaDescription || regulation.description}
-        keywords={regulation.seoData?.keywords?.join(', ') || regulation.tags.join(', ')}
-        canonicalUrl={regulation.seoData?.canonicalUrl || `https://progineer.fr/workspace/regulation/${regulation.id}`}
+        title={`${regulation.title} | Réglementation Progineer`}
+        description={regulation.description}
+        keywords={regulation.tags.join(', ')}
+        canonicalUrl={`https://progineer.fr/workspace/regulation/${regulation.id}`}
       />
 
-      <Container className="py-8">
-        {/* Navigation */}
-        <div className="mb-6">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate('/workspace?tab=reglementation')}
-            className="text-green-600 hover:text-green-700"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Retour à la réglementation
-          </Button>
-        </div>
+      <div className="pt-32">
+        <Container className="py-8">
+          {/* Navigation */}
+          <div className="mb-6">
+            <Button 
+              variant="ghost" 
+              onClick={() => navigate('/workspace?tab=reglementation')}
+              className="text-green-600 hover:text-green-700"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Retour à la réglementation
+            </Button>
+          </div>
 
-        {/* Header du document */}
-        <div className="bg-card rounded-xl shadow-lg p-8 mb-8">
-          <div className="flex flex-col lg:flex-row gap-6">
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-4">
-                <ScrollText className="h-5 w-5 text-green-600" />
-                <span className="text-sm font-medium text-green-600">
-                  {getRegulationTypeLabel(regulation.regulationType)}
-                </span>
-                {regulation.isPremium && (
-                  <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">
-                    Premium
+          {/* Header du document */}
+          <div className="bg-card rounded-xl shadow-lg p-8 mb-8">
+            <div className="flex flex-col lg:flex-row gap-6">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-4">
+                  <ScrollText className="h-5 w-5 text-green-600" />
+                  <span className="text-sm font-medium text-green-600">
+                    {getRegulationTypeLabel(regulation.regulationType)}
+                  </span>
+                  {regulation.isPremium && (
+                    <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">
+                      Premium
+                    </Badge>
+                  )}
+                  <Badge className="bg-blue-100 text-blue-800 border-blue-200">
+                    {regulation.reference}
                   </Badge>
-                )}
-                <Badge className="bg-blue-100 text-blue-800 border-blue-200">
-                  {regulation.reference}
-                </Badge>
-              </div>
-
-              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                {regulation.title}
-              </h1>
-
-              <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                {regulation.description}
-              </p>
-
-              {/* Domaine d'application */}
-              <div className="bg-muted/50 rounded-lg p-4 mb-6">
-                <h3 className="font-medium text-gray-900 dark:text-white mb-2">Domaine d'application</h3>
-                <p className="text-gray-600 dark:text-gray-300">{regulation.scope}</p>
-              </div>
-
-              {/* Métadonnées */}
-              <div className="flex flex-wrap items-center gap-6 text-sm text-low-contrast mb-6">
-                <div className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  <span>Mis à jour le {formatDate(regulation.lastUpdated)}</span>
                 </div>
-                {regulation.applicableFrom && (
+
+                <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                  {regulation.title}
+                </h1>
+
+                <p className="text-xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                  {regulation.description}
+                </p>
+
+                {/* Domaine d'application */}
+                <div className="bg-muted/50 rounded-lg p-4 mb-6">
+                  <h3 className="font-medium text-gray-900 dark:text-white mb-2">Domaine d'application</h3>
+                  <p className="text-gray-600 dark:text-gray-300">{regulation.scope}</p>
+                </div>
+
+                {/* Métadonnées */}
+                <div className="flex flex-wrap items-center gap-6 text-sm text-low-contrast mb-6">
                   <div className="flex items-center gap-1">
-                    <span>Applicable depuis le {formatDate(regulation.applicableFrom)}</span>
+                    <Calendar className="h-4 w-4" />
+                    <span>Mis à jour le {formatDate(regulation.lastUpdated)}</span>
+                  </div>
+                  {regulation.applicableFrom && (
+                    <div className="flex items-center gap-1">
+                      <span>Applicable depuis le {formatDate(regulation.applicableFrom)}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Tags */}
+                {regulation.tags && regulation.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {regulation.tags.map((tag, index) => (
+                      <Badge key={index} variant="secondary" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
                   </div>
                 )}
-              </div>
 
-              {/* Tags */}
-              {regulation.tags && regulation.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {regulation.tags.map((tag, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
+                {/* Actions d'export */}
+                <div className="flex flex-wrap gap-3">
+                  <Button 
+                    variant="outline"
+                    onClick={exportRegulationAsText}
+                  >
+                    <FileText className="h-4 w-4 mr-2" />
+                    Exporter TXT
+                  </Button>
+                  
+                  <Button 
+                    variant="outline"
+                    onClick={printRegulation}
+                  >
+                    <Printer className="h-4 w-4 mr-2" />
+                    Imprimer
+                  </Button>
+                  
+                  <Button variant="outline">
+                    <Share2 className="h-4 w-4 mr-2" />
+                    Partager
+                  </Button>
                 </div>
-              )}
-
-              {/* Actions d'export */}
-              <div className="flex flex-wrap gap-3">
-                <Button 
-                  variant="outline"
-                  onClick={exportRegulationAsText}
-                >
-                  <FileText className="h-4 w-4 mr-2" />
-                  Exporter TXT
-                </Button>
-                
-                <Button 
-                  variant="outline"
-                  onClick={printRegulation}
-                >
-                  <Printer className="h-4 w-4 mr-2" />
-                  Imprimer
-                </Button>
-                
-                <Button variant="outline">
-                  <Share2 className="h-4 w-4 mr-2" />
-                  Partager
-                </Button>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Contenu du document */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Contenu principal */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Règles principales */}
-            {regulation.keyRules && regulation.keyRules.length > 0 && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Règles principales</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {regulation.keyRules.map((rule, index) => (
-                    <div key={index} className="border rounded-lg p-4">
-                      <div className="flex items-start justify-between mb-2">
-                        <h4 className="font-medium text-gray-900 dark:text-white">{rule.title}</h4>
-                        <div className="flex items-center gap-2">
-                          {rule.mandatory && (
-                            <Badge variant="outline" className="text-xs bg-red-50 text-red-700 border-red-200">
-                              Obligatoire
-                            </Badge>
-                          )}
-                        </div>
-                      </div>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-3">
-                        {rule.description}
-                      </p>
-                      
-                      {rule.exceptions && rule.exceptions.length > 0 && (
-                        <div className="bg-orange-50 rounded p-3 mb-3">
-                          <h5 className="font-medium text-orange-900 text-xs mb-1">Exceptions :</h5>
-                          <ul className="text-orange-800 text-xs space-y-1">
-                            {rule.exceptions.map((exception, excIndex) => (
-                              <li key={excIndex}>• {exception}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      
-                      {rule.references && rule.references.length > 0 && (
-                        <div className="text-xs text-gray-600 dark:text-gray-300">
-                          <span className="font-medium">Références : </span>
-                          {rule.references.join(', ')}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Tolérances */}
-            {regulation.tolerances && regulation.tolerances.length > 0 && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Tolérances d'exécution</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                      <thead>
-                        <tr className="border-b bg-muted/50">
-                          <th className="text-left p-3 font-medium">Paramètre</th>
-                          <th className="text-left p-3 font-medium">Tolérance</th>
-                          <th className="text-left p-3 font-medium">Conditions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {regulation.tolerances.map((tolerance, index) => (
-                          <tr key={index} className="border-b">
-                            <td className="p-3">{tolerance.parameter}</td>
-                            <td className="p-3 font-mono">{tolerance.tolerance}</td>
-                            <td className="p-3 text-gray-600 dark:text-gray-300">{tolerance.conditions || '-'}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Dimensions */}
-            {regulation.dimensions && regulation.dimensions.length > 0 && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Dimensions réglementaires</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {regulation.dimensions.map((dimension, index) => (
+          {/* Contenu du document */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Contenu principal */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* Règles principales */}
+              {regulation.keyRules && regulation.keyRules.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Règles principales</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {regulation.keyRules.map((rule, index) => (
                       <div key={index} className="border rounded-lg p-4">
-                        <h4 className="font-medium text-gray-900 dark:text-white mb-2">{dimension.element}</h4>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                          <div>
-                            <span className="text-gray-600 dark:text-gray-300">Dimension : </span>
-                            <span className="font-medium">{dimension.dimension}</span>
+                        <div className="flex items-start justify-between mb-2">
+                          <h4 className="font-medium text-gray-900 dark:text-white">{rule.title}</h4>
+                          <div className="flex items-center gap-2">
+                            {rule.mandatory && (
+                              <Badge variant="outline" className="text-xs bg-red-50 text-red-700 border-red-200">
+                                Obligatoire
+                              </Badge>
+                            )}
                           </div>
-                          {dimension.minimum && (
-                            <div>
-                              <span className="text-gray-600 dark:text-gray-300">Minimum : </span>
-                              <span className="font-medium text-red-600">{dimension.minimum}</span>
-                            </div>
-                          )}
-                          {dimension.maximum && (
-                            <div>
-                              <span className="text-gray-600 dark:text-gray-300">Maximum : </span>
-                              <span className="font-medium text-red-600">{dimension.maximum}</span>
-                            </div>
-                          )}
                         </div>
-                        {dimension.conditions && (
-                          <p className="text-gray-600 dark:text-gray-300 text-xs mt-2">{dimension.conditions}</p>
+                        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-3">
+                          {rule.description}
+                        </p>
+                        
+                        {rule.exceptions && rule.exceptions.length > 0 && (
+                          <div className="bg-orange-50 rounded p-3 mb-3">
+                            <h5 className="font-medium text-orange-900 text-xs mb-1">Exceptions :</h5>
+                            <ul className="text-orange-800 text-xs space-y-1">
+                              {rule.exceptions.map((exception, excIndex) => (
+                                <li key={excIndex}>• {exception}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        {rule.references && rule.references.length > 0 && (
+                          <div className="text-xs text-gray-600 dark:text-gray-300">
+                            <span className="font-medium">Références : </span>
+                            {rule.references.join(', ')}
+                          </div>
                         )}
                       </div>
                     ))}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-          </div>
+                  </CardContent>
+                </Card>
+              )}
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Export rapide */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Export rapide</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <Button variant="outline" size="sm" onClick={exportRegulationAsText} className="w-full justify-start">
-                  <FileText className="h-4 w-4 mr-2" />
-                  Format Texte (.txt)
-                </Button>
-                <Button variant="outline" size="sm" onClick={printRegulation} className="w-full justify-start">
-                  <Printer className="h-4 w-4 mr-2" />
-                  Version imprimable
-                </Button>
-              </CardContent>
-            </Card>
+              {/* Tolérances */}
+              {regulation.tolerances && regulation.tolerances.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Tolérances d'exécution</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b bg-muted/50">
+                            <th className="text-left p-3 font-medium">Paramètre</th>
+                            <th className="text-left p-3 font-medium">Tolérance</th>
+                            <th className="text-left p-3 font-medium">Conditions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {regulation.tolerances.map((tolerance, index) => (
+                            <tr key={index} className="border-b">
+                              <td className="p-3">{tolerance.parameter}</td>
+                              <td className="p-3 font-mono">{tolerance.tolerance}</td>
+                              <td className="p-3 text-gray-600 dark:text-gray-300">{tolerance.conditions || '-'}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
 
-            {/* Documents liés */}
-            {regulation.relatedDocuments && regulation.relatedDocuments.length > 0 && (
+              {/* Dimensions */}
+              {regulation.dimensions && regulation.dimensions.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Dimensions réglementaires</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {regulation.dimensions.map((dimension, index) => (
+                        <div key={index} className="border rounded-lg p-4">
+                          <h4 className="font-medium text-gray-900 dark:text-white mb-2">{dimension.element}</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                            <div>
+                              <span className="text-gray-600 dark:text-gray-300">Dimension : </span>
+                              <span className="font-medium">{dimension.dimension}</span>
+                            </div>
+                            {dimension.minimum && (
+                              <div>
+                                <span className="text-gray-600 dark:text-gray-300">Minimum : </span>
+                                <span className="font-medium text-red-600">{dimension.minimum}</span>
+                              </div>
+                            )}
+                            {dimension.maximum && (
+                              <div>
+                                <span className="text-gray-600 dark:text-gray-300">Maximum : </span>
+                                <span className="font-medium text-red-600">{dimension.maximum}</span>
+                              </div>
+                            )}
+                          </div>
+                          {dimension.conditions && (
+                            <p className="text-gray-600 dark:text-gray-300 text-xs mt-2">{dimension.conditions}</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+
+            {/* Sidebar */}
+            <div className="space-y-6">
+              {/* Export rapide */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Documents liés</CardTitle>
+                  <CardTitle className="text-lg">Export rapide</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {regulation.relatedDocuments.map((relatedId, index) => {
-                      const relatedDoc = allRegulations.find(r => r.id === relatedId);
-                      if (!relatedDoc) {
+                <CardContent className="space-y-2">
+                  <Button variant="outline" size="sm" onClick={exportRegulationAsText} className="w-full justify-start">
+                    <FileText className="h-4 w-4 mr-2" />
+                    Format Texte (.txt)
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={printRegulation} className="w-full justify-start">
+                    <Printer className="h-4 w-4 mr-2" />
+                    Version imprimable
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Documents liés */}
+              {regulation.relatedDocuments && regulation.relatedDocuments.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Documents liés</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {regulation.relatedDocuments.map((relatedId, index) => {
+                        const relatedDoc = allRegulations.find(r => r.id === relatedId);
+                        if (!relatedDoc) {
+                          return (
+                            <div key={index} className="p-3 border rounded-lg bg-muted/50">
+                              <h4 className="font-medium text-sm text-gray-600 dark:text-gray-300 mb-1">
+                                {relatedId}
+                              </h4>
+                              <p className="text-xs text-gray-600 dark:text-gray-300">
+                                Document de référence externe
+                              </p>
+                            </div>
+                          );
+                        }
+                        
                         return (
-                          <div key={index} className="p-3 border rounded-lg bg-muted/50">
-                            <h4 className="font-medium text-sm text-gray-600 dark:text-gray-300 mb-1">
-                              {relatedId}
+                          <div 
+                            key={index} 
+                            className="p-3 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors"
+                            onClick={() => navigate(`/workspace/regulation/${relatedDoc.id}`)}
+                          >
+                            <h4 className="font-medium text-sm text-gray-900 dark:text-white mb-1">
+                              {relatedDoc.title}
                             </h4>
-                            <p className="text-xs text-gray-600 dark:text-gray-300">
-                              Document de référence externe
+                            <p className="text-xs text-gray-600 dark:text-gray-300 line-clamp-2">
+                              {relatedDoc.description}
                             </p>
                           </div>
                         );
-                      }
-                      
-                      return (
-                        <div 
-                          key={index} 
-                          className="p-3 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors"
-                          onClick={() => navigate(`/workspace/regulation/${relatedDoc.id}`)}
-                        >
-                          <h4 className="font-medium text-sm text-gray-900 dark:text-white mb-1">
-                            {relatedDoc.title}
-                          </h4>
-                          <p className="text-xs text-gray-600 dark:text-gray-300 line-clamp-2">
-                            {relatedDoc.description}
-                          </p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
+                      })}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
 
-            {/* Informations sur le document */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Informations</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-300">Référence</span>
-                  <span className="font-medium">{regulation.reference}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-300">Type</span>
-                  <span className="font-medium">{getRegulationTypeLabel(regulation.regulationType)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-300">Catégorie</span>
-                  <span className="font-medium">{getCategoryLabel(regulation.category)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-300">Accès</span>
-                  <span className="font-medium">
-                    {regulation.isPremium ? 'Premium' : 'Gratuit'}
-                  </span>
-                </div>
-                {regulation.applicableFrom && (
-                  <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-300">En vigueur depuis</span>
-                    <span className="font-medium">{formatDate(regulation.applicableFrom)}</span>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-
-            {/* Informations de supersession */}
-            {regulation.supersedes && regulation.supersedes.length > 0 && (
+              {/* Informations sur le document */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Documents remplacés</CardTitle>
+                  <CardTitle className="text-lg">Informations</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-300">Référence</span>
+                    <span className="font-medium">{regulation.reference}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-300">Type</span>
+                    <span className="font-medium">{getRegulationTypeLabel(regulation.regulationType)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-300">Catégorie</span>
+                    <span className="font-medium">{getCategoryLabel(regulation.category)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-300">Accès</span>
+                    <span className="font-medium">
+                      {regulation.isPremium ? 'Premium' : 'Gratuit'}
+                    </span>
+                  </div>
+                  {regulation.applicableFrom && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600 dark:text-gray-300">En vigueur depuis</span>
+                      <span className="font-medium">{formatDate(regulation.applicableFrom)}</span>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Informations de supersession */}
+              {regulation.supersedes && regulation.supersedes.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Documents remplacés</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                      {regulation.supersedes.map((superseded, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <ArrowLeft className="h-3 w-3" />
+                          <span>{superseded}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Mise à jour */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Dernière mise à jour</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                    {regulation.supersedes.map((superseded, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <ArrowLeft className="h-3 w-3" />
-                        <span>{superseded}</span>
-                      </div>
-                    ))}
+                  <div className="text-sm text-gray-600 dark:text-gray-300">
+                    <p className="mb-2">
+                      Ce document a été mis à jour le <strong>{formatDate(regulation.lastUpdated)}</strong>
+                    </p>
+                    <p className="text-xs">
+                      Les données présentées sont issues des textes officiels en vigueur.
+                      Vérifiez toujours les dernières versions sur les sites officiels.
+                    </p>
                   </div>
                 </CardContent>
               </Card>
-            )}
-
-            {/* Mise à jour */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Dernière mise à jour</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm text-gray-600 dark:text-gray-300">
-                  <p className="mb-2">
-                    Ce document a été mis à jour le <strong>{formatDate(regulation.lastUpdated)}</strong>
-                  </p>
-                  <p className="text-xs">
-                    Les données présentées sont issues des textes officiels en vigueur.
-                    Vérifiez toujours les dernières versions sur les sites officiels.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </>
   );
 };

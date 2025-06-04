@@ -34,6 +34,7 @@ export interface VeilleArticle {
   seoKeywords: string[];
   isNew?: boolean;
   isPremium?: boolean;
+  slug: string;
 }
 
 export const veilleArticles: VeilleArticle[] = [
@@ -94,7 +95,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['RE2020 2025', 'seuils carbone construction', 'réglementation environnementale', 'construction neuve PACA'],
     isNew: isArticleRecent('2025-01-15'),
-    isPremium: true
+    isPremium: true,
+    slug: 're2020-nouveaux-seuils-carbone-applicables-depuis-janvier-2025'
   },
   {
     id: 'veille-002',
@@ -169,7 +171,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['DPE 2025', 'interdiction location logement G', 'audit énergétique obligatoire', 'rénovation énergétique PACA'],
     isNew: isArticleRecent('2025-01-12'),
-    isPremium: true
+    isPremium: true,
+    slug: 'dpe-2025-interdiction-de-location-des-logements-classes-g-et-nouvelles-obligations'
   },
   {
     id: 'veille-003',
@@ -288,7 +291,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['label bâtiment biosourcé', 'matériaux biosourcés construction', 'construction durable PACA', 'carbone biogénique'],
     isNew: isArticleRecent('2025-01-10'),
-    isPremium: true
+    isPremium: true,
+    slug: 'label-batiment-biosource-2024-nouvelles-exigences-et-opportunites'
   },
   {
     id: 'veille-004',
@@ -426,7 +430,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['urbanisme 2025', 'autorisations urbanisme', 'dématérialisation urbanisme', 'formulaires Cerfa'],
     isNew: isArticleRecent('2025-01-08'),
-    isPremium: true
+    isPremium: true,
+    slug: 'urbanisme-2025-nouvelles-regles-pour-les-autorisations-et-la-dematerialisation'
   },
   {
     id: 'veille-005',
@@ -584,7 +589,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['CEE 2025', 'certificats économies énergie', 'GTB bâtiment', 'chaleur fatale industrielle'],
     isNew: isArticleRecent('2025-01-06'),
-    isPremium: true
+    isPremium: true,
+    slug: 'certificats-economies-energie-nouvelles-fiches-et-evolutions-2025'
   },
   {
     id: 'veille-006',
@@ -761,7 +767,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['matériaux biosourcés', 'construction durable', 'bois engineered', 'isolation naturelle PACA'],
     isNew: isArticleRecent('2025-01-04'),
-    isPremium: true
+    isPremium: true,
+    slug: 'materiaux-biosource-l-innovation-au-service-de-la-construction-durable'
   },
   {
     id: 'veille-007',
@@ -937,7 +944,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['loi finances 2025', 'MaPrimeRénov 2025', 'rénovation énergétique', 'PTZ élargi'],
     isNew: isArticleRecent('2025-01-02'),
-    isPremium: true
+    isPremium: true,
+    slug: 'loi-de-finances-2025-impact-sur-la-renovation-energetique-et-le-btp'
   },
   {
     id: 'veille-008',
@@ -1148,7 +1156,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['décret tertiaire 2025', 'éco énergie tertiaire', 'OPERAT plateforme', 'réduction consommations tertiaire'],
     isNew: isArticleRecent('2024-12-30'),
-    isPremium: true
+    isPremium: true,
+    slug: 'decret-tertiaire-2025-nouvelles-obligations-et-strategies-de-mise-en-conformite'
   },
   {
     id: 'veille-009',
@@ -1378,7 +1387,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['zones revitalisation centres-villes', 'rénovation urbaine', 'avantages fiscaux rénovation', 'Denormandie 2025'],
     isNew: isArticleRecent('2024-12-28'),
-    isPremium: true
+    isPremium: true,
+    slug: 'zones-de-revitalisation-des-centres-villes-nouvelles-opportunites-2025'
   },
   {
     id: 'veille-010',
@@ -1611,7 +1621,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['normes acoustiques 2025', 'isolation phonique bâtiment', 'confort sonore', 'réglementation acoustique'],
     isNew: isArticleRecent('2024-12-26'),
-    isPremium: true
+    isPremium: true,
+    slug: 'evolution-des-normes-acoustiques-nouvelles-exigences-pour-2025'
   },
   {
     id: 'veille-2025-01',
@@ -1702,7 +1713,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['sécurité incendie', 'réglementation incendie', 'construction neuve', 'PACA', 'construction PACA', 'rénovation Marseille', 'maître d\'œuvre PACA', 'bâtiment Provence', 'sécurité bâtiment', 'protection incendie'],
     isNew: isArticleRecent('2025-01-15'),
-    isPremium: true
+    isPremium: true,
+    slug: 'securite-incendie-2025-nouvelles-obligations-et-solutions-innovantes'
   },
   {
     id: 'veille-2025-02',
@@ -1793,7 +1805,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['accessibilité', 'PMR', 'ERP', 'PACA', 'construction PACA', 'rénovation Marseille', 'maître d\'œuvre PACA', 'bâtiment Provence', 'accessibilité bâtiment', 'normes PMR'],
     isNew: isArticleRecent('2025-01-20'),
-    isPremium: true
+    isPremium: true,
+    slug: 'accessibilite-erp-2025-nouvelles-normes-et-solutions-pour-les-etablissements-recevant-du-public'
   },
   {
     id: 'veille-2025-03',
@@ -1884,7 +1897,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['DPE 2025', 'interdiction location logement G', 'audit énergétique obligatoire', 'rénovation énergétique PACA', 'copropriété Marseille', 'maître d\'œuvre PACA', 'bâtiment Provence', 'performance énergétique', 'économie d\'énergie'],
     isNew: isArticleRecent('2025-01-25'),
-    isPremium: true
+    isPremium: true,
+    slug: 'dpe-2025-interdiction-de-location-des-logements-classes-g-et-nouvelles-obligations'
   },
   {
     id: 'veille-2025-04',
@@ -1975,7 +1989,8 @@ export const veilleArticles: VeilleArticle[] = [
     ],
     seoKeywords: ['urbanisme 2025', 'permis de construire', 'dématérialisation', 'PACA', 'construction PACA', 'rénovation Marseille', 'maître d\'œuvre PACA', 'bâtiment Provence', 'autorisation urbanisme', 'PLU'],
     isNew: isArticleRecent('2025-01-30'),
-    isPremium: true
+    isPremium: true,
+    slug: 'urbanisme-2025-dematerialisation-et-nouvelles-procedures'
   }
 ];
 
