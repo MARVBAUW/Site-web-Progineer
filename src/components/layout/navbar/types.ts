@@ -23,6 +23,6 @@ export const navLinks: NavLink[] = [
     ]
   },
   { name: 'Nos réalisations', path: '/realisations' },
-  { name: 'Notre équipe', path: '/equipe' },
+  { name: 'Notre équipe', path: '/equipe-maitrise-oeuvre' },
   { name: 'Workspace', path: '/workspace' },
 ];
