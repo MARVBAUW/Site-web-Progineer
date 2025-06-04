@@ -12,22 +12,27 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const [imageError, setImageError] = useState(false);
+  const [triedFallback, setTriedFallback] = useState(false);
 
   const handleImageError = () => {
-    setImageError(true);
+    if (!triedFallback) {
+      setTriedFallback(true);
+      // Essayer le format alternatif
+      const newUrl = project.imageUrl
+        .replace(/PGR_(\d+)_resultat\.webp/, 'PGR _$1__resultat.webp');
+      setImageUrl(newUrl);
+    } else {
+      setImageError(true);
+    }
   };
 
-  // Fonction pour nettoyer le nom du fichier
-  const cleanImageUrl = (url: string) => {
-    // Supprimer les espaces et les doubles underscores
-    return url.replace(/\s+/g, '').replace(/_{2,}/g, '_');
-  };
+  const [imageUrl, setImageUrl] = useState(project.imageUrl);
 
   return (
     <div className="relative overflow-hidden rounded-lg shadow-lg">
       <div className="relative h-48 w-full">
         <Image
-          src={imageError ? '/placeholder.svg' : cleanImageUrl(project.imageUrl)}
+          src={imageError ? '/placeholder.svg' : imageUrl}
           alt={project.title}
           fill
           className="object-cover"
