@@ -158,7 +158,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom section */}
-      <div className="py-6 bg-[0#202014f0] bg-[#202014]/[0.94]">
+      <div className="py-6 bg-[#202014]/[0.94]">
         <Container size="lg">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">

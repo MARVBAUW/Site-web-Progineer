@@ -131,8 +131,8 @@ const CTASection = () => {
               >
                 <div className="relative w-full h-[400px]">
                   {imageError ? (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                      <span className="text-gray-400">Image non disponible</span>
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                      <p className="!text-white">Image non disponible</p>
                     </div>
                   ) : (
                     <Image 
