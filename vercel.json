@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "nextjs",
   "headers": [
     {
       "source": "/images/(.*)",
@@ -26,6 +29,12 @@
           "value": "1; mode=block"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 } 
