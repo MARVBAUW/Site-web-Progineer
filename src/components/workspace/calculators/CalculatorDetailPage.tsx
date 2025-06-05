@@ -358,6 +358,37 @@ const CalculatorDetailPage: React.FC = () => {
           newResults['absorption_totale'] = absorptionTotale.toFixed(1);
           break;
         }
+        case 'deperditions-thermiques': {
+          const surfaceHabitable = Number(inputValues['surface_habitable']) || 0;
+          const hauteurSousPlafond = Number(inputValues['hauteur_sous_plafond']) || 0;
+          const uMurs = Number(inputValues['u_murs']) || 0;
+          const uPlancher = Number(inputValues['u_plancher']) || 0;
+          const uPlafond = Number(inputValues['u_plafond']) || 0;
+          const uVitrage = Number(inputValues['u_vitrage']) || 0;
+          const surfaceVitrage = Number(inputValues['surface_vitrage']) || 0;
+          
+          // Calcul des surfaces
+          const surfaceMurs = 2 * (Math.sqrt(surfaceHabitable) + Math.sqrt(surfaceHabitable)) * hauteurSousPlafond - surfaceVitrage;
+          const surfacePlancher = surfaceHabitable;
+          const surfacePlafond = surfaceHabitable;
+          
+          // Calcul des déperditions par paroi
+          const deperditionsMurs = surfaceMurs * uMurs * 19; // 19°C de différence moyenne
+          const deperditionsPlancher = surfacePlancher * uPlancher * 19;
+          const deperditionsPlafond = surfacePlafond * uPlafond * 19;
+          const deperditionsVitrage = surfaceVitrage * uVitrage * 19;
+          
+          // Calcul des déperditions totales
+          const deperditionsTotales = deperditionsMurs + deperditionsPlancher + deperditionsPlafond + deperditionsVitrage;
+          
+          // Calcul du coefficient Ubat
+          const uBat = deperditionsTotales / (surfaceHabitable * 19);
+          
+          newResults['deperditions_totales'] = Math.round(deperditionsTotales);
+          newResults['ubat'] = uBat.toFixed(2);
+          newResults['conformite'] = uBat < 0.4 ? 'Conforme RE2020' : 'Non conforme RE2020';
+          break;
+        }
         default: {
           const firstInput = Object.values(inputValues)[0] || 0;
           newResults['resultat'] = (Number(firstInput) * 1.2).toFixed(2);
