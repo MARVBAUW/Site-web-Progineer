@@ -258,27 +258,40 @@ const CalculatorDetailPage: React.FC = () => {
           break;
         }
         case 'verification-section': {
-          const typeSection = inputValues['type_section'];
-          const dimension = Number(inputValues['dimension']) || 0;
-          const effortNormal = Number(inputValues['effort_normal']) || 0;
-          const momentFlechissant = Number(inputValues['moment_flechissant']) || 0;
-          
-          // Coefficients de résistance selon le type de section
-          const resistanceMap: { [key: string]: { normal: number, moment: number } } = {
-            'IPE': { normal: 0.8, moment: 0.9 },
-            'HEA': { normal: 0.85, moment: 0.95 },
-            'HEB': { normal: 0.9, moment: 1.0 },
-            'HEM': { normal: 0.95, moment: 1.05 },
-            'Rond': { normal: 0.75, moment: 0.85 }
-          };
-          
-          const resistance = resistanceMap[typeSection] || { normal: 0.8, moment: 0.9 };
-          const ratioNormal = effortNormal / (resistance.normal * dimension * dimension);
-          const ratioMoment = momentFlechissant / (resistance.moment * dimension * dimension * dimension);
-          const ratioUtilisation = Math.max(ratioNormal, ratioMoment) * 100;
-          
-          newResults['ratio_utilisation'] = ratioUtilisation.toFixed(1);
-          newResults['verification'] = ratioUtilisation < 100 ? 'Section OK' : 'Section insuffisante';
+          // Calcul des caractéristiques de la section
+          const dimensions = String(inputValues['dimensions']);
+          const [h, b, tw, tf] = dimensions.split('x').map(Number);
+          const A = b * h - (b - 2 * tw) * (h - 2 * tf); // Surface
+          const Iy = (b * h**3 - (b - 2 * tw) * (h - 2 * tf)**3) / 12; // Inertie
+          const Wy = 2 * Iy / h; // Module de flexion
+          const Av = h * tw; // Surface de cisaillement
+
+          // Résistances selon Eurocode 3
+          const fy = 235; // Limite d'élasticité (MPa)
+          const gammaM0 = 1.0; // Coefficient partiel
+          const gammaM1 = 1.1;
+
+          // Résistance à la compression
+          const NcRd = A * fy / gammaM0;
+
+          // Résistance à la flexion
+          const McRd = Wy * fy / gammaM0;
+
+          // Résistance au cisaillement
+          const VcRd = Av * fy / (Math.sqrt(3) * gammaM0);
+
+          // Vérification
+          const verification = 
+            Number(inputValues['effort_normal']) <= NcRd &&
+            Number(inputValues['moment_flechissant']) <= McRd &&
+            Number(inputValues['effort_tranchant']) <= VcRd
+              ? 'Section vérifiée'
+              : 'Section non vérifiée';
+
+          newResults['resistance_compression'] = NcRd;
+          newResults['resistance_flexion'] = McRd;
+          newResults['resistance_cisaillement'] = VcRd;
+          newResults['verification'] = verification;
           break;
         }
         case 'calcul-poutre': {
@@ -549,6 +562,68 @@ const CalculatorDetailPage: React.FC = () => {
           newResults['volume_excavation'] = volumeExcavation;
           newResults['volume_remblai'] = Math.round(volumeExcavation * 0.8);
           newResults['volume_transport'] = Math.round(volumeExcavation - newResults['volume_remblai']);
+          break;
+        }
+        case 'calcul-moments': {
+          // Coefficients selon type de structure
+          const coefficients: Record<string, { moment: number; effort: number; fleche: number }> = {
+            PoutreSimple: { moment: 1/8, effort: 1/2, fleche: 5/384 },
+            PoutreContinue: { moment: 1/10, effort: 0.6, fleche: 1/185 },
+            Portique: { moment: 1/12, effort: 0.5, fleche: 1/250 }
+          };
+
+          const typeStructure = String(inputValues['type_structure']);
+          const coef = coefficients[typeStructure];
+          const q = Number(inputValues['charge_permanente']) + Number(inputValues['charge_exploitation']);
+          const L = Number(inputValues['portee']);
+
+          // Calculs selon Eurocode 0
+          const momentMax = coef.moment * q * L * L;
+          const effortTranchantMax = coef.effort * q * L;
+          const flecheMax = coef.fleche * q * L * L * L * L / (210e9 * 1e-6); // E = 210 GPa
+
+          newResults['moment_max'] = momentMax;
+          newResults['effort_tranchant_max'] = effortTranchantMax;
+          newResults['fleche_max'] = flecheMax;
+          break;
+        }
+        case 'verification-poteaux': {
+          // Caractéristiques de la section
+          const section = String(inputValues['section']);
+          const [b_poteau, h_poteau] = section.split('x').map(Number);
+          const A_poteau = b_poteau * h_poteau;
+          const I_poteau = b_poteau * h_poteau**3 / 12;
+          const i_poteau = Math.sqrt(I_poteau / A_poteau);
+
+          // Paramètres selon matériau
+          const typeMateriau = String(inputValues['type_materiau']);
+          const params = typeMateriau === 'Acier' 
+            ? { E: 210e9, fy: 235e6, gammaM1: 1.1 }
+            : { E: 30e9, fy: 25e6, gammaM1: 1.5 };
+
+          // Calcul du flambement
+          const L = Number(inputValues['hauteur']);
+          const lambda = L / i_poteau;
+          const lambda1 = Math.PI * Math.sqrt(params.E / params.fy);
+          const lambdaRel = lambda / lambda1;
+          const phi = 0.5 * (1 + 0.21 * (lambdaRel - 0.2) + lambdaRel**2);
+          const chi = 1 / (phi + Math.sqrt(phi**2 - lambdaRel**2));
+
+          // Résistances
+          const NcRd = chi * A_poteau * params.fy / params.gammaM1;
+          const McRd = A_poteau * h_poteau * params.fy / (4 * params.gammaM1);
+
+          // Vérification
+          const verification = 
+            Number(inputValues['effort_normal']) <= NcRd &&
+            Number(inputValues['moment_flechissant']) <= McRd
+              ? 'Poteau vérifié'
+              : 'Poteau non vérifié';
+
+          newResults['resistance_compression'] = NcRd;
+          newResults['resistance_flexion'] = McRd;
+          newResults['coefficient_flambement'] = chi;
+          newResults['verification'] = verification;
           break;
         }
         default: {
