@@ -171,6 +171,7 @@ const CalculatorDetailPage: React.FC = () => {
           const surface = Number(inputValues['surface']) || 0;
           const typeConstruction = inputValues['type_construction'];
           const energieChauffage = inputValues['energie_chauffage'];
+          const isolationParois = inputValues['isolation_parois'];
           
           // Coefficients de carbone selon le type de construction (kgCO2/m²)
           const carboneConstructionMap: { [key: string]: number } = {
@@ -188,9 +189,33 @@ const CalculatorDetailPage: React.FC = () => {
             'Pompe à chaleur': 1.5
           };
           
+          // Coefficients selon le type de construction
+          const coefficientsConstruction = {
+            'Beton': 0.8,
+            'Bois': 0.3,
+            'Mixte': 0.5,
+            'Acier': 0.7
+          };
+          
+          // Coefficients selon l'énergie
+          const coefficientsEnergie = {
+            'Electricite': 0.9,
+            'Gaz': 0.7,
+            'Bois': 0.3,
+            'PompeChaleur': 0.4
+          };
+          
+          // Coefficients selon l'isolation
+          const coefficientsIsolation = {
+            'Standard': 1.0,
+            'Renforcee': 0.7,
+            'BBC': 0.5
+          };
+          
           newResults['carbone_construction'] = Math.round(carboneConstructionMap[typeConstruction] || 0);
           newResults['carbone_exploitation'] = carboneExploitationMap[energieChauffage] || 0;
-          newResults['conformite'] = newResults['carbone_construction'] < 180 ? 'Conforme RE2020' : 'Non conforme RE2020';
+          newResults['total_carbone'] = newResults['carbone_construction'] + newResults['carbone_exploitation'];
+          newResults['conformite'] = newResults['total_carbone'] < 14 ? 'Conforme' : 'Non conforme';
           break;
         }
         case 'confort-ete': {
@@ -198,32 +223,38 @@ const CalculatorDetailPage: React.FC = () => {
           const orientation = inputValues['orientation'];
           const typeParoi = inputValues['type_paroi'];
           const surfaceVitree = Number(inputValues['surface_vitree']) || 0;
+          const protectionSolaire = inputValues['protection_solaire'];
           
-          // Coefficients de surconfort selon l'orientation
-          const orientationCoeff: { [key: string]: number } = {
-            'Nord': 0.5,
-            'Sud': 2.0,
-            'Est': 1.5,
-            'Ouest': 1.8
-          };
+          // Calcul de la température intérieure conventionnelle
+          let tic = 0;
+          switch (orientation) {
+            case 'Sud': tic = 32; break;
+            case 'Ouest': tic = 30; break;
+            case 'Est': tic = 28; break;
+            case 'Nord': tic = 26; break;
+          }
           
-          // Coefficients de surconfort selon le type de paroi
-          const paroiCoeff: { [key: string]: number } = {
-            'Légère': 1.5,
-            'Moyenne': 1.0,
-            'Lourde': 0.7
-          };
+          // Ajustement selon le type de paroi
+          switch (typeParoi) {
+            case 'Legere': tic += 2; break;
+            case 'Moyenne': tic += 1; break;
+            case 'Lourde': tic -= 1; break;
+          }
           
+          // Ajustement selon la protection solaire
+          switch (protectionSolaire) {
+            case 'Aucune': tic += 2; break;
+            case 'Store': tic -= 1; break;
+            case 'Casquette': tic -= 2; break;
+            case 'BriseSoleil': tic -= 3; break;
+          }
+          
+          // Calcul des heures d'inconfort
           const ratioVitrage = surfaceVitree / surface;
-          const surconfort = Math.round(
-            (orientationCoeff[orientation] || 1) *
-            (paroiCoeff[typeParoi] || 1) *
-            (1 + ratioVitrage) *
-            100
-          );
+          const heuresInconfort = Math.round(tic * ratioVitrage * 100);
           
-          newResults['surconfort'] = surconfort;
-          newResults['conformite'] = surconfort < 350 ? 'Conforme RE2020' : 'Non conforme RE2020';
+          newResults['heures_inconfort'] = heuresInconfort;
+          newResults['conformite'] = heuresInconfort < 350 ? 'Conforme' : 'Non conforme';
           break;
         }
         case 'verification-section': {
@@ -389,9 +420,140 @@ const CalculatorDetailPage: React.FC = () => {
           newResults['conformite'] = uBat < 0.4 ? 'Conforme RE2020' : 'Non conforme RE2020';
           break;
         }
+        case 'ponts-thermiques': {
+          const longueur = Number(inputValues['longueur']) || 0;
+          const coefficientPsi = Number(inputValues['coefficient_psi']) || 0;
+          const deltaT = Number(inputValues['temperature_interieure']) - Number(inputValues['temperature_exterieure']) || 0;
+          
+          const deperdition = longueur * coefficientPsi * deltaT;
+          newResults['deperdition'] = deperdition.toFixed(2);
+          newResults['conformite'] = coefficientPsi < 0.5 ? 'Conforme' : 'Non conforme';
+          break;
+        }
+        case 'resistance-feu': {
+          const typeElement = inputValues['type_element'] || '';
+          const typeMateriau = inputValues['type_materiau'] || '';
+          const chargeAppliquee = Number(inputValues['charge_appliquee']) || 0;
+          const typeProtection = inputValues['type_protection'] || '';
+          
+          // Résistance de base selon le matériau
+          const resistanceBase: { [key: string]: number } = {
+            'Beton': 120,
+            'Acier': 60,
+            'Bois': 30,
+            'Maconnerie': 90
+          };
+          
+          // Coefficient de charge
+          const coefficientCharge = chargeAppliquee > 100 ? 0.8 : 1;
+          
+          // Coefficient de protection
+          const coefficientProtection: { [key: string]: number } = {
+            'Aucune': 1,
+            'Platre': 1.5,
+            'Beton': 2,
+            'LaineMineral': 1.3
+          };
+          
+          const resistance = Math.round(resistanceBase[typeMateriau] * coefficientCharge * coefficientProtection[typeProtection]);
+          newResults['resistance'] = resistance;
+          newResults['conformite'] = resistance >= 60 ? 'Conforme' : 'Non conforme';
+          break;
+        }
+        case 'desenfumage': {
+          const surfaceLocal = Number(inputValues['surface_local']) || 0;
+          const hauteurPlafond = Number(inputValues['hauteur_plafond']) || 0;
+          const typeEtablissement = inputValues['type_etablissement'] || '';
+          const nombreEtages = Number(inputValues['nombre_etages']) || 0;
+          
+          // Calcul de la section d'extraction
+          const volumeLocal = surfaceLocal * hauteurPlafond;
+          const coefficientType: { [key: string]: number } = {
+            'ERP': 0.8,
+            'IGH': 1.2,
+            'Habitation': 0.6
+          };
+          
+          const sectionExtraction = Math.round(volumeLocal * coefficientType[typeEtablissement] * 0.1);
+          newResults['section_extraction'] = sectionExtraction;
+          newResults['section_amenee'] = Math.round(sectionExtraction * 0.8);
+          newResults['puissance_extracteur'] = Math.round(volumeLocal * 6);
+          break;
+        }
+        case 'rampe-acces': {
+          const hauteurFranchir = Number(inputValues['hauteur_franchir']) || 0;
+          const typeRampe = inputValues['type_rampe'] || '';
+          const espaceDisponible = Number(inputValues['espace_disponible']) || 0;
+          
+          // Calcul de la longueur minimale
+          const penteMax = 5; // 5%
+          const longueurMinimale = (hauteurFranchir * 100) / penteMax;
+          
+          // Ajustement selon le type de rampe
+          const coefficientType = typeRampe === 'Courbe' ? 1.2 : 1;
+          
+          const longueurRequise = Math.round(longueurMinimale * coefficientType);
+          newResults['longueur_requise'] = longueurRequise;
+          newResults['pente'] = penteMax;
+          newResults['conformite'] = longueurRequise <= espaceDisponible ? 'Conforme' : 'Non conforme';
+          break;
+        }
+        case 'dimensionnement-plomberie': {
+          const nombreEquipements = Number(inputValues['nombre_equipements']) || 0;
+          const typeEquipements = inputValues['type_equipements'] || '';
+          const hauteurChute = Number(inputValues['hauteur_chute']) || 0;
+          const longueurTuyauterie = Number(inputValues['longueur_tuyauterie']) || 0;
+          
+          // Débit unitaire selon le type d'équipement
+          const debitUnitaire: { [key: string]: number } = {
+            'WC': 0.13,
+            'Lavabo': 0.07,
+            'Douche': 0.2,
+            'Baignoire': 0.3
+          };
+          
+          // Calcul du débit total
+          const debitTotal = nombreEquipements * debitUnitaire[typeEquipements];
+          
+          // Calcul du diamètre minimal
+          const diametreMinimal = Math.sqrt((4 * debitTotal) / (Math.PI * 2)) * 1000;
+          
+          // Calcul des pertes de charge
+          const pertesCharge = (longueurTuyauterie * 0.1) + (hauteurChute * 0.2);
+          
+          newResults['diametre_tuyauterie'] = Math.round(diametreMinimal);
+          newResults['debit_total'] = debitTotal.toFixed(2);
+          newResults['pertes_charge'] = pertesCharge.toFixed(2);
+          break;
+        }
+        case 'volume-terrassement': {
+          const surfaceTerrain = Number(inputValues['surface_terrain']) || 0;
+          const profondeurExcavation = Number(inputValues['profondeur_excavation']) || 0;
+          const penteTerrain = Number(inputValues['pente_terrain']) || 0;
+          const typeSol = inputValues['type_sol'] || '';
+          
+          // Calcul du volume brut
+          const volumeBrut = surfaceTerrain * profondeurExcavation;
+          
+          // Coefficient selon le type de sol
+          const coefficientSol: { [key: string]: number } = {
+            'Terre': 1.2,
+            'Roche': 1.5,
+            'Sable': 1.1
+          };
+          
+          // Ajustement selon la pente
+          const coefficientPente = 1 + (penteTerrain / 100);
+          
+          const volumeExcavation = Math.round(volumeBrut * coefficientSol[typeSol] * coefficientPente);
+          newResults['volume_excavation'] = volumeExcavation;
+          newResults['volume_remblai'] = Math.round(volumeExcavation * 0.8);
+          newResults['volume_transport'] = Math.round(volumeExcavation - newResults['volume_remblai']);
+          break;
+        }
         default: {
           const firstInput = Object.values(inputValues)[0] || 0;
-          newResults['resultat'] = (Number(firstInput) * 1.2).toFixed(2);
+          newResults['result'] = (Number(firstInput) * 1.2).toFixed(2);
           newResults['unite'] = 'unité';
         }
       }
