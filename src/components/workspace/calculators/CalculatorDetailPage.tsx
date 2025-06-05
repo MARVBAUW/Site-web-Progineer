@@ -434,13 +434,30 @@ const CalculatorDetailPage: React.FC = () => {
           break;
         }
         case 'ponts-thermiques': {
-          const longueur = Number(inputValues['longueur']) || 0;
-          const coefficientPsi = Number(inputValues['coefficient_psi']) || 0;
-          const deltaT = Number(inputValues['temperature_interieure']) - Number(inputValues['temperature_exterieure']) || 0;
-          
-          const deperdition = longueur * coefficientPsi * deltaT;
-          newResults['deperdition'] = deperdition.toFixed(2);
-          newResults['conformite'] = coefficientPsi < 0.5 ? 'Conforme' : 'Non conforme';
+          // Coefficients de déperdition selon type de pont thermique
+          const coefficients: Record<string, number> = {
+            Linteau: 0.8,
+            Plancher: 0.6,
+            Balcon: 1.2,
+            Refend: 0.4,
+            Autre: 1.0
+          };
+
+          const typePont = String(inputValues['type_pont']);
+          const longueur = Number(inputValues['longueur']);
+          const psi = Number(inputValues['psi']);
+          const deltaT = 19; // Différence de température standard
+
+          // Calcul de la déperdition
+          const deperdition = coefficients[typePont] * longueur * psi * deltaT;
+
+          // Vérification RE2020 (déperdition < 0.3 W/m.K)
+          const conformite = deperdition / longueur < 0.3 
+            ? 'Conforme RE2020' 
+            : 'Non conforme RE2020';
+
+          newResults['deperdition'] = deperdition;
+          newResults['conformite'] = conformite;
           break;
         }
         case 'resistance-feu': {
