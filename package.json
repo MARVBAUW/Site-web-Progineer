@@ -20,7 +20,7 @@
     "veille:errors": "cat logs/veille-errors.log",
     "clean:sitemap-tmp": "rimraf build-sitemap-tmp",
     "build:sitemap-utils": "npx tsc src/utils/sitemapGenerator.ts src/data/calculators/calculatorsData.ts src/data/guides/guidesData.ts src/data/guides/additionalGuides.ts src/data/regulation/regulationData.ts src/data/regulation/additionalDTUs.ts --outDir build-sitemap-tmp/src --module NodeNext --target ES2020 --esModuleInterop --skipLibCheck --strict",
-    "generate-sitemap": "tsx scripts/build/sitemap/generate-sitemap.ts",
+    "generate-sitemap": "tsx scripts/scripts/generate-sitemap.ts",
     "clean": "rimraf node_modules/.vite && rimraf .vercel",
     "prebuild": "npm run clean && npm run clean:sitemap-tmp && npm run build:sitemap-utils && npm run generate-sitemap",
     "postbuild": "npm run generate-sitemap",
