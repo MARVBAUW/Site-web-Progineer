@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,18 +7,11 @@ import { Button } from '@/components/ui/button';
 import { Iridescence } from '@/components/ui/iridescence';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import { marked } from 'marked';
-import matter from 'gray-matter';
-import fs from 'fs';
-import path from 'path';
+import { veilleArticles, type VeilleArticle } from '@/data/veille/veilleData';
 import WorkspaceArticleDetail from '@/components/workspace/WorkspaceArticleDetail';
 
-// Ajout des déclarations de types pour marked et gray-matter
-declare module 'marked';
-declare module 'gray-matter';
-
 interface Article {
-  id: number;
+  id: string;
   title: string;
   description: string;
   content: string;
@@ -49,41 +42,33 @@ const VeilleReglementaire: React.FC = () => {
   const { slug } = useParams();
 
   useEffect(() => {
-    const loadArticles = async () => {
+    const loadArticles = () => {
       try {
-        const articlesDir = path.join(process.cwd(), 'src/data/veille/articles');
-        const files = fs.readdirSync(articlesDir);
-        const loadedArticles = files
-          .filter(file => file.endsWith('.md'))
-          .map(file => {
-            const filePath = path.join(articlesDir, file);
-            const fileContent = fs.readFileSync(filePath, 'utf-8');
-            const { data, content } = matter(fileContent);
-            return {
-              id: parseInt(data.id.replace('veille-', '')),
-              title: data.title,
-              description: data.excerpt,
-              content: marked(content),
-              date: data.publishedAt,
-              category: data.category,
-              source: data.sources?.[0]?.title || 'Source non spécifiée',
-              readTime: data.readTime,
-              keywords: data.seoKeywords || [],
-              resources: data.sources?.map((source: any) => ({
-                name: source.title,
-                url: source.url,
-                type: 'link',
-                description: source.title
-              })),
-              slug: data.slug,
-              priority: data.priority,
-              tags: data.tags,
-              views: data.views,
-              author: data.author,
-              isNew: data.isNew,
-              isPremium: data.isPremium
-            } as Article;
-          })
+        const loadedArticles = veilleArticles
+          .map((veilleArticle: VeilleArticle) => ({
+            id: veilleArticle.id,
+            title: veilleArticle.title,
+            description: veilleArticle.excerpt,
+            content: veilleArticle.content,
+            date: veilleArticle.publishedAt,
+            category: veilleArticle.category,
+            source: veilleArticle.sources?.[0]?.title || 'Source non spécifiée',
+            readTime: veilleArticle.readTime,
+            keywords: veilleArticle.seoKeywords || [],
+            resources: veilleArticle.sources?.map((source) => ({
+              name: source.title,
+              url: source.url,
+              type: 'link',
+              description: source.title
+            })),
+            slug: veilleArticle.slug,
+            priority: veilleArticle.priority,
+            tags: veilleArticle.tags,
+            views: veilleArticle.views,
+            author: veilleArticle.author,
+            isNew: veilleArticle.isNew,
+            isPremium: veilleArticle.isPremium
+          } as Article))
           .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         setArticles(loadedArticles);
 
@@ -168,4 +153,4 @@ const VeilleReglementaire: React.FC = () => {
   );
 };
 
-export default VeilleReglementaire; 
+export default VeilleReglementaire;
