@@ -7,7 +7,7 @@ import OptimisationEspaceHero from '@/components/prestations/optimisation-espace
 import OptimisationEspaceSidebar from '@/components/prestations/optimisation-espace/OptimisationEspaceSidebar';
 import OptimisationEspaceContent from '@/components/prestations/optimisation-espace/OptimisationEspaceContent';
 import OptimisationEspaceSEOContent from '@/components/prestations/optimisation-espace/OptimisationEspaceSEOContent';
-import SEOContentSection from '@/components/prestations/optimisation-espace/SEOContentSection';
+import SEOContentSection from '@/components/common/SEOContentSection';
 
 const OptimisationEspace = () => {
   return (

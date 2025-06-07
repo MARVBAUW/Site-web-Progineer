@@ -37,6 +37,8 @@ export const keywordMap: Record<string, string> = {
   "construction maison marseille": "/prestations/construction-neuve#marseille",
   "rénovation marseille": "/prestations/renovation#marseille",
   "extension maison marseille": "/prestations/extension#marseille",
+  "Optimisation d'Espace et Agencement": "/prestations/design-interieur/optimisation-espace",
+  "Mobilier sur Mesure et Décoration": "/prestations/design-interieur/mobilier-sur-mesure",
 };
 
 // Amélioré pour être plus sélectif et éviter la suroptimisation

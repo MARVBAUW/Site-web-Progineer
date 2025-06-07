@@ -1,11 +1,11 @@
 import React from 'react';
-import { RenovationProcess } from '@/components/prestations/renovation/RenovationProcess';
+import ConstructionProcess from './ConstructionProcess';
 
 const RenovationContent = () => {
   return (
     <>
       <div id="overview" className="mb-12 md:mb-16 p-4 md:p-8 bg-white dark:bg-slate-900 rounded-xl shadow-sm">
-        <h2 className="text-3xl font-semibold mb-6">Rénovation complète de maisons et appartements</h2>
+        <h1 className="text-3xl font-semibold mb-6">Rénovation complète de maisons et appartements</h1>
         <p className="mb-8 text-gray-600 dark:text-gray-300">
           Notre bureau d'études en <strong>maîtrise d'œuvre</strong> vous accompagne dans tous vos projets de rénovation en région PACA. Que vous souhaitiez moderniser votre logement, optimiser votre espace de vie ou améliorer les performances énergétiques de votre habitation, notre équipe d'experts vous propose des solutions personnalisées et adaptées à vos besoins.
         </p>
@@ -21,7 +21,7 @@ const RenovationContent = () => {
       </div>
 
       <div id="services">
-        <h3 className="text-2xl font-medium mb-4">Nos services de rénovation</h3>
+        <h2 className="text-2xl font-medium mb-4">Nos services de rénovation</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="bg-card p-5 rounded-lg border border-gray-100 shadow-sm">
             <h4 className="font-medium text-lg mb-2">Rénovation complète</h4>
@@ -43,11 +43,11 @@ const RenovationContent = () => {
       </div>
 
       <div id="process">
-        <RenovationProcess />
+        <ConstructionProcess />
       </div>
 
       <div id="energy">
-        <h3 className="text-2xl font-medium mb-4">Rénovation énergétique</h3>
+        <h2 className="text-2xl font-medium mb-4">Rénovation énergétique</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-card p-5 rounded-lg border border-gray-100 shadow-sm">
             <h4 className="font-medium text-lg mb-2">Isolation thermique</h4>
@@ -65,7 +65,7 @@ const RenovationContent = () => {
       </div>
 
       <div id="materials">
-        <h3 className="text-2xl font-medium mb-4">Matériaux et finitions</h3>
+        <h2 className="text-2xl font-medium mb-4">Matériaux et finitions</h2>
         <div className="bg-card p-6 rounded-lg shadow-sm mb-8">
           <ul className="space-y-4">
             <li className="flex gap-3">
@@ -105,75 +105,96 @@ const RenovationContent = () => {
         </div>
       </div>
 
-      {/* Sections pour les villes */}
-      <div id="marseille">
-        <h3 className="text-2xl font-medium mb-4 mt-8">Rénovation à Marseille</h3>
-        <p className="text-gray-600 dark:text-gray-300">
-          Spécialistes de la rénovation d'appartements et maisons à Marseille, nous connaissons parfaitement les spécificités du bâti marseillais, des appartements haussmanniens du centre-ville aux villas du Prado ou de la Corniche. Notre expertise locale nous permet de vous proposer des solutions adaptées à votre quartier et au style architectural de votre bien.
-        </p>
+      {/* Sections pour les villes avec style de cartes */}
+      <div id="villes-desservies" className="mt-12">
+        <h2 className="text-3xl font-semibold mb-6 text-center">Nos zones d'intervention en rénovation</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Carte Marseille */}
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <img src="/images/prestations/PGR_1_resultat.webp" alt="Rénovation à Marseille" className="w-full h-48 object-cover rounded-lg mb-4" />
+            <h3 className="text-2xl font-semibold mb-3 text-sky-600 dark:text-sky-400"><a href="/renovation/marseille" className="hover:underline">Rénovation à Marseille</a></h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Spécialistes de la <strong>rénovation d'appartements et maisons à Marseille</strong>, nous maîtrisons les spécificités du bâti marseillais, des appartements Haussmanniens du centre-ville aux villas du Prado ou de la Corniche. Bénéficiez de solutions sur-mesure pour votre <a href="/renovation/marseille/appartement" className="text-sky-600 dark:text-sky-400 hover:underline">rénovation d'appartement à Marseille</a> ou la <a href="/renovation/marseille/maison" className="text-sky-600 dark:text-sky-400 hover:underline">rénovation de maison à Marseille</a>.
+            </p>
+            <a href="/contact?service=renovation-marseille" className="inline-block bg-sky-500 hover:bg-sky-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">Devis Rénovation Marseille</a>
+          </div>
+
+          {/* Carte Aix-en-Provence */}
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <img src="/images/prestations/PGR_2_resultat.webp" alt="Rénovation à Aix-en-Provence" className="w-full h-48 object-cover rounded-lg mb-4" />
+            <h3 className="text-2xl font-semibold mb-3 text-amber-600 dark:text-amber-400"><a href="/renovation/aix-en-provence" className="hover:underline">Rénovation à Aix-en-Provence</a></h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              À Aix-en-Provence, nous rénovons appartements du centre historique, bastides provençales et villas contemporaines. Nous respectons l'héritage architectural aixois tout en apportant modernité et confort. Découvrez nos services de <a href="/renovation/aix-en-provence/appartement" className="text-amber-600 dark:text-amber-400 hover:underline">rénovation d'appartement à Aix-en-Provence</a> et <a href="/renovation/aix-en-provence/maison" className="text-amber-600 dark:text-amber-400 hover:underline">rénovation de bastide à Aix</a>.
+            </p>
+            <a href="/contact?service=renovation-aix" className="inline-block bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">Devis Rénovation Aix</a>
+          </div>
+
+          {/* Carte Toulon */}
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <img src="/images/prestations/PGR_3_resultat.webp" alt="Rénovation à Toulon" className="w-full h-48 object-cover rounded-lg mb-4" />
+            <h3 className="text-2xl font-semibold mb-3 text-red-600 dark:text-red-400"><a href="/renovation/toulon" className="hover:underline">Rénovation à Toulon</a></h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Nous accompagnons vos projets de <strong>rénovation à Toulon</strong>, en tenant compte des spécificités de l'habitat varois. Du centre ancien aux quartiers résidentiels du Mourillon, nous adaptons nos solutions pour votre <a href="/renovation/toulon/appartement" className="text-red-600 dark:text-red-400 hover:underline">rénovation d'appartement à Toulon</a> ou <a href="/renovation/toulon/villa" className="text-red-600 dark:text-red-400 hover:underline">rénovation de villa à Toulon</a>.
+            </p>
+            <a href="/contact?service=renovation-toulon" className="inline-block bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">Devis Rénovation Toulon</a>
+          </div>
+
+          {/* Carte Nice */}
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <img src="/images/prestations/PGR_4_resultat.webp" alt="Rénovation à Nice" className="w-full h-48 object-cover rounded-lg mb-4" />
+            <h3 className="text-2xl font-semibold mb-3 text-blue-600 dark:text-blue-400"><a href="/renovation/nice" className="hover:underline">Rénovation à Nice</a></h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Notre équipe intervient pour tous vos projets de <strong>rénovation à Nice</strong>. De la Promenade des Anglais au Vieux Nice, nous connaissons l'architecture niçoise et ses contraintes. Contactez-nous pour une <a href="/renovation/nice/appartement" className="text-blue-600 dark:text-blue-400 hover:underline">rénovation d'appartement à Nice</a> ou une <a href="/renovation/nice/villa-belle-epoque" className="text-blue-600 dark:text-blue-400 hover:underline">rénovation de villa Belle Époque</a>.
+            </p>
+            <a href="/contact?service=renovation-nice" className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">Devis Rénovation Nice</a>
+          </div>
+
+          {/* Carte Cannes */}
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <img src="/images/prestations/PGR_5_resultat.webp" alt="Rénovation à Cannes" className="w-full h-48 object-cover rounded-lg mb-4" />
+            <h3 className="text-2xl font-semibold mb-3 text-purple-600 dark:text-purple-400"><a href="/renovation/cannes" className="hover:underline">Rénovation à Cannes</a></h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              À Cannes, nous mettons notre expertise au service de votre <strong>projet de rénovation</strong>, qu'il s'agisse d'appartements sur la Croisette ou de villas à Super Cannes. Explorez nos solutions pour la <a href="/renovation/cannes/appartement-luxe" className="text-purple-600 dark:text-purple-400 hover:underline">rénovation d'appartement de luxe à Cannes</a> ou la <a href="/renovation/cannes/villa-contemporaine" className="text-purple-600 dark:text-purple-400 hover:underline">rénovation de villa contemporaine</a>.
+            </p>
+            <a href="/contact?service=renovation-cannes" className="inline-block bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">Devis Rénovation Cannes</a>
+          </div>
+
+          {/* Carte Rénovation Appartement PACA */}
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <img src="/images/prestations/PGR_6_resultat.webp" alt="Rénovation appartement PACA" className="w-full h-48 object-cover rounded-lg mb-4" />
+            <h3 className="text-2xl font-semibold mb-3 text-green-600 dark:text-green-400"><a href="/renovation/appartement-paca" className="hover:underline">Rénovation d'Appartements en PACA</a></h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Spécialistes de la <strong>rénovation d'appartements en PACA</strong>, nous gérons les contraintes de copropriété et optimisons les espaces restreints. Que ce soit pour un studio, un T2, T3 ou un grand appartement familial, nous avons la solution.
+            </p>
+            <a href="/contact?service=renovation-appartement-paca" className="inline-block bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">Devis Rénovation Appartement</a>
+          </div>
+        </div>
       </div>
 
-      <div id="marseille-appartement" className="mt-6">
-        <h4 className="text-xl font-medium mb-2">Rénovation d'appartements à Marseille</h4>
-        <p className="text-gray-600 dark:text-gray-300">
-          Nous sommes experts dans la rénovation d'appartements marseillais, qu'il s'agisse de studios dans le Panier, d'appartements bourgeois à Castellane ou de lofts à la Joliette. Notre connaissance du bâti local, des contraintes de copropriété et des règles d'urbanisme spécifiques à chaque quartier nous permet d'optimiser votre projet.
-        </p>
-      </div>
+      {/* Section Solutions Techniques avec style de cartes */}
+      <div id="solutions-techniques" className="mt-12">
+        <h2 className="text-3xl font-semibold mb-6 text-center">Solutions Techniques pour Votre Rénovation</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Carte Isolation Thermique */}
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <img src="/images/prestations/PGR_7_resultat.webp" alt="Isolation thermique en rénovation" className="w-full h-48 object-cover rounded-lg mb-4" />
+            <h3 className="text-2xl font-semibold mb-3 text-orange-600 dark:text-orange-400"><a href="/renovation/isolation-thermique" className="hover:underline">Solutions d'Isolation Thermique</a></h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              L'<strong>isolation thermique</strong> est cruciale en PACA. Nous proposons des solutions pour murs, toiture, planchers et menuiseries, adaptées au climat méditerranéen, pour un confort optimal et des économies d'énergie. Découvrez nos techniques d'<a href="/renovation/isolation-thermique/ite" className="text-orange-600 dark:text-orange-400 hover:underline">isolation par l'extérieur (ITE)</a> et <a href="/renovation/isolation-thermique/iti" className="text-orange-600 dark:text-orange-400 hover:underline">isolation par l'intérieur (ITI)</a>.
+            </p>
+            <a href="/contact?service=isolation-thermique" className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">Devis Isolation</a>
+          </div>
 
-      <div id="aix" className="mt-6">
-        <h3 className="text-2xl font-medium mb-4">Rénovation à Aix-en-Provence</h3>
-        <p className="text-gray-600 dark:text-gray-300">
-          À Aix-en-Provence, nous intervenons sur des projets de rénovation variés : appartements du centre historique, bastides provençales ou villas contemporaines. Nous respectons l'héritage architectural de la ville tout en apportant le confort moderne que vous recherchez.
-        </p>
-      </div>
-
-      <div id="aix-appartement" className="mt-6">
-        <h4 className="text-xl font-medium mb-2">Rénovation d'appartements à Aix-en-Provence</h4>
-        <p className="text-gray-600 dark:text-gray-300">
-          La rénovation d'appartements à Aix-en-Provence requiert un savoir-faire spécifique, notamment dans le centre historique où les contraintes patrimoniales sont importantes. Notre expertise technique et notre connaissance des matériaux traditionnels nous permettent de réaliser des rénovations respectueuses et durables.
-        </p>
-      </div>
-
-      <div id="toulon" className="mt-6">
-        <h3 className="text-2xl font-medium mb-4">Rénovation à Toulon</h3>
-        <p className="text-gray-600 dark:text-gray-300">
-          À Toulon, nous accompagnons vos projets de rénovation en prenant en compte les spécificités de l'habitat varois. Du centre ancien aux quartiers résidentiels du Mourillon ou de la Serinette, nous adaptons nos solutions à chaque contexte.
-        </p>
-      </div>
-
-      <div id="nice" className="mt-6">
-        <h3 className="text-2xl font-medium mb-4">Rénovation à Nice</h3>
-        <p className="text-gray-600 dark:text-gray-300">
-          Notre équipe intervient également à Nice pour tous vos projets de rénovation. De la Promenade des Anglais au Vieux Nice, nous connaissons parfaitement l'architecture niçoise et ses contraintes spécifiques.
-        </p>
-      </div>
-
-      <div id="cannes" className="mt-6">
-        <h3 className="text-2xl font-medium mb-4">Rénovation à Cannes</h3>
-        <p className="text-gray-600 dark:text-gray-300">
-          À Cannes, nous mettons notre expertise au service de vos projets de rénovation, qu'il s'agisse d'appartements sur la Croisette ou de villas dans les quartiers résidentiels de la Californie ou de Super Cannes.
-        </p>
-      </div>
-
-      <div id="appartement" className="mt-8">
-        <h3 className="text-2xl font-medium mb-4">Rénovation d'appartements en PACA</h3>
-        <p className="text-gray-600 dark:text-gray-300">
-          Nous sommes spécialistes dans la rénovation d'appartements de toutes tailles. Notre approche tient compte des contraintes spécifiques liées aux copropriétés, aux espaces restreints et aux nécessités techniques particulières des appartements.
-        </p>
-      </div>
-
-      <div id="isolation" className="mt-6">
-        <h4 className="text-xl font-medium mb-2">Solutions d'isolation thermique</h4>
-        <p className="text-gray-600 dark:text-gray-300">
-          L'isolation thermique est un élément clé de toute rénovation en région PACA. Nous proposons des solutions adaptées au climat méditerranéen, efficaces aussi bien contre la chaleur estivale que contre le froid hivernal. Nos techniques d'isolation (murs, toiture, planchers, menuiseries) vous garantissent un confort optimal toute l'année.
-        </p>
-      </div>
-
-      <div id="chauffage" className="mt-6">
-        <h4 className="text-xl font-medium mb-2">Systèmes de chauffage et climatisation</h4>
-        <p className="text-gray-600 dark:text-gray-300">
-          De la pompe à chaleur à la climatisation réversible, en passant par les solutions solaires, nous vous conseillons sur les équipements les plus adaptés à votre habitation et à vos besoins énergétiques, dans le respect des normes environnementales.
-        </p>
+          {/* Carte Chauffage et Climatisation */}
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <img src="/images/prestations/PGR_8_resultat.webp" alt="Chauffage et climatisation en rénovation" className="w-full h-48 object-cover rounded-lg mb-4" />
+            <h3 className="text-2xl font-semibold mb-3 text-teal-600 dark:text-teal-400"><a href="/renovation/chauffage-climatisation" className="hover:underline">Systèmes de Chauffage et Climatisation</a></h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Nous installons des <strong>systèmes de chauffage et climatisation</strong> performants : <a href="/renovation/chauffage-climatisation/pompe-a-chaleur" className="text-teal-600 dark:text-teal-400 hover:underline">pompes à chaleur</a>, <a href="/renovation/chauffage-climatisation/climatisation-reversible" className="text-teal-600 dark:text-teal-400 hover:underline">climatisation réversible</a>, solutions solaires. Optimisez votre confort et respectez l'environnement.
+            </p>
+            <a href="/contact?service=chauffage-climatisation" className="inline-block bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">Devis Chauffage & Clim</a>
+          </div>
+        </div>
       </div>
 
       {/* Section travaux de rénovation enrichie */}

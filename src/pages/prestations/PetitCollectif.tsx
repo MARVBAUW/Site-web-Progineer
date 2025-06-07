@@ -7,7 +7,8 @@ import PetitCollectifHero from '@/components/prestations/petit-collectif/PetitCo
 import PetitCollectifSidebar from '@/components/prestations/petit-collectif/PetitCollectifSidebar';
 import PetitCollectifContent from '@/components/prestations/petit-collectif/PetitCollectifContent';
 import PetitCollectifSEOContent from '@/components/prestations/petit-collectif/PetitCollectifSEOContent';
-import SEOContentSection from '@/components/prestations/petit-collectif/SEOContentSection';
+import SEOContentSection from '@/components/common/SEOContentSection';
+
 
 const PetitCollectif = () => {
   return (
@@ -39,15 +40,15 @@ const PetitCollectif = () => {
 
       <SEOContentSection
         title="Construction de petits collectifs résidentiels en PACA"
-        intro="Progineer accompagne promoteurs et investisseurs dans la conception et la réalisation de petits immeubles résidentiels à taille humaine. Nous intervenons de l'optimisation foncière à la livraison, en passant par le montage administratif et la gestion de chantier, pour garantir des projets performants, durables et parfaitement intégrés dans leur environnement urbain."
+        intro="Progineer est votre partenaire privilégié pour la conception et la réalisation de petits collectifs résidentiels en région PACA. Nous maîtrisons toutes les étapes, de l'étude de faisabilité à la livraison, en passant par l'optimisation foncière et la gestion des corps d'état."
         bullets={[
-          "Étude de faisabilité et optimisation du foncier",
-          "Conception architecturale sur mesure",
-          "Gestion administrative et suivi des autorisations",
-          "Respect des normes environnementales et de sécurité",
-          "Accompagnement personnalisé jusqu'à la livraison"
+          "Optimisation de la constructibilité et de la rentabilité foncière",
+          "Conception architecturale sur mesure (R+1, R+2, R+3...)",
+          "Gestion complète du projet : permis de construire, suivi de chantier, livraison",
+          "Respect des normes RT2012/RE2020 et des exigences de qualité",
+          "Coordination efficace des entreprises et artisans locaux"
         ]}
-        conclusion="Nos experts vous accompagnent à chaque étape pour assurer la réussite de votre projet immobilier à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur."
+        conclusion="Faites confiance à notre expertise pour vos projets de petits collectifs à Marseille, Aix-en-Provence, Toulon et sur toute la Côte d'Azur, garantissant des réalisations de qualité, durables et rentables."
       />
 
       <SEOFooter 

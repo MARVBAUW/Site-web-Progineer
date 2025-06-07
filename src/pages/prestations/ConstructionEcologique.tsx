@@ -7,7 +7,8 @@ import ConstructionEcologiqueHero from '@/components/prestations/construction-ec
 import ConstructionEcologiqueSidebar from '@/components/prestations/construction-ecologique/ConstructionEcologiqueSidebar';
 import ConstructionEcologiqueContent from '@/components/prestations/construction-ecologique/ConstructionEcologiqueContent';
 import ConstructionEcologiqueSEOContent from '@/components/prestations/construction-ecologique/ConstructionEcologiqueSEOContent';
-import SEOContentSection from '@/components/prestations/construction-ecologique/SEOContentSection';
+import SEOContentSection from '@/components/common/SEOContentSection';
+
 
 const ConstructionEcologique = () => {
   return (
@@ -38,15 +39,16 @@ const ConstructionEcologique = () => {
       <ConstructionEcologiqueSEOContent />
 
       <SEOContentSection
-        title="Construction écologique et bioclimatique en PACA"
-        intro="Progineer vous propose des solutions innovantes pour la construction de maisons écologiques, bioclimatiques et à faible impact environnemental en région PACA. Nous privilégions les matériaux biosourcés, l'ossature bois, et la conception passive pour garantir un habitat sain, confortable et économe en énergie."
+        title="Construction écologique et habitat durable en PACA"
+        intro="Progineer s'engage pour un habitat plus respectueux de l'environnement en région PACA. Nous concevons et réalisons des projets de construction écologique, en privilégiant les matériaux biosourcés, la conception bioclimatique et les solutions énergétiques performantes."
         bullets={[
-          "Conception bioclimatique et optimisation énergétique",
-          "Utilisation de matériaux durables et locaux",
-          "Respect des normes environnementales (RE2020, BBC, etc.)",
-          "Accompagnement global, de la conception à la réalisation"
+          "Conception bioclimatique : orientation, apports solaires, ventilation naturelle",
+          "Utilisation de matériaux écologiques et biosourcés (bois, paille, chanvre, ouate de cellulose...)",
+          "Optimisation de l'isolation thermique et de l'étanchéité à l'air",
+          "Intégration de systèmes d'énergies renouvelables (solaire thermique, photovoltaïque)",
+          "Accompagnement vers les labels environnementaux (Passivhaus, BDM...)"
         ]}
-        conclusion="Faites confiance à notre expertise pour concrétiser votre projet de construction écologique à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur."
+        conclusion="Optez pour une construction écologique avec Progineer à Marseille, Aix-en-Provence, Avignon et sur toute la Côte d'Azur, pour un habitat sain, confortable, économe en énergie et à faible impact environnemental."
       />
 
       <SEOFooter 

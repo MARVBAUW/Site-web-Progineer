@@ -7,7 +7,7 @@ import RenovationHero from '@/components/prestations/renovation/RenovationHero';
 import RenovationSidebar from '@/components/prestations/renovation/RenovationSidebar';
 import RenovationContent from '@/components/prestations/renovation/RenovationContent';
 import RenovationSEOContent from '@/components/prestations/renovation/RenovationSEOContent';
-import SEOContentSection from '@/components/prestations/renovation/SEOContentSection';
+import SEOContentSection from '@/components/common/SEOContentSection';
 
 const Renovation = () => {
   return (

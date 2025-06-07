@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Image from 'next/image';
 
 interface Project {
   id: string;
@@ -65,17 +64,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="relative h-48 w-full">
-        <Image
+        <img
           src={imageUrl}
           alt={project.title}
-          width={400}
-          height={300}
           className={`w-full h-48 object-cover rounded-t-lg transition-all duration-300 ${
             imageError ? 'opacity-50' : 'hover:scale-105'
           }`}
           onError={handleImageError}
-          priority={index < 3}
-          quality={75}
           loading={index < 3 ? 'eager' : 'lazy'}
           onLoad={() => console.log('Image chargée avec succès:', imageUrl)}
         />

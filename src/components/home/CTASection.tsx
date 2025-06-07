@@ -3,7 +3,6 @@ import Container from '@/components/common/Container';
 import Button from '@/components/common/Button';
 import { Check, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import './animations.css';
 
 const features = [
@@ -135,16 +134,12 @@ const CTASection = () => {
                       <p className="!text-white">Image non disponible</p>
                     </div>
                   ) : (
-                    <Image 
+                    <img 
                       alt="Maison contemporaine avec grande baie vitrée" 
                       src="/images/prestations/PGR53_resultat.webp"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
+                      className="object-cover w-full h-full"
                       onError={handleImageError}
-                      priority
-                      quality={90}
-                      unoptimized
+                      loading="eager"
                     />
                   )}
                 </div>

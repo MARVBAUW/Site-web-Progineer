@@ -7,7 +7,8 @@ import MontageAdministratifHero from '@/components/prestations/montage-administr
 import MontageAdministratifSidebar from '@/components/prestations/montage-administratif/MontageAdministratifSidebar';
 import MontageAdministratifContent from '@/components/prestations/montage-administratif/MontageAdministratifContent';
 import MontageAdministratifSEOContent from '@/components/prestations/montage-administratif/MontageAdministratifSEOContent';
-import SEOContentSection from '@/components/prestations/montage-administratif/SEOContentSection';
+import SEOContentSection from '@/components/common/SEOContentSection';
+
 
 const MontageAdministratif = () => {
   return (
@@ -39,14 +40,15 @@ const MontageAdministratif = () => {
 
       <SEOContentSection
         title="Montage administratif et permis de construire en PACA"
-        intro="Progineer vous accompagne dans toutes vos démarches administratives liées à la construction, la rénovation ou l'extension de votre bien immobilier en région PACA. Notre équipe prend en charge la constitution des dossiers de permis de construire, les déclarations préalables, et assure un suivi rigoureux auprès des services d'urbanisme pour garantir la conformité et la rapidité de vos projets."
+        intro="Progineer vous accompagne dans toutes vos démarches administratives liées à vos projets de construction ou de rénovation en région PACA. Nous assurons le montage complet de vos dossiers de permis de construire, déclarations préalables, et autres autorisations d'urbanisme."
         bullets={[
-          "Analyse des règles d'urbanisme applicables",
-          "Préparation complète des dossiers administratifs",
-          "Suivi des délais d'instruction et gestion des recours",
-          "Assistance personnalisée jusqu'à l'obtention des autorisations"
+          "Analyse de la faisabilité réglementaire de votre projet",
+          "Constitution et dépôt des dossiers (PC, DP, AT)",
+          "Suivi de l'instruction auprès des services administratifs",
+          "Interface avec les architectes des bâtiments de France (ABF)",
+          "Optimisation des délais et sécurisation juridique"
         ]}
-        conclusion="Faites confiance à notre expertise pour sécuriser vos démarches et optimiser les délais de réalisation de vos projets immobiliers à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur."
+        conclusion="Notre expertise vous garantit une gestion sereine et efficace de vos démarches administratives à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur."
       />
 
       <SEOFooter 

@@ -1,0 +1,75 @@
+Calculateurs Thermiques RE2020 (12 calculateurs)
+✅ Résistance thermique (R)
+✅ Coefficient U
+✅ Déperditions thermiques
+✅ Ponts thermiques
+✅ Bilan énergétique RE2020
+✅ GES construction
+✅ Test d'infiltrométrie
+✅ Dimensionnement VMC
+✅ Bilan carbone RE2020
+✅ Confort d'été RE2020
+✅ Besoins bioclimatiques
+✅ Consommation énergétique
+
+Eurocodes Structures (12 calculateurs)
+❌ Vérification des sections (à implémenter)
+❌ Calcul des moments (à implémenter)
+❌ Vérification des poteaux (à implémenter)
+❌ Combinaisons d'actions EC0 (à implémenter)
+❌ Charges d'exploitation EC1 (à implémenter)
+❌ Flexion simple béton armé (à implémenter)
+❌ Action du vent EC1 (à implémenter)
+❌ Compression simple béton armé (à implémenter)
+❌ Charges de neige EC1 (à implémenter)
+❌ Dimensionnement charpente bois EC5 (à implémenter)
+❌ Calcul des fondations (à implémenter)
+❌ Vérification des assemblages (à implémenter)
+
+Acoustique Professionnelle (8 calculateurs)
+❌ Isolement acoustique DnT,w (à implémenter)
+❌ Bruit d'impact L'nT,w (à implémenter)
+❌ Absorption acoustique αw (à implémenter)
+❌ Temps de réverbération TR (à implémenter)
+❌ Niveaux sonores et dBA (à implémenter)
+❌ Acoustique et urbanisme (à implémenter)
+❌ Isolation aux bruits d'impact (à implémenter)
+❌ Isolation aux bruits aériens (à implémenter)
+
+Sécurité Incendie (7 calculateurs)
+✅ Effectif ERP
+❌ Dégagement ERP (à implémenter)
+❌ Résistance au feu ERP (à implémenter)
+❌ Désenfumage ERP (à implémenter)
+❌ Compartimentage (à implémenter)
+❌ Détection incendie (à implémenter)
+❌ Extinction automatique (à implémenter)
+
+Accessibilité PMR (5 calculateurs)
+✅ Places parking PMR
+❌ Rampe d'accès PMR (à implémenter)
+❌ Largeur de passage PMR (à implémenter)
+❌ Ascenseur accessible PMR (à implémenter)
+❌ Sanitaires accessibles PMR (à implémenter)
+
+Fluides & Réseaux (6 calculateurs)
+❌ Débit eau chaude sanitaire (à implémenter)
+❌ Calcul pression eau (à implémenter)
+❌ Dimensionnement tuyauterie (à implémenter)
+❌ Puissance électrique logement (à implémenter)
+❌ Section des câbles électriques (à implémenter)
+❌ Débit de ventilation (à implémenter)
+
+Financier & Économique (6 calculateurs)
+✅ Rentabilité investissement
+❌ Financement et capacité d'emprunt (à implémenter)
+❌ Coût de construction au m² (à implémenter)
+❌ Plus-value immobilière (à implémenter)
+❌ Charges de copropriété (à implémenter)
+❌ Amortissement fiscal (à implémenter)
+
+Surfaces & Métrés (4 calculateurs)
+✅ Surface habitable
+❌ Emprise au sol et COS (à implémenter)
+❌ Volume de béton (à implémenter)
+❌ Quantité de matériaux (à implémenter)

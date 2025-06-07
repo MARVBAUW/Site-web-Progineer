@@ -7,7 +7,7 @@ import ConstructionNeuveHero from '@/components/prestations/construction-neuve/C
 import ConstructionNeuveSidebar from '@/components/prestations/construction-neuve/ConstructionNeuveSidebar';
 import ConstructionNeuveContent from '@/components/prestations/construction-neuve/ConstructionNeuveContent';
 import ConstructionNeuveSEOContent from '@/components/prestations/construction-neuve/ConstructionNeuveSEOContent';
-import SEOContentSection from '@/components/prestations/construction-neuve/SEOContentSection';
+import SEOContentSection from '@/components/common/SEOContentSection';
 
 const ConstructionNeuve = () => {
   return (

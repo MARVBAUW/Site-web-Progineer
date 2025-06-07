@@ -333,20 +333,20 @@ export const thermalCalculators: Calculator[] = [
   {
     id: 'pont-thermique',
     type: 'calculator',
-    title: 'Ponts thermiques linéiques',
-    description: 'Calcul des déperditions par ponts thermiques linéiques selon méthode RE2020',
+    title: 'Ponts thermiques',
+    description: 'Calcul des déperditions thermiques par ponts thermiques selon RE2020',
     calculatorType: 'thermal',
     category: 'thermal',
-    tags: ['pont thermique', 'linéique', 'déperditions', 'jonction', 'RE2020'],
-    lastUpdated: '2024-02-15',
-    difficulty: 'advanced',
-    estimatedTime: '12 min',
+    tags: ['pont thermique', 'déperdition', 'RE2020', 'linteau', 'balcon', 'plancher'],
+    lastUpdated: '2024-03-20',
+    difficulty: 'intermediate',
+    estimatedTime: '10 min',
     isPublic: true,
-    isPremium: true,
+    isPremium: false,
     seoData: {
-      title: 'Calculateur ponts thermiques RE2020 - Déperditions linéiques',
-      metaDescription: 'Calculez les déperditions par ponts thermiques selon RE2020. Jonctions, angles, perçages.',
-      keywords: ['pont thermique', 'déperditions linéiques', 'RE2020', 'jonction', 'isolation'],
+      title: 'Calculateur ponts thermiques RE2020 | Déperditions thermiques',
+      metaDescription: 'Calculez les déperditions thermiques par ponts thermiques selon RE2020. Outil professionnel pour l\'isolation thermique.',
+      keywords: ['pont thermique', 'déperdition', 'RE2020', 'isolation', 'thermique'],
       canonicalUrl: 'https://progineer.fr/workspace/calculators/pont-thermique'
     },
     inputs: [
@@ -354,15 +354,15 @@ export const thermalCalculators: Calculator[] = [
         id: 'type_pont',
         label: 'Type de pont thermique',
         type: 'select',
-        required: true,
         options: [
-          { value: 'angle_mur', label: 'Angle de murs - ψ = 0.06 W/m.K' },
-          { value: 'plancher_mur', label: 'Plancher/mur - ψ = 0.65 W/m.K' },
-          { value: 'toiture_mur', label: 'Toiture/mur - ψ = 0.55 W/m.K' },
-          { value: 'menuiserie_mur', label: 'Menuiserie/mur - ψ = 0.20 W/m.K' },
-          { value: 'balcon_dalle', label: 'Balcon/dalle - ψ = 0.90 W/m.K' },
-          { value: 'refend_facade', label: 'Refend/façade - ψ = 0.15 W/m.K' }
-        ]
+          { value: 'Linteau', label: 'Linteau' },
+          { value: 'Plancher', label: 'Plancher' },
+          { value: 'Balcon', label: 'Balcon' },
+          { value: 'Refend', label: 'Refend' },
+          { value: 'Autre', label: 'Autre' }
+        ],
+        required: true,
+        helpText: 'Sélectionnez le type de pont thermique à calculer'
       },
       {
         id: 'longueur',
@@ -372,27 +372,59 @@ export const thermalCalculators: Calculator[] = [
         required: true,
         min: 0.1,
         max: 100,
-        placeholder: '10'
+        placeholder: '5.0',
+        helpText: 'Longueur totale du pont thermique en mètres'
+      },
+      {
+        id: 'psi',
+        label: 'Coefficient Ψ',
+        type: 'number',
+        unit: 'W/m.K',
+        required: true,
+        min: 0.01,
+        max: 2.0,
+        placeholder: '0.35',
+        helpText: 'Coefficient de transmission thermique linéique en W/m.K'
       }
     ],
     outputs: [
       {
-        id: 'coefficient_psi',
-        label: 'Coefficient ψ',
-        unit: 'W/m.K',
-        format: 'number',
-        precision: 3
-      },
-      {
-        id: 'deperdition_pont',
-        label: 'Déperdition pont thermique',
+        id: 'deperdition',
+        label: 'Déperdition thermique',
         unit: 'W/K',
         format: 'number',
         precision: 2
+      },
+      {
+        id: 'conformite',
+        label: 'Conformité RE2020',
+        format: 'text'
       }
     ],
-    formula: 'Φ = ψ × L × ΔT',
-    relatedCalculators: ['deperditions-thermiques', 'coefficient-u']
+    formula: 'Déperdition = Ψ × L',
+    validationRules: [
+      {
+        field: 'longueur',
+        rule: 'min',
+        value: 0.1,
+        message: 'La longueur doit être supérieure à 0.1m'
+      },
+      {
+        field: 'psi',
+        rule: 'min',
+        value: 0.01,
+        message: 'Le coefficient Ψ doit être supérieur à 0.01 W/m.K'
+      }
+    ],
+    examples: [
+      {
+        title: 'Linteau standard',
+        description: 'Linteau de 3m avec Ψ = 0.35 W/m.K',
+        inputs: { type_pont: 'Linteau', longueur: 3.0, psi: 0.35 },
+        expectedOutputs: { deperdition: 1.05 }
+      }
+    ],
+    relatedCalculators: ['resistance-thermique', 'coefficient-u', 'deperditions-thermiques']
   },
   {
     id: 'bilan-energetique-re2020',
@@ -712,11 +744,655 @@ export const thermalCalculators: Calculator[] = [
       }
     ],
     relatedCalculators: ['infiltrometrie', 'deperditions-thermiques']
+  },
+  {
+    id: 'bilan-carbone',
+    type: 'calculator',
+    title: 'Bilan carbone RE2020',
+    description: 'Calcul du bilan carbone d\'un bâtiment selon RE2020',
+    calculatorType: 'thermal',
+    category: 'thermal',
+    tags: ['carbone', 'RE2020', 'construction', 'exploitation', 'impact environnemental'],
+    lastUpdated: '2024-03-20',
+    difficulty: 'advanced',
+    estimatedTime: '15 min',
+    isPublic: true,
+    isPremium: true,
+    seoData: {
+      title: 'Calculateur bilan carbone RE2020 | Impact environnemental',
+      metaDescription: 'Calculez le bilan carbone de votre projet selon RE2020. Évaluation de l\'impact environnemental construction et exploitation.',
+      keywords: ['bilan carbone', 'RE2020', 'construction', 'exploitation', 'impact environnemental'],
+      canonicalUrl: 'https://progineer.fr/workspace/calculators/bilan-carbone'
+    },
+    inputs: [
+      {
+        id: 'surface',
+        label: 'Surface de plancher',
+        type: 'number',
+        unit: 'm²',
+        required: true,
+        min: 10,
+        max: 10000,
+        placeholder: '150',
+        helpText: 'Surface de plancher totale du bâtiment'
+      },
+      {
+        id: 'type_construction',
+        label: 'Type de construction',
+        type: 'select',
+        options: [
+          { value: 'Béton', label: 'Béton' },
+          { value: 'Bois', label: 'Bois' },
+          { value: 'Mixte', label: 'Mixte' },
+          { value: 'Acier', label: 'Acier' }
+        ],
+        required: true,
+        helpText: 'Sélectionnez le type de construction principal'
+      },
+      {
+        id: 'energie_chauffage',
+        label: 'Énergie de chauffage',
+        type: 'select',
+        options: [
+          { value: 'Électricité', label: 'Électricité' },
+          { value: 'Gaz', label: 'Gaz' },
+          { value: 'Bois', label: 'Bois' },
+          { value: 'Pompe à chaleur', label: 'Pompe à chaleur' }
+        ],
+        required: true,
+        helpText: 'Type d\'énergie utilisée pour le chauffage'
+      }
+    ],
+    outputs: [
+      {
+        id: 'carbone_construction',
+        label: 'Carbone construction',
+        unit: 'kgCO2/m²',
+        format: 'number',
+        precision: 0
+      },
+      {
+        id: 'carbone_exploitation',
+        label: 'Carbone exploitation',
+        unit: 'kgCO2/m².an',
+        format: 'number',
+        precision: 0
+      },
+      {
+        id: 'conformite',
+        label: 'Conformité RE2020',
+        format: 'text'
+      }
+    ],
+    formula: 'Bilan carbone = Carbone construction + Carbone exploitation × Durée de vie',
+    validationRules: [
+      {
+        field: 'surface',
+        rule: 'min',
+        value: 10,
+        message: 'La surface doit être supérieure à 10m²'
+      }
+    ],
+    examples: [
+      {
+        title: 'Maison individuelle bois',
+        description: 'Construction bois de 150m² avec chauffage PAC',
+        inputs: { 
+          surface: 150, 
+          type_construction: 'Bois', 
+          energie_chauffage: 'Pompe à chaleur' 
+        },
+        expectedOutputs: { 
+          carbone_construction: 150,
+          carbone_exploitation: 2.5
+        }
+      }
+    ],
+    relatedCalculators: ['deperditions-thermiques', 'confort-ete', 'besoins-bioclimatiques']
+  },
+  {
+    id: 'confort-ete',
+    type: 'calculator',
+    title: 'Confort d\'été RE2020',
+    description: 'Calcul du confort d\'été selon RE2020',
+    calculatorType: 'thermal',
+    category: 'thermal',
+    tags: ['confort été', 'RE2020', 'surconfort', 'climatisation', 'inertie'],
+    lastUpdated: '2024-03-20',
+    difficulty: 'advanced',
+    estimatedTime: '15 min',
+    isPublic: true,
+    isPremium: true,
+    seoData: {
+      title: 'Calculateur confort d\'été RE2020 | Surconfort thermique',
+      metaDescription: 'Calculez le confort d\'été de votre bâtiment selon RE2020. Évaluation du surconfort thermique.',
+      keywords: ['confort été', 'RE2020', 'surconfort', 'climatisation', 'inertie'],
+      canonicalUrl: 'https://progineer.fr/workspace/calculators/confort-ete'
+    },
+    inputs: [
+      {
+        id: 'surface',
+        label: 'Surface de plancher',
+        type: 'number',
+        unit: 'm²',
+        required: true,
+        min: 10,
+        max: 10000,
+        placeholder: '150'
+      },
+      {
+        id: 'orientation',
+        label: 'Orientation principale',
+        type: 'select',
+        options: [
+          { value: 'Nord', label: 'Nord' },
+          { value: 'Sud', label: 'Sud' },
+          { value: 'Est', label: 'Est' },
+          { value: 'Ouest', label: 'Ouest' }
+        ],
+        required: true
+      },
+      {
+        id: 'type_paroi',
+        label: 'Type de paroi',
+        type: 'select',
+        options: [
+          { value: 'Légère', label: 'Légère' },
+          { value: 'Moyenne', label: 'Moyenne' },
+          { value: 'Lourde', label: 'Lourde' }
+        ],
+        required: true
+      },
+      {
+        id: 'surface_vitree',
+        label: 'Surface vitrée',
+        type: 'number',
+        unit: 'm²',
+        required: true,
+        min: 0,
+        max: 1000
+      }
+    ],
+    outputs: [
+      {
+        id: 'surconfort',
+        label: 'Heures de surconfort',
+        unit: 'h/an',
+        format: 'number',
+        precision: 0
+      },
+      {
+        id: 'conformite',
+        label: 'Conformité RE2020',
+        format: 'text'
+      }
+    ],
+    formula: 'Surconfort = f(Surface, Orientation, Inertie, Surface vitrée)',
+    validationRules: [
+      {
+        field: 'surface',
+        rule: 'min',
+        value: 10,
+        message: 'La surface doit être supérieure à 10m²'
+      },
+      {
+        field: 'surface_vitree',
+        rule: 'max',
+        value: 'surface',
+        message: 'La surface vitrée ne peut pas être supérieure à la surface totale'
+      }
+    ],
+    examples: [
+      {
+        title: 'Appartement sud',
+        description: 'Appartement de 75m² orienté sud avec parois moyennes',
+        inputs: { 
+          surface: 75, 
+          orientation: 'Sud', 
+          type_paroi: 'Moyenne',
+          surface_vitree: 15
+        },
+        expectedOutputs: { 
+          surconfort: 250
+        }
+      }
+    ],
+    relatedCalculators: ['bilan-carbone', 'besoins-bioclimatiques', 'consommation-energetique']
+  },
+  {
+    id: 'ponts-thermiques',
+    type: 'calculator',
+    title: 'Ponts thermiques',
+    description: 'Calcul des déperditions thermiques par les ponts thermiques selon RE2020',
+    calculatorType: 'thermal',
+    category: 'thermal',
+    tags: ['ponts thermiques', 'déperditions', 'RE2020'],
+    lastUpdated: '2024-02-15',
+    difficulty: 'intermediate',
+    estimatedTime: '15 min',
+    isPublic: true,
+    isPremium: false,
+    inputs: [
+      {
+        id: 'type_pont',
+        label: 'Type de pont thermique',
+        type: 'select',
+        options: [
+          { value: 'Linteau', label: 'Linteau' },
+          { value: 'Plancher', label: 'Plancher' },
+          { value: 'Balcon', label: 'Balcon' },
+          { value: 'Refend', label: 'Refend' },
+          { value: 'Autre', label: 'Autre' }
+        ],
+        required: true
+      },
+      {
+        id: 'longueur',
+        label: 'Longueur',
+        type: 'number',
+        unit: 'm',
+        required: true
+      },
+      {
+        id: 'psi',
+        label: 'Coefficient Ψ',
+        type: 'number',
+        unit: 'W/m.K',
+        required: true
+      }
+    ],
+    outputs: [
+      {
+        id: 'deperdition',
+        label: 'Déperdition thermique',
+        unit: 'W',
+        format: 'number',
+        precision: 2
+      },
+      {
+        id: 'conformite',
+        label: 'Conformité RE2020',
+        format: 'text'
+      }
+    ]
+  },
+  {
+    id: 'bilan-carbone',
+    type: 'calculator',
+    title: 'Bilan carbone',
+    description: 'Calcul du bilan carbone d\'un bâtiment selon RE2020',
+    calculatorType: 'thermal',
+    category: 'thermal',
+    tags: ['carbone', 'RE2020', 'construction'],
+    lastUpdated: '2024-02-15',
+    difficulty: 'advanced',
+    estimatedTime: '20 min',
+    isPublic: true,
+    isPremium: true,
+    inputs: [
+      {
+        id: 'surface_plancher',
+        label: 'Surface de plancher',
+        type: 'number',
+        unit: 'm²',
+        required: true
+      },
+      {
+        id: 'type_construction',
+        label: 'Type de construction',
+        type: 'select',
+        options: [
+          { value: 'Beton', label: 'Béton' },
+          { value: 'Bois', label: 'Bois' },
+          { value: 'Mixte', label: 'Mixte' }
+        ],
+        required: true
+      },
+      {
+        id: 'energie_chauffage',
+        label: 'Énergie de chauffage',
+        type: 'select',
+        options: [
+          { value: 'Gaz', label: 'Gaz' },
+          { value: 'Electricite', label: 'Électricité' },
+          { value: 'Bois', label: 'Bois' },
+          { value: 'PompeChaleur', label: 'Pompe à chaleur' }
+        ],
+        required: true
+      }
+    ],
+    outputs: [
+      {
+        id: 'carbone_construction',
+        label: 'Carbone construction',
+        unit: 'kgCO2/m²',
+        format: 'number',
+        precision: 2
+      },
+      {
+        id: 'carbone_exploitation',
+        label: 'Carbone exploitation',
+        unit: 'kgCO2/m².an',
+        format: 'number',
+        precision: 2
+      },
+      {
+        id: 'conformite',
+        label: 'Conformité RE2020',
+        format: 'text'
+      }
+    ]
+  },
+  {
+    id: 'confort-ete',
+    type: 'calculator',
+    title: 'Confort d\'été',
+    description: 'Calcul du confort d\'été selon RE2020',
+    calculatorType: 'thermal',
+    category: 'thermal',
+    tags: ['confort', 'été', 'RE2020'],
+    lastUpdated: '2024-02-15',
+    difficulty: 'intermediate',
+    estimatedTime: '15 min',
+    isPublic: true,
+    isPremium: false,
+    inputs: [
+      {
+        id: 'surface_plancher',
+        label: 'Surface de plancher',
+        type: 'number',
+        unit: 'm²',
+        required: true
+      },
+      {
+        id: 'orientation',
+        label: 'Orientation principale',
+        type: 'select',
+        options: [
+          { value: 'Nord', label: 'Nord' },
+          { value: 'Sud', label: 'Sud' },
+          { value: 'Est', label: 'Est' },
+          { value: 'Ouest', label: 'Ouest' }
+        ],
+        required: true
+      },
+      {
+        id: 'type_paroi',
+        label: 'Type de paroi',
+        type: 'select',
+        options: [
+          { value: 'Legere', label: 'Légère' },
+          { value: 'Lourde', label: 'Lourde' },
+          { value: 'Mixte', label: 'Mixte' }
+        ],
+        required: true
+      },
+      {
+        id: 'surface_vitree',
+        label: 'Surface vitrée',
+        type: 'number',
+        unit: 'm²',
+        required: true
+      }
+    ],
+    outputs: [
+      {
+        id: 'heures_inconfort',
+        label: 'Heures d\'inconfort',
+        unit: 'h',
+        format: 'number',
+        precision: 0
+      },
+      {
+        id: 'conformite',
+        label: 'Conformité RE2020',
+        format: 'text'
+      }
+    ]
   }
 ];
 
 // CALCULATEURS EUROCODES COMPLETS (12 calculateurs)
 export const eurocodesCalculators: Calculator[] = [
+  {
+    id: 'verification-section',
+    type: 'calculator',
+    title: 'Vérification des sections',
+    description: 'Vérification des sections selon Eurocode 3 (acier) et Eurocode 5 (bois)',
+    calculatorType: 'eurocodes',
+    category: 'eurocodes',
+    tags: ['section', 'vérification', 'acier', 'bois', 'eurocode'],
+    lastUpdated: '2024-02-15',
+    difficulty: 'intermediate',
+    estimatedTime: '10 min',
+    isPublic: true,
+    isPremium: false,
+    inputs: [
+      {
+        id: 'type_section',
+        label: 'Type de section',
+        type: 'select',
+        options: [
+          { value: 'IPE', label: 'IPE' },
+          { value: 'HEA', label: 'HEA' },
+          { value: 'HEB', label: 'HEB' },
+          { value: 'Rond', label: 'Rond' },
+          { value: 'Carre', label: 'Carré' }
+        ],
+        required: true
+      },
+      {
+        id: 'dimensions',
+        label: 'Dimensions',
+        type: 'text',
+        placeholder: '300x150x10x15',
+        helpText: 'Format: hauteur x largeur x âme x semelle (mm)',
+        required: true
+      },
+      {
+        id: 'effort_normal',
+        label: 'Effort normal',
+        type: 'number',
+        unit: 'kN',
+        required: true
+      },
+      {
+        id: 'moment_flechissant',
+        label: 'Moment fléchissant',
+        type: 'number',
+        unit: 'kN.m',
+        required: true
+      },
+      {
+        id: 'effort_tranchant',
+        label: 'Effort tranchant',
+        type: 'number',
+        unit: 'kN',
+        required: true
+      }
+    ],
+    outputs: [
+      {
+        id: 'resistance_compression',
+        label: 'Résistance à la compression',
+        unit: 'kN',
+        format: 'number',
+        precision: 2
+      },
+      {
+        id: 'resistance_flexion',
+        label: 'Résistance à la flexion',
+        unit: 'kN.m',
+        format: 'number',
+        precision: 2
+      },
+      {
+        id: 'resistance_cisaillement',
+        label: 'Résistance au cisaillement',
+        unit: 'kN',
+        format: 'number',
+        precision: 2
+      },
+      {
+        id: 'verification',
+        label: 'Vérification',
+        format: 'text'
+      }
+    ]
+  },
+  {
+    id: 'calcul-moments',
+    type: 'calculator',
+    title: 'Calcul des moments',
+    description: 'Calcul des moments fléchissants et efforts tranchants selon Eurocode 0',
+    calculatorType: 'eurocodes',
+    category: 'eurocodes',
+    tags: ['moment', 'flexion', 'effort', 'tranchant', 'eurocode'],
+    lastUpdated: '2024-02-15',
+    difficulty: 'intermediate',
+    estimatedTime: '15 min',
+    isPublic: true,
+    isPremium: false,
+    inputs: [
+      {
+        id: 'type_structure',
+        label: 'Type de structure',
+        type: 'select',
+        options: [
+          { value: 'PoutreSimple', label: 'Poutre simple' },
+          { value: 'PoutreContinue', label: 'Poutre continue' },
+          { value: 'Portique', label: 'Portique' }
+        ],
+        required: true
+      },
+      {
+        id: 'portee',
+        label: 'Portée',
+        type: 'number',
+        unit: 'm',
+        required: true
+      },
+      {
+        id: 'charge_permanente',
+        label: 'Charge permanente',
+        type: 'number',
+        unit: 'kN/m',
+        required: true
+      },
+      {
+        id: 'charge_exploitation',
+        label: 'Charge d\'exploitation',
+        type: 'number',
+        unit: 'kN/m',
+        required: true
+      }
+    ],
+    outputs: [
+      {
+        id: 'moment_max',
+        label: 'Moment maximum',
+        unit: 'kN.m',
+        format: 'number',
+        precision: 2
+      },
+      {
+        id: 'effort_tranchant_max',
+        label: 'Effort tranchant maximum',
+        unit: 'kN',
+        format: 'number',
+        precision: 2
+      },
+      {
+        id: 'fleche_max',
+        label: 'Flèche maximum',
+        unit: 'mm',
+        format: 'number',
+        precision: 2
+      }
+    ]
+  },
+  {
+    id: 'verification-poteaux',
+    type: 'calculator',
+    title: 'Vérification des poteaux',
+    description: 'Vérification des poteaux selon Eurocode 3 (acier) et Eurocode 2 (béton)',
+    calculatorType: 'eurocodes',
+    category: 'eurocodes',
+    tags: ['poteau', 'compression', 'flambement', 'eurocode'],
+    lastUpdated: '2024-02-15',
+    difficulty: 'advanced',
+    estimatedTime: '20 min',
+    isPublic: true,
+    isPremium: true,
+    inputs: [
+      {
+        id: 'type_materiau',
+        label: 'Type de matériau',
+        type: 'select',
+        options: [
+          { value: 'Acier', label: 'Acier' },
+          { value: 'Beton', label: 'Béton armé' }
+        ],
+        required: true
+      },
+      {
+        id: 'section',
+        label: 'Section',
+        type: 'text',
+        placeholder: '300x300',
+        helpText: 'Format: largeur x hauteur (mm)',
+        required: true
+      },
+      {
+        id: 'hauteur',
+        label: 'Hauteur',
+        type: 'number',
+        unit: 'm',
+        required: true
+      },
+      {
+        id: 'effort_normal',
+        label: 'Effort normal',
+        type: 'number',
+        unit: 'kN',
+        required: true
+      },
+      {
+        id: 'moment_flechissant',
+        label: 'Moment fléchissant',
+        type: 'number',
+        unit: 'kN.m',
+        required: true
+      }
+    ],
+    outputs: [
+      {
+        id: 'resistance_compression',
+        label: 'Résistance à la compression',
+        unit: 'kN',
+        format: 'number',
+        precision: 2
+      },
+      {
+        id: 'resistance_flexion',
+        label: 'Résistance à la flexion',
+        unit: 'kN.m',
+        format: 'number',
+        precision: 2
+      },
+      {
+        id: 'coefficient_flambement',
+        label: 'Coefficient de flambement',
+        format: 'number',
+        precision: 3
+      },
+      {
+        id: 'verification',
+        label: 'Vérification',
+        format: 'text'
+      }
+    ]
+  },
   {
     id: 'combinaisons-actions',
     type: 'calculator',

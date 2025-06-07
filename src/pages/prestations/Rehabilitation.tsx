@@ -7,7 +7,8 @@ import RehabilitationHero from '@/components/prestations/rehabilitation/Rehabili
 import RehabilitationSidebar from '@/components/prestations/rehabilitation/RehabilitationSidebar';
 import RehabilitationContent from '@/components/prestations/rehabilitation/RehabilitationContent';
 import RehabilitationSEOContent from '@/components/prestations/rehabilitation/RehabilitationSEOContent';
-import SEOContentSection from '@/components/prestations/rehabilitation/SEOContentSection';
+import SEOContentSection from '@/components/common/SEOContentSection';
+
 
 const Rehabilitation = () => {
   return (
@@ -38,15 +39,16 @@ const Rehabilitation = () => {
       <RehabilitationSEOContent />
 
       <SEOContentSection
-        title="Réhabilitation de bâtiments anciens et patrimoniaux en PACA"
-        intro="Progineer est spécialisé dans la réhabilitation de bâtiments anciens, patrimoniaux ou industriels en région PACA. Nous redonnons vie à votre patrimoine tout en respectant son caractère architectural et en intégrant les normes actuelles de confort, de sécurité et de performance énergétique."
+        title="Réhabilitation et transformation de bâtiments en PACA"
+        intro="Progineer redonne vie à vos bâtiments anciens ou existants en région PACA. Nous sommes spécialisés dans la réhabilitation complète, la transformation et la mise aux normes de tous types de biens, du patrimoine remarquable aux structures plus modestes nécessitant une seconde jeunesse."
         bullets={[
-          "Diagnostic technique et valorisation patrimoniale",
-          "Conception de projets sur mesure",
-          "Gestion des contraintes réglementaires et techniques",
-          "Accompagnement de la conception à la livraison"
+          "Diagnostic structurel et pathologique du bâtiment existant",
+          "Conception de projets de réhabilitation respectueux du bâti et innovants",
+          "Gestion des contraintes techniques et réglementaires (accessibilité, sécurité, thermique)",
+          "Valorisation du patrimoine architectural et amélioration du confort",
+          "Coordination des travaux de démolition, gros œuvre, second œuvre et finitions"
         ]}
-        conclusion="Notre équipe vous accompagne à chaque étape pour transformer et valoriser durablement votre bien à Marseille, Nice, Toulon et dans toute la région Provence-Alpes-Côte d'Azur."
+        conclusion="Confiez-nous la réhabilitation de votre bien à Marseille, Aix-en-Provence, Cannes ou ailleurs en PACA pour une transformation réussie, alliant respect du caractère originel et performances modernes."
       />
 
       <SEOFooter 

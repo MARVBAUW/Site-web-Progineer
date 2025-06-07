@@ -6,8 +6,8 @@ import { InternalLinkText } from '@/utils/internalLinking';
 
 const ExtensionSidebar = () => {
   return (
-    <div className="space-y-8">
-      <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+    <div className="sticky top-24 space-y-8">
+      <div className="bg-card p-2 rounded-xl shadow-sm border border-border">
         <h3 className="text-xl font-semibold mb-4">Besoin d'un devis ?</h3>
         <p className="text-gray-600 dark:text-gray-300 mb-6">
           <InternalLinkText
@@ -25,36 +25,36 @@ const ExtensionSidebar = () => {
         </div>
       </div>
       
-      <div className="bg-khaki-50 p-6 rounded-xl border border-khaki-100">
-        <h3 className="text-xl font-semibold mb-4">Types d'extensions</h3>
+      <div className="bg-sky-50 dark:bg-sky-900/20 p-2 rounded-xl border border-sky-100 dark:border-sky-800">
+        <h3 className="text-xl font-semibold mb-4 text-sky-700 dark:text-sky-300">Nos Solutions d'Extension</h3>
         <ul className="space-y-2">
           <li className="flex items-start">
-            <span className="text-khaki-600 mr-2">•</span>
-            <InternalLinkText text="Extension horizontale" />
+            <span className="text-sky-600 dark:text-sky-400 mr-2">•</span>
+            <InternalLinkText text="Extension horizontale" href="/prestations/extension-maison#services" />
           </li>
           <li className="flex items-start">
-            <span className="text-khaki-600 mr-2">•</span>
-            <InternalLinkText text="Surélévation" />
+            <span className="text-sky-600 dark:text-sky-400 mr-2">•</span>
+            <InternalLinkText text="Surélévation de toiture" href="/prestations/extension-maison/surelevation" />
           </li>
           <li className="flex items-start">
-            <span className="text-khaki-600 mr-2">•</span>
-            <InternalLinkText text="Véranda" />
+            <span className="text-sky-600 dark:text-sky-400 mr-2">•</span>
+            <InternalLinkText text="Extension à ossature bois" href="/prestations/extension-maison/ossature-bois" />
           </li>
           <li className="flex items-start">
-            <span className="text-khaki-600 mr-2">•</span>
-            <InternalLinkText text="Aménagement de combles" />
+            <span className="text-sky-600 dark:text-sky-400 mr-2">•</span>
+            <InternalLinkText text="Vérandas et jardins d'hiver" href="/prestations/extension-maison#services" />
           </li>
           <li className="flex items-start">
-            <span className="text-khaki-600 mr-2">•</span>
-            <InternalLinkText text="Extension à ossature bois" />
+            <span className="text-sky-600 dark:text-sky-400 mr-2">•</span>
+            <InternalLinkText text="Création de suite parentale, bureau..." href="/prestations/extension-maison#options" />
           </li>
         </ul>
         <div className="mt-6 space-y-4">
-          <Button href="/estimation" variant="outline" className="w-full justify-center bg-card hover:bg-muted/50">
-            <Calculator className="mr-2 h-4 w-4" /> Estimer mon projet
+          <Button href="/contact?service=extension" variant="outline" className="w-full justify-center bg-card hover:bg-muted/50 border-sky-300 hover:border-sky-400 text-sky-700 hover:text-sky-600 dark:border-sky-700 dark:hover:border-sky-600 dark:text-sky-300 dark:hover:text-sky-200">
+            <Calculator className="mr-2 h-4 w-4" /> Devis pour votre extension
           </Button>
-          <Button href="/contact" variant="outline" className="w-full justify-center bg-card hover:bg-muted/50">
-            <Calendar className="mr-2 h-4 w-4" /> Prendre rendez-vous
+          <Button href="/nos-realisations?tag=extension" variant="outline" className="w-full justify-center bg-card hover:bg-muted/50 border-sky-300 hover:border-sky-400 text-sky-700 hover:text-sky-600 dark:border-sky-700 dark:hover:border-sky-600 dark:text-sky-300 dark:hover:text-sky-200">
+            <Calendar className="mr-2 h-4 w-4" /> Voir nos extensions réalisées
           </Button>
         </div>
       </div>

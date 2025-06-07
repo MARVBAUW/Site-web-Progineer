@@ -7,7 +7,7 @@ import DesignInterieurHero from '@/components/prestations/design-interieur/Desig
 import DesignInterieurSidebar from '@/components/prestations/design-interieur/DesignInterieurSidebar';
 import DesignInterieurContent from '@/components/prestations/design-interieur/DesignInterieurContent';
 import DesignInterieurSEOContent from '@/components/prestations/design-interieur/DesignInterieurSEOContent';
-import SEOContentSection from '@/components/prestations/design-interieur/SEOContentSection';
+import SEOContentSection from '@/components/common/SEOContentSection';
 
 const DesignInterieur = () => {
   return (

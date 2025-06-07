@@ -7,7 +7,7 @@ import ExtensionHero from '@/components/prestations/extension/ExtensionHero';
 import ExtensionSidebar from '@/components/prestations/extension/ExtensionSidebar';
 import ExtensionContent from '@/components/prestations/extension/ExtensionContent';
 import ExtensionSEOContent from '@/components/prestations/extension/ExtensionSEOContent';
-import SEOContentSection from '@/components/prestations/extension/SEOContentSection';
+import SEOContentSection from '@/components/common/SEOContentSection';
 
 const Extension = () => {
   return (

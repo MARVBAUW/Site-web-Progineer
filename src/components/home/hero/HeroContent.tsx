@@ -96,11 +96,11 @@ const HeroContent = memo(() => {
         Architecte & Maître d'œuvre PACA
       </div>
       
-      <h2 className="text-2xl md:text-3xl lg:text-4xl font-rare tracking-wide text-white leading-tight mb-6 text-left">
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-rare tracking-wide text-white leading-tight mb-6 text-left">
         Maître d&apos;œuvre &amp; Architecte à Marseille,<br />
         Cannes, Saint-Tropez, Fréjus<br />
         Spécialiste Construction et Rénovation
-      </h2>
+      </h1>
       
       <p className="text-base md:text-lg text-white/90 mb-8 max-w-2xl text-left">
         Cabinet d'architecture et constructeur-maître d'œuvre spécialisé en conception et réalisation 

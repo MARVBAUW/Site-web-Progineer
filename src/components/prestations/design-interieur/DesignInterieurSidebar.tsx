@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Phone, Mail, Calculator, Calendar } from 'lucide-react';
 import Button from '@/components/common/Button';
@@ -6,12 +5,12 @@ import { InternalLinkText } from '@/utils/internalLinking';
 
 const DesignInterieurSidebar = () => {
   return (
-    <div className="space-y-8">
-      <div className="bg-card p-6 rounded-xl shadow-sm border border-border">
+    <div className="sticky top-24 space-y-8">
+      <div className="bg-card p-2 rounded-xl shadow-sm border border-border">
         <h3 className="text-xl font-semibold mb-4">Besoin d'un devis ?</h3>
         <p className="text-gray-600 dark:text-gray-300 mb-6">
           <InternalLinkText
-            text="Contactez-nous pour échanger sur votre projet de design d'intérieur et obtenir un devis personnalisé avec un maître d'œuvre à Marseille ou en région PACA."
+            text="Contactez-nous pour échanger sur votre projet de design intérieur et obtenir un devis personnalisé auprès de notre maître d'œuvre à Marseille ou en région PACA."
             maxOccurrences={2}
           />
         </p>
@@ -25,28 +24,28 @@ const DesignInterieurSidebar = () => {
         </div>
       </div>
       
-      <div className="bg-khaki-50 p-6 rounded-xl border border-khaki-100">
-        <h3 className="text-xl font-semibold mb-4">Nos services design</h3>
+      <div className="bg-khaki-50 p-2 rounded-xl border border-khaki-100">
+        <h3 className="text-xl font-semibold mb-4">Explorez Nos Services de Design</h3>
         <ul className="space-y-2">
           <li className="flex items-start">
             <span className="text-khaki-600 mr-2">•</span>
-            <InternalLinkText text="Conception d'espaces résidentiels" />
+            <InternalLinkText text="Conception architecturale et plans 3D" />
           </li>
           <li className="flex items-start">
             <span className="text-khaki-600 mr-2">•</span>
-            <InternalLinkText text="Aménagement de locaux professionnels" />
+            <InternalLinkText text="Design et décoration d'espaces" />
           </li>
           <li className="flex items-start">
             <span className="text-khaki-600 mr-2">•</span>
-            <InternalLinkText text="Home staging pour valorisation" />
+            <InternalLinkText text="Coordination et suivi de chantier" />
           </li>
           <li className="flex items-start">
             <span className="text-khaki-600 mr-2">•</span>
-            <InternalLinkText text="Sélection de mobilier et décoration" />
+            <InternalLinkText text="Optimisation d'Espace et Agencement" />
           </li>
           <li className="flex items-start">
             <span className="text-khaki-600 mr-2">•</span>
-            <InternalLinkText text="Visualisation 3D et moodboards" />
+            <InternalLinkText text="Mobilier sur Mesure et Décoration" />
           </li>
         </ul>
         <div className="mt-6 space-y-4">

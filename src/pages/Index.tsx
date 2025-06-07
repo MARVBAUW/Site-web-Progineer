@@ -103,7 +103,6 @@ const Index = () => {
       />
       
       <main className="w-full">
-        <h1 className="sr-only">Architecte et Maître d'œuvre à Marseille | Constructeur de Maisons PACA</h1>
         <Hero />
         
         <Suspense fallback={<div className="h-96 flex items-center justify-center">Chargement...</div>}>
