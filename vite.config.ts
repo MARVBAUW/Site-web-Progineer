@@ -81,8 +81,7 @@ export default defineConfig(({ mode }) => ({
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
       },
-      maxParallelFileOps: 1,
-      cache: false
+      maxParallelFileOps: 5
     },
     chunkSizeWarningLimit: 5000,
     minify: 'esbuild',
@@ -92,7 +91,10 @@ export default defineConfig(({ mode }) => ({
       polyfill: false
     },
     reportCompressedSize: false,
-    emptyOutDir: true
+    emptyOutDir: true,
+    commonjsOptions: {
+      include: [/node_modules/]
+    }
   },
   optimizeDeps: {
     include: [
