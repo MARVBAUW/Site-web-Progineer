@@ -24,27 +24,27 @@ const PetitCollectifSidebar = () => {
         </div>
       </div>
       
-      <div class="bg-teal-50 dark:bg-teal-900/20 p-2 rounded-xl border border-teal-100 dark:border-teal-800">
-        <h3 class="text-xl font-semibold mb-4 text-teal-700 dark:text-teal-300">Focus Petit Collectif</h3>
+      <div className="bg-teal-50 dark:bg-teal-900/20 p-2 rounded-xl border border-teal-100 dark:border-teal-800">
+        <h3 className="text-xl font-semibold mb-4 text-teal-700 dark:text-teal-300">Focus Petit Collectif</h3>
         <ul className="space-y-2">
-          <li class="flex items-start">
-            <span class="text-teal-600 dark:text-teal-400 mr-2">•</span>
+          <li className="flex items-start">
+            <span className="text-teal-600 dark:text-teal-400 mr-2">•</span>
             <a href="/prestations/petit-collectif#expertise" className="hover:underline">Optimisation foncière</a>
           </li>
-          <li class="flex items-start">
-            <span class="text-teal-600 dark:text-teal-400 mr-2">•</span>
+          <li className="flex items-start">
+            <span className="text-teal-600 dark:text-teal-400 mr-2">•</span>
             <a href="/prestations/petit-collectif#expertise" className="hover:underline">Conception architecturale sur mesure</a>
           </li>
-          <li class="flex items-start">
-            <span class="text-teal-600 dark:text-teal-400 mr-2">•</span>
+          <li className="flex items-start">
+            <span className="text-teal-600 dark:text-teal-400 mr-2">•</span>
             <a href="/prestations/petit-collectif#expertise" className="hover:underline">Suivi de chantier rigoureux</a>
           </li>
-          <li class="flex items-start">
-            <span class="text-teal-600 dark:text-teal-400 mr-2">•</span>
+          <li className="flex items-start">
+            <span className="text-teal-600 dark:text-teal-400 mr-2">•</span>
             <a href="/prestations/petit-collectif#normes" className="hover:underline">Respect des normes (RE2020, HQE)</a>
           </li>
-          <li class="flex items-start">
-            <span class="text-teal-600 dark:text-teal-400 mr-2">•</span>
+          <li className="flex items-start">
+            <span className="text-teal-600 dark:text-teal-400 mr-2">•</span>
             <a href="/prestations/petit-collectif#normes" className="hover:underline">Accompagnement et gestion copropriété</a>
           </li>
         </ul>
